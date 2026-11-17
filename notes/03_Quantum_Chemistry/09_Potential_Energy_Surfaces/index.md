@@ -1,1 +1,1 @@
-Planned chapter; no notes yet.
+Planned chapter. Potential energy surfaces as chemical objects: minima, transition states, reaction paths, conical intersections, and how their features determine structure and reactivity. Computing them is covered in Part 4, Chapters 15–16.

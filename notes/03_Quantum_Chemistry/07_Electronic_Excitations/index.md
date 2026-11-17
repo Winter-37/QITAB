@@ -1,1 +1,1 @@
-Planned chapter; no notes yet.
+Planned chapter. Electronic excited states from a chemical point of view: state characters (valence, Rydberg, charge transfer), Jablonski diagrams, and how computed excitation energies compare with absorption spectra. Methods are in Part 4, Chapter 18.

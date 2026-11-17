@@ -1,1 +1,1 @@
-Planned chapter; no notes yet.
+Planned chapter. What a chemical bond is in quantum-mechanical terms: covalent and ionic contributions, valence-bond and molecular-orbital pictures, bond orders, and how bonding is read from wave functions and densities.

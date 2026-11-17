@@ -1,1 +1,1 @@
-Planned chapter; no notes yet.
+Planned chapter. How spectra arise from transitions between molecular states: selection rules, line intensities and widths, and what each kind of spectroscopy measures. It builds on the time-dependent theory of Part 2, Chapter 11.

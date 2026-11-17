@@ -1,1 +1,1 @@
-Planned chapter; no notes yet.
+Planned chapter. Many-electron atoms as chemistry sees them: shell structure, electron configurations, term symbols and spin–orbit coupling, ionization energies and periodic trends. Part 2, Chapter 5 introduces the quantum mechanics; this chapter interprets it.

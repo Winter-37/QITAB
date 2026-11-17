@@ -1,1 +1,1 @@
-Planned chapter; no notes yet.
+Planned chapter. Practical optimization algorithms as implemented: line searches, BFGS and L-BFGS, trust-region solvers, and gradient-free methods used for noisy objective functions such as VQE energies. The mathematical background is in Part 0, Chapter 6.

@@ -1,1 +1,1 @@
-Planned chapter; no notes yet.
+Planned chapter. One page per textbook used in the notebook, such as Szabo–Ostlund, Helgaker–Jørgensen–Olsen, Jørgensen–Simons, Griffiths, Sakurai and Nielsen–Chuang. Each page records the edition, its conventions, and which chapters of this notebook draw on it.
