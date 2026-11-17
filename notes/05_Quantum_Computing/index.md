@@ -24,4 +24,4 @@ Most of the mathematics is already in Parts 0 and 2: tensor products, density op
 
 ## How to read it
 
-Chapters 1–5 in order; they follow Nielsen–Chuang Chapters 1, 2, 4 and 5. Chapters 6–11 can be read as needed. All chapters are planned; notes are being added.
+Chapters 1–5 in order; they follow Nielsen–Chuang Chapters 1, 2, 4 and 5. Chapters 1–3 are written; Chapters 4–11 are planned and can be read as needed once they exist. Begin with [[quantum-postulates-for-information]].
