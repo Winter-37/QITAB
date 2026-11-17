@@ -11,6 +11,7 @@
   05_Probability_and_Statistics
   06_Optimization
   07_Tensor_Algebra
+  08_Group_Theory
 01_Classical_Physics
   01_Classical_Mechanics
   02_Electromagnetism
