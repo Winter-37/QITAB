@@ -39,4 +39,4 @@ This chapter states the four postulates in that form and draws out the measureme
 
 **Checkpoint.** Show that a general measurement can be realized with an ancilla. Then reproduce the CHSH value $2\sqrt2$ for the singlet from $\langle(\mathbf a\cdot\boldsymbol\sigma)\otimes(\mathbf b\cdot\boldsymbol\sigma)\rangle=-\mathbf a\cdot\mathbf b$.
 
-**Planned sections:** Quantum channels and the operator-sum representation; Distance measures (trace distance, fidelity); No-cloning theorem.
+**Planned sections:** Quantum channels and the operator-sum representation; Distance measures (trace distance, fidelity). The no-cloning theorem is in Chapter 4 ([[no-cloning-theorem]]).
