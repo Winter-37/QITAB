@@ -26,6 +26,9 @@
   06_Symmetries_and_Conservation_Laws
   07_The_Variational_Principle
   08_Perturbation_Theory_and_Greens_Functions
+  09_WKB_Approximation
+  10_Scattering_Theory
+  11_Quantum_Dynamics
 03_Quantum_Chemistry
   01_Atomic_Structure
   02_Molecular_Structure
