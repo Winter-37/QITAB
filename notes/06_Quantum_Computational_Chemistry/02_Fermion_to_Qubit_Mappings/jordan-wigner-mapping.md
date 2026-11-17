@@ -7,7 +7,7 @@ kind: theory
 level: intermediate
 tags: [jordan-wigner, qubit-mapping, pauli-strings, second-quantization, bitstrings]
 prerequisites: [creation-and-annihilation-operators, second-quantized-operators, slater-determinants]
-related: [variational-quantum-eigensolver, sample-based-quantum-diagonalization]
+related: [parity-and-bravyi-kitaev-mappings, qubit-tapering, variational-quantum-eigensolver, sample-based-quantum-diagonalization]
 order: 10
 date: 2026-11-08
 ---
@@ -26,7 +26,7 @@ a_j = Z_0Z_1\cdots Z_{j-1}\,\sigma^-_j,\qquad a^\dagger_j = Z_0\cdots Z_{j-1}\,\
 $$
 
 - **Anticommutation.** For $i<j$ the $Z_i$ in the string of $a_j$ anticommutes with $\sigma^\pm_i$, giving $\{a_i,a^\dagger_j\} = \delta_{ij}$ and $\{a_i,a_j\}=0$ exactly.
-- **Locality cost.** A single fermionic operator acts on up to $M$ qubits. A hopping term $a^\dagger_pa_q$ becomes a Pauli string of weight up to $|p-q|+1$. The parity and Bravyi-Kitaev encodings trade this $O(M)$ weight for $O(\log M)$ (Tilly et al., Secs. 4.1.2-4.1.3).
+- **Locality cost.** A single fermionic operator acts on up to $M$ qubits. A hopping term $a^\dagger_pa_q$ becomes a Pauli string of weight up to $|p-q|+1$. The Bravyi-Kitaev encoding reduces this $O(M)$ weight to $O(\log M)$; the parity encoding moves the long string from the parity side to the update side and stays $O(M)$ ([[parity-and-bravyi-kitaev-mappings]]; Tilly et al., Secs. 4.1.2-4.1.3).
 - **Determinants are basis states.** A Slater determinant with occupied set $\{j\}$ is the computational-basis state with ones at those positions. Measuring all qubits in the $Z$ basis therefore returns determinants with probability $|c_D|^2$. This is the property that [[sample-based-quantum-diagonalization]] uses.
 
 ## The qubit Hamiltonian
@@ -39,7 +39,7 @@ $$
 
 - **Number of terms.** $O(M^4)$ strings in general, set by the number of distinct integrals.
 - **Symmetries.** $\hat N = \sum_j\hat n_j$ and $\hat S_z$ commute with $\hat H$. The qubit Hamiltonian lives in all of Fock space ($2^M$ states), so the ground state of a given electron count is found within that sector; the global lowest eigenvalue can belong to another charge state.
-- **Qubit reduction.** Conserved parities can be tapered off to remove qubits (Tilly et al., Sec. 4.3).
+- **Qubit reduction.** Conserved parities can be tapered off to remove qubits ([[qubit-tapering]]; Tilly et al., Sec. 4.3).
 
 ## Worked example
 

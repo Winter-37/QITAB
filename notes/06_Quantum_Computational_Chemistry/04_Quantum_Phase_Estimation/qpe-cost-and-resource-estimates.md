@@ -57,7 +57,7 @@ Observations:
 
 - **$\lambda$ grows quickly with basis size.** It rises by a factor of 55 for H₂ from STO-3G to cc-pVDZ. Adding diffuse and polarization functions adds many two-electron integrals of similar size.
 - **Core electrons are expensive.** $\lambda$ grows with nuclear charge (LiH < H₂O < N₂), largely through core-orbital integrals. Freezing cores and using active spaces lower it ([[frozen-core-and-active-space-hamiltonians]]).
-- **$\lambda$ depends on the representation.** Orbital rotations, localization, and factorized forms change it, without changing the spectrum. Even the arbitrary choice within N₂'s degenerate $\pi$ orbitals moves $\lambda$ between about 115 and 119 $E_h$ in separate runs, so the N₂ entry above is one representative value ([[molecular-hamiltonian-in-the-mo-basis]]). The Pauli 1-norm here is an upper reference point, not the value used in state-of-the-art estimates.
+- **$\lambda$ depends on the representation.** Orbital rotations, localization, and factorized forms change it, without changing the spectrum. Even the arbitrary choice within N₂'s degenerate $\pi$ orbitals moves $\lambda$ between about 115 and 119 $E_h$ in separate runs (symmetry-adapted orbitals give 114.71), so the N₂ entry above is one representative value ([[molecular-hamiltonian-in-the-mo-basis]]). The Pauli 1-norm here is an upper reference point, not the value used in state-of-the-art estimates.
 - **Term count is $O(N^4)$**, from 15 to about 3000 for 20 qubits. The SELECT cost scales accordingly unless the Hamiltonian is factorized.
 
 ## Factorized Hamiltonians and published estimates
