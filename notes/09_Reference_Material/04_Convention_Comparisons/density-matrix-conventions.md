@@ -8,6 +8,7 @@ level: intermediate
 tags: [density-matrices, rdm, conventions, normalization, pyscf, comparison]
 prerequisites: [one-particle-rdm, density-matrices-second-quantization]
 related: [second-quantization-and-density-matrix-notation, integral-notation, derivative-integrals-and-u-matrices, excitation-operator-conventions]
+conventions: [chemists-integrals, physicists-integrals, antisymmetrized-integrals]
 order: 10
 date: 2026-11-17
 ---

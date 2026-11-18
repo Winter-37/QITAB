@@ -8,6 +8,7 @@ level: introductory
 tags: [spin, angular-momentum, s-squared, ladder-operators, multiplicity]
 prerequisites: [spin-orbitals-and-antisymmetry, slater-determinants]
 related: [spin-adapted-configurations]
+conventions: [ia-letters]
 order: 70
 date: 2026-11-03
 ---
@@ -94,7 +95,7 @@ $S = 0,\tfrac12,1,\tfrac32,\dots$ gives multiplicity $2S+1$: singlet, doublet, t
 Two general facts behind this:
 
 - **Szabo Ex. 2.35.** If $[\hat{\mathcal A},\hat H] = 0$ and $\hat H|\Phi\rangle = E|\Phi\rangle$, then $\hat H(\hat{\mathcal A}|\Phi\rangle) = E\,\hat{\mathcal A}|\Phi\rangle$. For a nondegenerate $E$ this forces $\hat{\mathcal A}|\Phi\rangle\propto|\Phi\rangle$. With degeneracy, combinations can be chosen that are simultaneous eigenfunctions.
-- **Szabo Ex. 2.36.** If $\hat{\mathcal A}$ is Hermitian, commutes with $\hat H$, and $\hat{\mathcal A}|\Psi_i\rangle = a_i|\Psi_i\rangle$ with $a_1\ne a_2$, then
+- **Szabo Ex. 2.36.** If $\hat{\mathcal A}$ is Hermitian, commutes with $\hat H$, and $\hat{\mathcal A}|\Psi_p\rangle = a_p|\Psi_p\rangle$ with $a_1\ne a_2$, then
 $$
 a_1\langle\Psi_1|\hat H|\Psi_2\rangle = \langle\Psi_1|\hat{\mathcal A}\hat H|\Psi_2\rangle = \langle\Psi_1|\hat H\hat{\mathcal A}|\Psi_2\rangle = a_2\langle\Psi_1|\hat H|\Psi_2\rangle,
 $$
@@ -105,7 +106,7 @@ so $\langle\Psi_1|\hat H|\Psi_2\rangle = 0$. Singlet and triplet configurations 
 **Every determinant is an $\hat{\mathcal S}_z$ eigenfunction (Szabo Ex. 2.37).** $\hat{\mathcal S}_z$ is symmetric in the electron labels, so it commutes with antisymmetrization. On each Hartree product it gives $\tfrac12$ per $\alpha$ and $-\tfrac12$ per $\beta$ spin orbital. With $N^\alpha$ and $N^\beta$ the numbers of $\alpha$ and $\beta$ spin orbitals,
 
 $$
-\hat{\mathcal S}_z|\chi_i\chi_j\cdots\chi_k\rangle = \tfrac12(N^\alpha - N^\beta)\,|\chi_i\chi_j\cdots\chi_k\rangle = M_S\,|\chi_i\cdots\chi_k\rangle .
+\hat{\mathcal S}_z|\chi_p\chi_q\cdots\chi_r\rangle = \tfrac12(N^\alpha - N^\beta)\,|\chi_p\chi_q\cdots\chi_r\rangle = M_S\,|\chi_p\cdots\chi_r\rangle .
 $$
 
 **It is not necessarily an $\hat{\mathcal S}^2$ eigenfunction.** Whether a determinant is pure in $S$ depends on its spatial orbitals. Closed-shell restricted determinants are singlets, high-spin open shells are pure, and most other open-shell or unrestricted determinants are not (see [[spin-adapted-configurations]]).

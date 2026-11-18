@@ -8,6 +8,7 @@ level: intermediate
 tags: [localized-orbitals, edmiston-ruedenberg, boys, pipek-mezey, hybridization, chemical-bond, banana-bonds, lone-pairs]
 prerequisites: [molecular-orbitals-of-polyatomic-molecules, slater-determinants, rhf]
 related: [bond-orders-and-atomic-charges, mo-and-valence-bond-theories, hartree-fock-csf-parametrization-and-canonical-conditions, unitary-matrices-exponential-logarithm]
+conventions: [chemists-integrals]
 order: 30
 date: 2026-11-18
 ---

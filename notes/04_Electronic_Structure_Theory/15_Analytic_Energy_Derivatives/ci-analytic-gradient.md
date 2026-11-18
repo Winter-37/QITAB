@@ -8,6 +8,7 @@ level: advanced
 tags: [analytic-gradients, configuration-interaction, cisd, lagrangian, generalized-fock, orbital-response, rdm]
 prerequisites: [derivative-integrals-and-u-matrices, rhf-analytic-gradient, cphf-closed-shell, density-matrices-second-quantization, generalized-fock-matrix-and-orbital-hessian]
 related: [selected-ci-analytic-gradient, z-vector-method, cpci-and-ci-hessian, lagrangian-for-nonvariational-energies, cisd, hellmann-feynman-and-virial-theorems]
+conventions: [chemists-integrals]
 order: 70
 date: 2026-11-07
 ---

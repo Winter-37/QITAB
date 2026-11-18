@@ -8,6 +8,7 @@ level: advanced
 tags: [ccsd-t, cc2, cc3, perturbative-triples, coupled-cluster, moller-plesset, order-analysis, water]
 prerequisites: [moller-plesset-and-coupled-cluster-perturbation-theory, coupled-cluster-hierarchy-and-size-extensivity]
 related: [ccsd-spin-orbital-equations, coupled-cluster-diagrams, closed-shell-ccsd-t1-transformation, standard-models-h2-and-water, eom-ccsd-and-size-extensivity, coupled-cluster-optimization-and-lagrangian]
+conventions: [ia-letters, antisymmetrized-integrals]
 order: 30
 date: 2026-11-04
 ---

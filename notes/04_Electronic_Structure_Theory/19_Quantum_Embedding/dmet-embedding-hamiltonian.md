@@ -8,6 +8,7 @@ level: advanced
 tags: [DMET, embedding-hamiltonian, active-space, core-potential, form-b, chemical-potential]
 prerequisites: [schmidt-decomposition-and-dmet-bath, second-quantized-operators, fock-operator, integral-notation]
 related: [dmet-energy-functionals-and-chemical-potential, ci-in-practice, mcscf-and-gvb]
+conventions: [chemists-integrals]
 order: 20
 date: 2026-11-08
 ---

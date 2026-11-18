@@ -24,6 +24,10 @@
   --accent-wash:#E0F0F1;
   --code:#E8EEF1;
   --scrim:rgba(14,23,29,.45);--warn:#9A5B00;
+  /* topic graph: one fixed colour per part (by folder number), so a part keeps its colour as others fill.
+     Eight validated categorical hues; parts 01 and 07 (no sections yet) share the muted grey. */
+  --part-00:#eda100;--part-01:#58697A;--part-02:#eb6834;--part-03:#e87ba4;--part-04:#2a78d6;
+  --part-05:#6250d6;--part-06:#1baf7a;--part-07:#58697A;--part-08:#e34948;--part-09:#008300;
   --display:"IBM Plex Sans Condensed","Arial Narrow",system-ui,sans-serif;
   --serif:"Literata",Georgia,"Times New Roman",serif;
   --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
@@ -33,12 +37,16 @@
   :root:not([data-theme="light"]){
     --bg:#0E171D;--surface:#14212A;--fg:#E3EAEE;--muted:#94A6B3;--line:#27373F;
     --accent:#58C4CE;--accent-ink:#8FDDE4;--accent-wash:#12303A;--code:#1A2A33;--scrim:rgba(0,0,0,.6);--warn:#E3A857;
+    --part-00:#c98500;--part-01:#94A6B3;--part-02:#d95926;--part-03:#d55181;--part-04:#3987e5;
+    --part-05:#9085e9;--part-06:#199e70;--part-07:#94A6B3;--part-08:#e66767;--part-09:#0ca30c;
     color-scheme:dark;
   }
 }
 :root[data-theme="dark"]{
   --bg:#0E171D;--surface:#14212A;--fg:#E3EAEE;--muted:#94A6B3;--line:#27373F;
   --accent:#58C4CE;--accent-ink:#8FDDE4;--accent-wash:#12303A;--code:#1A2A33;--scrim:rgba(0,0,0,.6);--warn:#E3A857;
+  --part-00:#c98500;--part-01:#94A6B3;--part-02:#d95926;--part-03:#d55181;--part-04:#3987e5;
+  --part-05:#9085e9;--part-06:#199e70;--part-07:#94A6B3;--part-08:#e66767;--part-09:#0ca30c;
   color-scheme:dark;
 }
 *{box-sizing:border-box}
@@ -267,12 +275,100 @@ details.add summary{cursor:pointer;font-family:var(--mono);font-size:.74rem;lett
 details.add[open] summary{margin-bottom:12px}
 details.add p{margin:0 0 12px;font-size:.92rem}
 details.add code.inline{font-family:var(--mono);font-size:.84em;background:var(--code);padding:1px 5px}
+
+/* ---- topic graph: the map page (#map) and the graph panel on note pages ---- */
+a.btn{text-decoration:none;display:inline-block;line-height:inherit}
+.btn[aria-pressed="true"]{border-color:var(--accent);color:var(--accent-ink);background:var(--accent-wash)}
+.btn:disabled{opacity:.45;cursor:default}
+details.gmap{max-width:690px;margin:0 0 30px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:10px 0}
+details.gmap>summary{cursor:pointer;font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+details.gmap>summary .c{margin-left:10px;letter-spacing:.02em;text-transform:none;color:var(--accent-ink)}
+details.gmap[open]>summary{margin-bottom:12px}
+.gbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 10px}
+.gbar .sp{flex:1 1 0;min-width:0}
+.seg{display:inline-flex;flex-wrap:nowrap}
+.seg .btn+.btn{margin-left:-1px}
+.seg .btn[aria-pressed="true"]{position:relative;z-index:1}
+.cyhost{position:relative;height:440px;background:var(--surface);border:1px solid var(--line);overflow:hidden}
+.cyhost.chain,.cyhost.tall{height:560px}
+.cyhost.map-host{height:min(74vh,780px);min-height:380px}
+@media (max-width:520px){.cyhost{height:380px}.cyhost.chain,.cyhost.tall{height:460px}.cyhost.map-host{height:62vh;min-height:340px}}
+.gmsg{position:absolute;inset:0;display:grid;place-items:center;padding:20px;text-align:center;font-family:var(--mono);font-size:.78rem;color:var(--muted)}
+.gcap{margin:8px 0 0;font-family:var(--mono);font-size:.72rem;line-height:1.7;color:var(--muted)}
+.ln{display:inline-block;width:22px;vertical-align:middle;border-top:2px solid var(--muted);margin:0 5px 0 0}
+.ln.rel{border-top-style:dashed}
+.ln.lnk{border-top-style:dotted}
+.gcap .k{white-space:nowrap;margin-right:14px}
+details.gpath{margin-top:12px}
+details.gpath>summary{cursor:pointer;font-family:var(--mono);font-size:.74rem;color:var(--accent-ink)}
+details.gpath ol{list-style:none;margin:8px 0 0;padding:0;border-top:1px solid var(--line)}
+details.gpath li{display:flex;gap:12px;align-items:baseline;padding:5px 0;border-bottom:1px solid var(--line);font-size:.92rem;line-height:1.35}
+details.gpath .nn{flex:none;min-width:4.2em;font-family:var(--mono);font-size:.7rem;color:var(--muted);font-variant-numeric:tabular-nums}
+details.gpath a{color:var(--fg);text-decoration:none;font-family:var(--display);font-weight:500}
+details.gpath a:hover{color:var(--accent-ink);text-decoration:underline}
+.gfilters{display:grid;gap:12px;margin:14px 0}
+details.gfold{margin-top:22px}
+details.gfold>summary{cursor:pointer;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.gfilters .row2{display:flex;flex-wrap:wrap;gap:8px 8px;align-items:center}
+.gfilters .lab{flex:none;min-width:4.5em;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.chip.part{display:inline-flex;align-items:center;gap:7px}
+.chip.part .sw{flex:none;width:10px;height:10px;border-radius:50%;background:var(--sw)}
+.chip.part[aria-pressed="true"]{border-color:var(--accent)}
+.chip.part[aria-pressed="false"]{color:var(--muted);text-decoration:line-through}
+.chip.part[aria-pressed="false"] .sw{background:transparent;box-shadow:inset 0 0 0 1.5px var(--sw)}
+.checks{display:flex;flex-wrap:wrap;gap:6px 16px}
+.checks label{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:.76rem;cursor:pointer;white-space:nowrap}
+.checks input{accent-color:var(--accent);margin:0}
+.find{flex:1 1 240px;max-width:420px;min-width:0;font-family:var(--mono);font-size:.84rem;padding:8px 12px;background:var(--surface);color:var(--fg);border:1px solid var(--line);border-radius:0}
+.ginfo{margin-top:14px;max-width:760px;padding:16px 18px;background:var(--surface);border:1px solid var(--line)}
+.ginfo .eyebrow{margin-bottom:4px}
+.ginfo .t{display:block;font-family:var(--display);font-weight:600;font-size:1.25rem;line-height:1.25;color:var(--fg);text-decoration:none}
+.ginfo a.t:hover{color:var(--accent-ink);text-decoration:underline;text-underline-offset:4px}
+.ginfo .s{margin:6px 0 0;font-size:.95rem;line-height:1.55}
+.ginfo .m{margin:8px 0 0;font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+.ginfo .cta{margin-top:12px}
+.ginfo .hint{margin:0;font-family:var(--mono);font-size:.76rem;color:var(--muted);line-height:1.6}
+
+/* ---- numbered equations, conventions, hover previews, sources page ---- */
+.post-body .eq{scroll-margin-top:30vh}
+.post-body .eq.hit{background:var(--accent-wash);box-shadow:-10px 0 0 var(--accent-wash),10px 0 0 var(--accent-wash)}
+.post-body a.eqref{white-space:nowrap}
+.convs{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:baseline;margin:0 0 12px}
+.convs .lab{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-right:2px}
+.conv{font-family:var(--mono);font-size:.72rem;padding:2px 8px;border:1px dashed var(--line);color:var(--fg);text-decoration:none}
+a.conv:hover{border-color:var(--accent);color:var(--accent-ink)}
+.pop{position:fixed;z-index:40;width:min(420px,calc(100vw - 16px));max-height:min(60vh,520px);overflow:hidden;padding:14px 16px;background:var(--surface);color:var(--fg);border:1px solid var(--line);box-shadow:0 6px 24px rgba(0,0,0,.14);pointer-events:none;font-size:.92rem;line-height:1.5}
+.pop .eyebrow{margin:0 0 4px;font-size:.68rem}
+.pop .t{margin:0;font-family:var(--display);font-weight:600;font-size:1.1rem;line-height:1.25}
+.pop .s{margin:6px 0 0}
+.pop .eq{margin:8px 0 0;overflow:hidden;font-size:.95rem}
+.pop .eq mjx-container[display="true"]{margin:.4em 0;overflow:hidden}
+.pop .convs{margin:8px 0 0}
+.pop .m{margin:8px 0 0;font-family:var(--mono);font-size:.7rem;color:var(--muted)}
+details.src{border-top:1px solid var(--line)}
+details.src:last-of-type{border-bottom:1px solid var(--line)}
+details.src>summary{cursor:pointer;padding:14px 0}
+details.src>summary .t{display:inline;font-family:var(--display);font-weight:600;font-size:1.15rem;line-height:1.3}
+details.src>summary .m{display:block;margin-top:3px;font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+ul.locs{list-style:none;margin:0 0 16px;padding:0}
+ul.locs li{display:grid;grid-template-columns:minmax(78px,max-content) minmax(0,1fr);gap:2px 14px;padding:6px 0;border-top:1px dotted var(--line);font-size:.9rem;line-height:1.45}
+ul.locs .loc{font-family:var(--mono);font-size:.74rem;color:var(--muted);white-space:nowrap;padding-top:2px}
+a.nref{color:var(--fg);text-decoration:none}
+a.nref:hover{color:var(--accent-ink);text-decoration:underline;text-underline-offset:3px}
+ul.papers{list-style:none;margin:0;padding:0}
+ul.papers li{padding:12px 0;border-top:1px solid var(--line)}
+ul.papers li:last-child{border-bottom:1px solid var(--line)}
+ul.papers .cit{margin:0;font-size:.95rem;line-height:1.5}
+ul.papers .m{margin:4px 0 0;font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+ul.papers .m a{color:var(--accent-ink)}
+@media (max-width:520px){ul.locs li{grid-template-columns:minmax(0,1fr)}}
 </style></head>
 <body>
 <div class="wrap">
   <div class="top">
     <p class="mark"><a href="#" id="home-link">Theory Notebook</a></p>
     <button class="btn" id="menu" type="button" aria-expanded="false" aria-controls="side">Contents</button>
+    <a class="btn" id="mapbtn" href="#map">Map</a>
     <button class="btn" id="theme" type="button">Theme</button>
   </div>
 
@@ -355,6 +451,8 @@ window.MathJax={
   notes.forEach(function(n){
     noteById[n.id]=n;
     n.tags=n.tags||[];n.prereq=n.prereq||[];n.related=n.related||[];n.links=n.links||[];n.cite=n.cite||{};
+    n.eqs=n.eqs||[];n.conv=n.conv||[];n.eqIndex={};
+    n.eqs.forEach(function(e,i){n.eqIndex[e[0]]=i});
     n.node=addPath(n.home?n.home.split('/'):[]);
     n.node.notes.push(n);
     if(n.kind)(byKind[n.kind]=byKind[n.kind]||[]).push(n);
@@ -392,9 +490,20 @@ window.MathJax={
     n.related.concat(n.links).forEach(function(r){if(noteById[r]&&r!==n.id)push(mentionedIn,r,n)});
   });
 
+  /* ---------- numbered equations ----------
+     build.py turns \label{x} into \tag{@@EQ:x@@} and [[note#x]] into "Eq. (@@EQREF:note~x@@)";
+     the number is the section number plus the equation's position among the note's labelled ones. */
+  var CONV=DATA.conventions||{axes:{},values:{}};
+  function eqNum(n,lab){var i=n?n.eqIndex[lab]:null;return i==null?'?':(n.sec?n.sec+'.':'')+(i+1)}
+  function fillEq(s,n){
+    return String(s||'').replace(/@@EQ:([a-z0-9_-]+)@@/g,function(m,l){return eqNum(n,l)})
+      .replace(/@@EQREF:([a-z0-9-]+)~([a-z0-9_-]+)@@/g,function(m,id,l){return eqNum(noteById[id],l)});
+  }
+  function eqTex(n,lab){for(var i=0;i<n.eqs.length;i++)if(n.eqs[i][0]===lab)return n.eqs[i][1];return ''}
+
   var textCache={};
   function textOf(n){
-    if(textCache[n.id]==null){var d=document.createElement('div');d.innerHTML=n.html;textCache[n.id]=d.textContent.replace(/\s+/g,' ')}
+    if(textCache[n.id]==null){var d=document.createElement('div');d.innerHTML=fillEq(n.html,n);textCache[n.id]=d.textContent.replace(/\s+/g,' ')}
     return textCache[n.id];
   }
 
@@ -408,8 +517,13 @@ window.MathJax={
   /* ---------- routing ---------- */
   var state={h:'',q:''};
   function resolve(h){
-    if(h.indexOf('n.')===0){var n=noteById[h.slice(2)];if(n)return {kind:'note',note:n}}
+    if(h.indexOf('n.')===0){
+      var rest=h.slice(2),cut=rest.indexOf('~'),n=noteById[cut<0?rest:rest.slice(0,cut)];
+      if(n)return {kind:'note',note:n,anchor:cut<0?'':rest.slice(cut+1)};
+    }
+    if(h==='sources')return {kind:'sources'};
     if(h.indexOf('k.')===0){var k=h.slice(2);if(byKind[k])return {kind:'kind',k:k}}
+    if(h==='map'||h.indexOf('map.')===0)return {kind:'map',focus:noteById[h.slice(4)]||null};
     return {kind:'folder',node:byKey[h.split('~').join('/')]||rootNode};
   }
   function curNode(r){return r.kind==='folder'?r.node:(r.kind==='note'?r.note.node:null)}
@@ -419,8 +533,16 @@ window.MathJax={
   }
   function setRoute(h){
     state.h=h;state.q='';$('q').value='';
-    syncTree();draw();closeDrawer();
-    window.scrollTo(0,0);
+    hidePop();syncTree();draw();closeDrawer();
+    var r=resolve(h);
+    if(r.anchor)jumpTo(r.anchor);else window.scrollTo(0,0);
+  }
+  /* bring an equation (id "eq-<label>") into view and mark it */
+  function jumpTo(id){
+    var e=document.getElementById(id);if(!e)return;
+    var old=document.querySelector('.eq.hit');if(old&&old!==e)old.classList.remove('hit');
+    e.classList.add('hit');
+    try{e.scrollIntoView({block:'center'})}catch(x){e.scrollIntoView()}
   }
   window.addEventListener('hashchange',function(){
     var h=location.hash.slice(1);
@@ -497,6 +619,7 @@ window.MathJax={
   $('scrim').addEventListener('click',closeDrawer);
   document.addEventListener('keydown',function(e){if(e.key==='Escape')closeDrawer()});
   $('home-link').addEventListener('click',function(e){if(plain(e)){e.preventDefault();go('')}});
+  $('mapbtn').addEventListener('click',function(e){if(plain(e)){e.preventDefault();go('map')}});
 
   /* ---------- building blocks ---------- */
   function fmtDate(d){
@@ -571,15 +694,15 @@ window.MathJax={
   }
 
   /* MathJax: typeset now if loaded, otherwise as soon as it loads */
-  var pendingMath=null;
-  function typeset(target){
+  var pendingMath=null,pendingDone=null;
+  function typeset(target,done){
     var mj=window.MathJax;
     if(mj&&mj.typesetPromise&&mj.startup&&mj.startup.promise){
-      mj.startup.promise.then(function(){return mj.typesetPromise([target])}).catch(function(){});
-    }else{pendingMath=target}
+      mj.startup.promise.then(function(){return mj.typesetPromise([target])}).then(function(){if(done)done()}).catch(function(){});
+    }else{pendingMath=target;pendingDone=done||null}
   }
   $('mj').addEventListener('load',function(){
-    if(pendingMath){var t=pendingMath;pendingMath=null;typeset(t)}
+    if(pendingMath){var t=pendingMath,d=pendingDone;pendingMath=null;pendingDone=null;typeset(t,d)}
   });
 
   /* ---------- reading-order pager ---------- */
@@ -617,6 +740,8 @@ window.MathJax={
     if(est&&est.start)cta.appendChild(link('Start Part '+est.full+': '+est.label,'n.'+est.start.id,'chip'));
     var last=lastRead();
     if(last)cta.appendChild(link('Continue: '+(last.sec?last.sec+' ':'')+last.title.replace(/\s+-\s+.*$/,''),'n.'+last.id,'chip'));
+    if(notes.length)cta.appendChild(link('Topic map: how the sections connect','map','chip'));
+    if(DATA.sources&&DATA.sources.books&&DATA.sources.books.length)cta.appendChild(link('Sources: books and papers','sources','chip'));
     head.appendChild(cta);
     v.appendChild(head);
 
@@ -705,7 +830,7 @@ window.MathJax={
     }
     v.appendChild(head);
     if(node.intro){
-      var intro=el('div','post-body intro');intro.innerHTML=node.intro;
+      var intro=el('div','post-body intro');intro.innerHTML=fillEq(node.intro,null);
       v.appendChild(intro);typeset(intro);
     }
     if(node.children.length)v.appendChild(group(node.depth===1?'Chapters':'Folders',node.children.map(folderItem)));
@@ -782,6 +907,7 @@ window.MathJax={
     if(n.kind)badges.appendChild(el('span','badge',kindName(n.kind)));
     if(n.level)badges.appendChild(el('span','badge',cap(n.level)));
     if(badges.children.length)head.appendChild(badges);
+    var cl=convLine(n.conv,true);if(cl)head.appendChild(cl);
     if(n.cite.authors||n.cite.journal||n.cite.year||n.cite.doi)head.appendChild(citeLine(n.cite));
     var meta=el('p','post-meta');
     [n.date?fmtDate(n.date):'',n.mins+' min read',n.tags.join(' / ')].filter(Boolean).forEach(function(x){meta.appendChild(el('span',null,x))});
@@ -792,8 +918,10 @@ window.MathJax={
 
     var pre=refBlock('Prerequisites',refItems(n.prereq),'pre');
     if(pre)art.appendChild(pre);
+    var gp=graphPanel(n);
+    if(gp)art.appendChild(gp);
 
-    var body=el('div','post-body');body.innerHTML=n.html;
+    var body=el('div','post-body');body.innerHTML=fillEq(n.html,n);
     art.appendChild(body);
 
     var toc=el('ul');
@@ -819,7 +947,656 @@ window.MathJax={
     if(toc.children.length){rail.appendChild(el('h4',null,'In this note'));rail.appendChild(toc)}
     grid.appendChild(rail);
     v.appendChild(grid);
-    typeset(body);
+    var anchor=resolve(state.h).anchor;
+    typeset(body,function(){if(anchor&&resolve(state.h).note===n)jumpTo(anchor)});
+  }
+
+  /* ---------- topic graph ----------
+     Drawn from the prereq / related / links fields that build.py already writes: nothing new to
+     author. Cytoscape.js and cytoscape-dagre load from vendor/cytoscape/ on first use with plain
+     <script> tags (allowed on file://, unlike fetch). Three views:
+       #map, #map.<id>   whole notebook, force layout, filters by part and link kind
+       note panel        prerequisite chain (layered, implied links removed) and neighbours (1-2 steps)
+     Reading guides (HUB) link to almost every section, so they are left out unless asked for.
+     Colours are the --part-NN and theme tokens, read again on every theme change. No animation. */
+  var HUB=/^reading-order-/;
+  function isHub(n){return HUB.test(n.id)}
+  function shortTitle(n){return n.title.replace(/\s+-\s+.*$/,'')}
+  function partOf(node){var x=node;while(x&&x.parent&&x.parent.key)x=x.parent;return x}
+  function partNum(p){var m=/^(\d+)_/.exec((p&&p.seg)||'');return m?m[1]:'xx'}
+  function tok(name){return getComputedStyle(root).getPropertyValue(name).trim()}
+  var coarse=false;try{coarse=window.matchMedia('(pointer: coarse)').matches}catch(e){}
+
+  /* one record per connected pair: pre=[from,to] when one is a prerequisite of the other */
+  var PAIRS=null,PAIRS_OF={};
+  function pairs(){
+    if(PAIRS)return PAIRS;
+    var m={};
+    function get(a,b){var k=a<b?a+'|'+b:b+'|'+a;return m[k]||(m[k]={a:a,b:b,pre:null,rel:false,lnk:false})}
+    notes.forEach(function(n){
+      n.prereq.forEach(function(r){if(noteById[r]&&r!==n.id)get(r,n.id).pre=[r,n.id]});
+      n.related.forEach(function(r){if(noteById[r]&&r!==n.id)get(r,n.id).rel=true});
+      n.links.forEach(function(r){if(noteById[r]&&r!==n.id)get(r,n.id).lnk=true});
+    });
+    PAIRS=Object.keys(m).map(function(k){return m[k]});
+    PAIRS.forEach(function(p){push(PAIRS_OF,p.a,p);push(PAIRS_OF,p.b,p)});
+    return PAIRS;
+  }
+  /* the edge drawn for a pair: its strongest kind that is switched on */
+  function edgeFor(p,show){
+    var id='e:'+p.a+'|'+p.b;
+    if(p.pre&&show.pre)return {group:'edges',data:{id:id,source:p.pre[0],target:p.pre[1]},classes:'pre'};
+    if(p.rel&&show.rel)return {group:'edges',data:{id:id,source:p.a,target:p.b},classes:'rel'};
+    if(p.lnk&&show.lnk)return {group:'edges',data:{id:id,source:p.a,target:p.b},classes:'lnk'};
+    return null;
+  }
+
+  /* library loader */
+  var cyState=0,cyWait=[];   /* 0 not loaded, 1 loading, 2 ready, 3 failed */
+  function withCy(ok,fail){
+    if(cyState===2){ok();return}
+    if(cyState===3){fail();return}
+    cyWait.push([ok,fail]);
+    if(cyState===1)return;
+    cyState=1;
+    var files=['vendor/cytoscape/cytoscape.min.js','vendor/cytoscape/cytoscape-dagre.min.js'];
+    function flush(k){var q=cyWait;cyWait=[];q.forEach(function(c){try{c[k]()}catch(e){if(window.console)console.error(e)}})}
+    (function next(i){
+      if(i===files.length){
+        if(!window.cytoscape){cyState=3;flush(1);return}
+        try{if(window.cytoscapeDagre)window.cytoscape.use(window.cytoscapeDagre)}catch(e){}
+        cyState=2;flush(0);return;
+      }
+      var s=document.createElement('script');s.src=files[i];
+      s.onload=function(){next(i+1)};
+      s.onerror=function(){cyState=3;flush(1)};
+      document.head.appendChild(s);
+    })(0);
+  }
+
+  var live=[];   /* {cy, mode} for every graph on screen */
+  function destroyGraphs(){live.forEach(function(g){try{g.cy.destroy()}catch(e){}});live=[]}
+  function forget(cy){live=live.filter(function(g){if(g.cy===cy){try{cy.destroy()}catch(e){}return false}return true})}
+  function restyleGraphs(){live.forEach(function(g){try{g.cy.style(sheet(g.mode))}catch(e){}})}
+
+  function sheet(mode){
+    var C={fg:tok('--fg'),muted:tok('--muted'),line:tok('--line'),surf:tok('--surface'),acc:tok('--accent'),ink:tok('--accent-ink'),wash:tok('--accent-wash')};
+    var P={};
+    function hue(e){var k=e.data('part');if(!(k in P))P[k]=tok('--part-'+k)||C.muted;return P[k]}
+    var font='"IBM Plex Sans Condensed","Arial Narrow",system-ui,sans-serif';
+    var s=[
+      {selector:'node',style:{'background-color':hue,'border-width':1.5,'border-color':C.surf,'width':'data(sz)','height':'data(sz)',
+        'label':'data(label)','color':C.fg,'font-family':font,'font-weight':500,'font-size':'data(fs)','text-wrap':'wrap','text-max-width':'data(tw)',
+        'text-valign':'bottom','text-margin-y':3,'text-outline-color':C.surf,'text-outline-width':2,'min-zoomed-font-size':7}},
+      {selector:'edge',style:{'width':1,'line-color':C.muted,'opacity':.5,'curve-style':'straight'}},
+      {selector:'edge.pre',style:{'width':1.4,'opacity':.7,'target-arrow-shape':'triangle','target-arrow-color':C.muted,'arrow-scale':.8}},
+      {selector:'edge.rel',style:{'line-style':'dashed','line-dash-pattern':[5,4]}},
+      {selector:'edge.lnk',style:{'line-style':'dotted','opacity':.4}},
+      {selector:'node.cur',style:{'border-color':C.acc,'border-width':4,'font-weight':600}},
+      {selector:'node.planned',style:{'background-color':C.surf,'border-color':C.muted,'border-style':'dashed','border-width':1.5,'color':C.muted}}
+    ];
+    if(mode==='chain'){
+      s.push({selector:'node',style:{'shape':'round-rectangle','width':'data(w)','height':'data(h)','background-color':C.surf,
+        'border-color':hue,'border-width':2,'text-valign':'center','text-halign':'center','text-margin-y':0,'text-outline-width':0,'font-size':11}});
+      s.push({selector:'node.cur',style:{'background-color':C.wash,'border-color':C.acc,'border-width':3,'font-weight':600}});
+      s.push({selector:'node.planned',style:{'border-color':C.muted,'border-style':'dashed','border-width':1.5,'color':C.muted}});
+      s.push({selector:'edge',style:{'curve-style':'bezier','opacity':.8}});
+    }
+    if(mode==='map'){
+      s.push({selector:'node',style:{'min-zoomed-font-size':11,'text-outline-width':0,'text-background-color':C.surf,'text-background-opacity':.78,'text-background-padding':1}});
+      s.push({selector:'node[fs >= 20]',style:{'z-index':8}});
+      s.push({selector:'node.hl,node.sel',style:{'min-zoomed-font-size':0,'font-size':'data(hfs)','z-index':9}});
+      s.push({selector:'node.faded',style:{'text-opacity':0}});
+    }
+    s.push({selector:'.faded',style:{'opacity':.12}});
+    s.push({selector:'edge.hl',style:{'line-color':C.ink,'target-arrow-color':C.ink,'opacity':1,'width':2}});
+    s.push({selector:'node.hl',style:{'border-color':C.fg}});
+    s.push({selector:'node.sel',style:{'border-color':C.acc,'border-width':4,'font-weight':600,'z-index':10}});
+    return s;
+  }
+
+  function makeCy(host,mode,els,interactive){
+    host.innerHTML='';
+    var cy=window.cytoscape({container:host,elements:els,style:sheet(mode),layout:{name:'preset'},
+      minZoom:.1,maxZoom:3,boxSelectionEnabled:false,autoungrabify:true,autounselectify:true,
+      userZoomingEnabled:!!interactive,userPanningEnabled:!!interactive||!coarse});
+    /* hovering a node shows its label at a readable size whatever the zoom */
+    cy.on('mouseover','node',function(e){
+      var x=e.target;if(!x.hasClass('planned'))host.style.cursor='pointer';
+      if(mode!=='chain')x.style({'font-size':Math.max(x.data('fs'),13/cy.zoom()),'min-zoomed-font-size':0,'z-index':20,'text-max-width':Math.max(x.data('tw'),160/cy.zoom())});
+    });
+    cy.on('mouseout','node',function(e){host.style.cursor='';if(mode!=='chain')e.target.removeStyle('font-size min-zoomed-font-size z-index text-max-width')});
+    live.push({cy:cy,mode:mode});
+    return cy;
+  }
+  function msg(host,text){host.innerHTML='';host.appendChild(el('div','gmsg',text))}
+  var NOLIB='The graph library was not found. It should be at vendor/cytoscape/ next to index.html.';
+  /* fit, but not so far out that labels become unreadable; then keep the focus node in view */
+  function fitView(cy,focus,minZ,bottom){
+    cy.fit(undefined,24);
+    if(cy.zoom()>1.4){cy.zoom(1.4);cy.center()}
+    if(cy.zoom()<minZ&&focus&&focus.length){
+      cy.zoom(minZ);
+      var p=focus.position(),z=cy.zoom();
+      cy.pan({x:cy.width()/2-p.x*z,y:(bottom?cy.height()-focus.renderedOuterHeight()/2-28:cy.height()/2)-p.y*z});
+    }
+  }
+  function chainMinZoom(){return window.innerWidth<600?.75:.55}
+  function tbtn(label,title){var b=el('button','btn',label);b.type='button';if(title){b.title=title;b.setAttribute('aria-label',title)}return b}
+  function zoomTools(getCy,refit){
+    var seg=el('div','seg');
+    var out=tbtn('−','Zoom out'),inn=tbtn('+','Zoom in'),fit=tbtn('Fit','Fit the graph to the box');
+    function z(f){var cy=getCy();if(!cy)return;cy.zoom({level:cy.zoom()*f,renderedPosition:{x:cy.width()/2,y:cy.height()/2}})}
+    out.addEventListener('click',function(){z(1/1.3)});
+    inn.addEventListener('click',function(){z(1.3)});
+    fit.addEventListener('click',function(){var cy=getCy();if(cy){cy.fit(undefined,24);if(refit)refit(cy)}});
+    seg.appendChild(out);seg.appendChild(inn);seg.appendChild(fit);
+    return seg;
+  }
+  function legendLines(kinds){
+    var p=el('p','gcap');
+    var L={pre:'prerequisite → section that needs it',rel:'related',lnk:'in-text link'};
+    kinds.forEach(function(k){var s=el('span','k');s.appendChild(el('span','ln '+k));s.appendChild(document.createTextNode(L[k]));p.appendChild(s)});
+    return p;
+  }
+  function nodeData(n,extra){
+    var d={id:n.id,label:shortTitle(n),part:partNum(partOf(n.node)),sz:16,fs:10,tw:110};
+    for(var k in extra)d[k]=extra[k];
+    return d;
+  }
+
+  /* prerequisite chain: every note reachable through prerequisites, with implied edges removed
+     (u→v is dropped when v can already be reached from u through another prerequisite) */
+  function chainOf(n){
+    var seen={},stack=[n.id],edges={},planned={};
+    seen[n.id]=1;
+    while(stack.length){
+      var x=noteById[stack.pop()];
+      x.prereq.forEach(function(r){
+        if(r===x.id)return;
+        if(noteById[r]){edges[r+'\u0001'+x.id]=[r,x.id];if(!seen[r]){seen[r]=1;stack.push(r)}}
+        else{planned[r]=1;edges['planned:'+r+'\u0001'+x.id]=['planned:'+r,x.id]}
+      });
+    }
+    var all=Object.keys(edges).map(function(k){return edges[k]}),succ={};
+    all.forEach(function(e){push(succ,e[0],e[1])});
+    var kept=all.filter(function(e){
+      var u=e[0],v=e[1],st=(succ[u]||[]).filter(function(w){return w!==v}),vis={};
+      while(st.length){var w=st.pop();if(w===v)return false;if(vis[w])continue;vis[w]=1;(succ[w]||[]).forEach(function(y){st.push(y)})}
+      return true;
+    });
+    var before=Object.keys(seen).filter(function(id){return id!==n.id}).map(function(id){return noteById[id]}).sort(function(a,b){return a.seq-b.seq});
+    return {ids:Object.keys(seen),planned:Object.keys(planned),edges:kept,hidden:all.length-kept.length,before:before};
+  }
+  function chainElements(n,ch){
+    var els=[];
+    function box(id,label,cls,part){
+      var tw=150,lines=0;
+      label.split(/\n/).forEach(function(t){lines+=Math.max(1,Math.ceil(t.length/23))});
+      els.push({group:'nodes',data:{id:id,label:label,part:part,w:tw+14,h:14*lines+18,tw:tw,sz:16,fs:11},classes:cls});
+    }
+    ch.ids.forEach(function(id){
+      var x=noteById[id];
+      box(id,(x.sec?x.sec+'  ':'')+shortTitle(x),id===n.id?'cur':'',partNum(partOf(x.node)));
+    });
+    ch.planned.forEach(function(t){box('planned:'+t,t+'\n(planned)','planned','xx')});
+    ch.edges.forEach(function(e){els.push({group:'edges',data:{id:'c:'+e[0]+'|'+e[1],source:e[0],target:e[1]},classes:'pre'})});
+    return els;
+  }
+  /* neighbours within `depth` steps over any link kind, placed by hand on rings round the section
+     (alternating between rings when there are many, so labels do not collide; second-step sections sit
+     next to the neighbour they come through). Edges between two outermost sections are left out. */
+  function nearElements(n,depth){
+    pairs();
+    var dist={},par={},q=[n.id];dist[n.id]=0;
+    while(q.length){
+      var x=q.shift();if(dist[x]>=depth)continue;
+      (PAIRS_OF[x]||[]).forEach(function(p){
+        var y=p.a===x?p.b:p.a;
+        if(dist[y]!=null||(isHub(noteById[y])&&y!==n.id))return;
+        dist[y]=dist[x]+1;par[y]=x;q.push(y);
+      });
+    }
+    var bySeq=function(a,b){return noteById[a].seq-noteById[b].seq};
+    var ids=Object.keys(dist),at=[[],[],[]];
+    ids.forEach(function(id){at[dist[id]].push(id)});
+    at[1].sort(bySeq);
+    var pos={},ang={},TAU=2*Math.PI,a0=-Math.PI/2;
+    pos[n.id]={x:0,y:0};
+    var n1=at[1].length,k1=Math.max(1,Math.min(3,Math.ceil(n1/12))),G=62;
+    var R1=Math.max(115,105*n1/(TAU*k1));
+    at[1].forEach(function(id,i){var a=a0+TAU*i/Math.max(1,n1);ang[id]=a;pos[id]={x:(R1+(i%k1)*G)*Math.cos(a),y:(R1+(i%k1)*G)*Math.sin(a)}});
+    if(at[2].length){
+      at[2].sort(function(a,b){return ang[par[a]]-ang[par[b]]||bySeq(a,b)});
+      var n2=at[2].length,k2=Math.max(1,Math.min(4,Math.ceil(n2/18)));
+      var R2=Math.max(R1+(k1-1)*G+120,90*n2/(TAU*k2));
+      at[2].forEach(function(id,i){var a=a0+TAU*i/n2;pos[id]={x:(R2+(i%k2)*52)*Math.cos(a),y:(R2+(i%k2)*52)*Math.sin(a)}});
+    }
+    var els=ids.map(function(id){
+      var d=dist[id];
+      return {group:'nodes',position:pos[id],
+        data:nodeData(noteById[id],{d:d,sz:d===0?26:(d===1?16:11),fs:d===0?13:(d===1?11:9),tw:d===0?150:(d===1?100:84)}),classes:d===0?'cur':''};
+    });
+    var show={pre:true,rel:true,lnk:true},ne=0;
+    ids.forEach(function(id){
+      (PAIRS_OF[id]||[]).forEach(function(p){
+        if(p.a!==id||dist[p.b]==null)return;
+        if(dist[p.a]===depth&&dist[p.b]===depth)return;
+        var e=edgeFor(p,show);if(e){els.push(e);ne++}
+      });
+    });
+    return {els:els,count:ids.length-1,big:n1>16||at[2].length>30,edges:ne};
+  }
+
+  var GKEY='theory-notebook-graph';   /* panel open state, tab and depth, kept between notes */
+  function gPrefs(){var d={open:false,tab:'chain',depth:1};try{var s=JSON.parse(localStorage.getItem(GKEY)||'null');if(s)for(var k in d)if(k in s)d[k]=s[k]}catch(e){}return d}
+  function gSave(p){try{localStorage.setItem(GKEY,JSON.stringify(p))}catch(e){}}
+
+  function graphPanel(n){
+    pairs();
+    var ch=chainOf(n),nNear=(PAIRS_OF[n.id]||[]).length;
+    if(!ch.before.length&&!ch.planned.length&&!nNear)return null;
+    var d=el('details','gmap');
+    var sm=el('summary',null,'Graph');
+    sm.appendChild(el('span','c',plural(ch.before.length,'section')+' in the prerequisite chain · '+plural(nNear,'direct link')));
+    d.appendChild(sm);
+    var box=el('div');d.appendChild(box);
+    var built=false,cy=null;
+    function build(){
+      if(built)return;built=true;
+      var bar=el('div','gbar');
+      var tabs=el('div','seg');tabs.setAttribute('role','group');tabs.setAttribute('aria-label','View');
+      var tChain=tbtn('Prerequisite chain'),tNear=tbtn('Neighbours');
+      tabs.appendChild(tChain);tabs.appendChild(tNear);
+      var depth=el('div','seg');depth.setAttribute('role','group');depth.setAttribute('aria-label','Steps');
+      var d1=tbtn('1 step'),d2=tbtn('2 steps');depth.appendChild(d1);depth.appendChild(d2);
+      bar.appendChild(tabs);bar.appendChild(depth);bar.appendChild(el('span','sp'));
+      var move=null;
+      if(coarse){
+        move=tbtn('Move','Drag and pinch inside the graph');move.setAttribute('aria-pressed','false');
+        move.addEventListener('click',function(){
+          var on=move.getAttribute('aria-pressed')!=='true';move.setAttribute('aria-pressed',String(on));
+          if(cy){cy.userPanningEnabled(on);cy.userZoomingEnabled(on)}
+        });
+        bar.appendChild(move);
+      }
+      bar.appendChild(zoomTools(function(){return cy},function(c){if(gPrefs().tab==='chain')fitView(c,c.$('.cur'),chainMinZoom(),true)}));
+      bar.appendChild(link('Open in map','map.'+n.id,'btn'));
+      var host=el('div','cyhost');host.setAttribute('role','img');
+      var cap=el('div');
+      box.appendChild(bar);box.appendChild(host);box.appendChild(cap);
+      function setTab(t){var p=gPrefs();p.tab=t;gSave(p);render()}
+      function setDepth(k){var p=gPrefs();p.depth=k;gSave(p);render()}
+      tChain.addEventListener('click',function(){setTab('chain')});
+      tNear.addEventListener('click',function(){setTab('near')});
+      d1.addEventListener('click',function(){setDepth(1)});
+      d2.addEventListener('click',function(){setDepth(2)});
+      function render(){
+        var p=gPrefs(),mode=p.tab==='near'?'near':'chain',k=p.depth===2?2:1;
+        tChain.setAttribute('aria-pressed',String(mode==='chain'));tNear.setAttribute('aria-pressed',String(mode==='near'));
+        d1.setAttribute('aria-pressed',String(k===1));d2.setAttribute('aria-pressed',String(k===2));
+        depth.hidden=mode!=='near';
+        if(move)move.setAttribute('aria-pressed','false');
+        if(cy){forget(cy);cy=null}
+        host.className='cyhost'+(mode==='chain'?' chain':'');
+        cap.innerHTML='';
+        if(mode==='chain'&&!ch.before.length&&!ch.planned.length){msg(host,'This section lists no prerequisites.');return}
+        msg(host,'Drawing the graph…');
+        withCy(function(){
+          if(!host.isConnected)return;
+          if(mode==='chain'){
+            cy=makeCy(host,'chain',chainElements(n,ch),false);
+            cy.layout({name:'dagre',rankDir:'TB',nodeSep:16,rankSep:34,edgeSep:6,fit:false,animate:false}).run();
+            fitView(cy,cy.$('.cur'),chainMinZoom(),true);
+            host.setAttribute('aria-label','Prerequisite chain of '+n.title+': '+plural(ch.before.length,'section'));
+            cap.appendChild(legendLines(['pre']));
+            var t=el('p','gcap','Top to bottom: what to read before this section. Select a box to open it.'+
+              (ch.hidden?' '+plural(ch.hidden,'implied link')+' (already reachable through another prerequisite) not drawn.':'')+
+              (ch.planned.length?' Dashed boxes are planned sections.':''));
+            cap.appendChild(t);
+            if(ch.before.length){
+              var pd=el('details','gpath');
+              pd.appendChild(el('summary',null,'Reading path: '+plural(ch.before.length,'section')+' in book order'));
+              var ol=el('ol');
+              ch.before.forEach(function(x){
+                var l=el('li');l.appendChild(el('span','nn',x.sec||''));l.appendChild(link(shortTitle(x),'n.'+x.id));ol.appendChild(l);
+              });
+              pd.appendChild(ol);cap.appendChild(pd);
+            }
+          }else{
+            var nb=nearElements(n,k);
+            if(nb.big)host.className='cyhost tall';
+            cy=makeCy(host,'near',nb.els,false);
+            fitView(cy,cy.$('.cur'),.6,false);
+            host.setAttribute('aria-label','Neighbours of '+n.title+' within '+plural(k,'step')+': '+plural(nb.count,'section'));
+            cap.appendChild(legendLines(['pre','rel','lnk']));
+            cap.appendChild(el('p','gcap',plural(nb.count,'section')+' within '+plural(k,'step')+'. Colour shows the part. Reading guides are left out. Select a section to open it.'));
+          }
+          cy.on('tap','node',function(e){var id=e.target.id();if(noteById[id]&&id!==n.id)go('n.'+id)});
+        },function(){msg(host,NOLIB)});
+      }
+      render();
+    }
+    d.addEventListener('toggle',function(){var p=gPrefs();p.open=d.open;gSave(p);if(d.open)build()});
+    if(gPrefs().open){d.open=true;setTimeout(build,0)}
+    return d;
+  }
+
+  /* ---------- map page ---------- */
+  var MKEY='theory-notebook-map';
+  function mPrefs(){var d={off:[],pre:true,rel:true,lnk:false,hubs:false};try{var s=JSON.parse(localStorage.getItem(MKEY)||'null');if(s)for(var k in d)if(k in s)d[k]=s[k]}catch(e){}return d}
+  function mSave(p){try{localStorage.setItem(MKEY,JSON.stringify(p))}catch(e){}}
+
+  function drawMap(focus,v){
+    pairs();
+    var c=crumbs(rootNode,true);
+    c.appendChild(el('span','sep','/'));c.appendChild(el('span',null,'Topic map'));
+    v.appendChild(c);
+    var head=el('header','head');
+    head.appendChild(el('h1',null,'Topic map'));
+    head.appendChild(el('p','lede','Every section and the links between them. Arrows run from a prerequisite to the section that needs it. Select a section to light up its links; select it twice to open it.'));
+    var sub=el('p','sub','');head.appendChild(sub);
+    v.appendChild(head);
+
+    var prefs=mPrefs();
+    var parts=rootNode.children.filter(function(x){return x.count});
+    /* parts and link kinds fold away on narrow screens; Find and zoom stay visible */
+    var fold=el('details','gfold');fold.open=window.innerWidth>=700;
+    fold.appendChild(el('summary',null,'Filters: parts and link kinds'));
+    var f=el('div','gfilters');fold.appendChild(f);
+    var r1=el('div','row2');r1.appendChild(el('span','lab','Parts'));
+    var chipBy={};
+    parts.forEach(function(p){
+      var num=partNum(p),b=el('button','chip part');b.type='button';
+      var sw=el('span','sw');sw.style.setProperty('--sw','var(--part-'+num+')');
+      b.appendChild(sw);b.appendChild(document.createTextNode((p.full?p.full+' ':'')+p.label));
+      b.appendChild(el('span','c',String(p.count)));
+      b.setAttribute('aria-pressed',String(prefs.off.indexOf(num)<0));
+      b.addEventListener('click',function(){
+        var q=mPrefs(),i=q.off.indexOf(num);
+        if(i<0)q.off.push(num);else q.off.splice(i,1);
+        mSave(q);b.setAttribute('aria-pressed',String(i>=0));render(null);
+      });
+      chipBy[num]=b;r1.appendChild(b);
+    });
+    var all=el('button','chip','All');all.type='button';
+    all.addEventListener('click',function(){var q=mPrefs();q.off=[];mSave(q);Object.keys(chipBy).forEach(function(k){chipBy[k].setAttribute('aria-pressed','true')});render(null)});
+    r1.appendChild(all);
+    f.appendChild(r1);
+    var r2=el('div','row2');r2.appendChild(el('span','lab','Links'));
+    var checks=el('div','checks');
+    [['pre','Prerequisites'],['rel','Related'],['lnk','In-text links'],['hubs','Reading guides']].forEach(function(t){
+      var lab=el('label'),cb=el('input');cb.type='checkbox';cb.checked=!!prefs[t[0]];
+      cb.addEventListener('change',function(){var q=mPrefs();q[t[0]]=cb.checked;mSave(q);render(null)});
+      lab.appendChild(cb);lab.appendChild(document.createTextNode(t[1]));checks.appendChild(lab);
+    });
+    r2.appendChild(checks);f.appendChild(r2);
+    v.appendChild(fold);
+    var f3=el('div','gfilters');
+    var r3=el('div','row2');r3.appendChild(el('span','lab','Find'));
+    var find=el('input','find');find.type='search';find.placeholder='Section title';find.setAttribute('aria-label','Find a section on the map');
+    var dl=el('datalist');dl.id='map-titles';find.setAttribute('list','map-titles');
+    reading.forEach(function(n){var o=el('option');o.value=shortTitle(n);if(n.sec)o.label=n.sec;dl.appendChild(o)});
+    r3.appendChild(find);r3.appendChild(dl);
+    var cy=null;
+    r3.appendChild(zoomTools(function(){return cy}));
+    f3.appendChild(r3);
+    v.appendChild(f3);
+
+    var host=el('div','cyhost map-host');host.setAttribute('role','img');host.setAttribute('aria-label','Topic map of all sections');
+    v.appendChild(host);
+    v.appendChild(legendLines(['pre','rel','lnk']));
+    var info=el('section','ginfo');info.setAttribute('aria-live','polite');
+    v.appendChild(info);
+
+    function hint(text){
+      info.innerHTML='';
+      info.appendChild(el('p','hint',text||'Select a section to see what it needs and what needs it. Drag to move around, scroll or pinch to zoom. Use Find to jump to a section.'));
+    }
+    function showInfo(n){
+      info.innerHTML='';
+      var eb=el('p','eyebrow',(n.sec?'Section '+n.sec+' · ':'')+pathLabel(n.node));
+      info.appendChild(eb);
+      info.appendChild(link(n.title,'n.'+n.id,'t'));
+      if(n.summary)info.appendChild(el('p','s',n.summary));
+      var nPre=n.prereq.filter(function(r){return noteById[r]}).length,nReq=(requiredBy[n.id]||[]).length;
+      var nOther=(PAIRS_OF[n.id]||[]).filter(function(p){return !p.pre}).length;
+      info.appendChild(el('p','m',[plural(nPre,'prerequisite'),'required by '+nReq,plural(nOther,'other link')].join(' · ')));
+      var cta=el('div','cta');
+      cta.appendChild(link('Open section','n.'+n.id,'chip primary'));
+      var cb=el('button','chip','Zoom to it');cb.type='button';
+      cb.addEventListener('click',function(){if(cy)frame(cy.getElementById(n.id))});
+      cta.appendChild(cb);
+      info.appendChild(cta);
+    }
+    /* bring a section and its direct links into view */
+    function frame(x){if(!cy||!x||!x.length)return;cy.fit(x.closedNeighborhood(),40);if(cy.zoom()>1.3){cy.zoom(1.3);cy.center(x)}}
+    function setHash(h){state.h=h;try{history.replaceState(null,'','#'+h)}catch(e){}}
+
+    function select(x){
+      if(!cy)return;
+      cy.elements().removeClass('faded hl sel');
+      if(!x||!x.length){hint();setHash('map');return}
+      var nb=x.closedNeighborhood();
+      cy.elements().not(nb).addClass('faded');
+      nb.edges().addClass('hl');x.neighborhood().nodes().addClass('hl');x.addClass('sel');
+      showInfo(noteById[x.id()]);setHash('map.'+x.id());
+    }
+
+    function render(focusNote){
+      if(cy){forget(cy);cy=null}
+      var q=mPrefs(),show={pre:q.pre,rel:q.rel,lnk:q.lnk};
+      var vis=reading.filter(function(n){
+        if(focusNote&&n===focusNote)return true;
+        return q.off.indexOf(partNum(partOf(n.node)))<0&&(q.hubs||!isHub(n));
+      });
+      var inVis={};vis.forEach(function(n){inVis[n.id]=1});
+      var edges=[],deg={};
+      PAIRS.forEach(function(p){
+        if(!inVis[p.a]||!inVis[p.b])return;
+        var e=edgeFor(p,show);if(!e)return;
+        edges.push(e);deg[p.a]=(deg[p.a]||0)+1;deg[p.b]=(deg[p.b]||0)+1;
+      });
+      /* candidates for a label at the overview zoom: the busiest sections; after layout only those whose
+         labels do not collide are kept (greedy, busiest first). The rest appear on zooming in. */
+      var big={};vis.slice().sort(function(a,b){return (deg[b.id]||0)-(deg[a.id]||0)}).slice(0,Math.max(10,Math.round(vis.length*.08))).forEach(function(n){if(deg[n.id])big[n.id]=1});
+      /* deterministic start: each part in its own sector, in book order, so the layout is the same every visit */
+      var total=vis.length||1,R=34*Math.sqrt(total)+60,a0=-Math.PI/2,byPart={},order=[];
+      vis.forEach(function(n){var k=partNum(partOf(n.node));if(!byPart[k]){byPart[k]=[];order.push(k)}byPart[k].push(n)});
+      var els=[];
+      order.forEach(function(k){
+        var list=byPart[k],sector=2*Math.PI*list.length/total;
+        list.forEach(function(n,i){
+          var ang=a0+sector*(i+.5)/list.length,r=R*(.3+.7*((i*.618034)%1));
+          var g=deg[n.id]||0;
+          els.push({group:'nodes',data:nodeData(n,{sz:Math.min(34,9+3.2*Math.sqrt(g)),fs:big[n.id]?20:10,hfs:big[n.id]?15:11,tw:big[n.id]?170:130}),position:{x:r*Math.cos(ang),y:r*Math.sin(ang)}});
+        });
+        a0+=sector;
+      });
+      els=els.concat(edges);
+      sub.textContent=plural(vis.length,'section')+' · '+plural(edges.length,'link')+' shown';
+      if(!vis.length){msg(host,'Every part is switched off. Select a part above, or All.');hint(' ');return}
+      msg(host,'Laying out the map…');
+      withCy(function(){
+        if(!host.isConnected)return;
+        cy=makeCy(host,'map',els,true);
+        cy.layout({name:'cose',randomize:false,animate:false,fit:false,nodeDimensionsIncludeLabels:false,
+          nodeRepulsion:function(){return 40000},idealEdgeLength:function(){return 80},edgeElasticity:function(){return 60},
+          nodeOverlap:12,gravity:.25,numIter:1000,componentSpacing:80,padding:30}).run();
+        var kept=[];
+        cy.nodes().filter(function(x){return big[x.id()]}).sort(function(a,b){return b.degree()-a.degree()}).forEach(function(x){
+          var bb=x.boundingBox({includeLabels:true}),hit=kept.some(function(k){return !(bb.x2<k.x1-8||bb.x1>k.x2+8||bb.y2<k.y1-8||bb.y1>k.y2+8)});
+          if(hit||kept.length>=14)x.data({fs:10,hfs:11,tw:130});else kept.push(bb);
+        });
+        cy.fit(undefined,24);
+        cy.on('tap','node',function(e){
+          var x=e.target;
+          if(x.hasClass('sel'))go('n.'+x.id());else select(x);
+        });
+        cy.on('tap',function(e){if(e.target===cy)select(null)});
+        var fx=focusNote&&cy.getElementById(focusNote.id);
+        if(fx&&fx.length){select(fx);frame(fx)}
+        else hint();
+      },function(){msg(host,NOLIB)});
+    }
+    var lastFind='';
+    function doFind(){
+      var val=find.value.trim().toLowerCase();if(!val||!cy)return;
+      /* 'change' also fires when the box loses focus; do not rebuild the card under a click */
+      if(val===lastFind&&cy.$('.sel').length)return;
+      lastFind=val;
+      var words=val.split(/\s+/),hit=null;
+      reading.some(function(n){if(shortTitle(n).toLowerCase()===val||n.title.toLowerCase()===val){hit=n;return true}return false});
+      if(!hit)reading.some(function(n){var t=((n.sec||'')+' '+n.title).toLowerCase();if(words.every(function(w){return t.indexOf(w)>=0})){hit=n;return true}return false});
+      if(!hit){hint('No section title matches “'+find.value+'”.');return}
+      var x=cy.getElementById(hit.id);
+      if(!x.length){render(hit);return}
+      select(x);frame(x);
+    }
+    find.addEventListener('change',doFind);
+    find.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();doFind()}});
+    render(focus);
+  }
+
+  /* ---------- conventions (conventions.txt; the `conventions:` field of a note) ---------- */
+  function convLine(ids,linked){
+    if(!ids||!ids.length)return null;
+    var p=el('p','convs');
+    p.appendChild(el('span','lab','Conventions'));
+    ids.forEach(function(v){
+      var c=CONV.values[v];if(!c)return;
+      var ax=CONV.axes[c.axis]||{},see=ax.see&&noteById[ax.see];
+      var b=(linked&&see)?link(c.label,'n.'+see.id,'conv'):el('span','conv',c.label);
+      b.title=(ax.about||c.axis)+(see&&linked?' · see '+see.title:'');
+      p.appendChild(b);
+    });
+    return p;
+  }
+
+  /* ---------- hover previews ----------
+     Pointing at (or tabbing to) a link to a section shows its number, title, summary, conventions
+     and key equation; a link to an equation shows the equation itself. Not on touch screens. */
+  var pop=el('div','pop');pop.id='pop';pop.setAttribute('role','tooltip');pop.hidden=true;
+  document.body.appendChild(pop);
+  var popTimer=null,popFor=null;
+  function hidePop(){clearTimeout(popTimer);popTimer=null;if(popFor){popFor.removeAttribute('aria-describedby')}popFor=null;pop.hidden=true}
+  function popTarget(a){
+    var h=(a.getAttribute('href')||'').slice(1),r=resolve(h);
+    if(r.kind!=='note')return null;
+    var eq=r.anchor&&r.anchor.indexOf('eq-')===0?r.anchor.slice(3):'';
+    return {n:r.note,eq:eq&&r.note.eqIndex[eq]!=null?eq:''};
+  }
+  function fillPop(t){
+    var n=t.n;pop.innerHTML='';
+    pop.appendChild(el('p','eyebrow',(n.sec?'Section '+n.sec+' · ':'')+n.node.label));
+    pop.appendChild(el('p','t',n.title));
+    var tex='',num='';
+    if(t.eq){tex=eqTex(n,t.eq);num=eqNum(n,t.eq)}
+    else{
+      if(n.summary)pop.appendChild(el('p','s',n.summary));
+      var key=n.key||'';
+      if(key){tex=eqTex(n,key);num=eqNum(n,key)}
+    }
+    if(tex){var d=el('div','eq');d.textContent='$$'+tex+(num&&num!=='?'?'\\tag{'+num+'}':'')+'$$';pop.appendChild(d)}
+    var cl=convLine(n.conv,false);if(cl)pop.appendChild(cl);
+    var bits=[];if(n.kind)bits.push(kindName(n.kind));if(n.status)bits.push(STATUS[n.status]||n.status);bits.push(n.mins+' min read');
+    pop.appendChild(el('p','m',bits.join(' · ')));
+  }
+  function placePop(a){
+    var r=a.getBoundingClientRect(),W=window.innerWidth,H=window.innerHeight;
+    pop.style.left='0px';pop.style.top='0px';pop.style.visibility='hidden';pop.hidden=false;
+    var w=pop.offsetWidth,h=pop.offsetHeight;
+    var top=r.bottom+8;if(top+h>H-8&&r.top-8-h>8)top=r.top-8-h;
+    var left=Math.max(8,Math.min(r.left,W-w-8));
+    pop.style.left=left+'px';pop.style.top=Math.max(8,top)+'px';pop.style.visibility='';
+  }
+  function showPop(a){
+    var t=popTarget(a);if(!t){hidePop();return}
+    popFor=a;a.setAttribute('aria-describedby','pop');
+    fillPop(t);placePop(a);
+    typeset(pop,function(){
+      if(popFor!==a||pop.hidden)return;
+      /* shrink a wide equation to the width of the card rather than clipping it */
+      var d=pop.querySelector('.eq'),c=d&&d.querySelector('mjx-container');
+      if(c){c.style.fontSize='';if(c.scrollWidth>d.clientWidth+1)c.style.fontSize=Math.max(50,Math.floor(100*d.clientWidth/c.scrollWidth))+'%'}
+      placePop(a);
+    });
+  }
+  function popCandidate(e){var a=e.target&&e.target.closest&&e.target.closest('a[href^="#n."]');return a&&!pop.contains(a)?a:null}
+  if(!coarse){
+    document.addEventListener('mouseover',function(e){
+      var a=popCandidate(e);if(!a||a===popFor)return;
+      clearTimeout(popTimer);popTimer=setTimeout(function(){showPop(a)},350);
+    });
+    document.addEventListener('mouseout',function(e){
+      var a=popCandidate(e);if(!a)return;
+      if(e.relatedTarget&&a.contains(e.relatedTarget))return;
+      clearTimeout(popTimer);popTimer=setTimeout(hidePop,120);
+    });
+    document.addEventListener('focusin',function(e){var a=popCandidate(e);if(a){clearTimeout(popTimer);showPop(a)}});
+    document.addEventListener('focusout',function(e){if(popCandidate(e))hidePop()});
+    window.addEventListener('scroll',function(){if(!pop.hidden)hidePop()},{passive:true});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')hidePop()});
+  }
+
+  /* ---------- sources page (#sources) ----------
+     Built from each note's "## Source" section: books (italic title followed by "(edition, year)") with
+     the sections cited, and papers by DOI. */
+  function noteRef(id){
+    var n=noteById[id];if(!n)return null;
+    return link((n.sec?n.sec+' ':'')+shortTitle(n),'n.'+n.id,'nref');
+  }
+  function refList(ids){
+    var w=el('span','nrefs');
+    ids.forEach(function(id,i){var a=noteRef(id);if(!a)return;if(w.children.length)w.appendChild(document.createTextNode(' · '));w.appendChild(a)});
+    return w;
+  }
+  function drawSources(v){
+    var S=DATA.sources||{books:[],papers:[]};
+    var c=crumbs(rootNode,true);
+    c.appendChild(el('span','sep','/'));c.appendChild(el('span',null,'Sources'));
+    v.appendChild(c);
+    var head=el('header','head');
+    head.appendChild(el('h1',null,'Sources'));
+    head.appendChild(el('p','lede','The books and papers the sections draw on, collected from the Source paragraph of each section. Open a book to see which of its sections are used where.'));
+    var citing={};S.books.forEach(function(b){b.notes.forEach(function(id){citing[id]=1})});S.papers.forEach(function(p){p.notes.forEach(function(id){citing[id]=1})});
+    head.appendChild(el('p','sub',plural(S.books.length,'book')+' · '+plural(S.papers.length,'paper')+' with a DOI · cited in '+plural(Object.keys(citing).length,'section')));
+    v.appendChild(head);
+
+    if(S.books.length){
+      var g=el('section','group');g.appendChild(el('h2',null,'Books'));
+      S.books.forEach(function(b){
+        var d=el('details','src');
+        var sm=el('summary');
+        var t=el('span','t');t.appendChild(el('i',null,b.title));sm.appendChild(t);
+        sm.appendChild(el('span','m',[b.authors,b.edition.replace(/^\(|\)$/g,''),plural(b.notes.length,'section')].filter(Boolean).join(' · ')));
+        d.appendChild(sm);
+        var ul=el('ul','locs');
+        b.locs.forEach(function(x){
+          var l=el('li');l.appendChild(el('span','loc',x[0]));l.appendChild(refList(x[1]));ul.appendChild(l);
+        });
+        if(b.general.length){var l=el('li');l.appendChild(el('span','loc','other'));l.title='Problems, figures or the book as a whole, with no section number';l.appendChild(refList(b.general));ul.appendChild(l)}
+        d.appendChild(ul);
+        g.appendChild(d);
+      });
+      v.appendChild(g);
+    }
+    if(S.papers.length){
+      var pg=el('section','group');pg.appendChild(el('h2',null,'Papers'));
+      var ul=el('ul','papers');
+      S.papers.forEach(function(p){
+        var l=el('li');
+        var t=el('p','cit');t.innerHTML=p.label;l.appendChild(t);
+        var m=el('p','m');
+        var a=el('a',null,'doi:'+p.doi);a.href='https://doi.org/'+p.doi;a.target='_blank';a.rel='noopener';m.appendChild(a);
+        if(p.note){m.appendChild(document.createTextNode(' · '));m.appendChild(link('notes on this paper','n.'+p.note,'nref'))}
+        l.appendChild(m);
+        if(p.notes.length){var r=el('p','m');r.appendChild(document.createTextNode('Cited in '));r.appendChild(refList(p.notes));l.appendChild(r)}
+        ul.appendChild(l);
+      });
+      pg.appendChild(ul);v.appendChild(pg);
+    }
+    if(!S.books.length&&!S.papers.length)v.appendChild(el('p','none-found','No Source sections found.'));
   }
 
   /* ---------- kind index and search ---------- */
@@ -862,11 +1639,14 @@ window.MathJax={
   }
 
   function draw(){
+    destroyGraphs();
     var v=$('view');v.innerHTML='';
     if(state.q){drawResults(state.q,v);return}
     var r=resolve(state.h);
     if(r.kind==='note')drawNote(r.note,v);
     else if(r.kind==='kind')drawKind(r.k,v);
+    else if(r.kind==='map')drawMap(r.focus,v);
+    else if(r.kind==='sources')drawSources(v);
     else drawFolder(r.node,v);
   }
   $('q').addEventListener('input',function(e){state.q=e.target.value.trim();draw()});
@@ -875,7 +1655,14 @@ window.MathJax={
   $('view').addEventListener('click',function(e){
     if(e.defaultPrevented||!plain(e))return;
     var a=e.target.closest&&e.target.closest('a[href^="#n."]');
-    if(a){e.preventDefault();go(a.getAttribute('href').slice(1))}
+    if(!a)return;
+    e.preventDefault();
+    var h=a.getAttribute('href').slice(1),r=resolve(h),cur=resolve(state.h);
+    if(r.kind==='note'&&r.anchor&&cur.kind==='note'&&cur.note===r.note){
+      state.h=h;try{location.hash=h}catch(x){}
+      hidePop();jumpTo(r.anchor);return;
+    }
+    go(h);
   });
 
   /* ---------- theme ---------- */
@@ -889,9 +1676,14 @@ window.MathJax={
     var next=isDark()?'light':'dark';
     root.dataset.theme=next;
     try{localStorage.setItem('theory-notebook-theme',next)}catch(e){}
-    labelTheme();
+    labelTheme();restyleGraphs();
   });
   labelTheme();
+  try{
+    var mqDark=window.matchMedia('(prefers-color-scheme: dark)');
+    if(mqDark.addEventListener)mqDark.addEventListener('change',restyleGraphs);else if(mqDark.addListener)mqDark.addListener(restyleGraphs);
+  }catch(e){}
+  try{if(document.fonts&&document.fonts.ready)document.fonts.ready.then(restyleGraphs)}catch(e){}
 
   /* ---------- start ---------- */
   setRoute((location.hash||'').slice(1));

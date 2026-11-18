@@ -10,11 +10,12 @@ prerequisites: [rhf, basis-orthogonalization]
 related: [scf-procedure, hf-closed-shell-basis-set-trends]
 order: 90
 date: 2026-11-03
+conventions: [ia-letters]
 ---
 
 ## One-electron expectation values
 
-For a sum of spin-free one-electron operators $\hat O_1 = \sum_i o(i)$ and a closed-shell determinant, the Case 1 rule ([[slater-condon-rules]]) gives $2\sum_a(\psi_a|o|\psi_a)$. Expanding the MOs in the basis ([[rhf]]):
+For a sum of spin-free one-electron operators $\hat O_1 = \sum_i o(i)$ and a closed-shell determinant, the Case 1 rule ([[slater-condon-rules]]) gives $2\sum_i(\psi_i|o|\psi_i)$. Expanding the MOs in the basis ([[rhf]]):
 
 $$
 \langle\Psi_0|\hat O_1|\Psi_0\rangle = \sum_{\mu\nu}P_{\mu\nu}\,(\nu|o|\mu) = \operatorname{tr}(\mathbf P\mathbf o),

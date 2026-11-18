@@ -1,13 +1,14 @@
 ---
 id: integral-notation
 title: One- and two-electron integral notation
-summary: Physicists' ⟨ij|kl⟩ versus chemists' [ij|kl] / (ij|kl) notation for spin and spatial orbitals, the antisymmetrized integral ⟨ij||kl⟩, permutational symmetries, and Coulomb and exchange integrals. Includes the PySCF index conventions.
+summary: Physicists' ⟨pq|rs⟩ versus chemists' [pq|rs] / (pq|rs) notation for spin and spatial orbitals, the antisymmetrized integral ⟨pq||rs⟩, permutational symmetries, and Coulomb and exchange integrals. Includes the PySCF index conventions.
 status: in-progress
 kind: reference
 level: introductory
 tags: [notation, integrals, eri, chemists-notation, physicists-notation, coulomb, exchange]
 prerequisites: [spin-orbitals-and-antisymmetry]
 related: [slater-condon-rules, spin-orbital-to-spatial-orbital, second-quantized-operators, electron-repulsion-integrals-md-os-rys]
+conventions: [ia-letters, chemists-integrals, physicists-integrals, antisymmetrized-integrals]
 order: 20
 date: 2026-11-03
 ---
@@ -18,42 +19,42 @@ Spin orbitals are $\chi$ with coordinate $\mathbf x = \{\mathbf r,\omega\}$, and
 
 | | Spin orbitals $\chi$ | Spatial orbitals $\psi$ |
 |---|---|---|
-| one-electron | $[i|h|j] = \langle i|h|j\rangle = \int\mathrm d\mathbf x_1\,\chi_i^*(1)\,h(1)\,\chi_j(1)$ | $(i|h|j) = h_{ij} = \int\mathrm d\mathbf r_1\,\psi_i^*(1)\,h(1)\,\psi_j(1)$ |
-| chemists' | $[ij|kl] = \int\mathrm d\mathbf x_1\mathrm d\mathbf x_2\,\chi_i^*(1)\chi_j(1)\,r_{12}^{-1}\,\chi_k^*(2)\chi_l(2)$ | $(ij|kl) = \int\mathrm d\mathbf r_1\mathrm d\mathbf r_2\,\psi_i^*(1)\psi_j(1)\,r_{12}^{-1}\,\psi_k^*(2)\psi_l(2)$ |
-| physicists' | $\langle ij|kl\rangle = \int\mathrm d\mathbf x_1\mathrm d\mathbf x_2\,\chi_i^*(1)\chi_j^*(2)\,r_{12}^{-1}\,\chi_k(1)\chi_l(2)$ | written the same way with $\psi$ and $\mathbf r$ |
-| antisymmetrized | $\langle ij||kl\rangle = \langle ij|kl\rangle - \langle ij|lk\rangle$ | |
+| one-electron | $[p|h|q] = \langle p|h|q\rangle = \int\mathrm d\mathbf x_1\,\chi_p^*(1)\,h(1)\,\chi_q(1)$ | $(p|h|q) = h_{pq} = \int\mathrm d\mathbf r_1\,\psi_p^*(1)\,h(1)\,\psi_q(1)$ |
+| chemists' | $[pq|rs] = \int\mathrm d\mathbf x_1\mathrm d\mathbf x_2\,\chi_p^*(1)\chi_q(1)\,r_{12}^{-1}\,\chi_r^*(2)\chi_s(2)$ | $(pq|rs) = \int\mathrm d\mathbf r_1\mathrm d\mathbf r_2\,\psi_p^*(1)\psi_q(1)\,r_{12}^{-1}\,\psi_r^*(2)\psi_s(2)$ |
+| physicists' | $\langle pq|rs\rangle = \int\mathrm d\mathbf x_1\mathrm d\mathbf x_2\,\chi_p^*(1)\chi_q^*(2)\,r_{12}^{-1}\,\chi_r(1)\chi_s(2)$ | written the same way with $\psi$ and $\mathbf r$ |
+| antisymmetrized | $\langle pq||rs\rangle = \langle pq|rs\rangle - \langle pq|sr\rangle$ | |
 
 ## How to read them
 
-- **Chemists' (Mulliken).** Group by electron: $(ij|$ is the "charge distribution" $\psi_i^*\psi_j$ of electron 1, and $|kl)$ that of electron 2. Complex-conjugated functions come first in each pair.
-- **Physicists' (Dirac).** Group by bra and ket: $\langle ij|$ holds electron 1 then electron 2 (conjugated), and $|kl\rangle$ holds electron 1 then electron 2. The conversion is
+- **Chemists' (Mulliken).** Group by electron: $(pq|$ is the "charge distribution" $\psi_p^*\psi_q$ of electron 1, and $|rs)$ that of electron 2. Complex-conjugated functions come first in each pair.
+- **Physicists' (Dirac).** Group by bra and ket: $\langle pq|$ holds electron 1 then electron 2 (conjugated), and $|rs\rangle$ holds electron 1 then electron 2. The conversion is
 
 $$
-\langle ij|kl\rangle = [ik|jl],
+\langle pq|rs\rangle = [pr|qs],
 \qquad
-[ij|kl] = \langle ik|jl\rangle .
+[pq|rs] = \langle pr|qs\rangle .
 $$
 
 - **Antisymmetrized.** The exchange term swaps the two ket labels:
 
 $$
-\langle ij||kl\rangle = \langle ij|kl\rangle - \langle ij|lk\rangle = [ik|jl] - [il|jk].
+\langle pq||rs\rangle = \langle pq|rs\rangle - \langle pq|sr\rangle = [pr|qs] - [ps|qr].
 $$
 
-  It vanishes when $i = j$ or $k = l$, and satisfies $\langle ij||kl\rangle = -\langle ji||kl\rangle = -\langle ij||lk\rangle = \langle ji||lk\rangle$.
+  It vanishes when $p = q$ or $r = s$, and satisfies $\langle pq||rs\rangle = -\langle qp||rs\rangle = -\langle pq||sr\rangle = \langle qp||sr\rangle$.
 
 !!! warning "Same symbol, different meaning"
-    $\langle ij|kl\rangle$ and $(ij|kl)$ with the same four labels are different integrals. Every expression must say which notation it uses. Szabo writes most general formulas in physicists' notation over spin orbitals and switches to chemists' notation over spatial orbitals for closed shells.
+    $\langle pq|rs\rangle$ and $(pq|rs)$ with the same four labels are different integrals. Every expression must say which notation it uses. Szabo writes most general formulas in physicists' notation over spin orbitals and switches to chemists' notation over spatial orbitals for closed shells.
 
 ## Permutational symmetry
 
 Both integrals are real for real orbitals. In general:
 
-- **Interchange of electron labels.** $\langle ij|kl\rangle = \langle ji|lk\rangle$ and $[ij|kl] = [kl|ij]$.
-- **Hermiticity.** $\langle ij|kl\rangle = \langle kl|ij\rangle^*$ and $[ij|kl] = [ji|lk]^*$.
-- **Real orbitals.** Additionally $(ij|kl) = (ji|kl) = (ij|lk) = (ji|lk)$, giving the full **8-fold** symmetry of chemists' integrals:
+- **Interchange of electron labels.** $\langle pq|rs\rangle = \langle qp|sr\rangle$ and $[pq|rs] = [rs|pq]$.
+- **Hermiticity.** $\langle pq|rs\rangle = \langle rs|pq\rangle^*$ and $[pq|rs] = [qp|sr]^*$.
+- **Real orbitals.** Additionally $(pq|rs) = (qp|rs) = (pq|sr) = (qp|sr)$, giving the full **8-fold** symmetry of chemists' integrals:
 $$
-(ij|kl) = (ji|kl) = (ij|lk) = (ji|lk) = (kl|ij) = (lk|ij) = (kl|ji) = (lk|ji).
+(pq|rs) = (qp|rs) = (pq|sr) = (qp|sr) = (rs|pq) = (sr|pq) = (rs|qp) = (sr|qp).
 $$
 
 ## Coulomb and exchange integrals
@@ -61,23 +62,23 @@ $$
 For spatial orbitals,
 
 $$
-J_{ij} = (ii|jj) = \langle ij|ij\rangle,
+J_{pq} = (pp|qq) = \langle pq|pq\rangle,
 \qquad
-K_{ij} = (ij|ji) = \langle ij|ji\rangle .
+K_{pq} = (pq|qp) = \langle pq|qp\rangle .
 $$
 
 **Meaning.**
 
-- $J_{ij}$ is the classical Coulomb repulsion between the charge clouds $|\psi_i(\mathbf r_1)|^2$ and $|\psi_j(\mathbf r_2)|^2$.
-- $K_{ij}$ has no classical analogue. It arises only from antisymmetry.
+- $J_{pq}$ is the classical Coulomb repulsion between the charge clouds $|\psi_p(\mathbf r_1)|^2$ and $|\psi_q(\mathbf r_2)|^2$.
+- $K_{pq}$ has no classical analogue. It arises only from antisymmetry.
 
 **Properties (Szabo Ex. 2.19, 2.20).**
 
-- $J_{ii} = K_{ii}$.
-- $J_{ij}^* = J_{ij}$ and $K_{ij}^* = K_{ij}$: both are real.
-- $J_{ij} = J_{ji}$ and $K_{ij} = K_{ji}$.
-- $J_{ij} > 0$ and $K_{ij} > 0$: $K_{ij}$ is the self-repulsion of the charge distribution $\psi_i^*\psi_j$, and the Coulomb kernel is positive definite.
-- For real orbitals, $K_{ij} = (ij|ji) = (ij|ij) = \langle ij|ji\rangle = \langle ii|jj\rangle$.
+- $J_{pp} = K_{pp}$.
+- $J_{pq}^* = J_{pq}$ and $K_{pq}^* = K_{pq}$: both are real.
+- $J_{pq} = J_{qp}$ and $K_{pq} = K_{qp}$.
+- $J_{pq} > 0$ and $K_{pq} > 0$: $K_{pq}$ is the self-repulsion of the charge distribution $\psi_p^*\psi_q$, and the Coulomb kernel is positive definite.
+- For real orbitals, $K_{pq} = (pq|qp) = (pq|pq) = \langle pq|qp\rangle = \langle pp|qq\rangle$.
 
 ## In code (PySCF)
 

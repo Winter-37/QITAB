@@ -8,6 +8,7 @@ level: advanced
 tags: [DMET, democratic-partitioning, energy-functional, chemical-potential, non-variational, one-shot]
 prerequisites: [dmet-embedding-hamiltonian, density-matrices-second-quantization, full-ci]
 related: [dmet-self-consistency-and-correlation-potential, dmet-analytic-nuclear-gradient, size-consistency]
+conventions: [chemists-integrals]
 order: 30
 date: 2026-11-08
 ---

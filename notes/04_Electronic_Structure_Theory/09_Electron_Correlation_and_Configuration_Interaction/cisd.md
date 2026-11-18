@@ -8,6 +8,7 @@ level: intermediate
 tags: [ci, cisd, dci, truncated-ci, davidson-correction, pair-energies]
 prerequisites: [full-ci]
 related: [standard-models-h2-and-water, size-consistency, natural-orbitals, electron-correlation, coupled-pair-approximations, ci-in-practice]
+conventions: [ia-letters]
 order: 50
 date: 2026-11-03
 ---
@@ -29,17 +30,17 @@ The truncated energy is still variational. For small molecules SDCI recovers mos
 In intermediate normalization,
 
 $$
-|\Phi_{\text{DCI}}\rangle = |\Psi_0\rangle + \sum_{\substack{c<d\\ t<u}}c_{cd}^{tu}|\Psi_{cd}^{tu}\rangle .
+|\Phi_{\text{DCI}}\rangle = |\Psi_0\rangle + \sum_{\substack{k<l\\ c<d}}c_{kl}^{cd}|\Psi_{kl}^{cd}\rangle .
 $$
 
-Project $(\hat H - E_0)|\Phi_{\text{DCI}}\rangle = E_{\text{corr}}|\Phi_{\text{DCI}}\rangle$ onto $\langle\Psi_0|$ and onto each $\langle\Psi_{ab}^{rs}|$. Define
+Project $(\hat H - E_0)|\Phi_{\text{DCI}}\rangle = E_{\text{corr}}|\Phi_{\text{DCI}}\rangle$ onto $\langle\Psi_0|$ and onto each $\langle\Psi_{ij}^{ab}|$. Define
 
 $$
-(\mathbf B)_{rasb} = \langle\Psi_{ab}^{rs}|\hat H|\Psi_0\rangle,
+(\mathbf B)_{aibj} = \langle\Psi_{ij}^{ab}|\hat H|\Psi_0\rangle,
 \qquad
-(\mathbf D)_{rasb,tcud} = \langle\Psi_{ab}^{rs}|\hat H - E_0|\Psi_{cd}^{tu}\rangle,
+(\mathbf D)_{aibj,ckdl} = \langle\Psi_{ij}^{ab}|\hat H - E_0|\Psi_{kl}^{cd}\rangle,
 \qquad
-(\mathbf c)_{rasb} = c_{ab}^{rs}.
+(\mathbf c)_{aibj} = c_{ij}^{ab}.
 $$
 
 The two projections become
@@ -52,7 +53,7 @@ $$
 \begin{pmatrix}0 & \mathbf B^\dagger\\ \mathbf B & \mathbf D\end{pmatrix}\begin{pmatrix}1\\ \mathbf c\end{pmatrix} = E_{\text{corr}}\begin{pmatrix}1\\ \mathbf c\end{pmatrix}.
 $$
 
-This is the Hamiltonian in the basis $\{|\Psi_0\rangle, |\Psi_{ab}^{rs}\rangle\}$ with $E_0$ subtracted from the diagonal. $E_{\text{corr}}$ is its lowest eigenvalue. Minimal-basis H$_2$ is the $1\times1$ case of $\mathbf D$.
+This is the Hamiltonian in the basis $\{|\Psi_0\rangle, |\Psi_{ij}^{ab}\rangle\}$ with $E_0$ subtracted from the diagonal. $E_{\text{corr}}$ is its lowest eigenvalue. Minimal-basis H$_2$ is the $1\times1$ case of $\mathbf D$.
 
 ## Perturbative estimates and pair contributions
 
@@ -73,10 +74,10 @@ This is no longer an upper bound, but unlike DCI it does not deteriorate with sy
 **Diagonal approximation.** If $\mathbf D$ is approximated by its diagonal,
 
 $$
-E_{\text{corr}} \approx \sum_{\substack{a<b\\ r<s}}\frac{|\langle\Psi_0|\hat H|\Psi_{ab}^{rs}\rangle|^2}{\langle\Psi_0|\hat H|\Psi_0\rangle - \langle\Psi_{ab}^{rs}|\hat H|\Psi_{ab}^{rs}\rangle} = \sum_{\substack{a<b\\ r<s}}e_{ab}^{rs}.
+E_{\text{corr}} \approx \sum_{\substack{i<j\\ a<b}}\frac{|\langle\Psi_0|\hat H|\Psi_{ij}^{ab}\rangle|^2}{\langle\Psi_0|\hat H|\Psi_0\rangle - \langle\Psi_{ij}^{ab}|\hat H|\Psi_{ij}^{ab}\rangle} = \sum_{\substack{i<j\\ a<b}}e_{ij}^{ab}.
 $$
 
-Each term $e_{ab}^{rs}$ estimates one double's contribution. These estimates are cheap and are used to **select** the important configurations before a large CI. Replacing the diagonal elements of $\mathbf D$ by orbital-energy differences gives second-order perturbation theory (Szabo Ch. 6).
+Each term $e_{ij}^{ab}$ estimates one double's contribution. These estimates are cheap and are used to **select** the important configurations before a large CI. Replacing the diagonal elements of $\mathbf D$ by orbital-energy differences gives second-order perturbation theory (Szabo Ch. 6).
 
 ## The Davidson correction
 

@@ -8,6 +8,7 @@ level: intermediate
 tags: [jordan-wigner, qubit-mapping, pauli-strings, second-quantization, bitstrings]
 prerequisites: [creation-and-annihilation-operators, second-quantized-operators, slater-determinants]
 related: [parity-and-bravyi-kitaev-mappings, qubit-tapering, variational-quantum-eigensolver, sample-based-quantum-diagonalization]
+conventions: [chemists-integrals]
 order: 10
 date: 2026-11-08
 ---

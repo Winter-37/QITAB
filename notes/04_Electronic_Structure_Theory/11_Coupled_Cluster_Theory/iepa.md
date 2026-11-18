@@ -1,74 +1,75 @@
 ---
 id: iepa
 title: Independent electron pair approximation (IEPA), Epstein-Nesbet and first-order pairs
-summary: The exact correlation energy is a sum of pair energies e_ab built from the doubles coefficients of full CI. IEPA computes each pair energy from a separate pair-at-a-time CI in which only that pair is excited. Neglecting couplings between doubles gives Epstein-Nesbet pairs, and replacing the diagonal by orbital-energy differences gives first-order pairs (= MP2). IEPA is size consistent but not invariant to unitary rotations of degenerate orbitals; computed H2-dimer and water results show both features.
+summary: The exact correlation energy is a sum of pair energies e_ij built from the doubles coefficients of full CI. IEPA computes each pair energy from a separate pair-at-a-time CI in which only that pair is excited. Neglecting couplings between doubles gives Epstein-Nesbet pairs, and replacing the diagonal by orbital-energy differences gives first-order pairs (= MP2). IEPA is size consistent but not invariant to unitary rotations of degenerate orbitals; computed H2-dimer and water results show both features.
 status: in-progress
 kind: theory
 level: intermediate
 tags: [iepa, pair-theory, epstein-nesbet, first-order-pairs, bethe-goldstone, invariance, size-consistency]
 prerequisites: [full-ci, cisd, size-consistency]
 related: [coupled-pair-approximations, mp2, minimal-basis-h2-model, linked-cluster-theorem]
+conventions: [ia-letters, antisymmetrized-integrals]
 order: 10
 date: 2026-11-03
 ---
 
 ## Pair decomposition of the exact correlation energy
 
-**Exact statement.** Write the full CI wave function in intermediate normalization, $|\Phi_0\rangle = |\Psi_0\rangle + \sum c_a^r|\Psi_a^r\rangle + \sum_{a<b,\,r<s} c_{ab}^{rs}|\Psi_{ab}^{rs}\rangle + \cdots$. Because $H$ has at most two-body terms and Hartree-Fock orbitals satisfy Brillouin's theorem ([[brillouin-theorem]]), only doubles contribute to the energy expression:
+**Exact statement.** Write the full CI wave function in intermediate normalization, $|\Phi_0\rangle = |\Psi_0\rangle + \sum c_i^a|\Psi_i^a\rangle + \sum_{i<j,\,a<b} c_{ij}^{ab}|\Psi_{ij}^{ab}\rangle + \cdots$. Because $H$ has at most two-body terms and Hartree-Fock orbitals satisfy Brillouin's theorem ([[brillouin-theorem]]), only doubles contribute to the energy expression:
 
 $$
-E_{\text{corr}} = \sum_{a<b}\sum_{r<s} c_{ab}^{rs}\,\langle\Psi_0|H|\Psi_{ab}^{rs}\rangle = \sum_{a<b} e_{ab},
+E_{\text{corr}} = \sum_{i<j}\sum_{a<b} c_{ij}^{ab}\,\langle\Psi_0|H|\Psi_{ij}^{ab}\rangle = \sum_{i<j} e_{ij},
 \qquad
-e_{ab} = \sum_{r<s} c_{ab}^{rs}\,\langle ab||rs\rangle .
+e_{ij} = \sum_{a<b} c_{ij}^{ab}\,\langle ij||ab\rangle .
 $$
 
-$e_{ab}$ is the **pair correlation energy** of the electrons that occupy spin orbitals $\chi_a,\chi_b$ in Hartree-Fock.
+$e_{ij}$ is the **pair correlation energy** of the electrons that occupy spin orbitals $\chi_i,\chi_j$ in Hartree-Fock.
 
-**The catch.** The decomposition is exact but useless as it stands: the coefficients $c_{ab}^{rs}$ come from the full $N$-electron calculation. The question is whether each $e_{ab}$ can be estimated by a two-electron-sized calculation, turning one $N$-electron problem into $N(N-1)/2$ pair problems.
+**The catch.** The decomposition is exact but useless as it stands: the coefficients $c_{ij}^{ab}$ come from the full $N$-electron calculation. The question is whether each $e_{ij}$ can be estimated by a two-electron-sized calculation, turning one $N$-electron problem into $N(N-1)/2$ pair problems.
 
 ## IEPA: one pair at a time
 
-**Pair function.** Leave the other $N-2$ electrons in their Hartree-Fock spin orbitals and let only the pair $ab$ be excited (singles ignored):
+**Pair function.** Leave the other $N-2$ electrons in their Hartree-Fock spin orbitals and let only the pair $ij$ be excited (singles ignored):
 
 $$
-|\Psi_{ab}\rangle = |\Psi_0\rangle + \sum_{r<s} c_{ab}^{rs}|\Psi_{ab}^{rs}\rangle ,
-\qquad E_{ab} = E_0 + e_{ab}.
+|\Psi_{ij}\rangle = |\Psi_0\rangle + \sum_{a<b} c_{ij}^{ab}|\Psi_{ij}^{ab}\rangle ,
+\qquad E_{ij} = E_0 + e_{ij}.
 $$
 
-**Pair equations.** Projecting $(H - E_0)|\Psi_{ab}\rangle = e_{ab}|\Psi_{ab}\rangle$ onto $\langle\Psi_0|$ and $\langle\Psi_{ab}^{rs}|$:
+**Pair equations.** Projecting $(H - E_0)|\Psi_{ij}\rangle = e_{ij}|\Psi_{ij}\rangle$ onto $\langle\Psi_0|$ and $\langle\Psi_{ij}^{ab}|$:
 
 $$
-\sum_{t<u}\langle\Psi_0|H|\Psi_{ab}^{tu}\rangle\,c_{ab}^{tu} = e_{ab},
+\sum_{c<d}\langle\Psi_0|H|\Psi_{ij}^{cd}\rangle\,c_{ij}^{cd} = e_{ij},
 $$
 
 $$
-\langle\Psi_{ab}^{rs}|H|\Psi_0\rangle + \sum_{t<u}\langle\Psi_{ab}^{rs}|H - E_0|\Psi_{ab}^{tu}\rangle\,c_{ab}^{tu} = e_{ab}\,c_{ab}^{rs}.
+\langle\Psi_{ij}^{ab}|H|\Psi_0\rangle + \sum_{c<d}\langle\Psi_{ij}^{ab}|H - E_0|\Psi_{ij}^{cd}\rangle\,c_{ij}^{cd} = e_{ij}\,c_{ij}^{ab}.
 $$
 
-This is a small CI eigenvalue problem in the space $\{\Psi_0, \Psi_{ab}^{rs}\}$, one for every occupied pair. The total is $E_{\text{corr}}(\text{IEPA}) = \sum_{a<b} e_{ab}$.
+This is a small CI eigenvalue problem in the space $\{\Psi_0, \Psi_{ij}^{ab}\}$, one for every occupied pair. The total is $E_{\text{corr}}(\text{IEPA}) = \sum_{i<j} e_{ij}$.
 
-**What is left out.** Matrix elements $\langle\Psi_{ab}^{rs}|H|\Psi_{cd}^{tu}\rangle$ between different pairs never appear. Each pair is variational on its own, but the **sum** of pair energies is not an upper bound: IEPA can give more than 100% of the correlation energy.
+**What is left out.** Matrix elements $\langle\Psi_{ij}^{ab}|H|\Psi_{kl}^{cd}\rangle$ between different pairs never appear. Each pair is variational on its own, but the **sum** of pair energies is not an upper bound: IEPA can give more than 100% of the correlation energy.
 
 **Names.** The scheme was introduced independently by Sinanoğlu (many-electron theory) and Nesbet (Bethe-Goldstone theory). It is also called "pair-at-a-time CI". Despite the name it is not an approximation to DCI: it is a different approximation to full CI, and unlike DCI it is size consistent ([[size-consistency]]).
 
 ## From IEPA to Epstein-Nesbet and first-order pairs
 
-**Epstein-Nesbet (EN) pairs.** Drop the coupling between different doubles of the same pair (keep only $t=r$, $u=s$ in the sum). Solving the second equation for $c_{ab}^{rs}$ and inserting in the first gives
+**Epstein-Nesbet (EN) pairs.** Drop the coupling between different doubles of the same pair (keep only $c=a$, $d=b$ in the sum). Solving the second equation for $c_{ij}^{ab}$ and inserting in the first gives
 
 $$
-e_{ab} = \sum_{r<s}\frac{|\langle ab||rs\rangle|^2}{\langle\Psi_0|H|\Psi_0\rangle - \langle\Psi_{ab}^{rs}|H|\Psi_{ab}^{rs}\rangle + e_{ab}}
+e_{ij} = \sum_{a<b}\frac{|\langle ij||ab\rangle|^2}{\langle\Psi_0|H|\Psi_0\rangle - \langle\Psi_{ij}^{ab}|H|\Psi_{ij}^{ab}\rangle + e_{ij}}
 \;\approx\;
-e_{ab}^{\text{EN}} = \sum_{r<s}\frac{|\langle ab||rs\rangle|^2}{\langle\Psi_0|H - E_0|\Psi_0\rangle - \langle\Psi_{ab}^{rs}|H - E_0|\Psi_{ab}^{rs}\rangle},
+e_{ij}^{\text{EN}} = \sum_{a<b}\frac{|\langle ij||ab\rangle|^2}{\langle\Psi_0|H - E_0|\Psi_0\rangle - \langle\Psi_{ij}^{ab}|H - E_0|\Psi_{ij}^{ab}\rangle},
 $$
 
-where in the second step the small $e_{ab}$ is dropped from the denominator. The EN denominator is the full diagonal energy of the doubly excited determinant.
+where in the second step the small $e_{ij}$ is dropped from the denominator. The EN denominator is the full diagonal energy of the doubly excited determinant.
 
-**First-order pairs.** Replace the diagonal difference by orbital-energy differences, $\langle\Psi_{ab}^{rs}|H|\Psi_{ab}^{rs}\rangle - E_0 \approx \varepsilon_r + \varepsilon_s - \varepsilon_a - \varepsilon_b$:
+**First-order pairs.** Replace the diagonal difference by orbital-energy differences, $\langle\Psi_{ij}^{ab}|H|\Psi_{ij}^{ab}\rangle - E_0 \approx \varepsilon_a + \varepsilon_b - \varepsilon_i - \varepsilon_j$:
 
 $$
-e_{ab}^{(1)} = \sum_{r<s}\frac{|\langle ab||rs\rangle|^2}{\varepsilon_a + \varepsilon_b - \varepsilon_r - \varepsilon_s},
+e_{ij}^{(1)} = \sum_{a<b}\frac{|\langle ij||ab\rangle|^2}{\varepsilon_i + \varepsilon_j - \varepsilon_a - \varepsilon_b},
 \qquad
-E_{\text{corr}}^{(1)} = \sum_{a<b}e_{ab}^{(1)} = E_0^{(2)} .
+E_{\text{corr}}^{(1)} = \sum_{i<j}e_{ij}^{(1)} = E_0^{(2)} .
 $$
 
 The sum of first-order pair energies **is** the second-order Møller-Plesset energy ([[mp2]]). The simplest pair theory and the simplest perturbation theory coincide.
@@ -78,7 +79,7 @@ The sum of first-order pair energies **is** the second-order Møller-Plesset ene
 !!! example "Minimal-basis H₂ (Szabo Ex. 5.1)"
     For a two-electron system IEPA is full CI, so $E_{\text{corr}}(\text{IEPA}) = \Delta - (\Delta^2 + K_{12}^2)^{1/2}$ with $2\Delta = 2(\varepsilon_2-\varepsilon_1) + J_{11} + J_{22} - 4J_{12} + 2K_{12}$ ([[full-ci]]).
 
-    - **First-order pairs.** Summing over spin orbitals $a,b = 1,\bar1$ and $r,s = 2,\bar2$ gives $E^{(1)}_{\text{corr}} = K_{12}^2/\big(2(\varepsilon_1 - \varepsilon_2)\big)$.
+    - **First-order pairs.** Summing over spin orbitals $i,j = 1,\bar1$ and $a,b = 2,\bar2$ gives $E^{(1)}_{\text{corr}} = K_{12}^2/\big(2(\varepsilon_1 - \varepsilon_2)\big)$.
     - **Check.** Replacing $\Delta$ by $\varepsilon_2 - \varepsilon_1$ in the exact result and expanding $(1+x)^{1/2}\approx 1 + x/2$ gives the same expression.
     - **Numbers (STO-3G, R = 1.4 bohr).** First-order pairs give −0.013158, the exact (= IEPA) value is −0.020562 hartree. Computed for this note.
 

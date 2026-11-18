@@ -8,6 +8,7 @@ level: advanced
 tags: [cphf, coupled-perturbed-hartree-fock, orbital-response, u-matrix, polarizability, linear-response, orbital-hessian]
 prerequisites: [derivative-integrals-and-u-matrices, rhf, brillouin-theorem]
 related: [rhf-analytic-hessian, z-vector-method, ci-analytic-gradient, generalized-fock-matrix-and-orbital-hessian, scf-second-order-and-stability, polarization-propagator-rpa, molecular-properties-and-response]
+conventions: [ia-letters, chemists-integrals]
 order: 50
 date: 2026-11-07
 ---

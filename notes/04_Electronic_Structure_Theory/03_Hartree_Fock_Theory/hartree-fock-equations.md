@@ -1,7 +1,7 @@
 ---
 id: hartree-fock-equations
 title: Derivation of the Hartree-Fock equations
-summary: Minimize the energy of a single determinant over its spin orbitals with orthonormality constraints (Lagrange multipliers ε_ba). Functional variation gives f|χ_a⟩ = Σ_b ε_ba|χ_b⟩; a unitary rotation of the occupied orbitals diagonalizes ε and gives the canonical equations f|χ_a⟩ = ε_a|χ_a⟩.
+summary: Minimize the energy of a single determinant over its spin orbitals with orthonormality constraints (Lagrange multipliers ε_ji). Functional variation gives f|χ_i⟩ = Σ_j ε_ji|χ_j⟩; a unitary rotation of the occupied orbitals diagonalizes ε and gives the canonical equations f|χ_i⟩ = ε_i|χ_i⟩.
 status: in-progress
 kind: derivation
 level: intermediate
@@ -10,17 +10,18 @@ prerequisites: [fock-operator, slater-condon-rules, variational-principle]
 related: [rhf, uhf, brillouin-theorem, change-of-basis]
 order: 20
 date: 2026-11-03
+conventions: [ia-letters, chemists-integrals]
 ---
 
 ## Problem
 
-Find the single determinant $|\Psi_0\rangle = |\chi_1\cdots\chi_a\cdots\chi_N\rangle$ with the lowest energy
+Find the single determinant $|\Psi_0\rangle = |\chi_1\cdots\chi_i\cdots\chi_N\rangle$ with the lowest energy
 
 $$
-E_0[\{\chi_a\}] = \langle\Psi_0|\hat H|\Psi_0\rangle = \sum_a^N\langle a|h|a\rangle + \tfrac12\sum_{a,b}^N\big([aa|bb] - [ab|ba]\big),
+E_0[\{\chi_i\}] = \langle\Psi_0|\hat H|\Psi_0\rangle = \sum_i^N\langle i|h|i\rangle + \tfrac12\sum_{i,j}^N\big([ii|jj] - [ij|ji]\big),
 $$
 
-subject to $\langle\chi_a|\chi_b\rangle = \delta_{ab}$. The energy expression assumes orthonormal spin orbitals ([[slater-condon-rules]]), so the constraint is needed for consistency. $E_0$ is a **functional**: a number that depends on functions.
+subject to $\langle\chi_i|\chi_j\rangle = \delta_{ij}$. The energy expression assumes orthonormal spin orbitals ([[slater-condon-rules]]), so the constraint is needed for consistency. $E_0$ is a **functional**: a number that depends on functions.
 
 ## Functional variation
 
@@ -32,40 +33,40 @@ $$
 
 $\delta E$, the part linear in $\delta\tilde\Phi$, is the first variation. A stationary point has $\delta E = 0$ for every allowed $\delta\tilde\Phi$.
 
-**Linear-variation check.** With $\tilde\Phi = \sum_i c_i\Psi_i$ and $E = \langle\tilde\Phi|\hat H|\tilde\Phi\rangle - E(\langle\tilde\Phi|\tilde\Phi\rangle - 1)$, requiring $\delta E = 0$ for arbitrary $\delta c_i^*$ gives $\sum_j H_{ij}c_j = E c_i$, the [[linear-variation-method]].
+**Linear-variation check.** With $\tilde\Phi = \sum_p c_p\Psi_p$ and $E = \langle\tilde\Phi|\hat H|\tilde\Phi\rangle - E(\langle\tilde\Phi|\tilde\Phi\rangle - 1)$, requiring $\delta E = 0$ for arbitrary $\delta c_p^*$ gives $\sum_q H_{pq}c_q = E c_p$, the [[linear-variation-method]].
 
 ## Lagrangian
 
 Introduce one multiplier per constraint:
 
 $$
-\mathcal L[\{\chi_a\}] = E_0[\{\chi_a\}] - \sum_{a,b}^N\varepsilon_{ba}\big(\langle a|b\rangle - \delta_{ab}\big).
+\mathcal L[\{\chi_i\}] = E_0[\{\chi_i\}] - \sum_{i,j}^N\varepsilon_{ji}\big(\langle i|j\rangle - \delta_{ij}\big).
 $$
 
-$\mathcal L$ is real, and $\langle a|b\rangle^* = \langle b|a\rangle$. Taking the complex conjugate of the constraint sum therefore shows the multipliers form a Hermitian matrix, $\varepsilon_{ba} = \varepsilon_{ab}^*$ (Szabo Eq. 3.40, Ex. 3.2).
+$\mathcal L$ is real, and $\langle i|j\rangle^* = \langle j|i\rangle$. Taking the complex conjugate of the constraint sum therefore shows the multipliers form a Hermitian matrix, $\varepsilon_{ji} = \varepsilon_{ij}^*$ (Szabo Eq. 3.40, Ex. 3.2).
 
 ## First variation
 
-Vary every occupied spin orbital, $\chi_a\to\chi_a + \delta\chi_a$, and keep first-order terms (Szabo Ex. 3.3):
+Vary every occupied spin orbital, $\chi_i\to\chi_i + \delta\chi_i$, and keep first-order terms (Szabo Ex. 3.3):
 
 $$
-\delta\mathcal L = \sum_a^N\langle\delta\chi_a|h|\chi_a\rangle
-+ \sum_{a,b}^N\big([\delta\chi_a\chi_a|\chi_b\chi_b] - [\delta\chi_a\chi_b|\chi_b\chi_a]\big)
-- \sum_{a,b}^N\varepsilon_{ba}\langle\delta\chi_a|\chi_b\rangle
+\delta\mathcal L = \sum_i^N\langle\delta\chi_i|h|\chi_i\rangle
++ \sum_{i,j}^N\big([\delta\chi_i\chi_i|\chi_j\chi_j] - [\delta\chi_i\chi_j|\chi_j\chi_i]\big)
+- \sum_{i,j}^N\varepsilon_{ji}\langle\delta\chi_i|\chi_j\rangle
 + \text{c.c.} = 0 .
 $$
 
-The factor $\tfrac12$ of the two-electron term disappears because varying either orbital of a pair gives the same contribution. Rewrite the two-electron terms with the [[fock-operator]] pieces $\mathcal J_b$ and $\mathcal K_b$:
+The factor $\tfrac12$ of the two-electron term disappears because varying either orbital of a pair gives the same contribution. Rewrite the two-electron terms with the [[fock-operator]] pieces $\mathcal J_j$ and $\mathcal K_j$:
 
 $$
-\delta\mathcal L = \sum_a^N\int\mathrm d\mathbf x_1\ \delta\chi_a^*(1)\Big[h(1)\chi_a(1) + \sum_b^N\big(\mathcal J_b(1) - \mathcal K_b(1)\big)\chi_a(1) - \sum_b^N\varepsilon_{ba}\chi_b(1)\Big] + \text{c.c.} = 0 .
+\delta\mathcal L = \sum_i^N\int\mathrm d\mathbf x_1\ \delta\chi_i^*(1)\Big[h(1)\chi_i(1) + \sum_j^N\big(\mathcal J_j(1) - \mathcal K_j(1)\big)\chi_i(1) - \sum_j^N\varepsilon_{ji}\chi_j(1)\Big] + \text{c.c.} = 0 .
 $$
 
-$\delta\chi_a^*$ is arbitrary, so the bracket vanishes for each $a$:
+$\delta\chi_i^*$ is arbitrary, so the bracket vanishes for each $i$:
 
 $$
-f(1)\,\chi_a(1) = \sum_b^N\varepsilon_{ba}\,\chi_b(1),
-\qquad a = 1,\dots,N .
+f(1)\,\chi_i(1) = \sum_j^N\varepsilon_{ji}\,\chi_j(1),
+\qquad i = 1,\dots,N .
 $$
 
 ## Canonical form
@@ -73,19 +74,19 @@ $$
 Rotate the occupied spin orbitals by a unitary $\mathbf U$:
 
 $$
-\chi_a' = \sum_b\chi_b U_{ba}.
+\chi_i' = \sum_j\chi_j U_{ji}.
 $$
 
-**The determinant is unchanged up to a phase.** Write the $N\times N$ matrix $\mathbf A$ with $A_{ia} = \chi_a(i)$. Then $\mathbf A' = \mathbf{AU}$ and $|\Psi_0'\rangle = \det(\mathbf U)\,|\Psi_0\rangle$ with $|\det\mathbf U| = 1$ ([[matrices-and-determinants]]).
+**The determinant is unchanged up to a phase.** Write the $N\times N$ matrix $\mathbf A$ with $A_{ni} = \chi_i(n)$ (electron $n$, orbital $i$). Then $\mathbf A' = \mathbf{AU}$ and $|\Psi_0'\rangle = \det(\mathbf U)\,|\Psi_0\rangle$ with $|\det\mathbf U| = 1$ ([[matrices-and-determinants]]).
 
-**$f$ is unchanged.** $\sum_b\mathcal J_b$ and $\sum_b\mathcal K_b$ depend only on $\sum_b\chi_b(2)\chi_b^*(2')$, which is invariant under unitary mixing ([[change-of-basis]]).
+**$f$ is unchanged.** $\sum_j\mathcal J_j$ and $\sum_j\mathcal K_j$ depend only on $\sum_j\chi_j(2)\chi_j^*(2')$, which is invariant under unitary mixing ([[change-of-basis]]).
 
 **The multipliers transform as a matrix.** $\boldsymbol\varepsilon' = \mathbf U^\dagger\boldsymbol\varepsilon\mathbf U$. Because $\boldsymbol\varepsilon$ is Hermitian, $\mathbf U$ can be chosen to make it diagonal.
 
 The **canonical spin orbitals** then satisfy
 
 $$
-f|\chi_a\rangle = \varepsilon_a|\chi_a\rangle .
+f|\chi_i\rangle = \varepsilon_i|\chi_i\rangle .
 $$
 
 They are delocalized and have definite symmetry, and their eigenvalues have the Koopmans interpretation ([[koopmans-theorem]]). Other unitary choices, such as localized orbitals, give the same energy and wave function but no orbital energies.

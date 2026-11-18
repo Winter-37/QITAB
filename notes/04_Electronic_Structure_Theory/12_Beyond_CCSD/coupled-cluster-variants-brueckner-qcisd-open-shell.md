@@ -8,6 +8,7 @@ level: advanced
 tags: [coupled-cluster, brueckner, orbital-optimized-cc, qcisd, quadratic-ci, open-shell, spin-restricted-cc, spin-contamination, uccsd]
 prerequisites: [coupled-cluster-hierarchy-and-size-extensivity, coupled-cluster-optimization-and-lagrangian]
 related: [closed-shell-ccsd-t1-transformation, eom-ccsd-and-size-extensivity, rhf-instabilities-and-multiple-solutions, mcscf-parametrization-gradient-and-hessian, coupled-pair-approximations]
+conventions: [ia-letters]
 order: 50
 date: 2026-11-04
 ---

@@ -8,6 +8,7 @@ level: intermediate
 tags: [mcscf, gvb, tcscf, valence-bond, static-correlation, multiconfigurational]
 prerequisites: [full-ci, natural-orbitals]
 related: [standard-models-h2-and-water, h2-dissociation-rhf-uhf, electron-correlation, minimal-basis-h2-model, mcscf-second-order-optimization]
+conventions: [ia-letters]
 order: 10
 date: 2026-11-03
 ---
@@ -33,7 +34,7 @@ The simplest MCSCF for H$_2$ uses two closed-shell configurations:
 $$
 |\Psi_{\text{MCSCF}}\rangle = C_A|\psi_A\bar\psi_A\rangle + C_B|\psi_B\bar\psi_B\rangle,
 \qquad
-\psi_i = \sum_\mu C_{\mu i}\phi_\mu ,
+\psi_p = \sum_\mu C_{\mu p}\phi_\mu ,
 $$
 
 with $\langle\psi_A|\psi_A\rangle = \langle\psi_B|\psi_B\rangle = 1$, $\langle\psi_A|\psi_B\rangle = 0$, and $C_A^2 + C_B^2 = 1$.

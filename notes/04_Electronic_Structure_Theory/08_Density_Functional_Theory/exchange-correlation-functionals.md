@@ -8,6 +8,7 @@ level: intermediate
 tags: [dft, exchange-correlation, lda, gga, meta-gga, hybrid-functionals, b3lyp, double-hybrid, dispersion-correction]
 prerequisites: [kohn-sham-dft]
 related: [dft-versus-hartree-fock, free-electron-gas, mp2, electronic-structure-methods-at-a-glance]
+conventions: [physicists-integrals]
 order: 20
 date: 2026-11-17
 ---

@@ -8,6 +8,7 @@ level: advanced
 tags: [analytic-hessian, force-constants, rhf, cphf, second-derivatives, 2n+1-rule]
 prerequisites: [rhf-analytic-gradient, cphf-closed-shell, derivative-integrals-and-u-matrices]
 related: [analytic-gradients-and-force-constants, cpci-and-ci-hessian, geometry-optimization]
+conventions: [ia-letters, chemists-integrals]
 order: 60
 date: 2026-11-07
 ---

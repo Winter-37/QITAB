@@ -8,13 +8,14 @@ level: intermediate
 tags: [ccd, coupled-cluster, cluster-expansion, exponential-ansatz, cpmet, size-consistency]
 prerequisites: [coupled-pair-approximations, creation-and-annihilation-operators, size-consistency]
 related: [coupled-cluster-second-quantization, iepa, one-particle-hamiltonian-models, mp3]
+conventions: [ia-letters, antisymmetrized-integrals]
 order: 30
 date: 2026-11-03
 ---
 
 ## The idea in one line
 
-Approximate every coefficient of a quadruple excitation by the antisymmetrized sum of products of doubles coefficients, $c_{abcd}^{rstu}\approx c_{ab}^{rs}*c_{cd}^{tu}$. The full derivation of the resulting equation, and its place among DCI, L-CCD and CEPA, is in [[coupled-pair-approximations]]. This note works out what the approximation means and shows that it is the same as an exponential wave function.
+Approximate every coefficient of a quadruple excitation by the antisymmetrized sum of products of doubles coefficients, $c_{ijkl}^{abcd}\approx c_{ij}^{ab}*c_{kl}^{cd}$. The full derivation of the resulting equation, and its place among DCI, L-CCD and CEPA, is in [[coupled-pair-approximations]]. This note works out what the approximation means and shows that it is the same as an exponential wave function.
 
 ## Exact for N separated H₂ molecules
 
@@ -44,10 +45,10 @@ CCA is exact for every $N$. DCI gives $\sqrt N$ behaviour and DQCI is exact only
 
 ## The cluster form of the wave function
 
-**Doubles operator.** With $|\Psi_{ab}^{rs}\rangle = a_r^\dagger a_s^\dagger a_b a_a|\Psi_0\rangle$ ([[creation-and-annihilation-operators]]),
+**Doubles operator.** With $|\Psi_{ij}^{ab}\rangle = a_a^\dagger a_b^\dagger a_j a_i|\Psi_0\rangle$ ([[creation-and-annihilation-operators]]),
 
 $$
-\hat T_2 = \frac14\sum_{abrs} c_{ab}^{rs}\,a_r^\dagger a_s^\dagger a_b a_a,
+\hat T_2 = \frac14\sum_{ijab} c_{ij}^{ab}\,a_a^\dagger a_b^\dagger a_j a_i,
 \qquad
 |\Phi_{\text{CCA}}\rangle = e^{\hat T_2}|\Psi_0\rangle = \Big(1 + \hat T_2 + \tfrac12\hat T_2^2 + \cdots\Big)|\Psi_0\rangle .
 $$
@@ -55,14 +56,14 @@ $$
 **Expansion.** All the excitation operators commute. $\tfrac12\hat T_2^2$ produces every quadruple in many ways; collecting the terms, with the anticommutation signs, gives
 
 $$
-e^{\hat T_2}|\Psi_0\rangle = |\Psi_0\rangle + \sum_{a<b,\,r<s} c_{ab}^{rs}|\Psi_{ab}^{rs}\rangle + \sum_{\substack{a<b<c<d\\ r<s<t<u}} c_{ab}^{rs}*c_{cd}^{tu}\,|\Psi_{abcd}^{rstu}\rangle + \cdots ,
+e^{\hat T_2}|\Psi_0\rangle = |\Psi_0\rangle + \sum_{i<j,\,a<b} c_{ij}^{ab}|\Psi_{ij}^{ab}\rangle + \sum_{\substack{i<j<k<l\\ a<b<c<d}} c_{ij}^{ab}*c_{kl}^{cd}\,|\Psi_{ijkl}^{abcd}\rangle + \cdots ,
 $$
 
 with exactly the 18-term product of Szabo Eq. (5.53). The exponential is the compact way of writing "every higher excitation is a sum of products of doubles".
 
-**Equivalent derivation.** Insert $e^{\hat T_2}|\Psi_0\rangle$ into $(H - E_0)|\Phi\rangle = E_{\text{corr}}|\Phi\rangle$ and project on $\langle\Psi_0|$ and $\langle\Psi_{ab}^{rs}|$. Because a double cannot couple to a hextuple, only the doubles and quadruples terms survive and the CCA equations are recovered.
+**Equivalent derivation.** Insert $e^{\hat T_2}|\Psi_0\rangle$ into $(H - E_0)|\Phi\rangle = E_{\text{corr}}|\Phi\rangle$ and project on $\langle\Psi_0|$ and $\langle\Psi_{ij}^{ab}|$. Because a double cannot couple to a hextuple, only the doubles and quadruples terms survive and the CCA equations are recovered.
 
-**Extensions.** Replacing $\hat T_2$ by $\hat T_1 + \hat T_2$ with $\hat T_1 = \sum_{ar}c_a^r a_r^\dagger a_a$ gives CCSD. The second-quantized treatment of the general $e^{\hat T}$ ansatz, including why the similarity-transformed Hamiltonian terminates, is in [[coupled-cluster-second-quantization]].
+**Extensions.** Replacing $\hat T_2$ by $\hat T_1 + \hat T_2$ with $\hat T_1 = \sum_{ia}c_i^a a_a^\dagger a_i$ gives CCSD. The second-quantized treatment of the general $e^{\hat T}$ ansatz, including why the similarity-transformed Hamiltonian terminates, is in [[coupled-cluster-second-quantization]].
 
 !!! example "Two separated H₂ molecules as an exponential (Szabo Ex. 5.11)"
     With $c$ the monomer doubles coefficient, the exact dimer wave function is

@@ -8,6 +8,7 @@ level: advanced
 tags: [rhf, uhf, stability-analysis, triplet-instability, singlet-instability, symmetry-breaking, multiple-solutions, allyl-radical, coulson-fischer, hartree-fock]
 prerequisites: [generalized-fock-matrix-and-orbital-hessian, uhf, h2-dissociation-rhf-uhf]
 related: [scf-second-order-and-stability, scf-convergence-diis-and-newton, polarization-propagator-rpa, standard-models-h2-and-water, hartree-fock-csf-parametrization-and-canonical-conditions]
+conventions: [ia-letters]
 order: 70
 date: 2026-11-04
 ---

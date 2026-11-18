@@ -1,7 +1,7 @@
 ---
 id: koopmans-theorem
 title: Koopmans' theorem
-summary: With frozen Hartree-Fock orbitals, the energy to remove an electron from χ_a is −ε_a and the energy gained by adding one to χ_r is −ε_r. Derivation from the Slater-Condon rules, the error balance (relaxation vs correlation), and computed STO-3G to 6-31G** values for small molecules.
+summary: With frozen Hartree-Fock orbitals, the energy to remove an electron from χ_i is −ε_i and the energy gained by adding one to χ_a is −ε_a. Derivation from the Slater-Condon rules, the error balance (relaxation vs correlation), and computed STO-3G to 6-31G** values for small molecules.
 status: in-progress
 kind: derivation
 level: intermediate
@@ -10,25 +10,26 @@ prerequisites: [fock-operator, slater-condon-rules]
 related: [hartree-fock-equations, hf-closed-shell-basis-set-trends, one-particle-greens-function, ionization-potentials-second-order-self-energy, hartree-fock-csf-parametrization-and-canonical-conditions]
 order: 40
 date: 2026-11-03
+conventions: [ia-letters, physicists-integrals, antisymmetrized-integrals]
 ---
 
 ## Statement
 
-Let $|{}^N\Psi_0\rangle$ be the $N$-electron Hartree-Fock determinant with canonical orbital energies $\varepsilon_i$ ([[fock-operator]]).
+Let $|{}^N\Psi_0\rangle$ be the $N$-electron Hartree-Fock determinant with canonical orbital energies $\varepsilon_p$ ([[fock-operator]]).
 
-**Ionization.** Remove an electron from occupied $\chi_a$, keeping all other spin orbitals unchanged:
-
-$$
-\mathrm{IP}_a = {}^{N-1}E_a - {}^NE_0 = -\varepsilon_a .
-$$
-
-**Attachment.** Add an electron to virtual $\chi_r$, again with unchanged orbitals:
+**Ionization.** Remove an electron from occupied $\chi_i$, keeping all other spin orbitals unchanged:
 
 $$
-\mathrm{EA}_r = {}^NE_0 - {}^{N+1}E^r = -\varepsilon_r .
+\mathrm{IP}_i = {}^{N-1}E_i - {}^NE_0 = -\varepsilon_i .
 $$
 
-Here $|{}^{N-1}\Psi_a\rangle$ and $|{}^{N+1}\Psi^r\rangle$ are single determinants built from the $N$-electron Hartree-Fock orbitals.
+**Attachment.** Add an electron to virtual $\chi_a$, again with unchanged orbitals:
+
+$$
+\mathrm{EA}_a = {}^NE_0 - {}^{N+1}E^a = -\varepsilon_a .
+$$
+
+Here $|{}^{N-1}\Psi_i\rangle$ and $|{}^{N+1}\Psi^a\rangle$ are single determinants built from the $N$-electron Hartree-Fock orbitals.
 
 ## Derivation
 
@@ -37,33 +38,33 @@ Use the Case 1 [[slater-condon-rules]] for each determinant. Every term containi
 **Ionization.**
 
 $$
-{}^NE_0 - {}^{N-1}E_a = \langle a|h|a\rangle + \tfrac12\sum_b\langle ab||ab\rangle + \tfrac12\sum_b\langle ba||ba\rangle = \langle a|h|a\rangle + \sum_b^N\langle ab||ab\rangle = \varepsilon_a .
+{}^NE_0 - {}^{N-1}E_i = \langle i|h|i\rangle + \tfrac12\sum_j\langle ij||ij\rangle + \tfrac12\sum_j\langle ji||ji\rangle = \langle i|h|i\rangle + \sum_j^N\langle ij||ij\rangle = \varepsilon_i .
 $$
 
-The term $b=a$ is zero.
+The term $j=i$ is zero.
 
 **Attachment (Szabo Ex. 3.6).**
 
 $$
-{}^NE_0 - {}^{N+1}E^r = -\langle r|h|r\rangle - \sum_b^N\langle rb||rb\rangle = -\varepsilon_r .
+{}^NE_0 - {}^{N+1}E^a = -\langle a|h|a\rangle - \sum_j^N\langle aj||aj\rangle = -\varepsilon_a .
 $$
 
-**Double ionization (Szabo Ex. 3.5).** Removing electrons from $\chi_c$ and $\chi_d$ costs
+**Double ionization (Szabo Ex. 3.5).** Removing electrons from $\chi_k$ and $\chi_l$ costs
 
 $$
--\varepsilon_c - \varepsilon_d + \langle cd|cd\rangle - \langle cd|dc\rangle .
+-\varepsilon_k - \varepsilon_l + \langle kl|kl\rangle - \langle kl|lk\rangle .
 $$
 
-The pair interaction is counted in both $\varepsilon_c$ and $\varepsilon_d$, so it must be added back once.
+The pair interaction is counted in both $\varepsilon_k$ and $\varepsilon_l$, so it must be added back once.
 
 ## Why it works for IPs, and fails for EAs
 
 Two approximations are made.
 
-1. **Frozen orbitals.** The ion is described with the neutral's orbitals. A separate Hartree-Fock calculation on the ion (ΔSCF) would relax them and lower the ion's energy. Relaxation alone therefore makes $-\varepsilon_a$ **too large** an IP.
+1. **Frozen orbitals.** The ion is described with the neutral's orbitals. A separate Hartree-Fock calculation on the ion (ΔSCF) would relax them and lower the ion's energy. Relaxation alone therefore makes $-\varepsilon_i$ **too large** an IP.
 2. **No correlation.** The $N$-electron system has more electron pairs, hence more correlation energy, than the $(N-1)$-electron ion. Correlation alone therefore makes the Hartree-Fock IP **too small**.
 
-For ionization the two errors have opposite signs and partly cancel, so Koopmans IPs of valence orbitals are often within about 1 eV of experiment. For electron affinities both errors push the same way, so Koopmans EAs are poor. A negative $\varepsilon_r$ in a modest basis may simply reflect a diffuse-function artefact.
+For ionization the two errors have opposite signs and partly cancel, so Koopmans IPs of valence orbitals are often within about 1 eV of experiment. For electron affinities both errors push the same way, so Koopmans EAs are poor. A negative $\varepsilon_a$ in a modest basis may simply reflect a diffuse-function artefact.
 
 **Where it fails qualitatively.**
 
@@ -99,12 +100,12 @@ For ionization the two errors have opposite signs and partly cancel, so Koopmans
 
 ## Why the canonical orbitals are the right ones, and ΔSCF (Helgaker, Jørgensen and Olsen)
 
-**Diagonal elements.** HJO first note that, in any set of orbitals satisfying the HF conditions, $f_{ii}$ equals the IP for removing an electron from $\phi_i$ with frozen orbitals (Eq. 10.5.2).
+**Diagonal elements.** HJO first note that, in any set of orbitals satisfying the HF conditions, $f_{pp}$ equals the IP for removing an electron from $\phi_p$ with frozen orbitals (Eq. 10.5.2).
 
-**Why canonical orbitals.** The ionized state can be expanded as $\sum_ic_ia_{i\sigma}|\text{HF}\rangle$ and optimized variationally. The resulting CI matrix is
+**Why canonical orbitals.** The ionized state can be expanded as $\sum_pc_pa_{p\sigma}|\text{HF}\rangle$ and optimized variationally. The resulting CI matrix is
 
 $$
-\langle\text{HF}|a^\dagger_{i\sigma}\hat Ha_{j\sigma}|\text{HF}\rangle = E^{\text{HF}}\delta_{ij} - f_{ji},
+\langle\text{HF}|a^\dagger_{p\sigma}\hat Ha_{q\sigma}|\text{HF}\rangle = E^{\text{HF}}\delta_{pq} - f_{qp},
 $$
 
 so the cationic states diagonalize the occupied block of $\mathbf f$. In the canonical basis this block is already diagonal. The canonical occupied orbitals are therefore the best frozen-orbital description of ionization, and the virtual canonical orbitals that of electron attachment.

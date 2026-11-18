@@ -8,6 +8,7 @@ level: intermediate
 tags: [frozen-core, active-space, casci, core-energy, effective-hamiltonian, qubit-reduction, one-norm, embedding]
 prerequisites: [molecular-hamiltonian-in-the-mo-basis, fock-operator, mcscf-and-gvb]
 related: [qpe-cost-and-resource-estimates, dmet-embedding-hamiltonian, sample-based-quantum-diagonalization, variational-quantum-eigensolver, jordan-wigner-mapping]
+conventions: [chemists-integrals]
 order: 20
 date: 2026-11-17
 ---

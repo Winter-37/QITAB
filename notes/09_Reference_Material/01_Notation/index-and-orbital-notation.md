@@ -1,25 +1,28 @@
 ---
 id: index-and-orbital-notation
 title: Index letters and orbital symbols
-summary: Which letters mean occupied, virtual, active and general orbitals in each part of the notebook, and which symbols denote spin orbitals, spatial orbitals and basis functions. The letter a is occupied in the Szabo-based chapters and virtual in the HJO- and Shavitt–Bartlett-based chapters; χ is a spin orbital in Szabo and an atomic orbital in HJO.
+summary: Which letters mean occupied, virtual, active and general orbitals in each part of the notebook, and which symbols denote spin orbitals, spatial orbitals and basis functions. The notebook uses i,j occupied, a,b virtual and p,q general throughout; Szabo's own letters (a occupied, r virtual) are kept here for translating his equations. χ is a spin orbital in Szabo and an atomic orbital in HJO.
 status: in-progress
 kind: reference
 level: introductory
 tags: [notation, indices, orbitals, spin-orbitals, basis-functions, conventions]
 prerequisites: []
 related: [operator-and-matrix-notation, second-quantization-and-density-matrix-notation, integral-notation, excited-determinants, derivative-integrals-and-u-matrices]
+conventions: [chemists-integrals, physicists-integrals, antisymmetrized-integrals]
 order: 10
-date: 2026-11-17
+date: 2026-11-18
 ---
 
 ## Why this note exists
 
-The electronic-structure chapters follow their main source closely, so the notation changes with the source. Two collisions matter most:
+The electronic-structure chapters follow their sources closely, and the sources disagree. Two collisions matter most when reading a book next to the notes:
 
-- **The letter $a$.** In the Szabo–Ostlund chapters $a,b,c$ are **occupied** orbitals and $r,s,t$ are virtual. In the chapters that follow Helgaker–Jørgensen–Olsen (HJO), Shavitt–Bartlett (SB) or Yamaguchi et al. (YOGS), $a,b,c$ are **virtual** and $i,j,k$ are occupied.
+- **The letter $a$.** In Szabo–Ostlund $a,b,c$ are **occupied** orbitals and $r,s,t$ are virtual. In Helgaker–Jørgensen–Olsen (HJO), Shavitt–Bartlett (SB), Yamaguchi et al. (YOGS) and in every note of this notebook, $a,b,c$ are **virtual** and $i,j,k$ are occupied.
 - **The letter $\chi$.** In Szabo, $\chi$ is a **spin orbital**. In HJO, $\chi_\mu$ is an **atomic orbital** (basis function), and orbitals are $\phi$.
 
-Each note states its convention near the top. Use this table to find which one applies.
+A note's `conventions` badge says which letters and integral notations it uses.
+
+**One convention (November 2026).** All notes use $i,j,k,l$ occupied, $a,b,c,d$ virtual and $p,q,r,s$ general. The Szabo-based notes of Chapters 2, 3, 5, 6, 9, 10, 11, 13, 14 and 17, and the few formulas written in Jørgensen–Simons' letters (Greek occupied, $m,n$ virtual), were converted. Equation numbers quoted from the books stay valid; only the letters differ. HJO's lowercase spatial-orbital letters already agree with these; HJO's uppercase letters for spin orbitals are kept where a note follows HJO.
 
 ## Index letters
 
@@ -37,14 +40,13 @@ The gradient notes (from Yamaguchi et al., YOGS) use the Shavitt–Bartlett lett
 
 | Chapters | Convention |
 |---|---|
-| 2 Many-electron wave functions, 3 Hartree–Fock, 9 CI (Szabo notes), 10 MBPT, the coupled-pair and IEPA notes of Ch. 11, [[one-particle-hamiltonian-models]] | Szabo: $a$ occupied, $r$ virtual |
-| 5 Second quantization, 6 RDMs, 7 Orbital optimization, 9 CI (HJO notes), 12 Beyond CCSD, 13 MCSCF | HJO: lowercase spatial, uppercase spin orbitals |
-| 11 Coupled cluster (spin-orbital and closed-shell CCSD, diagrams), 15 Analytic derivatives | $i$ occupied, $a$ virtual |
+| Szabo-based notes of Chs. 2, 3, 5, 6, 9, 10, 11, 13, 14 and 17 (converted from Szabo's letters, November 2026), 11 Coupled cluster (CCSD, diagrams), 15 Analytic derivatives | $i$ occupied, $a$ virtual, $p,q$ general |
+| 5 Second quantization, 6 RDMs, 7 Orbital optimization, 9 CI (HJO notes), 12 Beyond CCSD, 13 MCSCF | HJO: lowercase spatial ($i$ inactive, $a$ virtual, $v,w$ active), uppercase spin orbitals |
 
 Part 6 (quantum computational chemistry) uses $i,j$ occupied, $a,b$ virtual and $p,q,r,s$ general.
 
-!!! warning "Translating between chapters"
-    A Szabo formula such as $E_0^{(2)} = \sum_{a<b,\,r<s}|\langle ab||rs\rangle|^2/(\varepsilon_a+\varepsilon_b-\varepsilon_r-\varepsilon_s)$ becomes, in the other convention, $\sum_{i<j,\,a<b}|\langle ij||ab\rangle|^2/(\varepsilon_i+\varepsilon_j-\varepsilon_a-\varepsilon_b)$. Rename **all** indices at once; renaming $r\to a$ before $a\to i$ produces nonsense.
+!!! warning "Translating Szabo's equations"
+    A Szabo formula such as $E_0^{(2)} = \sum_{a<b,\,r<s}|\langle ab||rs\rangle|^2/(\varepsilon_a+\varepsilon_b-\varepsilon_r-\varepsilon_s)$ becomes, in the notebook's letters, $\sum_{i<j,\,a<b}|\langle ij||ab\rangle|^2/(\varepsilon_i+\varepsilon_j-\varepsilon_a-\varepsilon_b)$. Rename **all** indices at once; renaming $r\to a$ before $a\to i$ produces nonsense.
 
 ## Orbital and function symbols
 

@@ -15,7 +15,7 @@ $$
 ## Why it matters
 
 - **Every wave-function method is built from these pieces.** Hartree–Fock is one determinant, CI is a linear combination, and coupled cluster is an exponential of excitations. In each case the energy is a sum of Slater–Condon matrix elements.
-- **Integral notation is a constant source of error.** Physicists' $\langle ij|kl\rangle$ and chemists' $(ij|kl)$ order the indices differently. Antisymmetrized integrals $\langle ij||kl\rangle$ and the reduction from spin to spatial orbitals each introduce factors of 2 and sign conventions. Fixing them once here prevents errors later.
+- **Integral notation is a constant source of error.** Physicists' $\langle pq|rs\rangle$ and chemists' $(pq|rs)$ order the indices differently. Antisymmetrized integrals $\langle pq||rs\rangle$ and the reduction from spin to spatial orbitals each introduce factors of 2 and sign conventions. Fixing them once here prevents errors later.
 - **Spin needs care.** The Hamiltonian is spin-free, so exact states are eigenfunctions of $\hat S^2$, but a single open-shell determinant usually is not. Spin-adapted configurations restore the correct spin. This is the origin of spin contamination in UHF.
 - **A small model to check everything.** Minimal-basis H₂ has four spin orbitals and a 2×2 full-CI problem. Each new idea in Chapters 3–13 can be checked on it by hand.
 

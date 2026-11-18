@@ -10,6 +10,7 @@ prerequisites: [uhf, minimal-basis-h2-model, spin-adapted-configurations]
 related: [standard-models-h2-and-water, rhf, excited-determinants, scf-second-order-and-stability, mp2]
 order: 110
 date: 2026-11-03
+conventions: [ia-letters]
 ---
 
 ## Why RHF fails

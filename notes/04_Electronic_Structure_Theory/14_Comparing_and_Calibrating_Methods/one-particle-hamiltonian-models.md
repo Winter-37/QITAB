@@ -1,13 +1,14 @@
 ---
 id: one-particle-hamiltonian-models
 title: Many-electron methods applied to one-particle Hamiltonians - relaxation energy and Hückel resonance energy
-summary: For a Hamiltonian with only one-body terms the exact answer is a single determinant, so every many-electron method can be tested against an exact result. Singles play the role of doubles, doubles the role of quadruples, and CCA becomes exact because c_ab^rs = c_a^r c_b^s − c_a^s c_b^r holds identically. Szabo's SCI, IEPA, L-CCA, CEPA and CCA equations, the relaxation energy as a trace, and the cyclic-polyene resonance energy computed for several ring sizes.
+summary: For a Hamiltonian with only one-body terms the exact answer is a single determinant, so every many-electron method can be tested against an exact result. Singles play the role of doubles, doubles the role of quadruples, and CCA becomes exact because c_ij^ab = c_i^a c_j^b − c_i^b c_j^a holds identically. Szabo's SCI, IEPA, L-CCA, CEPA and CCA equations, the relaxation energy as a trace, and the cyclic-polyene resonance energy computed for several ring sizes.
 status: in-progress
 kind: comparison
 level: intermediate
 tags: [relaxation-energy, huckel, resonance-energy, thouless, ccsd, size-consistency, model-hamiltonian]
 prerequisites: [coupled-pair-approximations, slater-determinants, matrix-eigenvalue-problem]
 related: [coupled-cluster-doubles, orbital-perturbation-theory, iepa, size-consistency]
+conventions: [ia-letters]
 order: 30
 date: 2026-11-03
 ---
@@ -20,9 +21,9 @@ $$
 \mathscr H = \mathscr H_0 + \mathscr V = \sum_i h_0(i) + \sum_i v(i).
 $$
 
-The zeroth-order determinant $|\Psi_0\rangle$ is built from the $N$ lowest eigenfunctions $\chi_i^{(0)}$ of $h_0$, with $E_0 = \langle\Psi_0|\mathscr H|\Psi_0\rangle = \sum_a(\varepsilon_a^{(0)} + v_{aa})$.
+The zeroth-order determinant $|\Psi_0\rangle$ is built from the $N$ lowest eigenfunctions $\chi_p^{(0)}$ of $h_0$, with $E_0 = \langle\Psi_0|\mathscr H|\Psi_0\rangle = \sum_i(\varepsilon_i^{(0)} + v_{ii})$.
 
-**The exact answer is trivial.** Since $\mathscr H$ is also a sum of one-body terms, diagonalize $h_0 + v$, and the exact ground state is the determinant of its $N$ lowest eigenfunctions with $\mathscr E_0 = \sum_a\varepsilon_a$. The **relaxation energy** $E_R = \mathscr E_0 - E_0$ is the analogue of the correlation energy.
+**The exact answer is trivial.** Since $\mathscr H$ is also a sum of one-body terms, diagonalize $h_0 + v$, and the exact ground state is the determinant of its $N$ lowest eigenfunctions with $\mathscr E_0 = \sum_i\varepsilon_i$. The **relaxation energy** $E_R = \mathscr E_0 - E_0$ is the analogue of the correlation energy.
 
 **Why bother.** Applying CI, pair and cluster theories to this problem is the "hard way", but every result can be compared with the exact one, and the algebra is short enough to see the structure. The orbital picture is exact here, and a good many-electron theory should know that.
 
@@ -33,7 +34,7 @@ The zeroth-order determinant $|\Psi_0\rangle$ is built from the $N$ lowest eigen
 | correlation energy | relaxation energy |
 | doubles carry the energy | singles carry the energy |
 | quadruples ≈ products of doubles | doubles = products of singles |
-| pair energies $e_{ab}$ | "particle" energies $e_a$ |
+| pair energies $e_{ij}$ | "particle" energies $e_i$ |
 | 18-term product | 2-term product |
 
 ## Exact relaxation energy as a trace
@@ -44,7 +45,7 @@ $$
 \begin{pmatrix}\mathbf H_{AA} & \mathbf H_{AB}\\ \mathbf H_{BA} & \mathbf H_{BB}\end{pmatrix}
 \begin{pmatrix}\mathbf c_A\\ \mathbf c_B\end{pmatrix} = \varepsilon\begin{pmatrix}\mathbf c_A\\ \mathbf c_B\end{pmatrix},
 \qquad
-(\mathbf H_{AA})_{ab} = \varepsilon_a^{(0)}\delta_{ab} + v_{ab},\ \ (\mathbf H_{BA})_{rb} = v_{rb},
+(\mathbf H_{AA})_{ij} = \varepsilon_i^{(0)}\delta_{ij} + v_{ij},\ \ (\mathbf H_{BA})_{aj} = v_{aj},
 $$
 
 and similarly for the other blocks. The exact energy is the sum of the $N$ lowest eigenvalues, so $E_R = \operatorname{tr}(\boldsymbol\varepsilon_A - \mathbf H_{AA})$.
@@ -59,37 +60,37 @@ $$
 
 The second equation is quadratic in $\mathbf C_{BA}$ and must be solved iteratively. For a $1\times1$ occupied block it reduces to the familiar intermediate-normalized eigenvalue equation for the lowest root.
 
-**Element form.** With $c_a^r = (\mathbf C_{BA})_{ra}$:
+**Element form.** With $c_i^a = (\mathbf C_{BA})_{ai}$:
 
 $$
-E_R = \sum_{br} v_{br}c_b^r,
+E_R = \sum_{ja} v_{ja}c_j^a,
 \qquad
-v_{ra} + \sum_s(\varepsilon_r^{(0)}\delta_{rs} + v_{rs})c_a^s - \sum_b c_b^r(\varepsilon_b^{(0)}\delta_{ab} + v_{ba}) - \sum_{bs}c_b^r v_{bs}c_a^s = 0 .
+v_{ai} + \sum_b(\varepsilon_a^{(0)}\delta_{ab} + v_{ab})c_i^b - \sum_j c_j^a(\varepsilon_j^{(0)}\delta_{ij} + v_{ji}) - \sum_{jb}c_j^a v_{jb}c_i^b = 0 .
 $$
 
 (General knowledge, not from Szabo: $\mathbf C_{BA}$ is the Thouless parametrization of a determinant relative to $|\Psi_0\rangle$, and the quadratic equation is the condition that the occupied space of $h_0+v$ is invariant.)
 
 ## The many-electron methods
 
-**Matrix elements (Szabo Ex. 5.14).** Between determinants, a one-body operator connects only determinants differing by one spin orbital. In particular $\langle\Psi_0|\mathscr H|\Psi_a^r\rangle = v_{ar}$, $\langle\Psi_0|\mathscr H|\Psi_{ab}^{rs}\rangle = 0$, and $\langle\Psi_a^r|\mathscr H|\Psi_{ab}^{rs}\rangle = v_{bs}$.
+**Matrix elements (Szabo Ex. 5.14).** Between determinants, a one-body operator connects only determinants differing by one spin orbital. In particular $\langle\Psi_0|\mathscr H|\Psi_i^a\rangle = v_{ia}$, $\langle\Psi_0|\mathscr H|\Psi_{ij}^{ab}\rangle = 0$, and $\langle\Psi_i^a|\mathscr H|\Psi_{ij}^{ab}\rangle = v_{jb}$.
 
-**Full CI hierarchy.** The relaxation energy depends only on singles, $E_R = \sum_{bs}v_{bs}c_b^s$. The singles equation contains the doubles $c_{ab}^{rs}$, and so on.
+**Full CI hierarchy.** The relaxation energy depends only on singles, $E_R = \sum_{jb}v_{jb}c_j^b$. The singles equation contains the doubles $c_{ij}^{ab}$, and so on.
 
-**The five truncations** (Szabo Table 5.5). Writing $\mathcal L_a^r(\mathbf c) = v_{ra} + \sum_s(\varepsilon_r^{(0)}\delta_{rs} + v_{rs})c_a^s - \sum_b(\varepsilon_a^{(0)}\delta_{ab} + v_{ba})c_b^r$:
+**The five truncations** (Szabo Table 5.5). Writing $\mathcal L_i^a(\mathbf c) = v_{ai} + \sum_b(\varepsilon_a^{(0)}\delta_{ab} + v_{ab})c_i^b - \sum_j(\varepsilon_i^{(0)}\delta_{ij} + v_{ji})c_j^a$:
 
 | Method | Singles equation | Analogue of |
 |---|---|---|
-| SCI | $\mathcal L_a^r = E_R\,c_a^r$ | DCI |
-| IEPA | same as SCI with only $b = a$ coupling and $E_R\to e_a$ | IEPA |
-| L-CCA | $\mathcal L_a^r = 0$ | L-CCD |
-| CEPA | $\mathcal L_a^r = e_a\,c_a^r$ | CEPA |
-| CCA | $\mathcal L_a^r = \sum_{bs}c_b^r v_{bs}c_a^s$ | CCD |
+| SCI | $\mathcal L_i^a = E_R\,c_i^a$ | DCI |
+| IEPA | same as SCI with only $j = i$ coupling and $E_R\to e_i$ | IEPA |
+| L-CCA | $\mathcal L_i^a = 0$ | L-CCD |
+| CEPA | $\mathcal L_i^a = e_i\,c_i^a$ | CEPA |
+| CCA | $\mathcal L_i^a = \sum_{jb}c_j^a v_{jb}c_i^b$ | CCD |
 
-with $e_a = \sum_s v_{as}c_a^s$ and $E_R = \sum_a e_a$ in every case.
+with $e_i = \sum_b v_{ib}c_i^b$ and $E_R = \sum_i e_i$ in every case.
 
-**CCA is exact.** The CCA closure is $c_{ab}^{rs} = c_a^rc_b^s - c_a^sc_b^r$. Substituting it into the doubles terms of the singles equation and cancelling the $E_R c_a^r$ term gives exactly the quadratic equation of the previous section with $c_a^r = (\mathbf C_{BA})_{ra}$. So CCA reproduces the exact relaxation energy for **any** one-particle Hamiltonian, however poor the starting determinant.
+**CCA is exact.** The CCA closure is $c_{ij}^{ab} = c_i^ac_j^b - c_i^bc_j^a$. Substituting it into the doubles terms of the singles equation and cancelling the $E_R c_i^a$ term gives exactly the quadratic equation of the previous section with $c_i^a = (\mathbf C_{BA})_{ai}$. So CCA reproduces the exact relaxation energy for **any** one-particle Hamiltonian, however poor the starting determinant.
 
-**Why the closure is exact.** The exact ground state is a single determinant of orbitals $\chi_a = \sum_b\chi_b^{(0)}U_{ba} + \sum_r\chi_r^{(0)}U_{ra}$. Expanding that determinant in zeroth-order determinants and normalizing so that $\langle\Psi_0|\Phi_0\rangle = 1$ gives singles coefficients $c_a^r = (\mathbf U_{BA}\mathbf U_{AA}^{-1})_{ra}$ and doubles coefficients that are $2\times2$ minors, $c_{ab}^{rs} = c_a^rc_b^s - c_a^sc_b^r$. Higher coefficients are larger minors. In second quantization, a single determinant is $e^{\hat T_1}|\Psi_0\rangle$ exactly (general knowledge; Thouless's theorem).
+**Why the closure is exact.** The exact ground state is a single determinant of orbitals $\chi_i = \sum_j\chi_j^{(0)}U_{ji} + \sum_a\chi_a^{(0)}U_{ai}$. Expanding that determinant in zeroth-order determinants and normalizing so that $\langle\Psi_0|\Phi_0\rangle = 1$ gives singles coefficients $c_i^a = (\mathbf U_{BA}\mathbf U_{AA}^{-1})_{ai}$ and doubles coefficients that are $2\times2$ minors, $c_{ij}^{ab} = c_i^ac_j^b - c_i^bc_j^a$. Higher coefficients are larger minors. In second quantization, a single determinant is $e^{\hat T_1}|\Psi_0\rangle$ exactly (general knowledge; Thouless's theorem).
 
 !!! example "Two electrons, three virtuals (Szabo Eqs. 5.121-5.123)"
     Let $|\chi_1\rangle = |\chi_1^{(0)}\rangle + a_3|\chi_3^{(0)}\rangle + a_4|\chi_4^{(0)}\rangle$ and $|\chi_2\rangle = |\chi_2^{(0)}\rangle + b_3|\chi_3^{(0)}\rangle + b_4|\chi_4^{(0)}\rangle$. Expanding $|\chi_1\chi_2\rangle$ by multilinearity of the determinant gives singles coefficients $c_1^3 = a_3$, $c_1^4 = a_4$, $c_2^3 = b_3$, $c_2^4 = b_4$, and the double

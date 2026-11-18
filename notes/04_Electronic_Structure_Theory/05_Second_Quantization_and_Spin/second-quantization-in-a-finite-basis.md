@@ -8,6 +8,7 @@ level: intermediate
 tags: [second-quantization, projection, finite-basis, canonical-commutator, operator-products, basis-set-incompleteness]
 prerequisites: [second-quantized-operators, creation-and-annihilation-operators]
 related: [nonorthogonal-second-quantization, polarization-propagator-rpa, gaussian-basis-functions, hf-closed-shell-basis-set-trends]
+conventions: [chemists-integrals, physicists-integrals]
 order: 30
 date: 2026-11-04
 ---

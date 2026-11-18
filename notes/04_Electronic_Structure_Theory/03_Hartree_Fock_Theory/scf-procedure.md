@@ -10,6 +10,7 @@ prerequisites: [rhf, basis-orthogonalization]
 related: [gaussian-basis-functions, population-analysis, koopmans-theorem]
 order: 70
 date: 2026-11-03
+conventions: [ia-letters, chemists-integrals]
 ---
 
 ## Algorithm
@@ -25,7 +26,7 @@ The Roothaan equations $\mathbf F(\mathbf P)\mathbf C = \mathbf{SC}\boldsymbol\v
 7. **Transform.** $\mathbf F' = \mathbf X^\dagger\mathbf{FX}$.
 8. **Diagonalize.** Solve $\mathbf F'\mathbf C' = \mathbf C'\boldsymbol\varepsilon$.
 9. **Back-transform.** $\mathbf C = \mathbf{XC}'$.
-10. **New density.** $P_{\mu\nu} = 2\sum_a^{N/2}C_{\mu a}C_{\nu a}^*$ from the $N/2$ lowest MOs (aufbau).
+10. **New density.** $P_{\mu\nu} = 2\sum_i^{N/2}C_{\mu i}C_{\nu i}^*$ from the $N/2$ lowest MOs (aufbau).
 11. **Test convergence.** Stop if $\mathbf P$ (and $E_0$) changed by less than a threshold. Otherwise return to step 5.
 
 After convergence, $\mathbf C$, $\boldsymbol\varepsilon$ and $\mathbf P$ give properties: the energy, Koopmans IPs ([[koopmans-theorem]]), populations and dipole moments ([[population-analysis]]).

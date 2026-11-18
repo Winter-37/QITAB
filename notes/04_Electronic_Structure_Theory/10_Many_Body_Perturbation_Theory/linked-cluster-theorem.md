@@ -8,6 +8,7 @@ level: advanced
 tags: [linked-cluster-theorem, size-consistency, goldstone-diagrams, hugenholtz-diagrams, mbpt, resummation, d-mbpt, brandow-diagrams]
 prerequisites: [mp2, mp3, size-consistency]
 related: [rayleigh-schrodinger-perturbation-theory, coupled-pair-approximations, iepa, coupled-cluster-second-quantization, orbital-perturbation-theory, perturbation-theory-second-quantization, mp2, mp3]
+conventions: [ia-letters, antisymmetrized-integrals]
 order: 50
 date: 2026-11-03
 ---
@@ -51,7 +52,7 @@ $$
 - **Sum.** The $N^2$ terms cancel and $E^{(3)}$ is $N$ times the monomer third-order energy of [[mp3]].
 
 !!! example "Separated H₂ molecules, STO-3G, R = 1.4 bohr, molecules 100 bohr apart (computed for this note)"
-    Hartree; $B^{(3)}$ evaluated as $-E^{(1)}\cdot\tfrac14\sum|\langle ab||rs\rangle|^2/D^2$, $A^{(3)} = E^{(3)} - B^{(3)}$.
+    Hartree; $B^{(3)}$ evaluated as $-E^{(1)}\cdot\tfrac14\sum|\langle ij||ab\rangle|^2/D^2$, $A^{(3)} = E^{(3)} - B^{(3)}$.
 
     | $N$ | $E^{(2)}$ | $E^{(3)}$ | $B^{(3)}$ | $A^{(3)}$ |
     |---:|---:|---:|---:|---:|
@@ -72,11 +73,11 @@ $$
 
 1. Each dot gives $\langle\text{in}_1\,\text{in}_2||\text{out}_1\,\text{out}_2\rangle$ (the order within the pair is arbitrary).
 2. Each gap between adjacent dots gives $\sum\varepsilon_{\text{holes}} - \sum\varepsilon_{\text{particles}}$ over the lines crossing it.
-3. Sign $(-1)^{h+l}$: $h$ hole lines, $l$ closed loops. Here $l$ is found from the written string of integrals: follow a label from a bra position to the matching ket position ($i\to k$, $j\to l$ in $\langle ij||kl\rangle$) until it returns; $l$ is the number of such cycles needed to use up all labels.
+3. Sign $(-1)^{h+l}$: $h$ hole lines, $l$ closed loops. Here $l$ is found from the written string of integrals: follow a label from a bra position to the matching ket position ($p\to r$, $q\to s$ in $\langle pq||rs\rangle$) until it returns; $l$ is the number of such cycles needed to use up all labels.
 4. Sum over all labels.
 5. Multiply by $2^{-k}$, $k$ = number of pairs of equivalent lines (same start, same end, same direction).
 
-**Second order.** Two hole lines, two pairs of equivalent lines ($r,s$ and $a,b$), and $l=2$ for the string $\langle ab||rs\rangle\langle rs||ab\rangle$: the result is $\tfrac14\sum|\langle ab||rs\rangle|^2/(\varepsilon_a + \varepsilon_b - \varepsilon_r - \varepsilon_s)$, which is [[mp2]]. Writing the string as $\langle ab||rs\rangle\langle sr||ab\rangle$ instead gives $l = 1$ and an opposite sign that compensates $\langle sr||ab\rangle = -\langle rs||ab\rangle$.
+**Second order.** Two hole lines, two pairs of equivalent lines ($a,b$ and $i,j$), and $l=2$ for the string $\langle ij||ab\rangle\langle ab||ij\rangle$: the result is $\tfrac14\sum|\langle ij||ab\rangle|^2/(\varepsilon_i + \varepsilon_j - \varepsilon_a - \varepsilon_b)$, which is [[mp2]]. Writing the string as $\langle ij||ab\rangle\langle ba||ij\rangle$ instead gives $l = 1$ and an opposite sign that compensates $\langle ba||ij\rangle = -\langle ab||ij\rangle$.
 
 **Third order.** The three diagrams give the hole ladder ($l = 2$), particle ladder ($l = 2$) and ring ($l = 3$) terms of [[mp3]], with weights $\tfrac18$, $\tfrac18$ and 1.
 
@@ -99,10 +100,10 @@ $$
 **Epstein-Nesbet.** Start from the second-order direct and exchange diagrams and insert interactions that leave the labels on each crossed line unchanged (diagonal insertions: hole-hole, particle-particle, hole-particle). The values form a geometric series, exactly as in the two-state problem of [[rayleigh-schrodinger-perturbation-theory]]:
 
 $$
-\frac{|\langle ab||rs\rangle|^2}{\varepsilon_a + \varepsilon_b - \varepsilon_r - \varepsilon_s}\to
-\frac{|\langle ab||rs\rangle|^2}{\langle\Psi_0|H|\Psi_0\rangle - \langle\Psi_{ab}^{rs}|H|\Psi_{ab}^{rs}\rangle},
+\frac{|\langle ij||ab\rangle|^2}{\varepsilon_i + \varepsilon_j - \varepsilon_a - \varepsilon_b}\to
+\frac{|\langle ij||ab\rangle|^2}{\langle\Psi_0|H|\Psi_0\rangle - \langle\Psi_{ij}^{ab}|H|\Psi_{ij}^{ab}\rangle},
 \qquad
-E_{\text{corr}}(\text{EN}) = \sum_{a<b,\,r<s}\frac{|\langle ab||rs\rangle|^2}{E_0 - \langle\Psi_{ab}^{rs}|H|\Psi_{ab}^{rs}\rangle} .
+E_{\text{corr}}(\text{EN}) = \sum_{i<j,\,a<b}\frac{|\langle ij||ab\rangle|^2}{E_0 - \langle\Psi_{ij}^{ab}|H|\Psi_{ij}^{ab}\rangle} .
 $$
 
 This is the Epstein-Nesbet pair energy of [[iepa]]: a resummation that is equivalent to second order with a repartitioned $\mathscr H_0$.
@@ -111,7 +112,7 @@ This is the Epstein-Nesbet pair energy of [[iepa]]: a resummation that is equiva
 
 $$
 E_{\text{corr}}(\text{D-MBPT}(\infty)) = -\mathbf b^\dagger\mathbf D^{-1}\mathbf b,
-\qquad (\mathbf b)_{rs,ab} = \langle\Psi_{ab}^{rs}|H|\Psi_0\rangle,\ \ (\mathbf D)_{rsab,tucd} = \langle\Psi_{ab}^{rs}|H - E_0|\Psi_{cd}^{tu}\rangle,
+\qquad (\mathbf b)_{ab,ij} = \langle\Psi_{ij}^{ab}|H|\Psi_0\rangle,\ \ (\mathbf D)_{abij,cdkl} = \langle\Psi_{ij}^{ab}|H - E_0|\Psi_{kl}^{cd}\rangle,
 $$
 
 identical to linear CCA (L-CCD) of [[coupled-pair-approximations]]. Keeping only the diagonal of $\mathbf D$ gives EN back. Unlike EN, D-MBPT(∞) is exact through third order; at fourth order it lacks the singles, triples and quadruples contributions. CCD restores the quadruples (as products of doubles); singles and triples need $\hat T_1$ and $\hat T_3$.
@@ -144,17 +145,17 @@ Two Brandow forms of one third-order Hugenholtz diagram (J-S Fig. 3.2 A and E) d
 
 **Unlinked diagrams.** J-S Fig. 3.3A, a first-order potential diagram multiplied by a disjoint first-order interaction loop, is a product of two independent sums. For $n$ fragments each sum is proportional to $n$, so the product is not size consistent: unlinked diagrams are exactly the unlinked terms of RS theory.
 
-**Hartree-Fock potential.** With $V = V^{\mathrm{HF}}$, $\langle p|V^{\mathrm{HF}}|q\rangle = \sum_\mu\langle p\mu||q\mu\rangle$. A $-V$ vertex then cancels a $W$ vertex closed on itself with a hole loop in the same position (J-S Fig. 3.3B, C). This holds in every order beyond first, so with HF orbitals:
+**Hartree-Fock potential.** With $V = V^{\mathrm{HF}}$, $\langle p|V^{\mathrm{HF}}|q\rangle = \sum_i\langle pi||qi\rangle$. A $-V$ vertex then cancels a $W$ vertex closed on itself with a hole loop in the same position (J-S Fig. 3.3B, C). This holds in every order beyond first, so with HF orbitals:
 
-- **Energy.** Only the two first-order diagrams ($W$ loop and $-V$ loop, together $-\tfrac12\sum_{\mu\nu}\langle\mu\nu||\mu\nu\rangle$) and the single second-order diagram survive through second order. The latter gives [[mp2]].
+- **Energy.** Only the two first-order diagrams ($W$ loop and $-V$ loop, together $-\tfrac12\sum_{ij}\langle ij||ij\rangle$) and the single second-order diagram survive through second order. The latter gives [[mp2]].
 - **Wave function.** The first-order singles diagrams cancel the same way. This is Brillouin's theorem in diagram language.
 
 **Wave-function diagrams.** Same rules, except that external (open) lines do not count in $h$. Each external line carries its creation or annihilation operator. The last denominator carries the orbital energies of the open lines.
 
-**A geometric series (J-S Fig. 3.4).** Insert repeated hole-hole interactions $\langle\alpha\beta||\alpha\beta\rangle$ between the two holes of the second-order diagram. Each insertion multiplies by $\langle\alpha\beta||\alpha\beta\rangle/(\varepsilon_\alpha + \varepsilon_\beta - \varepsilon_r - \varepsilon_s)$, and the sum is a shifted denominator:
+**A geometric series (J-S Fig. 3.4).** Insert repeated hole-hole interactions $\langle ij||ij\rangle$ between the two holes of the second-order diagram. Each insertion multiplies by $\langle ij||ij\rangle/(\varepsilon_i + \varepsilon_j - \varepsilon_a - \varepsilon_b)$, and the sum is a shifted denominator:
 
 $$
-\tfrac14\sum_{\alpha\beta rs}\frac{|\langle\alpha\beta||rs\rangle|^2}{\varepsilon_\alpha + \varepsilon_\beta - \varepsilon_r - \varepsilon_s - \langle\alpha\beta||\alpha\beta\rangle} .
+\tfrac14\sum_{ijab}\frac{|\langle ij||ab\rangle|^2}{\varepsilon_i + \varepsilon_j - \varepsilon_a - \varepsilon_b - \langle ij||ij\rangle} .
 $$
 
 This is part of the Epstein-Nesbet shift above. For HeH⁺, its third-order term is the whole hole-hole ladder (0.001875, below), and the resummed value is −0.004174.

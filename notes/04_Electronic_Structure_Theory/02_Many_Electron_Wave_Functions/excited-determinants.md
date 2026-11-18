@@ -8,6 +8,7 @@ level: introductory
 tags: [ci, full-ci, excitations, determinant-space, correlation-energy]
 prerequisites: [slater-determinants, linear-variation-method]
 related: [slater-condon-rules, minimal-basis-h2-model, creation-and-annihilation-operators]
+conventions: [ia-letters]
 order: 40
 date: 2026-11-03
 ---
@@ -17,28 +18,28 @@ date: 2026-11-03
 A finite basis gives $2K$ orthonormal spin orbitals, such as those from a Hartree-Fock calculation. The reference determinant occupies $N$ of them:
 
 $$
-|\Psi_0\rangle = |\chi_1\chi_2\cdots\chi_a\chi_b\cdots\chi_N\rangle .
+|\Psi_0\rangle = |\chi_1\chi_2\cdots\chi_i\chi_j\cdots\chi_N\rangle .
 $$
 
-**Convention (Szabo).**
+**Convention** (used throughout the notebook; Szabo writes $a, b, c$ for occupied, $r, s, t$ for virtual and $i, j, k$ for any spin orbital, see [[index-and-orbital-notation]]).
 
 | Labels | Meaning |
 |---|---|
-| $a, b, c, \dots$ | spin orbitals occupied in $|\Psi_0\rangle$ |
-| $r, s, t, \dots$ | virtual (unoccupied) spin orbitals |
-| $i, j, k, \dots$ | any spin orbital |
+| $i, j, k, \dots$ | spin orbitals occupied in $|\Psi_0\rangle$ |
+| $a, b, c, \dots$ | virtual (unoccupied) spin orbitals |
+| $p, q, r, \dots$ | any spin orbital |
 
 ## Excited determinants
 
 $|\Psi_0\rangle$ is one of $\binom{2K}{N}$ determinants that can be formed. The others are classified by how many occupied spin orbitals they replace.
 
-- **Singly excited:** $\chi_a\to\chi_r$, with $\chi_r$ placed in the column where $\chi_a$ was,
+- **Singly excited:** $\chi_i\to\chi_a$, with $\chi_a$ placed in the column where $\chi_i$ was,
 $$
-|\Psi_a^r\rangle = |\chi_1\chi_2\cdots\chi_r\chi_b\cdots\chi_N\rangle .
+|\Psi_i^a\rangle = |\chi_1\chi_2\cdots\chi_a\chi_j\cdots\chi_N\rangle .
 $$
-- **Doubly excited:** $\chi_a\to\chi_r$ and $\chi_b\to\chi_s$,
+- **Doubly excited:** $\chi_i\to\chi_a$ and $\chi_j\to\chi_b$,
 $$
-|\Psi_{ab}^{rs}\rangle = |\chi_1\chi_2\cdots\chi_r\chi_s\cdots\chi_N\rangle ,
+|\Psi_{ij}^{ab}\rangle = |\chi_1\chi_2\cdots\chi_a\chi_b\cdots\chi_N\rangle ,
 $$
 and similarly for triples, quadruples, and so on up to $N$-fold.
 
@@ -71,24 +72,24 @@ $$
 
 ## Form of the exact wave function
 
-**One electron.** If $\{\chi_i(\mathbf x)\}$ is complete, any one-variable function is $\Phi(\mathbf x_1) = \sum_i a_i\chi_i(\mathbf x_1)$.
+**One electron.** If $\{\chi_p(\mathbf x)\}$ is complete, any one-variable function is $\Phi(\mathbf x_1) = \sum_p a_p\chi_p(\mathbf x_1)$.
 
 **Two electrons.** For fixed $\mathbf x_2$, expand in $\mathbf x_1$, then expand each coefficient in $\mathbf x_2$:
 
 $$
-\Phi(\mathbf x_1,\mathbf x_2) = \sum_{ij} b_{ij}\,\chi_i(\mathbf x_1)\chi_j(\mathbf x_2).
+\Phi(\mathbf x_1,\mathbf x_2) = \sum_{pq} b_{pq}\,\chi_p(\mathbf x_1)\chi_q(\mathbf x_2).
 $$
 
-Antisymmetry $\Phi(\mathbf x_1,\mathbf x_2) = -\Phi(\mathbf x_2,\mathbf x_1)$ requires $b_{ij} = -b_{ji}$, so $b_{ii} = 0$ and the pairs combine into determinants:
+Antisymmetry $\Phi(\mathbf x_1,\mathbf x_2) = -\Phi(\mathbf x_2,\mathbf x_1)$ requires $b_{pq} = -b_{qp}$, so $b_{pp} = 0$ and the pairs combine into determinants:
 
 $$
-\Phi(\mathbf x_1,\mathbf x_2) = \sum_{j>i} b_{ij}\big[\chi_i(\mathbf x_1)\chi_j(\mathbf x_2) - \chi_j(\mathbf x_1)\chi_i(\mathbf x_2)\big] = \sum_{j>i}2^{1/2}b_{ij}\,|\chi_i\chi_j\rangle .
+\Phi(\mathbf x_1,\mathbf x_2) = \sum_{q>p} b_{pq}\big[\chi_p(\mathbf x_1)\chi_q(\mathbf x_2) - \chi_q(\mathbf x_1)\chi_p(\mathbf x_2)\big] = \sum_{q>p}2^{1/2}b_{pq}\,|\chi_p\chi_q\rangle .
 $$
 
 **N electrons.** By the same argument any antisymmetric function is a linear combination of all $N$-electron determinants built from the complete set. Writing it relative to $|\Psi_0\rangle$,
 
 $$
-|\Phi\rangle = c_0|\Psi_0\rangle + \sum_{ar}c_a^r|\Psi_a^r\rangle + \sum_{a<b,\ r<s}c_{ab}^{rs}|\Psi_{ab}^{rs}\rangle + \sum_{a<b<c,\ r<s<t}c_{abc}^{rst}|\Psi_{abc}^{rst}\rangle + \cdots
+|\Phi\rangle = c_0|\Psi_0\rangle + \sum_{ia}c_i^a|\Psi_i^a\rangle + \sum_{i<j,\ a<b}c_{ij}^{ab}|\Psi_{ij}^{ab}\rangle + \sum_{i<j<k,\ a<b<c}c_{ijk}^{abc}|\Psi_{ijk}^{abc}\rangle + \cdots
 $$
 
 The restricted sums count each determinant once.

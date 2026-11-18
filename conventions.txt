@@ -1,0 +1,54 @@
+# Conventions vocabulary for the `conventions:` field of a note.
+#
+# Each block is one axis:  'axis-id: what it is about (see note-id)'
+# followed by indented value lines:  'value-id = short label shown on the note'.
+# Values on one axis are alternatives. A note lists the values it uses, for example
+#     conventions: [szabo-letters, spin-orbitals, physicists-integrals]
+# A note that converts between two values of one axis lists both (it is the bridge).
+#
+# build.py warns when a note and one of its direct prerequisites use different values on an
+# axis and neither of them lists both. Add an axis or a value here before using it in a note;
+# an unknown value gives a warning. The "(see ...)" note is what a convention badge links to.
+# An axis marked "(not checked)" is shown on notes but never compared: integral notation, because
+# chemists' and physicists' integrals are both defined and both needed.
+
+index-letters: Letters for occupied and virtual orbitals (see index-and-orbital-notation)
+  szabo-letters = a,b occupied · r,s virtual
+  ia-letters = i,j occupied · a,b virtual
+
+orbitals: Spin orbitals or spatial (spin-summed) orbitals (see index-and-orbital-notation)
+  spin-orbitals = spin orbitals
+  spatial-orbitals = spatial orbitals
+
+integrals: Two-electron integral notation (see integral-notation) (not checked)
+  chemists-integrals = chemists' (pq|rs)
+  physicists-integrals = physicists' ⟨pq|rs⟩
+  antisymmetrized-integrals = antisymmetrized ⟨pq||rs⟩
+
+rdm1-index-order: Which index of the 1-RDM is the created orbital (see density-matrix-conventions)
+  rdm1-annihilated-first = γ_pq = ⟨a†_q a_p⟩ (Szabo, SB, PySCF)
+  rdm1-created-first = D_pq = ⟨a†_p a_q⟩ (HJO)
+
+rdm2-normalization: Trace of the 2-RDM (see density-matrix-conventions)
+  rdm2-trace-ordered = Tr Γ = N(N−1)
+  rdm2-trace-pairs = Tr Γ = N(N−1)/2
+
+ao-density: Closed-shell AO density matrix (see index-and-orbital-notation)
+  ao-density-p = P = 2ΣCC†, tr PS = N
+  ao-density-half = D = P/2 (YOGS)
+
+cluster-amplitudes: Normalization of the cluster operators (see excitation-operator-conventions)
+  spin-orbital-amplitudes = T₂ = ¼Σ t a†a†aa
+  closed-shell-amplitudes = T₂ = ½Σ t EE
+
+units: Unit system of the formulas (see atomic-units)
+  atomic-units = atomic units
+  si-units = SI units
+
+qubit-order: Which qubit is the leftmost tensor factor (see qubit-ordering-conventions)
+  big-endian = qubit 1 leftmost (Nielsen–Chuang)
+  little-endian = qubit 0 rightmost (Qiskit)
+
+harmonics-phase: Phase of spherical harmonics (see angular-momentum-phase-conventions)
+  condon-shortley = complex Yℓm, Condon–Shortley phase
+  real-harmonics = real solid harmonics

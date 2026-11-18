@@ -5,7 +5,7 @@ The mean-field approximation, derived and solved.
 The electronic Schrödinger equation of Chapter 1 cannot be solved exactly beyond a few electrons, because the repulsion $1/r_{ij}$ couples every electron to every other one. Hartree–Fock theory gives up on the exact wave function and asks a smaller question: *which single Slater determinant has the lowest energy?* The answer is a set of orbitals in which each electron moves in the averaged electrostatic field of all the others, plus a nonlocal exchange term that comes from antisymmetry alone. The orbitals obey an effective one-electron eigenvalue equation,
 
 $$
-\hat f\,\chi_a = \varepsilon_a\,\chi_a ,
+\hat f\,\chi_i = \varepsilon_i\,\chi_i ,
 $$
 
 but the Fock operator $\hat f$ is built from the occupied orbitals themselves. The equation is therefore nonlinear and is solved by iteration until the orbitals reproduce the field that produced them. This is the self-consistent field (SCF).
@@ -28,8 +28,8 @@ but the Fock operator $\hat f$ is built from the occupied orbitals themselves. T
 ## The main ideas, in order
 
 1. **Variational principle in a restricted space.** Minimize $\langle\Phi|\hat H|\Phi\rangle$ over the spin orbitals of one determinant, keeping them orthonormal. The stationarity condition is the Hartree–Fock equation. A unitary rotation among the occupied orbitals leaves the determinant unchanged, so the matrix of Lagrange multipliers can be diagonalized; this gives the canonical orbitals.
-2. **Coulomb and exchange.** The Coulomb operator $\hat J_b$ is local and acts like a classical charge cloud. The exchange operator $\hat K_b$ is nonlocal and acts only between electrons of parallel spin. For $b=a$, the two cancel exactly, so there is no self-interaction.
-3. **Why it serves as a reference.** By Brillouin's theorem, singly excited determinants do not couple directly to the Hartree–Fock state. Koopmans' theorem makes $-\varepsilon_a$ a frozen-orbital ionization energy.
+2. **Coulomb and exchange.** The Coulomb operator $\hat J_j$ is local and acts like a classical charge cloud. The exchange operator $\hat K_j$ is nonlocal and acts only between electrons of parallel spin. For $j=i$, the two cancel exactly, so there is no self-interaction.
+3. **Why it serves as a reference.** By Brillouin's theorem, singly excited determinants do not couple directly to the Hartree–Fock state. Koopmans' theorem makes $-\varepsilon_i$ a frozen-orbital ionization energy.
 4. **From functions to matrices.** Expanding the orbitals in $K$ basis functions turns the integro-differential equations into $\mathbf{FC}=\mathbf{SC}\boldsymbol\varepsilon$ (Roothaan–Hall). Orthogonalizing the basis makes this an ordinary eigenvalue problem, and iteration converges it.
 5. **Constraints define the variants.** RHF uses the same spatial orbitals for both spins. UHF uses separate ones, and GHF uses two-component spinors. Each larger space contains the smaller one, so its global minimum is lower or equal. The price is the loss of symmetries the exact state has.
 

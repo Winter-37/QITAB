@@ -8,6 +8,7 @@ level: advanced
 tags: [analytic-gradients, selected-CI, configuration-interaction, orbital-response, canonical-orbitals, z-vector, cphf, symmetry]
 prerequisites: [ci-analytic-gradient, z-vector-method, cphf-closed-shell, derivative-integrals-and-u-matrices]
 related: [coe-2023-sci-gradient, sample-based-quantum-diagonalization, generalized-fock-matrix-and-orbital-hessian, cpci-and-ci-hessian]
+conventions: [chemists-integrals]
 order: 85
 date: 2026-11-09
 ---

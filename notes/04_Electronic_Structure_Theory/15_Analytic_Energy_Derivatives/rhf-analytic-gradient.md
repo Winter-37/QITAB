@@ -8,6 +8,7 @@ level: advanced
 tags: [analytic-gradients, rhf, energy-weighted-density, pulay-forces, skeleton-integrals, nuclear-gradient]
 prerequisites: [derivative-integrals-and-u-matrices, rhf, brillouin-theorem]
 related: [analytic-gradients-and-force-constants, cphf-closed-shell, rhf-analytic-hessian, ci-analytic-gradient, geometry-optimization, hellmann-feynman-and-virial-theorems]
+conventions: [ia-letters, chemists-integrals]
 order: 40
 date: 2026-11-07
 ---

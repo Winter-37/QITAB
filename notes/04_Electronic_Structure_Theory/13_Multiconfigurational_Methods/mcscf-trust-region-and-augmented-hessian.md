@@ -8,6 +8,7 @@ level: advanced
 tags: [mcscf, casscf, trust-region, level-shift, levenberg-marquardt, augmented-hessian, norm-extended-optimization, newton-method, step-control, excited-states]
 prerequisites: [mcscf-parametrization-gradient-and-hessian, ci-optimization-newton-and-davidson]
 related: [mcscf-second-order-optimization, scf-convergence-diis-and-newton, state-averaged-mcscf-and-configuration-rotations, upper-bounds-and-interlacing]
+conventions: [ia-letters]
 order: 40
 date: 2026-11-04
 ---

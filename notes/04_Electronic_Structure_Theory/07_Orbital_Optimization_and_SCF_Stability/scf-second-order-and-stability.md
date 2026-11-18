@@ -8,6 +8,7 @@ level: intermediate
 tags: [hartree-fock, second-order-scf, newton-raphson, stability-analysis, brillouin, fock-potential, orbital-hessian, roothaan]
 prerequisites: [orbital-rotations, scf-procedure, brillouin-theorem]
 related: [mcscf-second-order-optimization, h2-dissociation-rhf-uhf, koopmans-theorem, uhf, spin-tensor-operators, heh-plus-minimal-basis-model, baker-campbell-hausdorff, polarization-propagator-rpa, molecular-properties-and-response]
+conventions: [physicists-integrals, antisymmetrized-integrals]
 order: 40
 date: 2026-11-03
 ---
@@ -37,10 +38,10 @@ $$
 **What the Brillouin condition determines.** Inserting this into the commutator, with a diagonal one-particle density matrix $\langle0|a_r^\dagger a_s|0\rangle = \delta_{rs}\nu_r$ (occupation numbers $\nu_r$, not necessarily 0 or 1 for a multi-determinant single configuration), gives
 
 $$
-V_{rs}(\nu_r - \nu_s) = \frac12\sum_{jkl}\Big(\langle sk||jl\rangle\langle0|a_r^\dagger a_k^\dagger a_l a_j|0\rangle + \langle lk||jr\rangle\langle0|a_l^\dagger a_k^\dagger a_j a_s|0\rangle\Big)
+V_{rs}(\nu_r - \nu_s) = \frac12\sum_{pqt}\Big(\langle sq||pt\rangle\langle0|a_r^\dagger a_q^\dagger a_t a_p|0\rangle + \langle tq||pr\rangle\langle0|a_t^\dagger a_q^\dagger a_p a_s|0\rangle\Big)
 $$
 
-(J-S Eq. 2.89 with the factor ½ restored; $\langle ij||kl\rangle = \langle ij|kl\rangle - \langle ij|lk\rangle$ as in their Eq. 2.87). The potential is **determined only where $\nu_r\ne\nu_s$**: between orbitals of different occupation.
+(J-S Eq. 2.89 with the factor ½ restored; $\langle pq||rs\rangle = \langle pq|rs\rangle - \langle pq|sr\rangle$ as in their Eq. 2.87). The potential is **determined only where $\nu_r\ne\nu_s$**: between orbitals of different occupation.
 
 !!! example "Correction to J-S Eq. (2.89): a missing factor ½ (checked for this note)"
     **Derivation.** With J-S's own two-electron operator $\hat W = \tfrac12\sum\langle rs|tu\rangle a_r^\dagger a_s^\dagger a_ua_t$ (their Eq. 1.16), expanding $\langle0|[a_r^\dagger a_s, \hat W]|0\rangle$ gives two pairs of equal terms. The result is $\tfrac12$ times the bracket printed in J-S Eqs. (2.86) and (2.89), where the factor is missing. The one-body terms of Eq. (2.86) give $V_{rs}(\nu_r - \nu_s)$ as stated, so the printed (2.89) is too large by a factor 2.
@@ -49,13 +50,13 @@ $$
 
     - **A closed-shell determinant in randomly rotated orbitals:** $\max|T - 2C| = 4\times10^{-16}$, while $T - C$ and $T + C$ are of order 0.15-0.45.
     - **An open-shell singlet CSF** with occupations ½: $\max|T - 2C| = 1\times10^{-15}$.
-    - **Consistency with J-S Eq. (2.90).** For a determinant, $C_{rs} = (\nu_r - \nu_s)\sum_\gamma\langle r\gamma||s\gamma\rangle$ to $5\times10^{-16}$. J-S's own Eq. (2.90) therefore requires the factor ½ in (2.89).
+    - **Consistency with J-S Eq. (2.90).** For a determinant, $C_{rs} = (\nu_r - \nu_s)\sum_i\langle ri||si\rangle$ to $5\times10^{-16}$. J-S's own Eq. (2.90) therefore requires the factor ½ in (2.89).
 
-**Closed-shell determinant.** For occupied $\gamma$ and unoccupied $m$, the condition fixes $V_{m\alpha} = \sum_\gamma\langle m\gamma||\alpha\gamma\rangle$, the usual Hartree-Fock potential in the occupied-virtual block. The occupied-occupied and virtual-virtual blocks are free.
+**Closed-shell determinant.** For occupied $i, j$ and unoccupied $a$, the condition fixes $V_{ai} = \sum_j\langle aj||ij\rangle$, the usual Hartree-Fock potential in the occupied-virtual block. The occupied-occupied and virtual-virtual blocks are free.
 
 **The free blocks are a choice.** Any choice of the undetermined blocks leads, at convergence, to the same stationary determinant: the free blocks only mix occupied orbitals among themselves and virtual orbitals among themselves, which leaves the determinant unchanged. They do change the orbitals and orbital energies.
 
-- **Canonical choice.** Using the same formula in every block, $V_{rs} = \sum_\gamma\langle r\gamma||s\gamma\rangle$, gives canonical Hartree-Fock orbitals whose energies are Koopmans ionization energies and electron affinities ([[koopmans-theorem]]).
+- **Canonical choice.** Using the same formula in every block, $V_{rs} = \sum_i\langle ri||si\rangle$, gives canonical Hartree-Fock orbitals whose energies are Koopmans ionization energies and electron affinities ([[koopmans-theorem]]).
 - **Other choices.** For example Kelly's $V^{N-1}$ potential for the virtual block, which makes virtual orbitals better suited to excitation energies. For open shells with doubly, singly and unoccupied orbitals there are three free diagonal blocks and many conventions (ROHF variants).
 
 **Iteration.** Build $\mathbf F = \mathbf h + \mathbf V$ from the current orbitals, diagonalize, repeat: this is the Roothaan procedure ([[scf-procedure]]). It is first order (linearly convergent), but needs only a two-index transformation of the integrals.

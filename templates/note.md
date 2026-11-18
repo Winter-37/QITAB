@@ -21,6 +21,11 @@ tags: []
 prerequisites: []
 # Connected topics that are not prerequisites.
 related: []
+# Conventions used (values listed in conventions.txt), e.g. [ia-letters, spatial-orbitals, chemists-integrals].
+# A note that converts between two conventions lists both.
+conventions: []
+# Optional: label of the equation to show when someone hovers a link to this note.
+# key: roothaan
 # Position inside the chapter (sections are numbered in this order). Use steps of 10 so you can insert later.
 order: 999
 date: {{date}}
@@ -48,6 +53,8 @@ $$
 State the assumptions first. Then give each step with the reason for it.
 Inline math uses single dollar signs, like $\gamma_{pq}=\langle\Psi|a_p^\dagger a_q|\Psi\rangle$.
 Display equations go on their own lines between double dollar signs.
+Number an equation by putting \label{name} inside it, and link to it with [[note-id#name]]
+(or [[#name]] in the same note).
 
 ## Physical interpretation
 
@@ -90,8 +97,10 @@ Where does it fail? Which approximations limit accuracy? What does it cost?
 
 Things to check, unresolved points, possible research directions.
 
-## References
+## Source
 
-1. Book, chapter or section.
-2. Paper (authors, journal, year, DOI).
-3. Documentation.
+Authors, *Book Title* (edition, publisher, year), Sec. 3.4, pp. 10-12, Eqs. (3.1)-(3.9).
+
+- Authors, "Paper title", *Journal* **vol**, page (year), doi:10.xxxx/xxxx.
+
+(Written in this form, citations appear on the Sources page.)

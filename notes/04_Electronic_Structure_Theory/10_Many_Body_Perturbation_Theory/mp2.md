@@ -8,6 +8,7 @@ level: intermediate
 tags: [mp2, moller-plesset, mbpt, perturbation-theory, correlation-energy, dissociation, finite-field]
 prerequisites: [rayleigh-schrodinger-perturbation-theory, brillouin-theorem, integral-notation]
 related: [standard-models-h2-and-water, perturbation-theory-second-quantization, mp3, iepa, linked-cluster-theorem, h2-dissociation-rhf-uhf, minimal-basis-h2-model, spin-orbital-to-spatial-orbital, ionization-potentials-second-order-self-energy]
+conventions: [ia-letters, physicists-integrals, antisymmetrized-integrals]
 order: 10
 date: 2026-11-03
 ---
@@ -24,14 +25,14 @@ $$
 
 $\mathscr V$ is the **fluctuation potential**: the true electron repulsion minus its Hartree-Fock average. RS perturbation theory ([[rayleigh-schrodinger-perturbation-theory]]) with this partition is Møller-Plesset perturbation theory (MPPT), also called many-body perturbation theory (MBPT).
 
-**Notation.** Physicists' integrals $\langle ij|kl\rangle = \int\chi_i^*(1)\chi_j^*(2)r_{12}^{-1}\chi_k(1)\chi_l(2)$ and $\langle ij||kl\rangle = \langle ij|kl\rangle - \langle ij|lk\rangle$ ([[integral-notation]]). In this notation $v^{\text{HF}}_{ij} = \sum_b\langle ib||jb\rangle$.
+**Notation.** Physicists' integrals $\langle pq|rs\rangle = \int\chi_p^*(1)\chi_q^*(2)r_{12}^{-1}\chi_r(1)\chi_s(2)$ and $\langle pq||rs\rangle = \langle pq|rs\rangle - \langle pq|sr\rangle$ ([[integral-notation]]). In this notation $v^{\text{HF}}_{pq} = \sum_j\langle pj||qj\rangle$.
 
 **Zeroth and first order.** Every determinant built from Hartree-Fock spin orbitals is an eigenfunction of $\mathscr H_0$ with eigenvalue equal to the sum of its occupied orbital energies. Hence
 
 $$
-E_0^{(0)} = \sum_a\varepsilon_a,
+E_0^{(0)} = \sum_i\varepsilon_i,
 \qquad
-E_0^{(1)} = \langle\Psi_0|\mathscr V|\Psi_0\rangle = \tfrac12\sum_{ab}\langle ab||ab\rangle - \sum_{ab}\langle ab||ab\rangle = -\tfrac12\sum_{ab}\langle ab||ab\rangle,
+E_0^{(1)} = \langle\Psi_0|\mathscr V|\Psi_0\rangle = \tfrac12\sum_{ij}\langle ij||ij\rangle - \sum_{ij}\langle ij||ij\rangle = -\tfrac12\sum_{ij}\langle ij||ij\rangle,
 $$
 
 so $E_0^{(0)} + E_0^{(1)} = E_{\text{HF}}$. The first correction to Hartree-Fock is second order.
@@ -40,31 +41,31 @@ so $E_0^{(0)} + E_0^{(1)} = E_{\text{HF}}$. The first correction to Hartree-Fock
 
 **Which states contribute.** In $E_0^{(2)} = \sum_n{}'|\langle\Psi_0|\mathscr V|n\rangle|^2/(E_0^{(0)} - E_n^{(0)})$:
 
-- **Singles** give $\langle\Psi_a^r|\mathscr V|\Psi_0\rangle = \langle\Psi_a^r|\mathscr H|\Psi_0\rangle - \langle\Psi_a^r|\mathscr H_0|\Psi_0\rangle = f_{ra} - 0 = 0$, by Brillouin's theorem and because $\Psi_0$ is an eigenfunction of $\mathscr H_0$.
+- **Singles** give $\langle\Psi_i^a|\mathscr V|\Psi_0\rangle = \langle\Psi_i^a|\mathscr H|\Psi_0\rangle - \langle\Psi_i^a|\mathscr H_0|\Psi_0\rangle = f_{ai} - 0 = 0$, by Brillouin's theorem and because $\Psi_0$ is an eigenfunction of $\mathscr H_0$.
 - **Triples and higher** do not couple through a two-body operator.
-- **Doubles** give $\langle\Psi_{ab}^{rs}|\mathscr V|\Psi_0\rangle = \langle rs||ab\rangle$ and $E_0^{(0)} - E^{(0)}_{ab,rs} = \varepsilon_a + \varepsilon_b - \varepsilon_r - \varepsilon_s$.
+- **Doubles** give $\langle\Psi_{ij}^{ab}|\mathscr V|\Psi_0\rangle = \langle ab||ij\rangle$ and $E_0^{(0)} - E^{(0)}_{ij,ab} = \varepsilon_i + \varepsilon_j - \varepsilon_a - \varepsilon_b$.
 
 **Spin-orbital forms.**
 
 $$
-E_0^{(2)} = \sum_{a<b}\sum_{r<s}\frac{|\langle ab||rs\rangle|^2}{\varepsilon_a + \varepsilon_b - \varepsilon_r - \varepsilon_s}
-= \frac14\sum_{abrs}\frac{|\langle ab||rs\rangle|^2}{\varepsilon_a + \varepsilon_b - \varepsilon_r - \varepsilon_s}
-= \frac12\sum_{abrs}\frac{\langle ab|rs\rangle\langle rs|ab\rangle}{\varepsilon_a + \varepsilon_b - \varepsilon_r - \varepsilon_s} - \frac12\sum_{abrs}\frac{\langle ab|rs\rangle\langle rs|ba\rangle}{\varepsilon_a + \varepsilon_b - \varepsilon_r - \varepsilon_s}.
+E_0^{(2)} = \sum_{i<j}\sum_{a<b}\frac{|\langle ij||ab\rangle|^2}{\varepsilon_i + \varepsilon_j - \varepsilon_a - \varepsilon_b}
+= \frac14\sum_{ijab}\frac{|\langle ij||ab\rangle|^2}{\varepsilon_i + \varepsilon_j - \varepsilon_a - \varepsilon_b}
+= \frac12\sum_{ijab}\frac{\langle ij|ab\rangle\langle ab|ij\rangle}{\varepsilon_i + \varepsilon_j - \varepsilon_a - \varepsilon_b} - \frac12\sum_{ijab}\frac{\langle ij|ab\rangle\langle ab|ji\rangle}{\varepsilon_i + \varepsilon_j - \varepsilon_a - \varepsilon_b}.
 $$
 
-The second form uses the antisymmetry of $\langle ab||rs\rangle$ in $ab$ and in $rs$, and the fact that terms with $a=b$ or $r=s$ vanish.
+The second form uses the antisymmetry of $\langle ij||ab\rangle$ in $ij$ and in $ab$, and the fact that terms with $i=j$ or $a=b$ vanish.
 
-**Closed shell.** Summing over spin ([[spin-orbital-to-spatial-orbital]]), with $a,b$ now doubly occupied spatial orbitals and $r,s$ virtual spatial orbitals:
+**Closed shell.** Summing over spin ([[spin-orbital-to-spatial-orbital]]), with $i,j$ now doubly occupied spatial orbitals and $a,b$ virtual spatial orbitals:
 
 $$
-E_0^{(2)} = 2\sum_{abrs}^{N/2}\frac{\langle ab|rs\rangle\langle rs|ab\rangle}{\varepsilon_a + \varepsilon_b - \varepsilon_r - \varepsilon_s} - \sum_{abrs}^{N/2}\frac{\langle ab|rs\rangle\langle rs|ba\rangle}{\varepsilon_a + \varepsilon_b - \varepsilon_r - \varepsilon_s}.
+E_0^{(2)} = 2\sum_{ijab}^{N/2}\frac{\langle ij|ab\rangle\langle ab|ij\rangle}{\varepsilon_i + \varepsilon_j - \varepsilon_a - \varepsilon_b} - \sum_{ijab}^{N/2}\frac{\langle ij|ab\rangle\langle ab|ji\rangle}{\varepsilon_i + \varepsilon_j - \varepsilon_a - \varepsilon_b}.
 $$
 
 The first term is the opposite-spin plus same-spin "direct" part, the second the same-spin exchange part.
 
-**Pair form.** $E_0^{(2)} = \sum_{a<b}e_{ab}^{(1)}$, where $e_{ab}^{(1)}$ are the first-order pair energies of [[iepa]]. MP2 is the simplest pair theory.
+**Pair form.** $E_0^{(2)} = \sum_{i<j}e_{ij}^{(1)}$, where $e_{ij}^{(1)}$ are the first-order pair energies of [[iepa]]. MP2 is the simplest pair theory.
 
-**Wave function.** The first-order wave function is $|\Psi_0^{(1)}\rangle = \sum_{a<b,r<s}t_{ab}^{rs}|\Psi_{ab}^{rs}\rangle$ with $t_{ab}^{rs} = \langle rs||ab\rangle/(\varepsilon_a + \varepsilon_b - \varepsilon_r - \varepsilon_s)$. These are exactly the first-iteration coupled-cluster amplitudes ([[coupled-cluster-second-quantization]]).
+**Wave function.** The first-order wave function is $|\Psi_0^{(1)}\rangle = \sum_{i<j,a<b}t_{ij}^{ab}|\Psi_{ij}^{ab}\rangle$ with $t_{ij}^{ab} = \langle ab||ij\rangle/(\varepsilon_i + \varepsilon_j - \varepsilon_a - \varepsilon_b)$. These are exactly the first-iteration coupled-cluster amplitudes ([[coupled-cluster-second-quantization]]).
 
 ```python
 # closed-shell MP2 from MO-basis chemists' integrals g[p,q,r,s] = (pq|rs) = <pr|qs>
@@ -78,7 +79,7 @@ e2 = np.sum(ovov * (2 * ovov - ovov.transpose(0, 3, 2, 1)) / D)
 
 **Exact correlation energy** ([[full-ci]]): $E_{\text{corr}} = \Delta - (\Delta^2 + K_{12}^2)^{1/2}$ with $2\Delta = 2(\varepsilon_2 - \varepsilon_1) + J_{11} + J_{22} - 4J_{12} + 2K_{12}$.
 
-**Perturbation theory.** With $a = b = 1$, $r = s = 2$ and $\langle11|22\rangle = K_{12}$, the closed-shell formula gives
+**Perturbation theory.** With $i = j = 1$, $a = b = 2$ and $\langle11|22\rangle = K_{12}$, the closed-shell formula gives
 
 $$
 E_0^{(2)} = \frac{2K_{12}^2 - K_{12}^2}{2(\varepsilon_1 - \varepsilon_2)} = \frac{K_{12}^2}{2(\varepsilon_1 - \varepsilon_2)} .

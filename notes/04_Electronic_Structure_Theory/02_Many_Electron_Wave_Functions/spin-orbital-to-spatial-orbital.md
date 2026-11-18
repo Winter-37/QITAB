@@ -1,13 +1,14 @@
 ---
 id: spin-orbital-to-spatial-orbital
 title: From spin orbitals to spatial orbitals (integrating out spin)
-summary: How spin-orbital integrals reduce to spatial integrals for restricted orbitals, the closed-shell energy E0 = 2Σh_aa + ΣΣ(2J_ab − K_ab), exchange lowering of parallel-spin pairs, the pseudo-classical bookkeeping of determinant energies, and the closed-shell MP2 formula as a worked conversion.
+summary: How spin-orbital integrals reduce to spatial integrals for restricted orbitals, the closed-shell energy E0 = 2Σh_ii + ΣΣ(2J_ij − K_ij), exchange lowering of parallel-spin pairs, the pseudo-classical bookkeeping of determinant energies, and the closed-shell MP2 formula as a worked conversion.
 status: in-progress
 kind: derivation
 level: intermediate
 tags: [spin-integration, closed-shell, rhf-energy, coulomb, exchange, mp2]
 prerequisites: [slater-condon-rules, integral-notation]
 related: [minimal-basis-h2-model, spin-adapted-configurations]
+conventions: [ia-letters, chemists-integrals, physicists-integrals, antisymmetrized-integrals]
 order: 60
 date: 2026-11-03
 ---
@@ -17,9 +18,9 @@ date: 2026-11-03
 Restricted spin orbitals share one spatial function for both spins:
 
 $$
-\chi_i(\mathbf x) = \psi_j(\mathbf r)\alpha(\omega)\equiv\psi_j,
+\chi_p(\mathbf x) = \psi_q(\mathbf r)\alpha(\omega)\equiv\psi_q,
 \qquad
-\chi_i(\mathbf x) = \psi_j(\mathbf r)\beta(\omega)\equiv\bar\psi_j .
+\chi_p(\mathbf x) = \psi_q(\mathbf r)\beta(\omega)\equiv\bar\psi_q .
 $$
 
 A bar marks $\beta$. Integrating over $\omega$ uses only $\langle\alpha|\alpha\rangle = \langle\beta|\beta\rangle = 1$ and $\langle\alpha|\beta\rangle = 0$.
@@ -27,54 +28,54 @@ A bar marks $\beta$. Integrating over $\omega$ uses only $\langle\alpha|\alpha\r
 **One-electron integrals.** $h$ is spin-free:
 
 $$
-[\psi_i|h|\psi_j] = [\bar\psi_i|h|\bar\psi_j] = (\psi_i|h|\psi_j) = h_{ij},
+[\psi_p|h|\psi_q] = [\bar\psi_p|h|\bar\psi_q] = (\psi_p|h|\psi_q) = h_{pq},
 \qquad
-[\psi_i|h|\bar\psi_j] = 0 .
+[\psi_p|h|\bar\psi_q] = 0 .
 $$
 
 **Two-electron integrals (chemists').** Each charge distribution $\chi^*\chi$ must have matching spins, or the integral vanishes:
 
 $$
-[ij|kl] \text{ (spin orbitals)} = (ij|kl) \text{ (spatial)}\times\delta_{\sigma_i\sigma_j}\,\delta_{\sigma_k\sigma_l}.
+[pq|rs] \text{ (spin orbitals)} = (pq|rs) \text{ (spatial)}\times\delta_{\sigma_i\sigma_j}\,\delta_{\sigma_k\sigma_l}.
 $$
 
-So $[\psi_i\psi_j|\bar\psi_k\bar\psi_l] = (ij|kl)$, but $[\psi_i\bar\psi_j|\psi_k\bar\psi_l] = 0$. In physicists' notation, spins must match between positions 1 and 3 and between 2 and 4.
+So $[\psi_p\psi_q|\bar\psi_r\bar\psi_s] = (pq|rs)$, but $[\psi_p\bar\psi_q|\psi_r\bar\psi_s] = 0$. In physicists' notation, spins must match between positions 1 and 3 and between 2 and 4.
 
 ## Closed-shell determinant energy
 
 A closed shell has $N/2$ spatial orbitals each doubly occupied:
 
 $$
-|\Psi_0\rangle = |\psi_1\bar\psi_1\cdots\psi_a\bar\psi_a\cdots\psi_{N/2}\bar\psi_{N/2}\rangle .
+|\Psi_0\rangle = |\psi_1\bar\psi_1\cdots\psi_i\bar\psi_i\cdots\psi_{N/2}\bar\psi_{N/2}\rangle .
 $$
 
 Split the spin-orbital sums of [[slater-condon-rules]] into $\alpha$ and $\beta$ parts:
 
 $$
-\sum_a^N\chi_a = \sum_a^{N/2}\psi_a + \sum_a^{N/2}\bar\psi_a .
+\sum_i^N\chi_i = \sum_i^{N/2}\psi_i + \sum_i^{N/2}\bar\psi_i .
 $$
 
-- **One-electron part.** $\sum_a^N\langle a|h|a\rangle = 2\sum_a^{N/2}h_{aa}$.
-- **Two-electron part.** In $\tfrac12\sum_{a,b}^N\big([aa|bb] - [ab|ba]\big)$ the Coulomb term survives for all four spin pairs, giving $4\cdot\tfrac12(aa|bb)$. The exchange term survives only for same-spin pairs, giving $2\cdot\tfrac12(ab|ba)$.
+- **One-electron part.** $\sum_i^N\langle i|h|i\rangle = 2\sum_i^{N/2}h_{ii}$.
+- **Two-electron part.** In $\tfrac12\sum_{i,j}^N\big([ii|jj] - [ij|ji]\big)$ the Coulomb term survives for all four spin pairs, giving $4\cdot\tfrac12(ii|jj)$. The exchange term survives only for same-spin pairs, giving $2\cdot\tfrac12(ij|ji)$.
 
 Hence
 
 $$
-E_0 = 2\sum_a^{N/2}h_{aa} + \sum_a^{N/2}\sum_b^{N/2}\big[2(aa|bb) - (ab|ba)\big]
-= 2\sum_a^{N/2}h_{aa} + \sum_a^{N/2}\sum_b^{N/2}\big(2J_{ab} - K_{ab}\big),
+E_0 = 2\sum_i^{N/2}h_{ii} + \sum_i^{N/2}\sum_j^{N/2}\big[2(ii|jj) - (ij|ji)\big]
+= 2\sum_i^{N/2}h_{ii} + \sum_i^{N/2}\sum_j^{N/2}\big(2J_{ij} - K_{ij}\big),
 $$
 
-or in physicists' notation, $E_0 = 2\sum_a\langle a|h|a\rangle + \sum_{ab}\big(2\langle ab|ab\rangle - \langle ab|ba\rangle\big)$.
+or in physicists' notation, $E_0 = 2\sum_i\langle i|h|i\rangle + \sum_{ij}\big(2\langle ij|ij\rangle - \langle ij|ji\rangle\big)$.
 
-**Physical reading.** $h_{aa}$ is the mean kinetic plus nuclear-attraction energy of an electron in $\psi_a$. $J_{ab}$ is the Coulomb repulsion of charge clouds, and $K_{ab}$ is the exchange correction for same-spin pairs. Terms with $a=b$ give $2J_{aa} - K_{aa} = J_{aa}$, the repulsion of the two electrons sharing $\psi_a$. For minimal-basis H$_2$, $E_0 = 2h_{11} + J_{11}$ ([[minimal-basis-h2-model]]).
+**Physical reading.** $h_{ii}$ is the mean kinetic plus nuclear-attraction energy of an electron in $\psi_i$. $J_{ij}$ is the Coulomb repulsion of charge clouds, and $K_{ij}$ is the exchange correction for same-spin pairs. Terms with $i=j$ give $2J_{ii} - K_{ii} = J_{ii}$, the repulsion of the two electrons sharing $\psi_i$. For minimal-basis H$_2$, $E_0 = 2h_{11} + J_{11}$ ([[minimal-basis-h2-model]]).
 
 ## Rules for any determinant (pseudo-classical bookkeeping)
 
 The energy of any single determinant of restricted orbitals is:
 
-1. $h_{ii}$ for each electron in $\psi_i$, whatever its spin.
-2. $J_{ij}$ for **every** pair of electrons, one in $\psi_i$ and one in $\psi_j$ (including two electrons in the same $\psi_i$, which gives $J_{ii}$).
-3. $-K_{ij}$ for every pair of electrons with **parallel** spins in different spatial orbitals.
+1. $h_{pp}$ for each electron in $\psi_p$, whatever its spin.
+2. $J_{pq}$ for **every** pair of electrons, one in $\psi_p$ and one in $\psi_q$ (including two electrons in the same $\psi_p$, which gives $J_{pp}$).
+3. $-K_{pq}$ for every pair of electrons with **parallel** spins in different spatial orbitals.
 
 !!! example "Parallel versus antiparallel spins (Szabo Eqs. 2.186-2.187, Ex. 2.22)"
     Two electrons in $\psi_1$ and $\psi_2$:
@@ -103,27 +104,27 @@ The off-diagonal element is $\langle1\bar1||2\bar2\rangle = \langle1\bar1|2\bar2
 The second-order energy over spin orbitals is
 
 $$
-E_0^{(2)} = \frac14\sum_{abrs}\frac{|\langle ab||rs\rangle|^2}{\varepsilon_a + \varepsilon_b - \varepsilon_r - \varepsilon_s}.
+E_0^{(2)} = \frac14\sum_{ijab}\frac{|\langle ij||ab\rangle|^2}{\varepsilon_i + \varepsilon_j - \varepsilon_a - \varepsilon_b}.
 $$
 
-**Expand.** Write $|\langle ab||rs\rangle|^2 = |\langle ab|rs\rangle|^2 + |\langle ab|sr\rangle|^2 - 2\,\mathrm{Re}\,\langle ab|rs\rangle\langle rs|ba\rangle$. The two squared terms give equal sums after relabelling $r\leftrightarrow s$, so
+**Expand.** Write $|\langle ij||ab\rangle|^2 = |\langle ij|ab\rangle|^2 + |\langle ij|ba\rangle|^2 - 2\,\mathrm{Re}\,\langle ij|ab\rangle\langle ab|ji\rangle$. The two squared terms give equal sums after relabelling $a\leftrightarrow b$, so
 
 $$
-E_0^{(2)} = \frac12\sum_{abrs}\frac{|\langle ab|rs\rangle|^2 - \langle ab|rs\rangle\langle rs|ba\rangle}{\varepsilon_a+\varepsilon_b-\varepsilon_r-\varepsilon_s}.
+E_0^{(2)} = \frac12\sum_{ijab}\frac{|\langle ij|ab\rangle|^2 - \langle ij|ab\rangle\langle ab|ji\rangle}{\varepsilon_i+\varepsilon_j-\varepsilon_a-\varepsilon_b}.
 $$
 
-**Count spin cases.** Restricted orbitals have $\varepsilon_a = \varepsilon_{\bar a}$, and each spatial label carries a spin.
+**Count spin cases.** Restricted orbitals have $\varepsilon_i = \varepsilon_{\bar i}$, and each spatial label carries a spin.
 
-- $\langle ab|rs\rangle$ needs $\sigma_a = \sigma_r$ and $\sigma_b = \sigma_s$: 4 spin assignments.
-- The product $\langle ab|rs\rangle\langle rs|ba\rangle$ needs all four spins equal: 2 assignments.
+- $\langle ij|ab\rangle$ needs $\sigma_a = \sigma_r$ and $\sigma_b = \sigma_s$: 4 spin assignments.
+- The product $\langle ij|ab\rangle\langle ab|ji\rangle$ needs all four spins equal: 2 assignments.
 
 This gives
 
 $$
-E_0^{(2)} = \sum_{ab}^{N/2}\sum_{rs}^{K}{}'\ \frac{(ar|bs)\big[2(ra|sb) - (rb|sa)\big]}{\varepsilon_a+\varepsilon_b-\varepsilon_r-\varepsilon_s}.
+E_0^{(2)} = \sum_{ij}^{N/2}\sum_{ab}^{K}{}'\ \frac{(ia|jb)\big[2(ai|bj) - (aj|bi)\big]}{\varepsilon_i+\varepsilon_j-\varepsilon_a-\varepsilon_b}.
 $$
 
-Here $a,b$ run over the occupied spatial orbitals $1..N/2$, $r,s$ over the virtual spatial orbitals $N/2+1..K$, and the integrals are chemists' notation. In physicists' notation the numerator is $\langle ab|rs\rangle\big(2\langle rs|ab\rangle - \langle rs|ba\rangle\big)$, the form printed in Szabo (p. 85). For real orbitals the two forms are identical term by term.
+Here $i,j$ run over the occupied spatial orbitals $1..N/2$, $a,b$ over the virtual spatial orbitals $N/2+1..K$, and the integrals are chemists' notation. In physicists' notation the numerator is $\langle ij|ab\rangle\big(2\langle ab|ij\rangle - \langle ab|ji\rangle\big)$, the form printed in Szabo (p. 85). For real orbitals the two forms are identical term by term.
 
 **Numerical check.** H$_2$O/STO-3G (O at the origin, H at $(0,\pm0.757,0.587)$ Å). The spin-orbital formula and the closed-shell formula both give $E^{(2)} = -0.035566818$ hartree, identical to PySCF `mp.MP2(mf).e_corr`.
 

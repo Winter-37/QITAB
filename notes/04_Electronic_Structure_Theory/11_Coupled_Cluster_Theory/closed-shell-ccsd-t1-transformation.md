@@ -8,6 +8,7 @@ level: advanced
 tags: [ccsd, closed-shell, spin-adaptation, t1-transformation, biorthogonal-basis, integral-transformation, computational-cost]
 prerequisites: [coupled-cluster-hierarchy-and-size-extensivity, spin-tensor-operators]
 related: [coupled-cluster-optimization-and-lagrangian, eom-ccsd-and-size-extensivity, coupled-cluster-variants-brueckner-qcisd-open-shell, density-based-hartree-fock]
+conventions: [ia-letters]
 order: 80
 date: 2026-11-04
 ---

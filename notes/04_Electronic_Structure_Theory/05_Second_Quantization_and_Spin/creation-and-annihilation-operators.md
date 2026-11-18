@@ -8,89 +8,90 @@ level: intermediate
 tags: [second-quantization, creation-operator, annihilation-operator, anticommutation, fock-space]
 prerequisites: [slater-determinants]
 related: [second-quantized-operators, nonorthogonal-second-quantization, second-quantization-in-a-finite-basis, excited-determinants, slater-condon-rules, baker-campbell-hausdorff, orbital-rotations]
+conventions: [ia-letters]
 order: 10
 date: 2026-11-03
 ---
 
 ## Creation operators
 
-For each spin orbital $\chi_i$ of an orthonormal set, define $a_i^\dagger$ by its action on any determinant. It **adds $\chi_i$ in the first column**:
+For each spin orbital $\chi_p$ of an orthonormal set, define $a_p^\dagger$ by its action on any determinant. It **adds $\chi_p$ in the first column**:
 
 $$
-a_i^\dagger|\chi_k\cdots\chi_l\rangle = |\chi_i\chi_k\cdots\chi_l\rangle .
+a_p^\dagger|\chi_r\cdots\chi_s\rangle = |\chi_p\chi_r\cdots\chi_s\rangle .
 $$
 
 **Order matters.**
 
 $$
-a_i^\dagger a_j^\dagger|\chi_k\cdots\chi_l\rangle = |\chi_i\chi_j\chi_k\cdots\chi_l\rangle,
+a_p^\dagger a_q^\dagger|\chi_r\cdots\chi_s\rangle = |\chi_p\chi_q\chi_r\cdots\chi_s\rangle,
 \qquad
-a_j^\dagger a_i^\dagger|\chi_k\cdots\chi_l\rangle = |\chi_j\chi_i\chi_k\cdots\chi_l\rangle = -|\chi_i\chi_j\chi_k\cdots\chi_l\rangle .
+a_q^\dagger a_p^\dagger|\chi_r\cdots\chi_s\rangle = |\chi_q\chi_p\chi_r\cdots\chi_s\rangle = -|\chi_p\chi_q\chi_r\cdots\chi_s\rangle .
 $$
 
 Since the determinant is arbitrary, this is an operator identity:
 
 $$
-\{a_i^\dagger, a_j^\dagger\} = a_i^\dagger a_j^\dagger + a_j^\dagger a_i^\dagger = 0 .
+\{a_p^\dagger, a_q^\dagger\} = a_p^\dagger a_q^\dagger + a_q^\dagger a_p^\dagger = 0 .
 $$
 
-With $i = j$ it gives $a_i^\dagger a_i^\dagger = 0$: an electron cannot be created twice in one spin orbital (Pauli). More generally, $a_i^\dagger|\chi_k\cdots\chi_l\rangle = 0$ if $i\in\{k,\dots,l\}$, because the resulting determinant has two equal columns.
+With $p = q$ it gives $a_p^\dagger a_p^\dagger = 0$: an electron cannot be created twice in one spin orbital (Pauli). More generally, $a_p^\dagger|\chi_r\cdots\chi_s\rangle = 0$ if $p\in\{r,\dots,s\}$, because the resulting determinant has two equal columns.
 
 ## Annihilation operators
 
-Define $a_i \equiv (a_i^\dagger)^\dagger$. It **removes $\chi_i$ from the first column**:
+Define $a_p \equiv (a_p^\dagger)^\dagger$. It **removes $\chi_p$ from the first column**:
 
 $$
-a_i|\chi_i\chi_k\cdots\chi_l\rangle = |\chi_k\cdots\chi_l\rangle .
+a_p|\chi_p\chi_r\cdots\chi_s\rangle = |\chi_r\cdots\chi_s\rangle .
 $$
 
-If $\chi_i$ is elsewhere, first move it to the front by column swaps, with a sign:
+If $\chi_p$ is elsewhere, first move it to the front by column swaps, with a sign:
 
 $$
-a_i|\chi_k\chi_i\chi_l\rangle = -a_i|\chi_i\chi_k\chi_l\rangle = -|\chi_k\chi_l\rangle .
+a_p|\chi_r\chi_p\chi_s\rangle = -a_p|\chi_p\chi_r\chi_s\rangle = -|\chi_r\chi_s\rangle .
 $$
 
-**Why it is the adjoint.** With $|K\rangle = |\chi_i\chi_j\rangle = a_i^\dagger|\chi_j\rangle$, the adjoint equation is $\langle K| = \langle\chi_j|a_i$. Closing with $|K\rangle$: $1 = \langle K|K\rangle = \langle\chi_j|a_i|K\rangle$. This is consistent only if $a_i|\chi_i\chi_j\rangle = |\chi_j\rangle$, which is the definition above. Acting to the **left**, $a_i$ creates and $a_i^\dagger$ annihilates.
+**Why it is the adjoint.** With $|K\rangle = |\chi_p\chi_q\rangle = a_p^\dagger|\chi_q\rangle$, the adjoint equation is $\langle K| = \langle\chi_q|a_p$. Closing with $|K\rangle$: $1 = \langle K|K\rangle = \langle\chi_q|a_p|K\rangle$. This is consistent only if $a_p|\chi_p\chi_q\rangle = |\chi_q\rangle$, which is the definition above. Acting to the **left**, $a_p$ creates and $a_p^\dagger$ annihilates.
 
 Taking the adjoint of the creator relation, using $(AB)^\dagger = B^\dagger A^\dagger$:
 
 $$
-\{a_i, a_j\} = 0,
+\{a_p, a_q\} = 0,
 \qquad
-a_ia_i = 0 .
+a_pa_p = 0 .
 $$
 
-An electron cannot be removed twice, and $a_i|\chi_k\cdots\chi_l\rangle = 0$ if $\chi_i$ is not occupied.
+An electron cannot be removed twice, and $a_p|\chi_r\cdots\chi_s\rangle = 0$ if $\chi_p$ is not occupied.
 
 ## Mixed anticommutator
 
-Act with $a_ia_j^\dagger + a_j^\dagger a_i$ on an arbitrary determinant $|K\rangle$.
+Act with $a_pa_q^\dagger + a_q^\dagger a_p$ on an arbitrary determinant $|K\rangle$.
 
-**Case $i = j$.**
+**Case $p = q$.**
 
-- If $\chi_i$ is empty in $|K\rangle$: $a_i^\dagger a_i|K\rangle = 0$ and $a_ia_i^\dagger|K\rangle = |K\rangle$.
-- If $\chi_i$ is occupied: $a_ia_i^\dagger|K\rangle = 0$, and $a_i^\dagger a_i$ removes $\chi_i$ and puts it back in the first column. Writing $|K\rangle$ with $\chi_i$ in front first, both sign changes cancel, so the result is $|K\rangle$.
+- If $\chi_p$ is empty in $|K\rangle$: $a_p^\dagger a_p|K\rangle = 0$ and $a_pa_p^\dagger|K\rangle = |K\rangle$.
+- If $\chi_p$ is occupied: $a_pa_p^\dagger|K\rangle = 0$, and $a_p^\dagger a_p$ removes $\chi_p$ and puts it back in the first column. Writing $|K\rangle$ with $\chi_p$ in front first, both sign changes cancel, so the result is $|K\rangle$.
 
 Either way the sum is $|K\rangle$.
 
-**Case $i\ne j$.** The result is nonzero only if $\chi_i$ is occupied and $\chi_j$ empty. Then, with $|K\rangle = |\chi_i\chi_k\cdots\rangle$:
+**Case $p\ne q$.** The result is nonzero only if $\chi_p$ is occupied and $\chi_q$ empty. Then, with $|K\rangle = |\chi_p\chi_r\cdots\rangle$:
 
 $$
-a_ia_j^\dagger|\chi_i\chi_k\cdots\rangle = a_i|\chi_j\chi_i\chi_k\cdots\rangle = -a_i|\chi_i\chi_j\chi_k\cdots\rangle = -|\chi_j\chi_k\cdots\rangle,
+a_pa_q^\dagger|\chi_p\chi_r\cdots\rangle = a_p|\chi_q\chi_p\chi_r\cdots\rangle = -a_p|\chi_p\chi_q\chi_r\cdots\rangle = -|\chi_q\chi_r\cdots\rangle,
 $$
 
 $$
-a_j^\dagger a_i|\chi_i\chi_k\cdots\rangle = a_j^\dagger|\chi_k\cdots\rangle = |\chi_j\chi_k\cdots\rangle,
+a_q^\dagger a_p|\chi_p\chi_r\cdots\rangle = a_q^\dagger|\chi_r\cdots\rangle = |\chi_q\chi_r\cdots\rangle,
 $$
 
 which sum to zero. Hence
 
 $$
-\{a_i, a_j^\dagger\} = \delta_{ij},
+\{a_p, a_q^\dagger\} = \delta_{pq},
 \qquad
-a_ia_j^\dagger = -a_j^\dagger a_i\ (i\ne j),
+a_pa_q^\dagger = -a_q^\dagger a_p\ (p\ne q),
 \qquad
-a_ia_i^\dagger = 1 - a_i^\dagger a_i .
+a_pa_p^\dagger = 1 - a_p^\dagger a_p .
 $$
 
 **These three anticommutators contain all properties of determinants.** From here on nothing else is needed.
@@ -100,58 +101,58 @@ $$
 The **vacuum** $|\,\rangle$ has no electrons, is normalized ($\langle\,|\,\rangle = 1$), and obeys
 
 $$
-a_i|\,\rangle = 0 = \langle\,|a_i^\dagger .
+a_p|\,\rangle = 0 = \langle\,|a_p^\dagger .
 $$
 
 Every determinant is a string of creators on the vacuum:
 
 $$
-|\chi_i\chi_j\cdots\chi_k\rangle = a_i^\dagger a_j^\dagger\cdots a_k^\dagger|\,\rangle,
+|\chi_p\chi_q\cdots\chi_r\rangle = a_p^\dagger a_q^\dagger\cdots a_r^\dagger|\,\rangle,
 \qquad
-\langle\chi_i\chi_j\cdots\chi_k| = \langle\,|a_k\cdots a_j a_i .
+\langle\chi_p\chi_q\cdots\chi_r| = \langle\,|a_r\cdots a_q a_p .
 $$
 
 **Strategy for any matrix element:** move annihilators to the right with the anticommutators until each hits $|\,\rangle$ (giving zero) or is cancelled by a $\delta$.
 
 !!! example "Overlap of two determinants, again (Szabo Eqs. 2.223-2.230)"
-    $|K\rangle = a_i^\dagger a_j^\dagger|\,\rangle$ and $|L\rangle = a_k^\dagger a_l^\dagger|\,\rangle$, so $\langle K|L\rangle = \langle\,|a_ja_ia_k^\dagger a_l^\dagger|\,\rangle$.
+    $|K\rangle = a_p^\dagger a_q^\dagger|\,\rangle$ and $|L\rangle = a_r^\dagger a_s^\dagger|\,\rangle$, so $\langle K|L\rangle = \langle\,|a_qa_pa_r^\dagger a_s^\dagger|\,\rangle$.
 
-    - **Move $a_i$ right.** Use $a_ia_k^\dagger = \delta_{ik} - a_k^\dagger a_i$:
+    - **Move $a_p$ right.** Use $a_pa_r^\dagger = \delta_{pr} - a_r^\dagger a_p$:
     $$
-    \langle K|L\rangle = \delta_{ik}\langle\,|a_ja_l^\dagger|\,\rangle - \langle\,|a_ja_k^\dagger a_ia_l^\dagger|\,\rangle .
+    \langle K|L\rangle = \delta_{pr}\langle\,|a_qa_s^\dagger|\,\rangle - \langle\,|a_qa_r^\dagger a_pa_s^\dagger|\,\rangle .
     $$
-    - **Continue in each term.** Repeat until every annihilator reaches the vacuum. The terms with $a|\,\rangle$ vanish, leaving
+    - **Continue in each term.** Repeat until every annihilator reaches the vacuum. The terms with $i|\,\rangle$ vanish, leaving
     $$
-    \langle K|L\rangle = \delta_{ik}\delta_{jl} - \delta_{il}\delta_{jk},
+    \langle K|L\rangle = \delta_{pr}\delta_{qs} - \delta_{ps}\delta_{qr},
     $$
 
     the same as expanding the determinants ([[slater-determinants]], Ex. 2.5).
 
 ## Useful identities with a reference determinant
 
-Let $|\Psi_0\rangle = |\chi_1\cdots\chi_a\chi_b\cdots\chi_N\rangle$, with $a,b$ occupied and $r,s$ virtual (Szabo Ex. 2.27, 2.28).
+Let $|\Psi_0\rangle = |\chi_1\cdots\chi_i\chi_j\cdots\chi_N\rangle$, with $i,j$ occupied and $a,b$ virtual (Szabo Ex. 2.27, 2.28).
 
-- **Occupation number.** $a_i^\dagger a_j$ conserves particle number. For any determinant $|K\rangle$, $\langle K|a_i^\dagger a_j|K\rangle = \delta_{ij}$ if $\chi_i$ is occupied in $|K\rangle$ and $0$ otherwise. So $\hat n_i = a_i^\dagger a_i$ is the occupation-number operator.
+- **Occupation number.** $a_p^\dagger a_q$ conserves particle number. For any determinant $|K\rangle$, $\langle K|a_p^\dagger a_q|K\rangle = \delta_{pq}$ if $\chi_p$ is occupied in $|K\rangle$ and $0$ otherwise. So $\hat n_p = a_p^\dagger a_p$ is the occupation-number operator.
 - **Annihilation conditions.**
 $$
-a_r|\Psi_0\rangle = 0 = \langle\Psi_0|a_r^\dagger,
+a_a|\Psi_0\rangle = 0 = \langle\Psi_0|a_a^\dagger,
 \qquad
-a_a^\dagger|\Psi_0\rangle = 0 = \langle\Psi_0|a_a .
+a_i^\dagger|\Psi_0\rangle = 0 = \langle\Psi_0|a_i .
 $$
 - **Excitations as operator strings.**
 $$
-|\Psi_a^r\rangle = a_r^\dagger a_a|\Psi_0\rangle,
+|\Psi_i^a\rangle = a_a^\dagger a_i|\Psi_0\rangle,
 \qquad
-\langle\Psi_a^r| = \langle\Psi_0|a_a^\dagger a_r,
+\langle\Psi_i^a| = \langle\Psi_0|a_i^\dagger a_a,
 $$
 $$
-|\Psi_{ab}^{rs}\rangle = a_s^\dagger a_b a_r^\dagger a_a|\Psi_0\rangle = a_r^\dagger a_s^\dagger a_b a_a|\Psi_0\rangle .
+|\Psi_{ij}^{ab}\rangle = a_b^\dagger a_j a_a^\dagger a_i|\Psi_0\rangle = a_a^\dagger a_b^\dagger a_j a_i|\Psi_0\rangle .
 $$
 
-The second form of the double follows by anticommuting: move $a_b$ past $a_r^\dagger$, then swap $a_s^\dagger a_r^\dagger$. That is two swaps, so the sign is $+1$, with no $\delta$ terms since all four indices differ. The order of $a_b a_a$ matters: it reproduces the "same column" convention of [[excited-determinants]].
+The second form of the double follows by anticommuting: move $a_j$ past $a_a^\dagger$, then swap $a_b^\dagger a_a^\dagger$. That is two swaps, so the sign is $+1$, with no $\delta$ terms since all four indices differ. The order of $a_j a_i$ matters: it reproduces the "same column" convention of [[excited-determinants]].
 
 !!! warning "Ordering conventions differ between books"
-    Szabo's $a_i^\dagger$ inserts the new spin orbital in the **first** column. Other texts, including Helgaker-Jørgensen-Olsen, define occupation-number vectors with a fixed canonical orbital order and a phase from the number of occupied orbitals preceding $i$. Both satisfy the same anticommutators, but explicit phases of individual determinants can differ. Fix one convention before comparing CI vectors between codes.
+    Szabo's $a_p^\dagger$ inserts the new spin orbital in the **first** column. Other texts, including Helgaker-Jørgensen-Olsen, define occupation-number vectors with a fixed canonical orbital order and a phase from the number of occupied orbitals preceding $p$. Both satisfy the same anticommutators, but explicit phases of individual determinants can differ. Fix one convention before comparing CI vectors between codes.
 
 ## Helgaker, Jørgensen and Olsen: the Fock space of occupation-number vectors
 

@@ -8,6 +8,7 @@ level: advanced
 tags: [generalized-fock-matrix, inactive-fock, active-fock, orbital-hessian, orbital-gradient, one-index-transformation, operation-count, hartree-fock, high-spin]
 prerequisites: [hartree-fock-csf-parametrization-and-canonical-conditions, density-matrices-second-quantization, orbital-rotations]
 related: [scf-convergence-diis-and-newton, mcscf-second-order-optimization, scf-second-order-and-stability, density-based-hartree-fock, molecular-properties-and-response]
+conventions: [ia-letters]
 order: 30
 date: 2026-11-04
 ---

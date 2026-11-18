@@ -8,6 +8,7 @@ level: intermediate
 tags: [second-quantization, hamiltonian, matrix-elements, fock-space]
 prerequisites: [creation-and-annihilation-operators, integral-notation]
 related: [second-quantization-in-a-finite-basis, density-matrices-second-quantization, slater-condon-rules, molecular-hamiltonian, minimal-basis-h2-model, spin-tensor-operators, orbital-rotations, baker-campbell-hausdorff]
+conventions: [ia-letters, chemists-integrals, physicists-integrals, antisymmetrized-integrals]
 order: 20
 date: 2026-11-03
 ---
@@ -17,12 +18,12 @@ date: 2026-11-03
 Sums run over all spin orbitals of the orthonormal set, occupied or not. Integrals are in physicists' notation over spin orbitals ([[integral-notation]]).
 
 $$
-\hat{\mathcal O}_1 = \sum_{ij}\langle i|h|j\rangle\,a_i^\dagger a_j,
+\hat{\mathcal O}_1 = \sum_{pq}\langle p|h|q\rangle\,a_p^\dagger a_q,
 \qquad
-\hat{\mathcal O}_2 = \frac12\sum_{ijkl}\langle ij|kl\rangle\,a_i^\dagger a_j^\dagger a_l a_k .
+\hat{\mathcal O}_2 = \frac12\sum_{pqrs}\langle pq|rs\rangle\,a_p^\dagger a_q^\dagger a_s a_r .
 $$
 
-**Index order.** Note $a_la_k$, not $a_ka_l$. Creators carry the bra labels in order $i, j$, and annihilators carry the ket labels in **reverse** order, $l, k$. Reversing them flips the sign of the operator.
+**Index order.** Note $a_sa_r$, not $a_ra_s$. Creators carry the bra labels in order $p, q$, and annihilators carry the ket labels in **reverse** order, $s, r$. Reversing them flips the sign of the operator.
 
 The electronic Hamiltonian is $\hat H = \hat{\mathcal O}_1 + \hat{\mathcal O}_2$ with $h$ the core Hamiltonian ([[molecular-hamiltonian]]).
 
@@ -34,38 +35,38 @@ These forms are justified because they give the same matrix elements between det
 - The integrals enter explicitly.
 - All antisymmetry is carried by the operator algebra.
 
-Using $\{a_k,a_l\} = 0$ one can also write $\hat{\mathcal O}_2 = \frac14\sum_{ijkl}\langle ij||kl\rangle\,a_i^\dagger a_j^\dagger a_la_k$.
+Using $\{a_r,a_s\} = 0$ one can also write $\hat{\mathcal O}_2 = \frac14\sum_{pqrs}\langle pq||rs\rangle\,a_p^\dagger a_q^\dagger a_sa_r$.
 
 ## Hartree-Fock energy by operator algebra
 
-Take $|\Psi_0\rangle = |\chi_1\cdots\chi_N\rangle$ with occupied labels $a, b, c, d$.
+Take $|\Psi_0\rangle = |\chi_1\cdots\chi_N\rangle$ with occupied labels $i, j, k, l$.
 
-**One-electron part.** In $\langle\Psi_0|a_i^\dagger a_j|\Psi_0\rangle$ both operators destroy an occupied electron (one to the left, one to the right), so $i, j$ must be occupied:
-
-$$
-\langle\Psi_0|\hat{\mathcal O}_1|\Psi_0\rangle = \sum_{ab}\langle a|h|b\rangle\langle\Psi_0|a_a^\dagger a_b|\Psi_0\rangle .
-$$
-
-Use $a_a^\dagger a_b = \delta_{ab} - a_ba_a^\dagger$. The second term vanishes because $a_a^\dagger|\Psi_0\rangle = 0$, so
+**One-electron part.** In $\langle\Psi_0|a_p^\dagger a_q|\Psi_0\rangle$ both operators destroy an occupied electron (one to the left, one to the right), so $p, q$ must be occupied:
 
 $$
-\langle\Psi_0|\hat{\mathcal O}_1|\Psi_0\rangle = \sum_a\langle a|h|a\rangle .
+\langle\Psi_0|\hat{\mathcal O}_1|\Psi_0\rangle = \sum_{ij}\langle i|h|j\rangle\langle\Psi_0|a_i^\dagger a_j|\Psi_0\rangle .
+$$
+
+Use $a_i^\dagger a_j = \delta_{ij} - a_ja_i^\dagger$. The second term vanishes because $a_i^\dagger|\Psi_0\rangle = 0$, so
+
+$$
+\langle\Psi_0|\hat{\mathcal O}_1|\Psi_0\rangle = \sum_i\langle i|h|i\rangle .
 $$
 
 **Two-electron part.** By the same argument all indices are occupied:
 
 $$
-\langle\Psi_0|\hat{\mathcal O}_2|\Psi_0\rangle = \tfrac12\sum_{abcd}\langle ab|cd\rangle\,\langle\Psi_0|a_a^\dagger a_b^\dagger a_da_c|\Psi_0\rangle .
+\langle\Psi_0|\hat{\mathcal O}_2|\Psi_0\rangle = \tfrac12\sum_{ijkl}\langle ij|kl\rangle\,\langle\Psi_0|a_i^\dagger a_j^\dagger a_la_k|\Psi_0\rangle .
 $$
 
-Move $a_d$ and $a_c$ to the left through the creators, each step producing a $\delta$ and a sign. Every leftover term has an $a^\dagger_{\text{occ}}$ acting on $|\Psi_0\rangle$ and vanishes, giving
+Move $a_l$ and $a_k$ to the left through the creators, each step producing a $\delta$ and a sign. Every leftover term has an $a^\dagger_{\text{occ}}$ acting on $|\Psi_0\rangle$ and vanishes, giving
 
 $$
-\langle\Psi_0|a_a^\dagger a_b^\dagger a_da_c|\Psi_0\rangle = \delta_{ac}\delta_{bd} - \delta_{ad}\delta_{bc},
+\langle\Psi_0|a_i^\dagger a_j^\dagger a_la_k|\Psi_0\rangle = \delta_{ik}\delta_{jl} - \delta_{il}\delta_{jk},
 $$
 
 $$
-\langle\Psi_0|\hat{\mathcal O}_2|\Psi_0\rangle = \tfrac12\sum_{ab}\big(\langle ab|ab\rangle - \langle ab|ba\rangle\big) = \tfrac12\sum_{ab}\langle ab||ab\rangle ,
+\langle\Psi_0|\hat{\mathcal O}_2|\Psi_0\rangle = \tfrac12\sum_{ij}\big(\langle ij|ij\rangle - \langle ij|ji\rangle\big) = \tfrac12\sum_{ij}\langle ij||ij\rangle ,
 $$
 
 as in the Case 1 Slater-Condon rule.
@@ -73,16 +74,16 @@ as in the Case 1 Slater-Condon rule.
 !!! example "Matrix elements with excited determinants (Szabo Ex. 2.29-2.31)"
     **H₂ one-electron energy.** For minimal-basis H$_2$, $|\Psi_0\rangle = a_1^\dagger a_2^\dagger|\,\rangle$ gives $\langle\Psi_0|\hat{\mathcal O}_1|\Psi_0\rangle = \langle1|h|1\rangle + \langle2|h|2\rangle$.
 
-    **Singles.** Write $\langle\Psi_a^r| = \langle\Psi_0|a_a^\dagger a_r$ and move $a_r$ and $a_i^\dagger$ through with anticommutators:
+    **Singles.** Write $\langle\Psi_i^a| = \langle\Psi_0|a_i^\dagger a_a$ and move $a_a$ and $a_p^\dagger$ through with anticommutators:
     $$
-    \langle\Psi_a^r|\hat{\mathcal O}_1|\Psi_0\rangle = \sum_{ij}\langle i|h|j\rangle\langle\Psi_0|a_a^\dagger a_ra_i^\dagger a_j|\Psi_0\rangle = \langle r|h|a\rangle .
+    \langle\Psi_i^a|\hat{\mathcal O}_1|\Psi_0\rangle = \sum_{pq}\langle p|h|q\rangle\langle\Psi_0|a_i^\dagger a_aa_p^\dagger a_q|\Psi_0\rangle = \langle a|h|i\rangle .
     $$
 
     **Doubles.**
     $$
-    \langle\Psi_{ab}^{rs}|\hat{\mathcal O}_2|\Psi_0\rangle = \langle rs||ab\rangle ,
+    \langle\Psi_{ij}^{ab}|\hat{\mathcal O}_2|\Psi_0\rangle = \langle ab||ij\rangle ,
     $$
-    the complex conjugate of the Case 3 rule $\langle\Psi_0|\hat{\mathcal O}_2|\Psi_{ab}^{rs}\rangle = \langle ab||rs\rangle$.
+    the complex conjugate of the Case 3 rule $\langle\Psi_0|\hat{\mathcal O}_2|\Psi_{ij}^{ab}\rangle = \langle ij||ab\rangle$.
 
 ## Numerical check
 
@@ -151,7 +152,7 @@ g_{PQRS} = \iint\phi_P^*(\mathbf x_1)\phi_R^*(\mathbf x_2)\,r_{12}^{-1}\,\phi_Q(
 \hat g = \tfrac12\sum_{PQRS}g_{PQRS}\,a_P^\dagger a_R^\dagger a_Sa_Q .
 $$
 
-This is the same operator as $\tfrac12\sum\langle ij|kl\rangle a_i^\dagger a_j^\dagger a_la_k$ above, relabelled.
+This is the same operator as $\tfrac12\sum\langle pq|rs\rangle a_p^\dagger a_q^\dagger a_sa_r$ above, relabelled.
 
 **Spin-free operators.** For spin orbitals $\phi_p\sigma$ and spin-free $h$ and $g$, the spin integrations collapse the sums onto the singlet excitation operators $E_{pq} = a_{p\alpha}^\dagger a_{q\alpha} + a_{p\beta}^\dagger a_{q\beta}$ and the two-electron excitation operators $e_{pqrs}$:
 

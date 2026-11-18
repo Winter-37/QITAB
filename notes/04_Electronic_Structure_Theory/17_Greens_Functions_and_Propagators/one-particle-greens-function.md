@@ -8,6 +8,7 @@ level: advanced
 tags: [greens-function, electron-propagator, self-energy, dyson-equation, ionization-potential, electron-affinity, koopmans]
 prerequisites: [greens-functions-single-particle, koopmans-theorem, mp2]
 related: [ionization-potentials-second-order-self-energy, propagators-and-superoperators, heh-plus-minimal-basis-model, minimal-basis-h2-model]
+conventions: [ia-letters, physicists-integrals, antisymmetrized-integrals]
 order: 20
 date: 2026-11-03
 ---
@@ -17,17 +18,17 @@ date: 2026-11-03
 **Hartree-Fock Green's function (HFGF).** The Fock operator is a one-particle operator, so by analogy with [[greens-functions-single-particle]],
 
 $$
-G_0(\mathbf x, \mathbf x'; E) = \sum_i\frac{\chi_i(\mathbf x)\chi_i^*(\mathbf x')}{E - \varepsilon_i},
+G_0(\mathbf x, \mathbf x'; E) = \sum_p\frac{\chi_p(\mathbf x)\chi_p^*(\mathbf x')}{E - \varepsilon_p},
 \qquad
 \mathbf G_0(E) = (E\mathbf 1 - \boldsymbol\varepsilon)^{-1}
 $$
 
-in the basis of HF spin orbitals, occupied and virtual. Its poles are the orbital energies. By Koopmans' theorem ([[koopmans-theorem]]), $-\varepsilon_c$ approximates an ionization potential and $-\varepsilon_r$ an electron affinity.
+in the basis of HF spin orbitals, occupied and virtual. Its poles are the orbital energies. By Koopmans' theorem ([[koopmans-theorem]]), $-\varepsilon_k$ approximates an ionization potential and $-\varepsilon_a$ an electron affinity.
 
-**What Koopmans misses.** Write the exact IP for removing an electron from $\chi_c$:
+**What Koopmans misses.** Write the exact IP for removing an electron from $\chi_k$:
 
 $$
--\text{IP} = {}^N\mathscr E_0 - {}^{N-1}\mathscr E_0(c) = \varepsilon_c - {}^{N-1}E_R(c) + \big({}^NE_{\text{corr}} - {}^{N-1}E_{\text{corr}}(c)\big).
+-\text{IP} = {}^N\mathscr E_0 - {}^{N-1}\mathscr E_0(k) = \varepsilon_k - {}^{N-1}E_R(k) + \big({}^NE_{\text{corr}} - {}^{N-1}E_{\text{corr}}(k)\big).
 $$
 
 Two corrections are missing:
@@ -37,13 +38,13 @@ Two corrections are missing:
 
 The electron affinity is analogous.
 
-**Exact Green's function (Szabo Ex. 7.8).** With $|{}^N\Phi_0\rangle$ the exact ground state and $|{}^{N\pm1}\Phi_k\rangle$ the states of the ions,
+**Exact Green's function (Szabo Ex. 7.8).** With $|{}^N\Phi_0\rangle$ the exact ground state and $|{}^{N-1}\Phi_m\rangle$, $|{}^{N+1}\Phi_n\rangle$ the states of the ions,
 
 $$
-G_{ij}(E) = \sum_m\frac{\langle{}^N\Phi_0|a_j^\dagger|{}^{N-1}\Phi_m\rangle\langle{}^{N-1}\Phi_m|a_i|{}^N\Phi_0\rangle}{E - ({}^N\mathscr E_0 - {}^{N-1}\mathscr E_m)} + \sum_p\frac{\langle{}^N\Phi_0|a_i|{}^{N+1}\Phi_p\rangle\langle{}^{N+1}\Phi_p|a_j^\dagger|{}^N\Phi_0\rangle}{E - ({}^{N+1}\mathscr E_p - {}^N\mathscr E_0)} .
+G_{pq}(E) = \sum_m\frac{\langle{}^N\Phi_0|a_q^\dagger|{}^{N-1}\Phi_m\rangle\langle{}^{N-1}\Phi_m|a_p|{}^N\Phi_0\rangle}{E - ({}^N\mathscr E_0 - {}^{N-1}\mathscr E_m)} + \sum_n\frac{\langle{}^N\Phi_0|a_p|{}^{N+1}\Phi_n\rangle\langle{}^{N+1}\Phi_n|a_q^\dagger|{}^N\Phi_0\rangle}{E - ({}^{N+1}\mathscr E_n - {}^N\mathscr E_0)} .
 $$
 
-The "many-body" Green's function has poles at **differences** of eigenvalues, $-\text{IP}_m$ and $-\text{EA}_p$. Its residues are the products of overlap amplitudes (pole strengths). Replacing the exact states by $|\Psi_0\rangle$, $a_c|\Psi_0\rangle$ and $a_r^\dagger|\Psi_0\rangle$ recovers $\mathbf G_0$.
+The "many-body" Green's function has poles at **differences** of eigenvalues, $-\text{IP}_m$ and $-\text{EA}_n$. Its residues are the products of overlap amplitudes (pole strengths). Replacing the exact states by $|\Psi_0\rangle$, $a_k|\Psi_0\rangle$ and $a_a^\dagger|\Psi_0\rangle$ recovers $\mathbf G_0$.
 
 ## Dyson equation and self-energy
 
@@ -58,13 +59,13 @@ the same form as the single-particle equation, with an **energy-dependent effect
 **Second-order self-energy.** In perturbation theory $\boldsymbol\Sigma = \boldsymbol\Sigma^{(2)} + \boldsymbol\Sigma^{(3)} + \cdots$; the first correction is second order, as for the energy ([[mp2]]):
 
 $$
-\Sigma_{ij}^{(2)}(E) = \frac12\sum_{a,rs}\frac{\langle rs||ia\rangle\langle ja||rs\rangle}{E + \varepsilon_a - \varepsilon_r - \varepsilon_s} + \frac12\sum_{ab,r}\frac{\langle ab||ir\rangle\langle jr||ab\rangle}{E + \varepsilon_r - \varepsilon_a - \varepsilon_b} .
+\Sigma_{pq}^{(2)}(E) = \frac12\sum_{i,ab}\frac{\langle ab||pi\rangle\langle qi||ab\rangle}{E + \varepsilon_i - \varepsilon_a - \varepsilon_b} + \frac12\sum_{ij,a}\frac{\langle ij||pa\rangle\langle qa||ij\rangle}{E + \varepsilon_a - \varepsilon_i - \varepsilon_j} .
 $$
 
 The first sum has 2p1h intermediate states (two particles and one hole), the second 2h1p. For a closed shell, over spatial orbitals,
 
 $$
-\Sigma_{ij}^{(2)}(E) = \sum_{a,rs}\frac{\langle ia|rs\rangle\big(2\langle rs|ja\rangle - \langle rs|aj\rangle\big)}{E + \varepsilon_a - \varepsilon_r - \varepsilon_s} + \sum_{ab,r}\frac{\langle ir|ab\rangle\big(2\langle ab|jr\rangle - \langle ab|rj\rangle\big)}{E + \varepsilon_r - \varepsilon_a - \varepsilon_b} .
+\Sigma_{pq}^{(2)}(E) = \sum_{i,ab}\frac{\langle pi|ab\rangle\big(2\langle ab|qi\rangle - \langle ab|iq\rangle\big)}{E + \varepsilon_i - \varepsilon_a - \varepsilon_b} + \sum_{ij,a}\frac{\langle pa|ij\rangle\big(2\langle ij|qa\rangle - \langle ij|aq\rangle\big)}{E + \varepsilon_a - \varepsilon_i - \varepsilon_j} .
 $$
 
 **Solving the Dyson equation.** $\mathbf G(E) = (E\mathbf 1 - \boldsymbol\varepsilon - \boldsymbol\Sigma(E))^{-1}$, so the poles are the roots of
@@ -75,9 +76,9 @@ $$
 
 Three levels of approximation:
 
-1. **Neglect the off-diagonal elements:** $E = \varepsilon_i + \Sigma_{ii}(E)$, one equation per orbital.
+1. **Neglect the off-diagonal elements:** $E = \varepsilon_p + \Sigma_{pp}(E)$, one equation per orbital.
 2. **Iterate it to self-consistency** in $E$ (the "diagonal Dyson" solution).
-3. **Simplest of all:** evaluate $\Sigma$ at the Koopmans energy, $E_i\approx\varepsilon_i + \Sigma_{ii}^{(2)}(\varepsilon_i)$.
+3. **Simplest of all:** evaluate $\Sigma$ at the Koopmans energy, $E_p\approx\varepsilon_p + \Sigma_{pp}^{(2)}(\varepsilon_p)$.
 
 The last is analysed in [[ionization-potentials-second-order-self-energy]]. Because $\Sigma(E)$ has poles of its own, the equation has additional roots: shake-up states, ionization accompanied by excitation.
 
@@ -147,9 +148,9 @@ which contains both missing effects to second order (Szabo Eq. 7.68).
 
 **Definition.** J-S define the electron propagator as the superoperator matrix element $G_{rs}(E) = \langle\langle a_r^\dagger; a_s\rangle\rangle_E = (a_s^\dagger|(E\hat 1 + \hat H)^{-1}|a_r^\dagger)$ ([[propagators-and-superoperators]]). Its spectral form has exactly the IP and EA poles above, up to an overall sign convention for $E$.
 
-**Koopmans level.** With $|0\rangle$ = HF and the operator manifold $\{a_\alpha^\dagger, a_p^\dagger\}$ (occupied and virtual), the superoperator matrix is diagonal, $(a_j^\dagger|E\hat1 + \hat H|a_k^\dagger) = (E + \varepsilon_j)\delta_{jk}$. The propagator is the HFGF, with all pole strengths equal to 1.
+**Koopmans level.** With $|0\rangle$ = HF and the operator manifold $\{a_i^\dagger, a_a^\dagger\}$ (occupied and virtual), the superoperator matrix is diagonal, $(a_p^\dagger|E\hat1 + \hat H|a_q^\dagger) = (E + \varepsilon_p)\delta_{pq}$. The propagator is the HFGF, with all pole strengths equal to 1.
 
-**Order analysis.** Add the 2h1p and 2p1h operators $\{a_p^\dagger a_q^\dagger a_\alpha, a_\alpha^\dagger a_\beta^\dagger a_p\}$ as a second block and partition (J-S Eqs. 6.56-6.61):
+**Order analysis.** Add the 2h1p and 2p1h operators $\{a_a^\dagger a_b^\dagger a_i, a_i^\dagger a_j^\dagger a_a\}$ as a second block and partition (J-S Eqs. 6.56-6.61):
 
 $$
 \mathbf P(E) = \mathbf A - \mathbf C^\dagger\mathbf M^{-1}\mathbf C .

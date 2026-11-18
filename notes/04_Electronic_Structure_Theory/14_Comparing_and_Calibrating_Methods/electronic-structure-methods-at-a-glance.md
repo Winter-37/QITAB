@@ -8,6 +8,7 @@ level: intermediate
 tags: [overview, cheat-sheet, wave-function-methods, dft, hartree-fock, coupled-cluster, ci, mcscf, perturbation-theory, references]
 prerequisites: []
 related: [standard-models-h2-and-water, size-consistency, electron-correlation, ghf, rhf, mp2, cisd, full-ci, ccsd-spin-orbital-equations, perturbative-triples-cc2-cc3, eom-ccsd-and-size-extensivity, variational-and-unitary-coupled-cluster, mcscf-and-gvb, caspt2-and-caspt-series]
+conventions: [ia-letters, chemists-integrals, antisymmetrized-integrals]
 order: 10
 date: 2026-11-07
 ---

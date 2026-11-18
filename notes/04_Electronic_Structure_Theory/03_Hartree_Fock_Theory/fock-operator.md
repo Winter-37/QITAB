@@ -1,7 +1,7 @@
 ---
 id: fock-operator
 title: Coulomb, exchange, and Fock operators
-summary: The spin-orbital Fock operator f = h + Σ_b (J_b − K_b), the local Coulomb and nonlocal exchange operators, their matrix elements, Hermiticity of f, cancellation of self-interaction, and orbital energies.
+summary: The spin-orbital Fock operator f = h + Σ_j (J_j − K_j), the local Coulomb and nonlocal exchange operators, their matrix elements, Hermiticity of f, cancellation of self-interaction, and orbital energies.
 status: in-progress
 kind: theory
 level: intermediate
@@ -10,6 +10,7 @@ prerequisites: [slater-condon-rules, integral-notation]
 related: [hartree-fock-equations, rhf, uhf, koopmans-theorem]
 order: 10
 date: 2026-11-03
+conventions: [ia-letters, chemists-integrals, physicists-integrals, antisymmetrized-integrals]
 ---
 
 ## The Hartree-Fock eigenvalue equation
@@ -17,51 +18,51 @@ date: 2026-11-03
 The Hartree-Fock spin orbitals solve a one-electron eigenvalue equation (derived in [[hartree-fock-equations]]):
 
 $$
-f(1)\,\chi_a(1) = \varepsilon_a\,\chi_a(1),
+f(1)\,\chi_i(1) = \varepsilon_i\,\chi_i(1),
 \qquad
 f(1) = h(1) + v^{\text{HF}}(1).
 $$
 
-Here $h(1) = -\tfrac12\nabla_1^2 - \sum_A Z_A/r_{1A}$ is the core Hamiltonian, and the **Hartree-Fock potential** $v^{\text{HF}}$ is the average field that electron 1 feels from the other electrons. Because $v^{\text{HF}}$ depends on the occupied spin orbitals $\{\chi_b\}$, the equation is nonlinear and is solved iteratively: the self-consistent field.
+Here $h(1) = -\tfrac12\nabla_1^2 - \sum_A Z_A/r_{1A}$ is the core Hamiltonian, and the **Hartree-Fock potential** $v^{\text{HF}}$ is the average field that electron 1 feels from the other electrons. Because $v^{\text{HF}}$ depends on the occupied spin orbitals $\{\chi_j\}$, the equation is nonlinear and is solved iteratively: the self-consistent field.
 
-Labels follow [[excited-determinants]]: $a, b, c$ occupied, $r, s, t$ virtual, $i, j, k$ any. Electron "1" stands for coordinate $\mathbf x_1$.
+Index letters as in the rest of Part 4: $i, j, k$ occupied, $a, b, c$ virtual, $p, q, r$ any. Szabo writes $a, b, c$ for occupied and $r, s, t$ for virtual orbitals ([[index-and-orbital-notation]]). Electron "1" stands for coordinate $\mathbf x_1$.
 
 ## Coulomb operator
 
 $$
-\mathcal J_b(1)\,\chi_a(1) = \Big[\int\mathrm d\mathbf x_2\ |\chi_b(2)|^2\,r_{12}^{-1}\Big]\chi_a(1).
+\mathcal J_j(1)\,\chi_i(1) = \Big[\int\mathrm d\mathbf x_2\ |\chi_j(2)|^2\,r_{12}^{-1}\Big]\chi_i(1).
 $$
 
-This is the electrostatic potential of the charge cloud $|\chi_b|^2$, evaluated at $\mathbf x_1$. It is **local**: the result at $\mathbf x_1$ needs only $\chi_a(\mathbf x_1)$. Its expectation value is the Coulomb integral,
+This is the electrostatic potential of the charge cloud $|\chi_j|^2$, evaluated at $\mathbf x_1$. It is **local**: the result at $\mathbf x_1$ needs only $\chi_i(\mathbf x_1)$. Its expectation value is the Coulomb integral,
 
 $$
-\langle\chi_a|\mathcal J_b|\chi_a\rangle = [aa|bb] = \langle ab|ab\rangle .
+\langle\chi_i|\mathcal J_j|\chi_i\rangle = [ii|jj] = \langle ij|ij\rangle .
 $$
 
 ## Exchange operator
 
-$\mathcal K_b$ is defined by its action:
+$\mathcal K_j$ is defined by its action:
 
 $$
-\mathcal K_b(1)\,\chi_a(1) = \Big[\int\mathrm d\mathbf x_2\ \chi_b^*(2)\,r_{12}^{-1}\,\chi_a(2)\Big]\chi_b(1).
+\mathcal K_j(1)\,\chi_i(1) = \Big[\int\mathrm d\mathbf x_2\ \chi_j^*(2)\,r_{12}^{-1}\,\chi_i(2)\Big]\chi_j(1).
 $$
 
-It swaps the labels of the two electrons: $\chi_a$ ends up under the integral and $\chi_b$ outside. Finding $\mathcal K_b\chi_a$ at $\mathbf x_1$ needs $\chi_a$ everywhere, so it is **nonlocal**, an integral operator with kernel $\chi_b(1)\chi_b^*(2)/r_{12}$ ([[orthonormal-functions-and-operators]]). It has no classical analogue; it comes from antisymmetry. Its expectation value is the exchange integral,
+It swaps the labels of the two electrons: $\chi_i$ ends up under the integral and $\chi_j$ outside. Finding $\mathcal K_j\chi_i$ at $\mathbf x_1$ needs $\chi_i$ everywhere, so it is **nonlocal**, an integral operator with kernel $\chi_j(1)\chi_j^*(2)/r_{12}$ ([[orthonormal-functions-and-operators]]). It has no classical analogue; it comes from antisymmetry. Its expectation value is the exchange integral,
 
 $$
-\langle\chi_a|\mathcal K_b|\chi_a\rangle = [ab|ba] = \langle ab|ba\rangle .
+\langle\chi_i|\mathcal K_j|\chi_i\rangle = [ij|ji] = \langle ij|ji\rangle .
 $$
 
 ## The Fock operator
 
 $$
-f(1) = h(1) + \sum_{b}^{N}\big[\mathcal J_b(1) - \mathcal K_b(1)\big].
+f(1) = h(1) + \sum_{j}^{N}\big[\mathcal J_j(1) - \mathcal K_j(1)\big].
 $$
 
-The sum is over all $N$ **occupied** spin orbitals, including $b = a$ when acting on $\chi_a$. This is harmless because
+The sum is over all $N$ **occupied** spin orbitals, including $j = i$ when acting on $\chi_i$. This is harmless because
 
 $$
-\big[\mathcal J_a(1) - \mathcal K_a(1)\big]\chi_a(1) = 0 .
+\big[\mathcal J_i(1) - \mathcal K_i(1)\big]\chi_i(1) = 0 .
 $$
 
 The spurious repulsion of an electron with itself cancels exactly. Hartree theory, which lacks $\mathcal K$, and approximate density functionals do not have this cancellation (self-interaction error).
@@ -69,31 +70,31 @@ The spurious repulsion of an electron with itself cancels exactly. Hartree theor
 **Matrix elements (Szabo Ex. 3.1).**
 
 $$
-\langle\chi_i|f|\chi_j\rangle = \langle i|h|j\rangle + \sum_b^N\big([ij|bb] - [ib|bj]\big) = \langle i|h|j\rangle + \sum_b^N\langle ib||jb\rangle .
+\langle\chi_p|f|\chi_q\rangle = \langle p|h|q\rangle + \sum_j^N\big([pq|jj] - [pj|jq]\big) = \langle p|h|q\rangle + \sum_j^N\langle pj||qj\rangle .
 $$
 
-**Hermiticity (Szabo Ex. 3.4).** $\langle i|h|j\rangle^* = \langle j|h|i\rangle$ and $\langle ib||jb\rangle^* = \langle jb||ib\rangle$, so $f_{ij}^* = f_{ji}$. The Fock operator is Hermitian, its eigenvalues are real, and its eigenfunctions can be chosen orthonormal.
+**Hermiticity (Szabo Ex. 3.4).** $\langle p|h|q\rangle^* = \langle q|h|p\rangle$ and $\langle pj||qj\rangle^* = \langle qj||pj\rangle$, so $f_{pq}^* = f_{qp}$. The Fock operator is Hermitian, its eigenvalues are real, and its eigenfunctions can be chosen orthonormal.
 
 ## Orbital energies
 
-Taking diagonal elements, with $\langle ib||ib\rangle = \langle ib|ib\rangle - \langle ib|bi\rangle$:
+Taking diagonal elements, with $\langle pj||pj\rangle = \langle pj|pj\rangle - \langle pj|jp\rangle$:
 
 $$
-\varepsilon_a = \langle a|h|a\rangle + \sum_{b}^{N}\langle ab||ab\rangle,
+\varepsilon_i = \langle i|h|i\rangle + \sum_{j}^{N}\langle ij||ij\rangle,
 \qquad
-\varepsilon_r = \langle r|h|r\rangle + \sum_{b}^{N}\langle rb||rb\rangle .
+\varepsilon_a = \langle a|h|a\rangle + \sum_{j}^{N}\langle aj||aj\rangle .
 $$
 
-**Occupied.** $\varepsilon_a$ is the core energy of $\chi_a$ plus Coulomb and exchange with the other $N-1$ electrons ($b=a$ cancels).
+**Occupied.** $\varepsilon_i$ is the core energy of $\chi_i$ plus Coulomb and exchange with the other $N-1$ electrons ($j=i$ cancels).
 
-**Virtual.** $\varepsilon_r$ includes interaction with all $N$ occupied electrons, as if $\chi_r$ held an $(N+1)$th electron. This asymmetry is why virtual orbitals are poor descriptions of excited states and why Koopmans electron affinities are unreliable ([[koopmans-theorem]]).
+**Virtual.** $\varepsilon_a$ includes interaction with all $N$ occupied electrons, as if $\chi_a$ held an $(N+1)$th electron. This asymmetry is why virtual orbitals are poor descriptions of excited states and why Koopmans electron affinities are unreliable ([[koopmans-theorem]]).
 
-**Sum of orbital energies is not the energy.** Summing $\varepsilon_a$ counts each pair interaction twice:
+**Sum of orbital energies is not the energy.** Summing $\varepsilon_i$ counts each pair interaction twice:
 
 $$
-\sum_a^N\varepsilon_a = \sum_a\langle a|h|a\rangle + \sum_{ab}\langle ab||ab\rangle,
+\sum_i^N\varepsilon_i = \sum_i\langle i|h|i\rangle + \sum_{ij}\langle ij||ij\rangle,
 \qquad
-E_0 = \sum_a\langle a|h|a\rangle + \tfrac12\sum_{ab}\langle ab||ab\rangle = \sum_a\varepsilon_a - \tfrac12\sum_{ab}\langle ab||ab\rangle .
+E_0 = \sum_i\langle i|h|i\rangle + \tfrac12\sum_{ij}\langle ij||ij\rangle = \sum_i\varepsilon_i - \tfrac12\sum_{ij}\langle ij||ij\rangle .
 $$
 
 ## Fock operator as a nonlocal one-electron potential

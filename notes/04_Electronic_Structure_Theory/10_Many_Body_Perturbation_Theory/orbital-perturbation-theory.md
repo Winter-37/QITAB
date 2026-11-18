@@ -1,13 +1,14 @@
 ---
 id: orbital-perturbation-theory
 title: Orbital perturbation theory - one-particle perturbations and the Hückel resonance-energy series
-summary: When both H0 and V are sums of one-particle operators, the N-electron perturbation series is the sum of the series for each occupied orbital energy. Occupied-occupied terms cancel, so E(2) = Σ v_ar v_ra/(ε_a − ε_r) and E(3) has a particle and a hole term. Applied to cyclic polyenes this gives E(2) = Nβ/4, E(3) = 0 except for benzene, E(4) = Nβ/64, and for benzene a slowly oscillating series whose partial sums are computed here to twelfth order.
+summary: When both H0 and V are sums of one-particle operators, the N-electron perturbation series is the sum of the series for each occupied orbital energy. Occupied-occupied terms cancel, so E(2) = Σ v_ia v_ai/(ε_i − ε_a) and E(3) has a particle and a hole term. Applied to cyclic polyenes this gives E(2) = Nβ/4, E(3) = 0 except for benzene, E(4) = Nβ/64, and for benzene a slowly oscillating series whose partial sums are computed here to twelfth order.
 status: in-progress
 kind: derivation
 level: intermediate
 tags: [perturbation-theory, one-particle-perturbation, huckel, resonance-energy, convergence]
 prerequisites: [rayleigh-schrodinger-perturbation-theory, slater-determinants]
 related: [one-particle-hamiltonian-models, mp2, linked-cluster-theorem]
+conventions: [ia-letters]
 order: 30
 date: 2026-11-03
 ---
@@ -16,41 +17,41 @@ date: 2026-11-03
 
 **Partition.** $\mathscr H_0 = \sum_i h_0(i)$ and $\mathscr V = \sum_i v(i)$, both one-body. The physical example is a molecule in a uniform electric field, $\mathscr V = \mathbf F\cdot\sum_i\mathbf r_i$, treated starting from Hartree-Fock orbitals; another is the Hückel model of [[one-particle-hamiltonian-models]].
 
-**Zeroth order.** $|\Psi_0\rangle$ is the determinant of the $N$ lowest eigenfunctions of $h_0$, $h_0\chi_i^{(0)} = \varepsilon_i^{(0)}\chi_i^{(0)}$. Holes are $a,b,c,\ldots$, particles $r,s,t,\ldots$. Then
+**Zeroth order.** $|\Psi_0\rangle$ is the determinant of the $N$ lowest eigenfunctions of $h_0$, $h_0\chi_p^{(0)} = \varepsilon_p^{(0)}\chi_p^{(0)}$. Holes are $i,j,k,\ldots$, particles $a,b,c,\ldots$. Then
 
 $$
-E_0^{(0)} = \sum_a\varepsilon_a^{(0)}, \qquad E_0^{(1)} = \sum_a v_{aa}, \qquad E_0 = \langle\Psi_0|\mathscr H|\Psi_0\rangle = E_0^{(0)} + E_0^{(1)} .
+E_0^{(0)} = \sum_i\varepsilon_i^{(0)}, \qquad E_0^{(1)} = \sum_i v_{ii}, \qquad E_0 = \langle\Psi_0|\mathscr H|\Psi_0\rangle = E_0^{(0)} + E_0^{(1)} .
 $$
 
 ## The shortcut: perturb each orbital
 
-The exact ground state is the determinant of the $N$ lowest eigenfunctions of $h_0 + v$, with energy $\mathscr E_0 = \sum_a\varepsilon_a$. So expand each **orbital energy** by ordinary RS theory ([[rayleigh-schrodinger-perturbation-theory]]) and add:
+The exact ground state is the determinant of the $N$ lowest eigenfunctions of $h_0 + v$, with energy $\mathscr E_0 = \sum_i\varepsilon_i$. So expand each **orbital energy** by ordinary RS theory ([[rayleigh-schrodinger-perturbation-theory]]) and add:
 
 $$
-\varepsilon_a = \varepsilon_a^{(0)} + v_{aa} + \sum_{r}\frac{v_{ar}v_{ra}}{\varepsilon_a^{(0)} - \varepsilon_r^{(0)}} + \sum_{b\ne a}\frac{v_{ab}v_{ba}}{\varepsilon_a^{(0)} - \varepsilon_b^{(0)}} + \cdots
+\varepsilon_i = \varepsilon_i^{(0)} + v_{ii} + \sum_{a}\frac{v_{ia}v_{ai}}{\varepsilon_i^{(0)} - \varepsilon_a^{(0)}} + \sum_{j\ne i}\frac{v_{ij}v_{ji}}{\varepsilon_i^{(0)} - \varepsilon_j^{(0)}} + \cdots
 $$
 
-**Hole-hole terms cancel.** Summed over $a$, the last term is $X = \sum_{a\ne b}v_{ab}v_{ba}/(\varepsilon_a^{(0)} - \varepsilon_b^{(0)})$. Swapping the dummy labels $a\leftrightarrow b$ gives $X = -X$, so $X = 0$. The occupied orbitals can mix among themselves without changing the determinant. Hence
+**Hole-hole terms cancel.** Summed over $i$, the last term is $X = \sum_{i\ne j}v_{ij}v_{ji}/(\varepsilon_i^{(0)} - \varepsilon_j^{(0)})$. Swapping the dummy labels $i\leftrightarrow j$ gives $X = -X$, so $X = 0$. The occupied orbitals can mix among themselves without changing the determinant. Hence
 
 $$
-E_0^{(2)} = \sum_{ar}\frac{v_{ar}v_{ra}}{\varepsilon_a^{(0)} - \varepsilon_r^{(0)}}
-\qquad\Big(\text{closed shell: } 2\sum_{ar}^{N/2}\Big).
+E_0^{(2)} = \sum_{ia}\frac{v_{ia}v_{ai}}{\varepsilon_i^{(0)} - \varepsilon_a^{(0)}}
+\qquad\Big(\text{closed shell: } 2\sum_{ia}^{N/2}\Big).
 $$
 
-**Same result from N-electron RS theory (Szabo Ex. 6.3).** In $\sum_n|\langle\Psi_0|\mathscr V|n\rangle|^2/(E_0^{(0)} - E_n^{(0)})$ only singles $|\Psi_a^r\rangle$ couple, with element $v_{ar}$ and denominator $\varepsilon_a^{(0)} - \varepsilon_r^{(0)}$.
+**Same result from N-electron RS theory (Szabo Ex. 6.3).** In $\sum_n|\langle\Psi_0|\mathscr V|n\rangle|^2/(E_0^{(0)} - E_n^{(0)})$ only singles $|\Psi_i^a\rangle$ couple, with element $v_{ia}$ and denominator $\varepsilon_i^{(0)} - \varepsilon_a^{(0)}$.
 
-**Third order (Szabo Ex. 6.4).** Using $\langle\Psi_a^r|\mathscr V - E_0^{(1)}|\Psi_b^s\rangle = v_{rs}\delta_{ab} - v_{ba}\delta_{rs}$ for $(a,r)\ne(b,s)$,
+**Third order (Szabo Ex. 6.4).** Using $\langle\Psi_i^a|\mathscr V - E_0^{(1)}|\Psi_j^b\rangle = v_{ab}\delta_{ij} - v_{ji}\delta_{ab}$ for $(i,a)\ne(j,b)$,
 
 $$
-E_0^{(3)} = \sum_{ars}\frac{v_{ar}v_{rs}v_{sa}}{(\varepsilon_a^{(0)} - \varepsilon_r^{(0)})(\varepsilon_a^{(0)} - \varepsilon_s^{(0)})}
-- \sum_{abr}\frac{v_{ra}v_{ab}v_{br}}{(\varepsilon_a^{(0)} - \varepsilon_r^{(0)})(\varepsilon_b^{(0)} - \varepsilon_r^{(0)})}.
+E_0^{(3)} = \sum_{iab}\frac{v_{ia}v_{ab}v_{bi}}{(\varepsilon_i^{(0)} - \varepsilon_a^{(0)})(\varepsilon_i^{(0)} - \varepsilon_b^{(0)})}
+- \sum_{ija}\frac{v_{ai}v_{ij}v_{ja}}{(\varepsilon_i^{(0)} - \varepsilon_a^{(0)})(\varepsilon_j^{(0)} - \varepsilon_a^{(0)})}.
 $$
 
 The first is a "particle" term (the excited electron scatters among virtuals), the second a "hole" term (the hole scatters among occupied orbitals). The renormalization term $B^{(3)}$ of general RS theory has been absorbed; nothing grows like $N^2$. For a closed shell each sum gets a factor 2 and runs over spatial orbitals.
 
 ## Diagrams
 
-**Szabo Sec. 6.4.** The same expressions follow from diagrams with hole lines ($a,b,\ldots$, arrows down) and particle lines ($r,s,\ldots$, arrows up). Each dot is a one-body vertex $\langle\text{in}|v|\text{out}\rangle$, each gap between dots gives $\sum\varepsilon_{\text{holes}} - \sum\varepsilon_{\text{particles}}$, and the sign is $(-1)^{h+l}$. Second order is one bubble (one hole, one particle). Third order has two diagrams, a particle line with an extra dot and a hole line with an extra dot; the hole diagram has two hole lines, hence the minus sign above. Only linked diagrams occur.
+**Szabo Sec. 6.4.** The same expressions follow from diagrams with hole lines ($i,j,\ldots$, arrows down) and particle lines ($a,b,\ldots$, arrows up). Each dot is a one-body vertex $\langle\text{in}|v|\text{out}\rangle$, each gap between dots gives $\sum\varepsilon_{\text{holes}} - \sum\varepsilon_{\text{particles}}$, and the sign is $(-1)^{h+l}$. Second order is one bubble (one hole, one particle). Third order has two diagrams, a particle line with an extra dot and a hole line with an extra dot; the hole diagram has two hole lines, hence the minus sign above. Only linked diagrams occur.
 
 ## Cyclic polyenes
 

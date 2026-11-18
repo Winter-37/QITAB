@@ -10,6 +10,7 @@ prerequisites: [rhf, functions-of-matrices]
 related: [nonorthogonal-second-quantization, scf-procedure, population-analysis, change-of-basis]
 order: 60
 date: 2026-11-03
+conventions: [ia-letters]
 ---
 
 ## Why orthogonalize
@@ -38,10 +39,10 @@ Diagonalize $\mathbf F'$ ([[matrix-eigenvalue-problem]]) and back-transform, $\m
 
 ## The overlap matrix is positive definite
 
-Diagonalize $\mathbf S$: $\mathbf U^\dagger\mathbf{SU} = \mathbf s$. For eigenvector $\mathbf c^i$ (column $i$ of $\mathbf U$), Szabo Ex. 3.15 gives
+Diagonalize $\mathbf S$: $\mathbf U^\dagger\mathbf{SU} = \mathbf s$. For eigenvector $\mathbf c^p$ (column $p$ of $\mathbf U$), Szabo Ex. 3.15 gives
 
 $$
-s_i = \sum_{\mu\nu}c_\mu^{i*}S_{\mu\nu}c_\nu^i = \int\mathrm d\mathbf r\ \Big|\sum_\mu c_\mu^i\phi_\mu(\mathbf r)\Big|^2 > 0 .
+s_p = \sum_{\mu\nu}c_\mu^{p*}S_{\mu\nu}c_\nu^p = \int\mathrm d\mathbf r\ \Big|\sum_\mu c_\mu^p\phi_\mu(\mathbf r)\Big|^2 > 0 .
 $$
 
 It can only be zero if the basis functions are linearly dependent. So $\mathbf s^{-1/2}$ exists.
@@ -66,14 +67,14 @@ computed as a function of a Hermitian matrix ([[functions-of-matrices]]).
 $$
 \mathbf X = \mathbf U\mathbf s^{-1/2},
 \qquad
-X_{\mu i} = U_{\mu i}/\sqrt{s_i}
+X_{\mu p} = U_{\mu p}/\sqrt{s_p}
 \qquad
 \big(\mathbf X^\dagger\mathbf{SX} = \mathbf s^{-1/2}\mathbf U^\dagger\mathbf{SU}\mathbf s^{-1/2} = \mathbf 1\big).
 $$
 
-Each new function is an eigenvector of $\mathbf S$ scaled by $1/\sqrt{s_i}$.
+Each new function is an eigenvector of $\mathbf S$ scaled by $1/\sqrt{s_p}$.
 
-**Linear dependence.** In large or diffuse basis sets some $s_i$ become very small. The columns with $s_i\to0$ then have huge coefficients, and rounding errors explode. Canonical orthogonalization removes them by keeping only the columns with $s_i$ above a threshold (typically $10^{-6}$ to $10^{-8}$). This gives a rectangular $K\times m$ matrix $\mathbf X$ with $m<K$; the near-dependent combinations are dropped from the variational space. Symmetric orthogonalization cannot do this without losing its symmetric form.
+**Linear dependence.** In large or diffuse basis sets some $s_p$ become very small. The columns with $s_p\to0$ then have huge coefficients, and rounding errors explode. Canonical orthogonalization removes them by keeping only the columns with $s_p$ above a threshold (typically $10^{-6}$ to $10^{-8}$). This gives a rectangular $K\times m$ matrix $\mathbf X$ with $m<K$; the near-dependent combinations are dropped from the variational space. Symmetric orthogonalization cannot do this without losing its symmetric form.
 
 !!! example "Two-function basis (minimal H₂, STO-3G, R = 1.4 bohr)"
     **Diagonalize S.** $\mathbf S = \begin{pmatrix}1&S\\S&1\end{pmatrix}$ with $S = 0.6593$. The eigenvalues are $1\pm S = 1.6593$ and $0.3407$, with eigenvectors $2^{-1/2}(1,\pm1)$.

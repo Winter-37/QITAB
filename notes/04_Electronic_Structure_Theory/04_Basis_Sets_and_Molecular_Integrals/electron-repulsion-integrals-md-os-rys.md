@@ -8,6 +8,7 @@ level: advanced
 tags: [electron-repulsion-integrals, boys-function, mcmurchie-davidson, obara-saika, rys-quadrature, hermite-coulomb-integrals, horizontal-recurrence, electron-transfer-recurrence, nuclear-attraction, incomplete-gamma-function]
 prerequisites: [gaussian-overlap-distributions-and-one-electron-integrals, integral-notation]
 related: [multipole-methods-and-integral-screening, solid-harmonics-angular-basis, scf-procedure]
+conventions: [chemists-integrals]
 order: 80
 date: 2026-11-04
 ---

@@ -6,7 +6,7 @@ A personal reference site. You write notes in Markdown; `build.py` turns them in
 ```
 Scientific_Knowledge/
 ├── index.html        the site (generated). Open this.
-├── vendor/           equation renderer and fonts, so everything works offline
+├── vendor/           equation renderer, fonts and graph library, so everything works offline
 ├── notes/            your notes. Folders mirror tree.txt; one .md file per note
 ├── templates/        note.md and paper.md
 ├── tree.txt          the folder structure and its order
@@ -79,6 +79,8 @@ two `---` lines is metadata:
 | `tags` | `[a, b]`. Searched, shown on the note. |
 | `prerequisites` | Notes to understand first, by id or title. Shown at the top of the note. |
 | `related` | Connected notes that are not prerequisites. |
+| `conventions` | Conventions the note uses, from `conventions.txt`. Shown as badges; checked against prerequisites. |
+| `key` | Label of the equation shown in the note's hover preview. |
 | `order` | Position of the section inside its chapter (lower first). Use steps of 10 so a new section can be slotted in between. The template's 999 puts a new section at the end. Default: alphabetical by title. |
 | `date` | `YYYY-MM-DD`, optional. |
 | `authors`, `journal`, `year`, `doi` | For papers. |
@@ -126,6 +128,55 @@ duplicate listings. To connect a note to another chapter, use `prerequisites`, `
 When the same subject turns up in several parts (VQE, embedding, potential energy surfaces), split it
 by role rather than copying: theory in one chapter, software details in the software chapter, and
 link the two.
+
+## Numbered equations
+
+Put `\label{name}` inside a display equation and it gets a number: the section number plus its place
+among the labelled equations of that section, so the second labelled equation of Section 4.3.5 is
+(4.3.5.2). Unlabelled equations stay unnumbered.
+
+```markdown
+$$
+\mathbf F\mathbf C = \mathbf S\mathbf C\boldsymbol\varepsilon
+\label{roothaan}
+$$
+```
+
+Link to it from any note with `[[rhf#roothaan]]` ("Eq. (4.3.5.2)", which jumps to the equation), from
+the same note with `[[#roothaan]]`, or with your own words: `[[rhf#roothaan|the Roothaan equations]]`.
+Numbers follow the notes when they move. `key: roothaan` in a note's metadata picks the equation its
+hover preview shows. `build.py` lists any link to a label that does not exist.
+
+## Conventions
+
+`conventions: [ia-letters, spatial-orbitals, chemists-integrals]` in a note's metadata shows those
+conventions as badges under its title (each links to the reference note that explains it). The
+allowed values are in `conventions.txt`; add new ones there. A note that converts between two
+conventions lists both. `build.py` then warns when a note and one of its prerequisites use different
+conventions on the same axis and neither says where the switch happens.
+
+## Hover previews and the Sources page
+
+Pointing at a link to another section (or tabbing to it) shows its number, title, summary,
+conventions and key equation; pointing at an equation link shows the equation. The **Sources** page
+(link on the home page, or `index.html#sources`) lists every book cited in the notes' `## Source`
+sections, with the book sections each note uses, and every paper cited with a DOI. Write citations
+as `Authors, *Book Title* (edition, publisher, year), Sec. 3.4` and
+`Authors, "Title", *Journal* **vol**, page (year), doi:10....` for them to be picked up.
+
+## Topic map and graphs
+
+The site draws your links as graphs; there is nothing extra to write. `prerequisites`, `related` and
+`[[links]]` are all it uses.
+
+- **Map** (button at the top, or `index.html#map`): every section, coloured by part. Filter by part and
+  by link kind, find a section by title, select one to light up its links, select it again to open it.
+- **Graph panel** on each section page (under Prerequisites, folded by default):
+  - *Prerequisite chain*: everything you need before this section, top to bottom, with a reading path
+    in book order underneath. Links already implied by another route are not drawn.
+  - *Neighbours*: sections one or two steps away through any kind of link.
+
+Honest prerequisites make the chain useful: list what a section really needs, not everything related.
 
 ## Look and feel
 

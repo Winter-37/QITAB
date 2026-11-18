@@ -8,6 +8,7 @@ level: advanced
 tags: [integral-screening, schwarz-inequality, linear-scaling, multipole-expansion, fast-multipole-method, classical-coulomb, nonclassical-coulomb, extent, sparsity]
 prerequisites: [electron-repulsion-integrals-md-os-rys, solid-harmonics-angular-basis]
 related: [gaussian-overlap-distributions-and-one-electron-integrals, scf-procedure, coulomb-cusp-and-helium-expansions]
+conventions: [chemists-integrals]
 order: 90
 date: 2026-11-04
 ---

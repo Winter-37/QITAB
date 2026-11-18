@@ -8,6 +8,7 @@ level: advanced
 tags: [analytic-derivatives, u-matrix, skeleton-integrals, derivative-integrals, orthonormality, mo-coefficients, 2n+1-rule]
 prerequisites: [rhf, gaussian-basis-functions, analytic-gradients-and-force-constants]
 related: [cphf-closed-shell, rhf-analytic-gradient, ci-analytic-gradient, orbital-rotations, molecular-properties-and-response, integral-notation]
+conventions: [ia-letters, chemists-integrals]
 order: 30
 date: 2026-11-07
 ---

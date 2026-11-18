@@ -8,6 +8,7 @@ level: advanced
 tags: [perturbation-theory, brillouin-wigner, rayleigh-schrodinger, moller-plesset, size-consistency, resolvent, renormalization, wave-function-corrections]
 prerequisites: [rayleigh-schrodinger-perturbation-theory, second-quantized-operators, greens-functions-single-particle]
 related: [mp2, mp3, linked-cluster-theorem, size-consistency, iepa, heh-plus-minimal-basis-model, coupled-cluster-second-quantization, brillouin-theorem]
+conventions: [ia-letters, physicists-integrals, antisymmetrized-integrals]
 order: 40
 date: 2026-11-03
 ---

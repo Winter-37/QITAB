@@ -10,6 +10,7 @@ prerequisites: [uhf, rhf, spin-operators]
 related: [hf-solution-classification, rhf-instabilities-and-multiple-solutions, scf-second-order-and-stability, h2-dissociation-rhf-uhf, hartree-fock-equations]
 order: 120
 date: 2026-11-07
+conventions: [ia-letters, chemists-integrals]
 ---
 
 ## The ansatz

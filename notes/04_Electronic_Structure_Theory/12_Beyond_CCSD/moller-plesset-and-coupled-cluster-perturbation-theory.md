@@ -8,6 +8,7 @@ level: advanced
 tags: [moller-plesset, mp2, mp3, mp4, coupled-cluster-perturbation-theory, fluctuation-potential, size-extensivity, lagrangian, epstein-nesbet]
 prerequisites: [rspt-wigner-rule-and-hylleraas-functional, coupled-cluster-hierarchy-and-size-extensivity]
 related: [mp2, mp3, linked-cluster-theorem, perturbation-theory-second-quantization, mp-convergence-intruders-analytic-continuation, perturbative-triples-cc2-cc3, coupled-cluster-optimization-and-lagrangian]
+conventions: [ia-letters]
 order: 10
 date: 2026-11-04
 ---

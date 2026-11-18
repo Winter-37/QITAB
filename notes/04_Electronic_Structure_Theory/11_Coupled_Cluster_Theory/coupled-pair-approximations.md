@@ -8,6 +8,7 @@ level: intermediate
 tags: [cepa, l-ccd, linear-cca, d-mbpt, dci, ccd, coupled-pair, size-consistency, invariance]
 prerequisites: [iepa, cisd, size-consistency]
 related: [coupled-cluster-doubles, mp3, linked-cluster-theorem, one-particle-hamiltonian-models, coupled-cluster-second-quantization]
+conventions: [ia-letters]
 order: 20
 date: 2026-11-03
 ---
@@ -17,42 +18,42 @@ date: 2026-11-03
 Ignore singles, triples and other odd excitations for simplicity. Inserting the intermediate-normalized full CI wave function
 
 $$
-|\Phi_0\rangle = |\Psi_0\rangle + \sum_{\substack{a<b\\ r<s}} c_{ab}^{rs}|\Psi_{ab}^{rs}\rangle + \sum_{\substack{a<b<c<d\\ r<s<t<u}} c_{abcd}^{rstu}|\Psi_{abcd}^{rstu}\rangle + \cdots
+|\Phi_0\rangle = |\Psi_0\rangle + \sum_{\substack{i<j\\ a<b}} c_{ij}^{ab}|\Psi_{ij}^{ab}\rangle + \sum_{\substack{i<j<k<l\\ a<b<c<d}} c_{ijkl}^{abcd}|\Psi_{ijkl}^{abcd}\rangle + \cdots
 $$
 
-into $(H - E_0)|\Phi_0\rangle = E_{\text{corr}}|\Phi_0\rangle$ and projecting on $\langle\Psi_0|$ and $\langle\Psi_{ab}^{rs}|$ gives
+into $(H - E_0)|\Phi_0\rangle = E_{\text{corr}}|\Phi_0\rangle$ and projecting on $\langle\Psi_0|$ and $\langle\Psi_{ij}^{ab}|$ gives
 
 $$
-\sum_{c<d,\,t<u}\langle\Psi_0|H|\Psi_{cd}^{tu}\rangle\,c_{cd}^{tu} = E_{\text{corr}},
+\sum_{k<l,\,c<d}\langle\Psi_0|H|\Psi_{kl}^{cd}\rangle\,c_{kl}^{cd} = E_{\text{corr}},
 $$
 
 $$
-\langle\Psi_{ab}^{rs}|H|\Psi_0\rangle + \sum_{c<d,\,t<u}\langle\Psi_{ab}^{rs}|H - E_0|\Psi_{cd}^{tu}\rangle\,c_{cd}^{tu} + \sum_{c<d,\,t<u}\langle\Psi_0|H|\Psi_{cd}^{tu}\rangle\,c_{abcd}^{rstu} = E_{\text{corr}}\,c_{ab}^{rs}.
+\langle\Psi_{ij}^{ab}|H|\Psi_0\rangle + \sum_{k<l,\,c<d}\langle\Psi_{ij}^{ab}|H - E_0|\Psi_{kl}^{cd}\rangle\,c_{kl}^{cd} + \sum_{k<l,\,c<d}\langle\Psi_0|H|\Psi_{kl}^{cd}\rangle\,c_{ijkl}^{abcd} = E_{\text{corr}}\,c_{ij}^{ab}.
 $$
 
-The doubles equation contains the quadruples, the quadruples equation contains the hextuples, and so on. A pair theory is a recipe for closing this hierarchy. The doubles-quadruples matrix element $\langle\Psi_{ab}^{rs}|H|\Psi_{abcd}^{rstu}\rangle$ has been replaced by $\langle\Psi_0|H|\Psi_{cd}^{tu}\rangle$, because the two determinants differ only in $cd\to tu$.
+The doubles equation contains the quadruples, the quadruples equation contains the hextuples, and so on. A pair theory is a recipe for closing this hierarchy. The doubles-quadruples matrix element $\langle\Psi_{ij}^{ab}|H|\Psi_{ijkl}^{abcd}\rangle$ has been replaced by $\langle\Psi_0|H|\Psi_{kl}^{cd}\rangle$, because the two determinants differ only in $kl\to cd$.
 
-**Closure 1: DCI.** Set $c_{abcd}^{rstu} = 0$. The result is exactly the DCI eigenvalue problem ([[cisd]]). It is variational and not size consistent ([[size-consistency]]).
+**Closure 1: DCI.** Set $c_{ijkl}^{abcd} = 0$. The result is exactly the DCI eigenvalue problem ([[cisd]]). It is variational and not size consistent ([[size-consistency]]).
 
 ## Closure 2: quadruples as products of doubles (CCA)
 
 **Motivation.** For two infinitely separated H$_2$ molecules the exact quadruple coefficient is the product of the doubles coefficients ([[size-consistency]]). For a real system pairs are not independent, but IEPA works reasonably ([[iepa]]), which suggests approximating every quadruple coefficient by products of doubles.
 
-**Sign bookkeeping.** The same quadruple $abcd\to rstu$ can be built from two disjoint double excitations in 18 distinct ways (which hole pairs and which particle pairs are combined). Each product carries the sign of the permutation that brings the determinant to the standard order. Szabo writes the sum as
+**Sign bookkeeping.** The same quadruple $ijkl\to abcd$ can be built from two disjoint double excitations in 18 distinct ways (which hole pairs and which particle pairs are combined). Each product carries the sign of the permutation that brings the determinant to the standard order. Szabo writes the sum as
 
 $$
-c_{abcd}^{rstu} \approx c_{ab}^{rs}*c_{cd}^{tu}
-= c_{ab}^{rs}c_{cd}^{tu} - c_{ac}^{rs}c_{bd}^{tu} + c_{ad}^{rs}c_{bc}^{tu} - \cdots \quad(18\text{ terms}).
+c_{ijkl}^{abcd} \approx c_{ij}^{ab}*c_{kl}^{cd}
+= c_{ij}^{ab}c_{kl}^{cd} - c_{ik}^{ab}c_{jl}^{cd} + c_{il}^{ab}c_{jk}^{cd} - \cdots \quad(18\text{ terms}).
 $$
 
-**The cancellation.** Insert this into the doubles equation and use the energy equation for $E_{\text{corr}}$. The right-hand side $E_{\text{corr}}c_{ab}^{rs}$ contains the products $c_{ab}^{rs}c_{cd}^{tu}\langle\Psi_0|H|\Psi_{cd}^{tu}\rangle$. These cancel exactly against the first term of $c_{ab}^{rs}*c_{cd}^{tu}$ on the left. What remains is
+**The cancellation.** Insert this into the doubles equation and use the energy equation for $E_{\text{corr}}$. The right-hand side $E_{\text{corr}}c_{ij}^{ab}$ contains the products $c_{ij}^{ab}c_{kl}^{cd}\langle\Psi_0|H|\Psi_{kl}^{cd}\rangle$. These cancel exactly against the first term of $c_{ij}^{ab}*c_{kl}^{cd}$ on the left. What remains is
 
 $$
-\langle\Psi_{ab}^{rs}|H|\Psi_0\rangle + \sum_{c<d,\,t<u}\langle\Psi_{ab}^{rs}|H - E_0|\Psi_{cd}^{tu}\rangle c_{cd}^{tu}
-= \sum_{c<d,\,t<u}\langle\Psi_0|H|\Psi_{cd}^{tu}\rangle\,\big\langle c_{ab}^{rs}*c_{cd}^{tu}\big\rangle ,
+\langle\Psi_{ij}^{ab}|H|\Psi_0\rangle + \sum_{k<l,\,c<d}\langle\Psi_{ij}^{ab}|H - E_0|\Psi_{kl}^{cd}\rangle c_{kl}^{cd}
+= \sum_{k<l,\,c<d}\langle\Psi_0|H|\Psi_{kl}^{cd}\rangle\,\big\langle c_{ij}^{ab}*c_{kl}^{cd}\big\rangle ,
 $$
 
-where $\langle c_{ab}^{rs}*c_{cd}^{tu}\rangle = c_{ab}^{rs}c_{cd}^{tu} - c_{ab}^{rs}*c_{cd}^{tu}$ collects the 17 remaining products.
+where $\langle c_{ij}^{ab}*c_{kl}^{cd}\rangle = c_{ij}^{ab}c_{kl}^{cd} - c_{ij}^{ab}*c_{kl}^{cd}$ collects the 17 remaining products.
 
 **Properties.**
 
@@ -65,11 +66,11 @@ where $\langle c_{ab}^{rs}*c_{cd}^{tu}\rangle = c_{ab}^{rs}c_{cd}^{tu} - c_{ab}^
 **Definition.** Drop the product term $\langle c*c\rangle$ **after** the cancellation:
 
 $$
-\langle\Psi_{ab}^{rs}|H|\Psi_0\rangle + \sum_{c<d,\,t<u}\langle\Psi_{ab}^{rs}|H - E_0|\Psi_{cd}^{tu}\rangle c_{cd}^{tu} = 0,
+\langle\Psi_{ij}^{ab}|H|\Psi_0\rangle + \sum_{k<l,\,c<d}\langle\Psi_{ij}^{ab}|H - E_0|\Psi_{kl}^{cd}\rangle c_{kl}^{cd} = 0,
 \qquad E_{\text{corr}} = \mathbf b^\dagger\mathbf c .
 $$
 
-With $(\mathbf b)_{rs,ab} = \langle\Psi_{ab}^{rs}|H|\Psi_0\rangle$ and $(\mathbf D)_{rsab,tucd} = \langle\Psi_{ab}^{rs}|H - E_0|\Psi_{cd}^{tu}\rangle$,
+With $(\mathbf b)_{ab,ij} = \langle\Psi_{ij}^{ab}|H|\Psi_0\rangle$ and $(\mathbf D)_{abij,cdkl} = \langle\Psi_{ij}^{ab}|H - E_0|\Psi_{kl}^{cd}\rangle$,
 
 $$
 E_{\text{corr}}(\text{L-CCA}) = -\mathbf b^\dagger\mathbf D^{-1}\mathbf b,
@@ -77,43 +78,43 @@ E_{\text{corr}}(\text{L-CCA}) = -\mathbf b^\dagger\mathbf D^{-1}\mathbf b,
 E_{\text{corr}}(\text{DCI}) = -\mathbf b^\dagger(\mathbf D - E_{\text{corr}}\mathbf 1)^{-1}\mathbf b .
 $$
 
-**Not an approximation to DCI.** The two formulas look alike: L-CCA is DCI with $E_{\text{corr}}$ set to zero in the denominator. But dropping the products *before* the cancellation would have given DCI. The term $-E_{\text{corr}}c_{ab}^{rs}$ in DCI is exactly the unlinked piece that destroys size consistency, so L-CCA is size consistent and DCI is not.
+**Not an approximation to DCI.** The two formulas look alike: L-CCA is DCI with $E_{\text{corr}}$ set to zero in the denominator. But dropping the products *before* the cancellation would have given DCI. The term $-E_{\text{corr}}c_{ij}^{ab}$ in DCI is exactly the unlinked piece that destroys size consistency, so L-CCA is size consistent and DCI is not.
 
 **Other names.** L-CCA is the same as linearized CCD (L-CCD), and the same as the doubles-only infinite-order many-body perturbation theory D-MBPT(∞) of Bartlett and coworkers, obtained by summing all doubles diagrams ([[linked-cluster-theorem]]). It is exact through third order ([[mp3]]). Replacing $\mathbf D$ by its diagonal gives Epstein-Nesbet pairs (Szabo Ex. 5.12a). L-CCA is invariant to unitary transformations of degenerate orbitals (Ex. 5.12b).
 
 ## Closure 4: CEPA
 
-**Definition (Meyer).** In the product term keep only $cd = ab$. Since amplitudes are antisymmetric, $\langle c_{ab}^{rs}*c_{ab}^{tu}\rangle = c_{ab}^{rs}c_{ab}^{tu}$ and the right-hand side becomes $c_{ab}^{rs}\sum_{t<u}\langle\Psi_0|H|\Psi_{ab}^{tu}\rangle c_{ab}^{tu} = e_{ab}\,c_{ab}^{rs}$:
+**Definition (Meyer).** In the product term keep only $kl = ij$. Since amplitudes are antisymmetric, $\langle c_{ij}^{ab}*c_{ij}^{cd}\rangle = c_{ij}^{ab}c_{ij}^{cd}$ and the right-hand side becomes $c_{ij}^{ab}\sum_{c<d}\langle\Psi_0|H|\Psi_{ij}^{cd}\rangle c_{ij}^{cd} = e_{ij}\,c_{ij}^{ab}$:
 
 $$
-\langle\Psi_{ab}^{rs}|H|\Psi_0\rangle + \sum_{c<d,\,t<u}\langle\Psi_{ab}^{rs}|H - E_0|\Psi_{cd}^{tu}\rangle c_{cd}^{tu} = e_{ab}\,c_{ab}^{rs},
-\qquad E_{\text{corr}} = \sum_{a<b} e_{ab}.
+\langle\Psi_{ij}^{ab}|H|\Psi_0\rangle + \sum_{k<l,\,c<d}\langle\Psi_{ij}^{ab}|H - E_0|\Psi_{kl}^{cd}\rangle c_{kl}^{cd} = e_{ij}\,c_{ij}^{ab},
+\qquad E_{\text{corr}} = \sum_{i<j} e_{ij}.
 $$
 
-**Relation to IEPA and DCI.** Replacing $e_{ab}$ by $E_{\text{corr}}$ gives DCI. Restricting the sum to $cd = ab$ gives IEPA. CEPA couples pairs and stays size consistent, and is computationally as simple as DCI. It is not exactly invariant, but much closer to invariant than IEPA.
+**Relation to IEPA and DCI.** Replacing $e_{ij}$ by $E_{\text{corr}}$ gives DCI. Restricting the sum to $kl = ij$ gives IEPA. CEPA couples pairs and stays size consistent, and is computationally as simple as DCI. It is not exactly invariant, but much closer to invariant than IEPA.
 
-**Caution on the name.** Several CEPA variants exist in the literature, differing in which pair energies are subtracted. Szabo's form, with the pair's own energy $e_{ab}$, is the one usually labelled CEPA(2) (general knowledge, not from Szabo).
+**Caution on the name.** Several CEPA variants exist in the literature, differing in which pair energies are subtracted. Szabo's form, with the pair's own energy $e_{ij}$, is the one usually labelled CEPA(2) (general knowledge, not from Szabo).
 
 ## One equation, four methods
 
 All four theories share
 
 $$
-E_{\text{corr}} = \sum_{a<b} e_{ab}, \qquad e_{ab} = \sum_{r<s}\langle\Psi_0|H|\Psi_{ab}^{rs}\rangle c_{ab}^{rs},
+E_{\text{corr}} = \sum_{i<j} e_{ij}, \qquad e_{ij} = \sum_{a<b}\langle\Psi_0|H|\Psi_{ij}^{ab}\rangle c_{ij}^{ab},
 $$
 
 $$
-\langle\Psi_{ab}^{rs}|H|\Psi_0\rangle + \sum_{c<d,\,t<u}\langle\Psi_{ab}^{rs}|H - E_0|\Psi_{cd}^{tu}\rangle c_{cd}^{tu} = X ,
+\langle\Psi_{ij}^{ab}|H|\Psi_0\rangle + \sum_{k<l,\,c<d}\langle\Psi_{ij}^{ab}|H - E_0|\Psi_{kl}^{cd}\rangle c_{kl}^{cd} = X ,
 $$
 
 and differ only in $X$ (Szabo Table 5.2):
 
 | Method | $X$ | Variational | Size consistent | Invariant |
 |---|---|---|---|---|
-| DCI | $E_{\text{corr}}\,c_{ab}^{rs}$ | yes | no | yes |
+| DCI | $E_{\text{corr}}\,c_{ij}^{ab}$ | yes | no | yes |
 | L-CCA (L-CCD) | $0$ | no | yes | yes |
-| CEPA | $e_{ab}\,c_{ab}^{rs}$ | no | yes | nearly |
-| CCA (CCD) | $\sum_{c<d,t<u}\langle\Psi_0|H|\Psi_{cd}^{tu}\rangle\langle c_{ab}^{rs}*c_{cd}^{tu}\rangle$ | no | yes | yes |
+| CEPA | $e_{ij}\,c_{ij}^{ab}$ | no | yes | nearly |
+| CCA (CCD) | $\sum_{k<l,c<d}\langle\Psi_0|H|\Psi_{kl}^{cd}\rangle\langle c_{ij}^{ab}*c_{kl}^{cd}\rangle$ | no | yes | yes |
 
 The last three columns are from Szabo's discussion; IEPA (not in the table) is size consistent and not invariant. That one method follows from another by setting something to zero says nothing about which is more accurate.
 
@@ -174,7 +175,7 @@ The residual for all four methods. `R_lin(t)` is the left-hand side of the commo
 def residual(d, t, kind):
     if kind == "DCI":  return d.R_lin(t) - d.E(t) * t                      # X = E_corr c
     if kind == "LCCD": return d.R_lin(t)                                   # X = 0
-    if kind == "CEPA": return d.R_lin(t) - d.pair_e(t)[:, :, None, None] * t   # X = e_ab c
+    if kind == "CEPA": return d.R_lin(t) - d.pair_e(t)[:, :, None, None] * t   # X = e_ij c
     if kind == "CCD":  return d.R_ccd(t)                                   # X = product terms
 # R_lin(t) = <ij||ab> + 1/2 <ab||cd> t_ij^cd + 1/2 <kl||ij> t_kl^ab + P(ij)P(ab) <kb||cj> t_ik^ac
 ```

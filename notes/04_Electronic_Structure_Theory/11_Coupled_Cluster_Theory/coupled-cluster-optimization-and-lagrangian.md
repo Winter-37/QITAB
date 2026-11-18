@@ -8,6 +8,7 @@ level: advanced
 tags: [coupled-cluster, ccsd, quasi-newton, diis, jacobian, lagrangian, lambda-equations, hellmann-feynman, density-matrix, molecular-properties]
 prerequisites: [coupled-cluster-hierarchy-and-size-extensivity, scf-convergence-diis-and-newton]
 related: [eom-ccsd-and-size-extensivity, closed-shell-ccsd-t1-transformation, ci-optimization-newton-and-davidson, coupled-cluster-second-quantization]
+conventions: [ia-letters]
 order: 90
 date: 2026-11-04
 ---

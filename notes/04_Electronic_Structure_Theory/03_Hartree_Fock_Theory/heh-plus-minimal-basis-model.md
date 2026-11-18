@@ -10,6 +10,7 @@ prerequisites: [rhf, scf-procedure, orbital-rotations]
 related: [perturbation-theory-second-quantization, scf-second-order-and-stability, mcscf-second-order-optimization, ci-in-practice, size-consistency, minimal-basis-h2-model, molecular-properties-and-response, polarization-propagator-rpa, one-particle-greens-function]
 order: 80
 date: 2026-11-03
+conventions: [ia-letters, physicists-integrals]
 ---
 
 ## The model
@@ -90,16 +91,16 @@ The two agree only at self-consistency, because (C) assumes $F\phi_k = \varepsil
 
 **Orthonormal start.** $\phi_1 = 1s_{\text{He}}$, and Schmidt orthogonalization gives $\phi_2 = -0.7090\,1s_{\text{He}} + 1.2259\,1s_{\text{H}}$. Then $E = -2.805129$ (J-S −2.8050), with MO integrals $h_{22} = -1.2870$, $h_{12} = 0.0222$, $\langle11|21\rangle = -0.1663$, $\langle12|12\rangle = 0.5567$, $\langle22|11\rangle = 0.0766$, $\langle22|21\rangle = 0.0170$, $\langle22|22\rangle = 0.6200$.
 
-**Closed-shell gradient and Hessian.** For a closed shell the density matrices factorize, $\sum_\sigma\langle0|a_{r\sigma}^\dagger a_{s\sigma}|0\rangle = 2\delta_{rs}\nu_r$ and $\sum_{\sigma\sigma'}\langle0|a_{r\sigma}^\dagger a_{s\sigma'}^\dagger a_{t\sigma'}a_{u\sigma}|0\rangle = (4\delta_{ru}\delta_{st} - 2\delta_{rt}\delta_{su})\nu_r\nu_s$. The matrices of [[mcscf-second-order-optimization]] become (occupied $\alpha,\beta,\gamma$; virtual $m,n$):
+**Closed-shell gradient and Hessian.** For a closed shell the density matrices factorize, $\sum_\sigma\langle0|a_{p\sigma}^\dagger a_{q\sigma}|0\rangle = 2\delta_{pq}\nu_p$ and $\sum_{\sigma\sigma'}\langle0|a_{p\sigma}^\dagger a_{q\sigma'}^\dagger a_{r\sigma'}a_{s\sigma}|0\rangle = (4\delta_{ps}\delta_{qr} - 2\delta_{pr}\delta_{qs})\nu_p\nu_q$. The matrices of [[mcscf-second-order-optimization]] become (occupied $i,j,k$; virtual $a,b$; J-S write $\alpha,\beta,\gamma$ and $m,n$):
 
 $$
-(A_{11})_{n\beta,m\alpha} = 2\Big[-h_{\alpha\beta}\delta_{mn} + h_{nm}\delta_{\alpha\beta} + \delta_{\alpha\beta}\sum_\gamma\big(2\langle n\gamma|m\gamma\rangle - \langle n\gamma|\gamma m\rangle\big) - \delta_{mn}\sum_\gamma\big(2\langle\alpha\gamma|\beta\gamma\rangle - \langle\alpha\gamma|\gamma\beta\rangle\big) + 2\langle n\alpha|\beta m\rangle - \langle n\alpha|m\beta\rangle\Big],
+(A_{11})_{bj,ai} = 2\Big[-h_{ij}\delta_{ab} + h_{ba}\delta_{ij} + \delta_{ij}\sum_k\big(2\langle bk|ak\rangle - \langle bk|ka\rangle\big) - \delta_{ab}\sum_k\big(2\langle ik|jk\rangle - \langle ik|kj\rangle\big) + 2\langle bi|ja\rangle - \langle bi|aj\rangle\Big],
 $$
 
 $$
-(B_{11})_{n\beta,m\alpha} = 2\big[\langle mn|\beta\alpha\rangle - 2\langle mn|\alpha\beta\rangle\big],
+(B_{11})_{bj,ai} = 2\big[\langle ab|ji\rangle - 2\langle ab|ij\rangle\big],
 \qquad
-W_{\alpha m} = 2\Big[h_{m\alpha} + \sum_\gamma\big(2\langle m\gamma|\alpha\gamma\rangle - \langle m\gamma|\gamma\alpha\rangle\big)\Big] .
+W_{ia} = 2\Big[h_{ai} + \sum_k\big(2\langle ak|ik\rangle - \langle ak|ki\rangle\big)\Big] .
 $$
 
 $W$ is twice the occupied-virtual Fock element: Brillouin's theorem is $W = 0$.

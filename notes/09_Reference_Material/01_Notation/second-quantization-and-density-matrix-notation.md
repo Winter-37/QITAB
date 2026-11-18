@@ -8,6 +8,7 @@ level: intermediate
 tags: [notation, second-quantization, excitation-operators, density-matrices, normal-ordering]
 prerequisites: [index-and-orbital-notation]
 related: [creation-and-annihilation-operators, second-quantized-operators, normal-ordering-and-wicks-theorem, density-matrix-conventions, excitation-operator-conventions]
+conventions: [chemists-integrals]
 order: 30
 date: 2026-11-17
 ---

@@ -8,30 +8,31 @@ level: intermediate
 tags: [natural-orbitals, rdm, occupation-numbers, ci-convergence, lowdin]
 prerequisites: [one-particle-rdm, full-ci]
 related: [density-matrices-second-quantization, mcscf-and-gvb, cisd, change-of-basis, ci-in-practice]
+conventions: [ia-letters]
 order: 40
 date: 2026-11-03
 ---
 
 ## Definition
 
-The 1-RDM in an orthonormal spin-orbital basis, $\gamma_{ij}$ ([[one-particle-rdm]]), is Hermitian. Rotate to another orthonormal basis, $\chi_i = \sum_k\eta_kU_{ki}^*$ ([[change-of-basis]]):
+The 1-RDM in an orthonormal spin-orbital basis, $\gamma_{pq}$ ([[one-particle-rdm]]), is Hermitian. Rotate to another orthonormal basis, $\chi_p = \sum_r\eta_rU_{rp}^*$ ([[change-of-basis]]):
 
 $$
-\gamma(\mathbf x_1,\mathbf x_1') = \sum_{kl}\eta_k(\mathbf x_1)\,(\mathbf U^\dagger\boldsymbol\gamma\mathbf U)_{kl}\,\eta_l^*(\mathbf x_1').
+\gamma(\mathbf x_1,\mathbf x_1') = \sum_{rs}\eta_r(\mathbf x_1)\,(\mathbf U^\dagger\boldsymbol\gamma\mathbf U)_{rs}\,\eta_s^*(\mathbf x_1').
 $$
 
 Choose $\mathbf U$ to diagonalize $\boldsymbol\gamma$, $\mathbf U^\dagger\boldsymbol\gamma\mathbf U = \boldsymbol\lambda$:
 
 $$
-\gamma(\mathbf x_1,\mathbf x_1') = \sum_i\lambda_i\,\eta_i(\mathbf x_1)\,\eta_i^*(\mathbf x_1').
+\gamma(\mathbf x_1,\mathbf x_1') = \sum_p\lambda_p\,\eta_p(\mathbf x_1)\,\eta_p^*(\mathbf x_1').
 $$
 
-The $\eta_i$ are the **natural spin orbitals** (Löwdin) and the $\lambda_i$ their **occupation numbers**:
+The $\eta_p$ are the **natural spin orbitals** (Löwdin) and the $\lambda_p$ their **occupation numbers**:
 
 $$
-0\le\lambda_i\le1,
+0\le\lambda_p\le1,
 \qquad
-\sum_i\lambda_i = N .
+\sum_p\lambda_p = N .
 $$
 
 **Limiting cases.**
@@ -50,10 +51,10 @@ Szabo illustrates this with Shavitt and co-workers' water study (39-STO basis, 4
 
 ## Two electrons: the natural expansion (Szabo Ex. 4.8)
 
-Write the full CI singlet of a two-electron system in spatial orbitals $\psi_i$, $i = 1,\dots,K$:
+Write the full CI singlet of a two-electron system in spatial orbitals $\psi_p$, $p = 1,\dots,K$:
 
 $$
-|{}^1\Phi_0\rangle = \sum_{i=1}^{K}\sum_{j=1}^{K}C_{ij}\,|\psi_i\bar\psi_j\rangle,
+|{}^1\Phi_0\rangle = \sum_{p=1}^{K}\sum_{q=1}^{K}C_{pq}\,|\psi_p\bar\psi_q\rangle,
 \qquad
 \mathbf C = \mathbf C^{\mathsf T}\ (\text{singlet}),
 $$
@@ -61,10 +62,10 @@ $$
 which has $K^2$ terms.
 
 1. **Natural orbitals from $\mathbf C$.** The spatial 1-RDM is $2\mathbf C\mathbf C^\dagger$. Diagonalizing $\mathbf C$ with a real orthogonal $\mathbf U$, $\mathbf U^{\mathsf T}\mathbf C\mathbf U = \mathbf d$, also diagonalizes $\mathbf C\mathbf C^\dagger$.
-2. **The rotated orbitals are natural orbitals.** $\zeta_i = \sum_j\psi_jU_{ji}$ are the natural spatial orbitals, with occupation numbers $2d_i^2$.
+2. **The rotated orbitals are natural orbitals.** $\zeta_p = \sum_q\psi_qU_{qp}$ are the natural spatial orbitals, with occupation numbers $2d_p^2$.
 3. **The wave function collapses.** In the natural orbitals,
 $$
-|{}^1\Phi_0\rangle = \sum_{i=1}^{K}d_i\,|\zeta_i\bar\zeta_i\rangle .
+|{}^1\Phi_0\rangle = \sum_{p=1}^{K}d_p\,|\zeta_p\bar\zeta_p\rangle .
 $$
 Only **$K$ terms** remain, all closed-shell pairs, compared with $K^2$ in a general basis.
 
@@ -75,11 +76,11 @@ This is the two-electron case of the singular-value (Schmidt) decomposition of $
     $$
     1.96965,\ 0.02017,\ 0.00636,\ 0.00158,\ 0.00158,\ 0.00024,\ \dots
     $$
-    The coefficients $d_i$ = 0.99238, 0.10042, 0.05637, 0.02811, 0.02811 satisfy $2d_i^2$ = occupation, confirming the natural expansion.
+    The coefficients $d_p$ = 0.99238, 0.10042, 0.05637, 0.02811, 0.02811 satisfy $2d_p^2$ = occupation, confirming the natural expansion.
 
-    **Truncated full CI.** Full CI in the first $k$ orbitals, measured relative to the full-space Hartree-Fock energy (hartree; full basis value $-0.033869$):
+    **Truncated full CI.** Full CI in the first $r$ orbitals, measured relative to the full-space Hartree-Fock energy (hartree; full basis value $-0.033869$):
 
-    | $k$ | natural orbitals | canonical HF orbitals |
+    | $r$ | natural orbitals | canonical HF orbitals |
     |---:|---:|---:|
     | 2 | −0.018212 | −0.005101 |
     | 3 | −0.025508 | −0.011678 |
@@ -88,7 +89,7 @@ This is the two-electron case of the singular-value (Schmidt) decomposition of $
 
     With two orbitals, natural orbitals give 54% of the correlation energy against 15% for canonical orbitals.
 
-    The $k=1$ natural-orbital value is +0.0002 hartree, slightly above Hartree-Fock. The first natural orbital is not the variationally best single orbital, so a one-determinant energy in it is a little worse than Hartree-Fock.
+    The $r=1$ natural-orbital value is +0.0002 hartree, slightly above Hartree-Fock. The first natural orbital is not the variationally best single orbital, so a one-determinant energy in it is a little worse than Hartree-Fock.
 
 ## Using natural orbitals in practice
 

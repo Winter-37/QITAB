@@ -8,6 +8,7 @@ level: intermediate
 tags: [rdm, two-particle-rdm, density-matrix, occupation-numbers, pair-occupation, spin-density, second-quantization]
 prerequisites: [one-particle-rdm, second-quantized-operators, spin-tensor-operators]
 related: [natural-orbitals, full-ci, population-analysis, slater-condon-rules, electron-correlation]
+conventions: [chemists-integrals]
 order: 20
 date: 2026-11-04
 ---

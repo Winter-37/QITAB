@@ -8,6 +8,7 @@ level: intermediate
 tags: [rdm, density-matrix, one-matrix, expectation-values, second-quantization]
 prerequisites: [slater-determinants, creation-and-annihilation-operators]
 related: [density-matrices-second-quantization, natural-orbitals, rhf, population-analysis]
+conventions: [ia-letters]
 order: 10
 date: 2026-11-03
 ---
@@ -36,38 +37,38 @@ It is a kernel with two continuous indices: a "continuous matrix" ([[orthonormal
 
 ## Discrete representation
 
-Expand in an orthonormal spin-orbital basis $\{\chi_i\}$:
+Expand in an orthonormal spin-orbital basis $\{\chi_p\}$:
 
 $$
-\gamma(\mathbf x_1,\mathbf x_1') = \sum_{ij}\chi_i(\mathbf x_1)\,\gamma_{ij}\,\chi_j^*(\mathbf x_1'),
+\gamma(\mathbf x_1,\mathbf x_1') = \sum_{pq}\chi_p(\mathbf x_1)\,\gamma_{pq}\,\chi_q^*(\mathbf x_1'),
 \qquad
-\gamma_{ij} = \int\mathrm d\mathbf x_1\mathrm d\mathbf x_1'\ \chi_i^*(\mathbf x_1)\,\gamma(\mathbf x_1,\mathbf x_1')\,\chi_j(\mathbf x_1').
+\gamma_{pq} = \int\mathrm d\mathbf x_1\mathrm d\mathbf x_1'\ \chi_p^*(\mathbf x_1)\,\gamma(\mathbf x_1,\mathbf x_1')\,\chi_q(\mathbf x_1').
 $$
 
 **Properties (Szabo Ex. 4.4, 4.5).**
 
-- $\gamma_{ij}^* = \gamma_{ji}$: the matrix $\boldsymbol\gamma$ is Hermitian. This follows from $\gamma(\mathbf x_1,\mathbf x_1')^* = \gamma(\mathbf x_1',\mathbf x_1)$.
-- $\operatorname{tr}\boldsymbol\gamma = \sum_i\gamma_{ii} = \int\rho = N$.
+- $\gamma_{pq}^* = \gamma_{qp}$: the matrix $\boldsymbol\gamma$ is Hermitian. This follows from $\gamma(\mathbf x_1,\mathbf x_1')^* = \gamma(\mathbf x_1',\mathbf x_1)$.
+- $\operatorname{tr}\boldsymbol\gamma = \sum_p\gamma_{pp} = \int\rho = N$.
 
-**Second quantization (Szabo Ex. 4.7).** With $\hat\psi(\mathbf x) = \sum_i\chi_i(\mathbf x)a_i$,
+**Second quantization (Szabo Ex. 4.7).** With $\hat\psi(\mathbf x) = \sum_p\chi_p(\mathbf x)a_p$,
 
 $$
 \gamma(\mathbf x_1,\mathbf x_1') = \langle\Phi|\hat\psi^\dagger(\mathbf x_1')\,\hat\psi(\mathbf x_1)|\Phi\rangle
 \quad\Longrightarrow\quad
-\gamma_{ij} = \langle\Phi|a_j^\dagger a_i|\Phi\rangle .
+\gamma_{pq} = \langle\Phi|a_q^\dagger a_p|\Phi\rangle .
 $$
 
-The diagonal element $\gamma_{ii} = \langle\hat n_i\rangle$ is the mean occupation of $\chi_i$, between 0 and 1 by the Pauli principle. For real wave functions $\boldsymbol\gamma$ is real symmetric and the order of $i, j$ does not matter. For complex ones, check which index convention a program uses.
+The diagonal element $\gamma_{pp} = \langle\hat n_p\rangle$ is the mean occupation of $\chi_p$, between 0 and 1 by the Pauli principle. For real wave functions $\boldsymbol\gamma$ is real symmetric and the order of $p, q$ does not matter. For complex ones, check which index convention a program uses.
 
 ## One-electron expectation values
 
 For $\hat{\mathcal O}_1 = \sum_i h(\mathbf x_i)$ (Szabo Ex. 4.6):
 
 $$
-\langle\Phi|\hat{\mathcal O}_1|\Phi\rangle = \int\mathrm d\mathbf x_1\ \big[h(\mathbf x_1)\,\gamma(\mathbf x_1,\mathbf x_1')\big]_{\mathbf x_1'=\mathbf x_1} = \sum_{ij}h_{ji}\gamma_{ij} = \operatorname{tr}(\mathbf h\boldsymbol\gamma),
+\langle\Phi|\hat{\mathcal O}_1|\Phi\rangle = \int\mathrm d\mathbf x_1\ \big[h(\mathbf x_1)\,\gamma(\mathbf x_1,\mathbf x_1')\big]_{\mathbf x_1'=\mathbf x_1} = \sum_{pq}h_{qp}\gamma_{pq} = \operatorname{tr}(\mathbf h\boldsymbol\gamma),
 $$
 
-with $h_{ji} = \langle j|h|i\rangle$. The prime is removed only **after** $h$ acts, which matters for differential operators such as the kinetic energy.
+with $h_{qp} = \langle q|h|p\rangle$. The prime is removed only **after** $h$ acts, which matters for differential operators such as the kinetic energy.
 
 All one-electron properties of any state are fixed by its 1-RDM: dipole moments, kinetic and nuclear-attraction energies, populations. The two-electron energy needs the second-order matrix, which is not treated in Szabo.
 
@@ -76,9 +77,9 @@ All one-electron properties of any state are fixed by its 1-RDM: dipole moments,
 For $|\Psi_0\rangle = |\chi_1\cdots\chi_N\rangle$,
 
 $$
-\gamma^{\text{HF}}(\mathbf x_1,\mathbf x_1') = \sum_{a}^{N}\chi_a(\mathbf x_1)\chi_a^*(\mathbf x_1'),
+\gamma^{\text{HF}}(\mathbf x_1,\mathbf x_1') = \sum_{i}^{N}\chi_i(\mathbf x_1)\chi_i^*(\mathbf x_1'),
 \qquad
-\gamma^{\text{HF}}_{ij} = \begin{cases}\delta_{ij} & j\text{ occupied}\\ 0 & \text{otherwise.}\end{cases}
+\gamma^{\text{HF}}_{pq} = \begin{cases}\delta_{pq} & q\text{ occupied}\\ 0 & \text{otherwise.}\end{cases}
 $$
 
 **Idempotency.** In the Hartree-Fock spin-orbital basis $\boldsymbol\gamma$ is diagonal with occupation numbers 1 and 0, so

@@ -8,6 +8,7 @@ level: advanced
 tags: [z-vector, handy-schaefer, relaxed-density, orbital-response, cphf, analytic-gradients, lagrangian]
 prerequisites: [ci-analytic-gradient, cphf-closed-shell]
 related: [lagrangian-for-nonvariational-energies, cpci-and-ci-hessian, rhf-analytic-hessian, molecular-properties-and-response, derivative-integrals-and-u-matrices]
+conventions: [ia-letters, chemists-integrals]
 order: 80
 date: 2026-11-07
 ---

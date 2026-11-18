@@ -8,6 +8,7 @@ level: advanced
 tags: [coupled-cluster, diagrams, hugenholtz, goldstone, size-extensivity, ccsd, cost]
 prerequisites: [normal-ordering-and-wicks-theorem, ccsd-spin-orbital-equations]
 related: [linked-cluster-theorem, coupled-cluster-hierarchy-and-size-extensivity, ci-size-extensivity-and-excitation-levels, perturbative-triples-cc2-cc3, coupled-cluster-second-quantization]
+conventions: [ia-letters, antisymmetrized-integrals]
 order: 70
 date: 2026-11-07
 ---

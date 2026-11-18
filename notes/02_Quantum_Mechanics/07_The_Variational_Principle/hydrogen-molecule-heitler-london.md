@@ -8,6 +8,7 @@ level: intermediate
 tags: [hydrogen-molecule, heitler-london, valence-bond, covalent-bond, exchange-integral, singlet-triplet, variational-principle, dissociation, griffiths]
 prerequisites: [hydrogen-molecule-ion-variational, exchange-symmetry-spin-and-symmetrization-principle, variational-principle]
 related: [bosons-fermions-and-exchange-forces, minimal-basis-h2-model, h2-dissociation-rhf-uhf, mcscf-and-gvb, standard-models-h2-and-water, helium-ground-state-variational]
+conventions: [chemists-integrals]
 order: 70
 date: 2026-11-14
 ---

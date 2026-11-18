@@ -8,6 +8,7 @@ level: advanced
 tags: [lagrangian, z-vector, lagrange-multipliers, nonvariational, relaxed-density, cisd, molecular-properties]
 prerequisites: [molecular-properties-and-response, hellmann-feynman-and-virial-theorems, scf-second-order-and-stability]
 related: [analytic-gradients-and-force-constants, cisd, coupled-cluster-second-quantization, mp2, orbital-rotations, z-vector-method, ci-analytic-gradient, cphf-closed-shell]
+conventions: [ia-letters]
 order: 90
 date: 2026-11-04
 ---

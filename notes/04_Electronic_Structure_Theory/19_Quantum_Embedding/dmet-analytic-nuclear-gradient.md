@@ -8,6 +8,7 @@ level: advanced
 tags: [DMET, analytic-gradients, lagrangian, z-vector, cphf, chemical-potential, auxiliary-rdm]
 prerequisites: [dmet-energy-functionals-and-chemical-potential, lagrangian-for-nonvariational-energies, z-vector-method, cphf-closed-shell, cpci-and-ci-hessian]
 related: [rhf-analytic-gradient, derivative-integrals-and-u-matrices, geometry-optimization]
+conventions: [chemists-integrals]
 order: 50
 date: 2026-11-08
 ---

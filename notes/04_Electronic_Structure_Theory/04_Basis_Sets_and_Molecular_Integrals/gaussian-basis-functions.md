@@ -8,6 +8,7 @@ level: intermediate
 tags: [basis-sets, gaussian, slater, sto-ng, contraction, gaussian-product-theorem, integrals]
 prerequisites: [rhf]
 related: [pople-basis-sets, scf-procedure, variational-principle, radial-basis-functions-slater-and-gaussian, gaussian-basis-sets-and-convergence, gaussian-overlap-distributions-and-one-electron-integrals]
+conventions: [chemists-integrals]
 order: 10
 date: 2026-11-03
 ---

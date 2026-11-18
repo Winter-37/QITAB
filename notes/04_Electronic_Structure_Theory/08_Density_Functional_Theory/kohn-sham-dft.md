@@ -8,6 +8,7 @@ level: intermediate
 tags: [dft, kohn-sham, hohenberg-kohn, exchange-correlation, functional-derivative, electron-density]
 prerequisites: [hartree-fock-equations, variational-principle, free-electron-gas, rhf]
 related: [exchange-correlation-functionals, dft-versus-hartree-fock, fock-operator, koopmans-theorem, one-particle-rdm]
+conventions: [ia-letters]
 order: 10
 date: 2026-11-17
 ---

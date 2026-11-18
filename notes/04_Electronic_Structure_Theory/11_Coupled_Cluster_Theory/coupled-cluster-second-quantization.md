@@ -8,6 +8,7 @@ level: advanced
 tags: [coupled-cluster, ccsd, ccd, cluster-operator, similarity-transformation, bch, newton-raphson, mbpt, size-consistency]
 prerequisites: [coupled-cluster-doubles, creation-and-annihilation-operators, mp3]
 related: [coupled-pair-approximations, linked-cluster-theorem, orbital-rotations, one-particle-hamiltonian-models, spin-tensor-operators, baker-campbell-hausdorff]
+conventions: [ia-letters, antisymmetrized-integrals]
 order: 40
 date: 2026-11-03
 ---
@@ -25,12 +26,12 @@ $$
 $$
 
 $$
-\hat T_1 = \sum_{\alpha r}t_\alpha^r\,a_r^\dagger a_\alpha,
+\hat T_1 = \sum_{ia}t_i^a\,a_a^\dagger a_i,
 \qquad
-\hat T_2 = \sum_{\alpha>\beta}\sum_{r>s}t_{\alpha\beta}^{rs}\,a_r^\dagger a_s^\dagger a_\beta a_\alpha,\ \ldots
+\hat T_2 = \sum_{i>j}\sum_{a>b}t_{ij}^{ab}\,a_a^\dagger a_b^\dagger a_j a_i,\ \ldots
 $$
 
-where Greek letters are spin orbitals occupied in the reference determinant $|0^\circ\rangle$ and $r,s,\ldots$ are unoccupied. Almost all applications use a single-determinant reference.
+where $i,j,\ldots$ are spin orbitals occupied in the reference determinant $|0^\circ\rangle$ and $a,b,\ldots$ are unoccupied (J-S write Greek letters for occupied and $r,s$ or $m,n$ for unoccupied orbitals). Almost all applications use a single-determinant reference.
 
 **Disjoint clusters.** All the excitation operators commute (they contain only particle creators and hole annihilators). A product such as $\hat T_2\hat T_2$ vanishes whenever the two clusters share a hole or a particle index, so it describes **disjoint** pairs only. Even with $\hat T$ truncated at $\hat T_2$, the wave function contains $\tfrac1{2!}\hat T_2^2$, $\tfrac1{3!}\hat T_2^3,\ldots$ up to $N/2$ disjoint pairs, which is what size consistency needs.
 
@@ -77,16 +78,16 @@ $$
 
 **Why $\hat T\approx\hat T_2$.** With Hartree-Fock orbitals, Brillouin's theorem suggests that $\hat T_1$, which mainly relaxes orbitals, is less important than $\hat T_2$. J-S add that a balanced treatment includes both (CCSD).
 
-**Energy.** Partition $\hat H = \hat H^\circ + \hat U$ with $\hat H^\circ = \sum\varepsilon_r a_r^\dagger a_r$. Projecting on $\langle0^\circ|$ and using $\langle0^\circ|\hat T_2 = 0$ and that $\hat T_2^2|0^\circ\rangle$ (quadruples) cannot reach $\langle0^\circ|$ through $\hat H$:
+**Energy.** Partition $\hat H = \hat H^\circ + \hat U$ with $\hat H^\circ = \sum_p\varepsilon_p a_p^\dagger a_p$. Projecting on $\langle0^\circ|$ and using $\langle0^\circ|\hat T_2 = 0$ and that $\hat T_2^2|0^\circ\rangle$ (quadruples) cannot reach $\langle0^\circ|$ through $\hat H$:
 
 $$
-E = \langle0^\circ|\hat H(1 + \hat T_2)|0^\circ\rangle = E_{\text{HF}} + \sum_{\alpha>\beta}\sum_{m>n}\langle\alpha\beta||mn\rangle\,t_{\alpha\beta}^{mn}.
+E = \langle0^\circ|\hat H(1 + \hat T_2)|0^\circ\rangle = E_{\text{HF}} + \sum_{i>j}\sum_{a>b}\langle ij||ab\rangle\,t_{ij}^{ab}.
 $$
 
-**Amplitude equation.** Projecting on doubles, only $\langle{}^{mn}_{\alpha\beta}|\hat H(1 + \hat T_2 + \tfrac12\hat T_2^2)|0^\circ\rangle - \langle{}^{mn}_{\alpha\beta}|\hat T_2\hat H(1 + \hat T_2)|0^\circ\rangle$ survives, a **quadratic** equation:
+**Amplitude equation.** Projecting on doubles, only $\langle{}^{ab}_{ij}|\hat H(1 + \hat T_2 + \tfrac12\hat T_2^2)|0^\circ\rangle - \langle{}^{ab}_{ij}|\hat T_2\hat H(1 + \hat T_2)|0^\circ\rangle$ survives, a **quadratic** equation:
 
 $$
-(\varepsilon_\alpha + \varepsilon_\beta - \varepsilon_m - \varepsilon_n)\,t_{\alpha\beta}^{mn} = \langle mn||\alpha\beta\rangle + (\text{terms linear in } t) + (\text{terms quadratic in } t),
+(\varepsilon_i + \varepsilon_j - \varepsilon_a - \varepsilon_b)\,t_{ij}^{ab} = \langle ab||ij\rangle + (\text{terms linear in } t) + (\text{terms quadratic in } t),
 $$
 
 J-S Eq. (4.19), equivalent to the CCD equations of [[coupled-cluster-doubles]] and Szabo's CCA ([[coupled-pair-approximations]]).
@@ -95,7 +96,7 @@ J-S Eq. (4.19), equivalent to the CCD equations of [[coupled-cluster-doubles]] a
 
 **Scheme.** Start with $t = 0$ on the right, solve for the $t$ on the left, reinsert, repeat. Assigning orders to the terms shows the link to many-body perturbation theory:
 
-1. **First iteration:** $t_{\alpha\beta}^{mn} = \langle mn||\alpha\beta\rangle/(\varepsilon_\alpha + \varepsilon_\beta - \varepsilon_m - \varepsilon_n)$. The energy is exactly MP2 ([[mp2]]).
+1. **First iteration:** $t_{ij}^{ab} = \langle ab||ij\rangle/(\varepsilon_i + \varepsilon_j - \varepsilon_a - \varepsilon_b)$. The energy is exactly MP2 ([[mp2]]).
 2. **Second iteration, linear terms only:** the energy is exactly MP2 + MP3 ([[mp3]]).
 3. **Next iteration including the quadratic terms:** the energy contains all fourth-order quadruples contributions, which come only from $\tfrac12\hat T_2^2$ (two simultaneous pair interactions).
 4. **Converged:** all diagrams built from doubles and products of doubles, summed to infinite order.
@@ -115,7 +116,7 @@ J-S Eq. (4.19), equivalent to the CCD equations of [[coupled-cluster-doubles]] a
 
 ## Newton-Raphson
 
-**Form.** Collecting terms, the doubles equations read $\mathbf 0 = \mathbf a + \mathbf b\,\mathbf t + \mathbf c\,\mathbf t\mathbf t$ with $a_{rs,\alpha\beta} = \langle rs||\alpha\beta\rangle$. Newton-Raphson linearizes $\mathbf f(\mathbf t) = \mathbf a + \mathbf b\mathbf t + \mathbf c\mathbf t\mathbf t$ about the current $\mathbf t_0$ and solves
+**Form.** Collecting terms, the doubles equations read $\mathbf 0 = \mathbf a + \mathbf b\,\mathbf t + \mathbf c\,\mathbf t\mathbf t$ with $a_{ab,ij} = \langle ab||ij\rangle$. Newton-Raphson linearizes $\mathbf f(\mathbf t) = \mathbf a + \mathbf b\mathbf t + \mathbf c\mathbf t\mathbf t$ about the current $\mathbf t_0$ and solves
 
 $$
 \mathbf f(\mathbf t_0) + \frac{\partial\mathbf f}{\partial\mathbf t}\Big|_{\mathbf t_0}\Delta\mathbf t = \mathbf 0,
@@ -162,7 +163,7 @@ The quadratic term comes from $-t\langle D|H|0\rangle t$ (the $-\hat T_2\hat H\h
     | CCD, second root | 17.9466 (−17.8432) | 2.264329 (2.2500) | −2.007770 (−2.0220) |
     | 2×2 CI eigenvalues | | | −4.279130, −2.007770 (−4.2790, −2.0079) |
 
-    - **Sign of $t$.** J-S's amplitudes have the opposite sign: they write the energy with $\langle\beta\alpha||mn\rangle = -\langle11|22\rangle$. The energies are unaffected.
+    - **Sign of $t$.** J-S's amplitudes have the opposite sign: they write the energy with $\langle ji||ab\rangle = -\langle11|22\rangle$. The energies are unaffected.
     - **CC = CI exactly.** Both CCD roots equal the CI eigenvalues to all printed digits. J-S's second root (−2.0220) differs from their CI value (−2.0079) by 0.014, which they attribute to four-digit integrals. Since CCD and CI are the same equations here, rounding cannot separate them; the difference must be arithmetic.
     - **Linear CC is not third-order MBPT.** Both use the linear equation, but MBPT inserts perturbative amplitudes while L-CCD solves the equation exactly. The energies differ: −0.006743 against −0.007052.
     - **n separated ions.** Integrals between ions vanish, so iterating the equations never creates amplitudes coupling different ions. Every iteration, and therefore the converged CCD energy, is $n$ times the monomer value. Doubles CI gives the $\sqrt n$ failure of [[size-consistency]].

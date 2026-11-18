@@ -8,6 +8,7 @@ level: advanced
 tags: [hartree-fock, rhf, csf, orbital-rotation, redundant-parameters, generalized-brillouin-theorem, fock-operator, canonical-orbitals, size-extensivity, hund-rule, fluctuation-potential]
 prerequisites: [orbital-rotations, second-quantized-operators, spin-adapted-configurations, brillouin-theorem]
 related: [hartree-fock-equations, fock-operator, scf-convergence-diis-and-newton, generalized-fock-matrix-and-orbital-hessian, size-consistency, koopmans-theorem, rhf-instabilities-and-multiple-solutions]
+conventions: [ia-letters, chemists-integrals]
 order: 20
 date: 2026-11-04
 ---

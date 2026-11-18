@@ -8,6 +8,7 @@ level: intermediate
 tags: [slater-condon, matrix-elements, determinants, ci, hamiltonian-matrix]
 prerequisites: [slater-determinants, integral-notation, molecular-hamiltonian]
 related: [excited-determinants, minimal-basis-h2-model, spin-orbital-to-spatial-orbital, second-quantized-operators]
+conventions: [ia-letters, physicists-integrals, antisymmetrized-integrals]
 order: 50
 date: 2026-11-03
 ---
@@ -28,13 +29,13 @@ $\hat H = \hat{\mathcal O}_1 + \hat{\mathcal O}_2$ with $h$ the core Hamiltonian
 
 Before applying the rules, reorder the columns of one determinant so that as many identical spin orbitals as possible sit in the same columns as in the other. Each column swap multiplies by $-1$ ([[slater-determinants]]).
 
-**Example.** $|K\rangle = |abcd\rangle$ and $|L\rangle = |crds\rangle$ share $c$ and $d$. Swapping columns,
+**Example.** $|K\rangle = |ijkl\rangle$ and $|L\rangle = |kalb\rangle$ share $k$ and $l$. Swapping columns,
 
 $$
-|crds\rangle = -|crsd\rangle = |srcd\rangle ,
+|kalb\rangle = -|kabd\rangle = |bakl\rangle ,
 $$
 
-so after two swaps $|L\rangle = |srcd\rangle$, which differs from $|K\rangle$ by $a\to s$, $b\to r$ with sign $+1$.
+so after two swaps $|L\rangle = |bakl\rangle$, which differs from $|K\rangle$ by $i\to b$, $j\to a$ with sign $+1$.
 
 The determinants are then classified by the number of differing spin orbitals:
 
@@ -67,16 +68,16 @@ In Case 1 the double sum can be written with the factor removed, $\sum_m\sum_{n>
 Applied to $|\Psi_0\rangle = |\chi_1\cdots\chi_N\rangle$ ([[excited-determinants]]):
 
 $$
-E_0 = \langle\Psi_0|\hat H|\Psi_0\rangle = \sum_a^N\langle a|h|a\rangle + \tfrac12\sum_a^N\sum_b^N\langle ab||ab\rangle ,
+E_0 = \langle\Psi_0|\hat H|\Psi_0\rangle = \sum_i^N\langle i|h|i\rangle + \tfrac12\sum_i^N\sum_j^N\langle ij||ij\rangle ,
 $$
 
 $$
-\langle\Psi_0|\hat H|\Psi_a^r\rangle = \langle a|h|r\rangle + \sum_b^N\langle ab||rb\rangle ,
+\langle\Psi_0|\hat H|\Psi_i^a\rangle = \langle i|h|a\rangle + \sum_j^N\langle ij||aj\rangle ,
 \qquad
-\langle\Psi_0|\hat H|\Psi_{ab}^{rs}\rangle = \langle ab||rs\rangle ,
+\langle\Psi_0|\hat H|\Psi_{ij}^{ab}\rangle = \langle ij||ab\rangle ,
 $$
 
-and the ground state does not couple to triples and higher. The single-excitation element is the occupied-virtual Fock matrix element $f_{ar}$, which vanishes for Hartree-Fock orbitals (Brillouin's theorem, Szabo Ch. 3).
+and the ground state does not couple to triples and higher. The single-excitation element is the occupied-virtual Fock matrix element $f_{ia}$, which vanishes for Hartree-Fock orbitals (Brillouin's theorem, Szabo Ch. 3).
 
 **Reading energies off a picture.** Each occupied spin orbital contributes $\langle m|h|m\rangle$, and each distinct pair contributes $\langle mn||mn\rangle = \langle mn|mn\rangle - \langle mn|nm\rangle$. Example (Szabo Ex. 2.11):
 
@@ -88,29 +89,29 @@ $$
 !!! example "One-electron operator between singles (Szabo Ex. 2.13)"
     Both determinants are singles relative to the same $|\Psi_0\rangle$. Bring them into maximum coincidence first.
     $$
-    \langle\Psi_a^r|\hat{\mathcal O}_1|\Psi_b^s\rangle =
+    \langle\Psi_i^a|\hat{\mathcal O}_1|\Psi_j^b\rangle =
     \begin{cases}
-    0 & a\ne b,\ r\ne s\ \ (\text{two differences})\\
-    \langle r|h|s\rangle & a = b,\ r\ne s\\
-    -\langle b|h|a\rangle & a\ne b,\ r = s\\
-    \sum_c^N\langle c|h|c\rangle - \langle a|h|a\rangle + \langle r|h|r\rangle & a = b,\ r = s
+    0 & i\ne j,\ a\ne b\ \ (\text{two differences})\\
+    \langle a|h|b\rangle & i = j,\ a\ne b\\
+    -\langle j|h|i\rangle & i\ne j,\ a = b\\
+    \sum_k^N\langle k|h|k\rangle - \langle i|h|i\rangle + \langle a|h|a\rangle & i = j,\ a = b
     \end{cases}
     $$
-    The minus sign in the third line comes from the reordering. Write $|\Psi_a^r\rangle = |\cdots r\cdots b\cdots\rangle$ and $|\Psi_b^r\rangle = |\cdots a\cdots r\cdots\rangle$. Moving $r$ to the same column in both costs one swap, and the remaining difference is $b\to a$.
+    The minus sign in the third line comes from the reordering. Write $|\Psi_i^a\rangle = |\cdots a\cdots j\cdots\rangle$ and $|\Psi_j^a\rangle = |\cdots i\cdots a\cdots\rangle$. Moving $a$ to the same column in both costs one swap, and the remaining difference is $j\to i$.
 
 !!! example "Ionization energy from the rules (Szabo Ex. 2.14)"
-    Remove an electron from $\chi_a$: $|{}^{N-1}\Psi_a\rangle$ has all orbitals of $|\Psi_0\rangle$ except $\chi_a$, with the same orbitals (no relaxation). With the Case 1 rule for both energies, the difference is every term that contains $a$:
+    Remove an electron from $\chi_i$: $|{}^{N-1}\Psi_i\rangle$ has all orbitals of $|\Psi_0\rangle$ except $\chi_i$, with the same orbitals (no relaxation). With the Case 1 rule for both energies, the difference is every term that contains $i$:
     $$
-    {}^{N}E_0 - {}^{N-1}E_a = \langle a|h|a\rangle + \sum_{b}^{N}\langle ab||ab\rangle .
+    {}^{N}E_0 - {}^{N-1}E_i = \langle i|h|i\rangle + \sum_{j}^{N}\langle ij||ij\rangle .
     $$
-    Here $\tfrac12\sum_{mn}$ loses the terms $m=a$ and $n=a$, which are equal, giving $\sum_b\langle ab||ab\rangle$ (and $\langle aa||aa\rangle = 0$). The right side is the Hartree-Fock orbital energy $\varepsilon_a$, so the frozen-orbital ionization energy is ${}^{N-1}E_a - {}^NE_0 = -\varepsilon_a$. This is Koopmans' theorem, derived in Szabo Ch. 3.
+    Here $\tfrac12\sum_{mn}$ loses the terms $m=i$ and $n=i$, which are equal, giving $\sum_j\langle ij||ij\rangle$ (and $\langle ii||ii\rangle = 0$). The right side is the Hartree-Fock orbital energy $\varepsilon_i$, so the frozen-orbital ionization energy is ${}^{N-1}E_i - {}^NE_0 = -\varepsilon_i$. This is Koopmans' theorem, derived in Szabo Ch. 3.
 
 ## Outline of the derivation
 
 Write a determinant as an antisymmetrized Hartree product,
 
 $$
-|K\rangle = (N!)^{-1/2}\sum_{n=1}^{N!}(-1)^{p_n}\,\mathscr P_n\{\chi_m(1)\chi_n(2)\cdots\chi_k(N)\},
+|K\rangle = (N!)^{-1/2}\sum_{n=1}^{N!}(-1)^{p_n}\,\mathscr P_n\{\chi_m(1)\chi_n(2)\cdots\chi_r(N)\},
 $$
 
 where $\mathscr P_n$ permutes electron labels and $p_n$ is its parity. Three steps then give all the rules:
@@ -121,7 +122,7 @@ where $\mathscr P_n$ permutes electron labels and $p_n$ is its parity. Three ste
 
 Szabo works through each case explicitly (Sec. 2.3.4). The second-quantized route ([[second-quantized-operators]]) is shorter.
 
-**Independent-electron check (Szabo Ex. 2.15).** If $h\chi_i = \varepsilon_i\chi_i$, then $\sum_i h(i)$ commutes with every permutation and acts on each Hartree product as $\sum_{i\in\text{occ}}\varepsilon_i$. A determinant of eigen-spin-orbitals is therefore an eigenfunction with eigenvalue $\varepsilon_i + \varepsilon_j + \cdots + \varepsilon_k$.
+**Independent-electron check (Szabo Ex. 2.15).** If $h\chi_p = \varepsilon_p\chi_p$, then $\sum_i h(i)$ commutes with every permutation and acts on each Hartree product as $\sum_{i\in\text{occ}}\varepsilon_i$. A determinant of eigen-spin-orbitals is therefore an eigenfunction with eigenvalue $\varepsilon_p + \varepsilon_q + \cdots + \varepsilon_r$.
 
 ## Verification in code
 

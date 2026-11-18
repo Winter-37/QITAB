@@ -8,6 +8,7 @@ level: intermediate
 tags: [molecular-hamiltonian, integral-transformation, mo-integrals, second-quantization, spin-orbitals, integral-notation, permutational-symmetry, orbital-invariance, one-norm]
 prerequisites: [second-quantized-operators, integral-notation, rhf, molecular-hamiltonian]
 related: [jordan-wigner-mapping, frozen-core-and-active-space-hamiltonians, qpe-cost-and-resource-estimates, minimal-basis-h2-model, spin-orbital-to-spatial-orbital]
+conventions: [chemists-integrals, physicists-integrals, antisymmetrized-integrals]
 order: 10
 date: 2026-11-17
 ---

@@ -8,6 +8,7 @@ level: advanced
 tags: [coupled-cluster, ccsd, spin-orbital, intermediates, stanton-gauss, implementation, diis, cost]
 prerequisites: [coupled-cluster-second-quantization, normal-ordering-and-wicks-theorem]
 related: [coupled-cluster-doubles, closed-shell-ccsd-t1-transformation, coupled-cluster-diagrams, coupled-cluster-hierarchy-and-size-extensivity, coupled-cluster-optimization-and-lagrangian, perturbative-triples-cc2-cc3]
+conventions: [ia-letters, chemists-integrals, antisymmetrized-integrals]
 order: 60
 date: 2026-11-07
 ---

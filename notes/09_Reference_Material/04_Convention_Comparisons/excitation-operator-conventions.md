@@ -8,6 +8,7 @@ level: intermediate
 tags: [excitation-operators, coupled-cluster, amplitudes, conventions, spin-adaptation, pyscf, comparison]
 prerequisites: [second-quantization-and-density-matrix-notation, excited-determinants]
 related: [full-ci, index-and-orbital-notation, density-matrix-conventions, commutator-and-anticommutator-identities, ccsd-spin-orbital-equations, closed-shell-ccsd-t1-transformation, coupled-cluster-hierarchy-and-size-extensivity]
+conventions: [chemists-integrals, antisymmetrized-integrals]
 order: 20
 date: 2026-11-17
 ---

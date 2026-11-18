@@ -8,6 +8,7 @@ level: introductory
 tags: [h2, minimal-basis, sto-3g, model-system, full-ci, lcao]
 prerequisites: [slater-determinants]
 related: [h2-minimal-basis-correlation-analysis, excited-determinants, slater-condon-rules, spin-orbital-to-spatial-orbital, spin-adapted-configurations]
+conventions: [ia-letters, chemists-integrals]
 order: 90
 date: 2026-11-03
 ---
@@ -62,7 +63,7 @@ $$
 |\Psi_{12}^{34}\rangle = |2\bar2\rangle .
 $$
 
-(Notation: $|\Psi_a^r\rangle$ replaces occupied $\chi_a$ by virtual $\chi_r$ in the same column; see [[excited-determinants]].)
+(Notation: $|\Psi_i^a\rangle$ replaces occupied $\chi_i$ by virtual $\chi_a$ in the same column; see [[excited-determinants]].)
 
 **Only $|\Psi_{12}^{34}\rangle$ mixes with the ground state.**
 
@@ -97,7 +98,7 @@ K_{12} & 2h_{22} + J_{22}
 \end{pmatrix},
 $$
 
-with $h_{ii} = (\psi_i|h|\psi_i)$, $J_{ij} = (ii|jj)$ and $K_{12} = (12|21)$ in chemists' notation ([[integral-notation]]). The lower eigenvalue is
+with $h_{pp} = (\psi_p|h|\psi_p)$, $J_{pq} = (pp|qq)$ and $K_{12} = (12|21)$ in chemists' notation ([[integral-notation]]). The lower eigenvalue is
 
 $$
 E_{\text{FCI}} = \tfrac12(H_{11}+H_{22}) - \sqrt{\tfrac14(H_{22}-H_{11})^2 + K_{12}^2},

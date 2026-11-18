@@ -8,6 +8,7 @@ level: introductory
 tags: [basics, spin, pauli, antisymmetry, spin-orbitals]
 prerequisites: [molecular-hamiltonian]
 related: [slater-determinants, spin-operators, spin-adapted-configurations]
+conventions: [ia-letters]
 order: 10
 date: 2026-11-03
 ---
@@ -32,13 +33,13 @@ $$
 
 ## Spatial and spin orbitals
 
-A **spatial orbital** $\psi_i(\mathbf r)$ is a one-electron wave function: $|\psi_i(\mathbf r)|^2\mathrm d\mathbf r$ is the probability of finding the electron in $\mathrm d\mathbf r$. The orbitals are taken orthonormal,
+A **spatial orbital** $\psi_p(\mathbf r)$ is a one-electron wave function: $|\psi_p(\mathbf r)|^2\mathrm d\mathbf r$ is the probability of finding the electron in $\mathrm d\mathbf r$. The orbitals are taken orthonormal,
 
 $$
-\int\mathrm d\mathbf r\ \psi_i^*(\mathbf r)\psi_j(\mathbf r) = \delta_{ij}.
+\int\mathrm d\mathbf r\ \psi_p^*(\mathbf r)\psi_q(\mathbf r) = \delta_{pq}.
 $$
 
-In practice only a finite set $\{\psi_i\}_{i=1}^K$ is available, so results are "exact" only within the space it spans.
+In practice only a finite set $\{\psi_p\}_{p=1}^K$ is available, so results are "exact" only within the space it spans.
 
 A **spin orbital** $\chi(\mathbf x)$ describes both the spatial distribution and the spin. From each spatial orbital one can form two,
 
@@ -49,23 +50,23 @@ $$
 From $K$ spatial orbitals we get $2K$ spin orbitals:
 
 $$
-\chi_{2i-1}(\mathbf x) = \psi_i(\mathbf r)\alpha(\omega),
+\chi_{2p-1}(\mathbf x) = \psi_p(\mathbf r)\alpha(\omega),
 \qquad
-\chi_{2i}(\mathbf x) = \psi_i(\mathbf r)\beta(\omega),
-\qquad i = 1,\dots,K .
+\chi_{2p}(\mathbf x) = \psi_p(\mathbf r)\beta(\omega),
+\qquad p = 1,\dots,K .
 $$
 
 These are orthonormal if the spatial orbitals are: the spin integral gives $\delta$ between spins, the spatial integral gives $\delta$ between orbitals,
 
 $$
-\langle\chi_i|\chi_j\rangle = \int\mathrm d\mathbf x\ \chi_i^*(\mathbf x)\chi_j(\mathbf x) = \delta_{ij}.
+\langle\chi_p|\chi_q\rangle = \int\mathrm d\mathbf x\ \chi_p^*(\mathbf x)\chi_q(\mathbf x) = \delta_{pq}.
 $$
 
 !!! example "Different spatial orbitals for different spins (Szabo Ex. 2.1)"
-    Take two orthonormal spatial sets $\{\psi_i^\alpha\}$ and $\{\psi_i^\beta\}$ that overlap each other, $\int\psi_i^{\alpha*}\psi_j^\beta\,\mathrm d\mathbf r = S_{ij}\ne0$. Form $\chi_{2i-1} = \psi_i^\alpha\alpha$ and $\chi_{2i} = \psi_i^\beta\beta$.
+    Take two orthonormal spatial sets $\{\psi_p^\alpha\}$ and $\{\psi_p^\beta\}$ that overlap each other, $\int\psi_p^{\alpha*}\psi_q^\beta\,\mathrm d\mathbf r = S_{pq}\ne0$. Form $\chi_{2p-1} = \psi_p^\alpha\alpha$ and $\chi_{2p} = \psi_p^\beta\beta$.
 
-    - **Same spin.** $\langle\chi_{2i-1}|\chi_{2j-1}\rangle = \langle\psi_i^\alpha|\psi_j^\alpha\rangle\langle\alpha|\alpha\rangle = \delta_{ij}$, and likewise for $\beta$.
-    - **Opposite spin.** $\langle\chi_{2i-1}|\chi_{2j}\rangle = S_{ij}\,\langle\alpha|\beta\rangle = 0$.
+    - **Same spin.** $\langle\chi_{2p-1}|\chi_{2q-1}\rangle = \langle\psi_p^\alpha|\psi_q^\alpha\rangle\langle\alpha|\alpha\rangle = \delta_{pq}$, and likewise for $\beta$.
+    - **Opposite spin.** $\langle\chi_{2p-1}|\chi_{2q}\rangle = S_{pq}\,\langle\alpha|\beta\rangle = 0$.
 
     So the $2K$ spin orbitals are orthonormal even though the spatial sets are not mutually orthogonal: the spin integral does the work. These are the **unrestricted** spin orbitals used in UHF (see [[spin-adapted-configurations]]).
 

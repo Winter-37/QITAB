@@ -8,6 +8,7 @@ level: intermediate
 tags: [ci, full-ci, correlation-energy, intermediate-normalization, determinant-space]
 prerequisites: [excited-determinants, slater-condon-rules, brillouin-theorem, linear-variation-method]
 related: [electron-correlation, cisd, size-consistency, minimal-basis-h2-model, natural-orbitals, ci-in-practice]
+conventions: [ia-letters, antisymmetrized-integrals]
 order: 30
 date: 2026-11-03
 ---
@@ -17,12 +18,12 @@ date: 2026-11-03
 Start from a closed-shell RHF determinant $|\Psi_0\rangle$ in a basis of $2K$ spin orbitals. The full CI ground state is
 
 $$
-|\Phi_0\rangle = c_0|\Psi_0\rangle + \sum_{ar}c_a^r|\Psi_a^r\rangle + \sum_{\substack{a<b\\ r<s}}c_{ab}^{rs}|\Psi_{ab}^{rs}\rangle + \sum_{\substack{a<b<c\\ r<s<t}}c_{abc}^{rst}|\Psi_{abc}^{rst}\rangle + \cdots
+|\Phi_0\rangle = c_0|\Psi_0\rangle + \sum_{ia}c_i^a|\Psi_i^a\rangle + \sum_{\substack{i<j\\ a<b}}c_{ij}^{ab}|\Psi_{ij}^{ab}\rangle + \sum_{\substack{i<j<k\\ a<b<c}}c_{ijk}^{abc}|\Psi_{ijk}^{abc}\rangle + \cdots
 $$
 
 up to $N$-fold excitations ([[excited-determinants]]).
 
-**Unrestricted sums.** With unrestricted sums the $n$-fold term carries a factor $(1/n!)^2$. The coefficients are then taken antisymmetric in their upper and in their lower indices, so that each determinant is counted once. For example, $\tfrac14\sum_{abrs}c_{ab}^{rs}|\Psi_{ab}^{rs}\rangle$ has four equal terms per distinct double.
+**Unrestricted sums.** With unrestricted sums the $n$-fold term carries a factor $(1/n!)^2$. The coefficients are then taken antisymmetric in their upper and in their lower indices, so that each determinant is counted once. For example, $\tfrac14\sum_{ijab}c_{ij}^{ab}|\Psi_{ij}^{ab}\rangle$ has four equal terms per distinct double.
 
 **Variational status.** Diagonalizing $\hat H$ in this basis is the [[linear-variation-method]]. The lowest eigenvalue $\mathcal E_0$ is exact within the basis and defines the basis-set correlation energy $\mathcal E_0 - E_0$ ([[electron-correlation]]). Higher roots bound excited states.
 
@@ -46,7 +47,7 @@ $$
 
 - $\langle\Psi_0|\hat H|S\rangle = 0$ by [[brillouin-theorem]].
 - Blocks between configurations that differ by more than two excitation levels vanish by the [[slater-condon-rules]]: $\langle\Psi_0|\hat H|T\rangle$, $\langle\Psi_0|\hat H|Q\rangle$, $\langle S|\hat H|Q\rangle$, and so on.
-- Even the nonzero off-diagonal blocks are sparse. $\langle\Psi_{ab}^{rs}|\hat H|\Psi_{cdef}^{tuvw}\rangle\neq0$ only if $\{a,b\}\subset\{c,d,e,f\}$ and $\{r,s\}\subset\{t,u,v,w\}$.
+- Even the nonzero off-diagonal blocks are sparse. $\langle\Psi_{ij}^{ab}|\hat H|\Psi_{cdef}^{tuvw}\rangle\neq0$ only if $\{i,j\}\subset\{k,l,e,f\}$ and $\{a,b\}\subset\{c,d,v,w\}$.
 
 **Consequences for the ground state.**
 
@@ -74,18 +75,18 @@ $$
 with $E_0 = \langle\Psi_0|\hat H|\Psi_0\rangle$, and project onto $\langle\Psi_0|$. Brillouin's theorem removes the singles, and triples and higher do not couple, so
 
 $$
-E_{\text{corr}} = \sum_{\substack{a<b\\ r<s}}c_{ab}^{rs}\,\langle\Psi_0|\hat H|\Psi_{ab}^{rs}\rangle = \sum_{\substack{a<b\\ r<s}}c_{ab}^{rs}\,\langle ab||rs\rangle .
+E_{\text{corr}} = \sum_{\substack{i<j\\ a<b}}c_{ij}^{ab}\,\langle\Psi_0|\hat H|\Psi_{ij}^{ab}\rangle = \sum_{\substack{i<j\\ a<b}}c_{ij}^{ab}\,\langle ij||ab\rangle .
 $$
 
 **The exact correlation energy is determined by the double-excitation coefficients alone.** This holds only in intermediate normalization, and with Hartree-Fock orbitals for the reference.
 
-**The equations are still coupled.** Projecting onto $\langle\Psi_a^r|$ (Szabo Ex. 4.1) couples singles, doubles and triples:
+**The equations are still coupled.** Projecting onto $\langle\Psi_i^a|$ (Szabo Ex. 4.1) couples singles, doubles and triples:
 
 $$
-\sum_{c,t}c_c^t\langle\Psi_a^r|\hat H - E_0|\Psi_c^t\rangle
-+ \sum_{\substack{c<d\\ t<u}}c_{cd}^{tu}\langle\Psi_a^r|\hat H|\Psi_{cd}^{tu}\rangle
-+ \sum_{\substack{c<d<e\\ t<u<v}}c_{cde}^{tuv}\langle\Psi_a^r|\hat H|\Psi_{cde}^{tuv}\rangle
-= E_{\text{corr}}\,c_a^r .
+\sum_{k,c}c_k^c\langle\Psi_i^a|\hat H - E_0|\Psi_k^c\rangle
++ \sum_{\substack{k<l\\ c<d}}c_{kl}^{cd}\langle\Psi_i^a|\hat H|\Psi_{kl}^{cd}\rangle
++ \sum_{\substack{k<l<e\\ c<d<v}}c_{cde}^{tuv}\langle\Psi_i^a|\hat H|\Psi_{cde}^{tuv}\rangle
+= E_{\text{corr}}\,c_i^a .
 $$
 
 Projections onto doubles, triples, and so on form a hierarchy that must be solved simultaneously. Truncating it is the subject of [[cisd]].

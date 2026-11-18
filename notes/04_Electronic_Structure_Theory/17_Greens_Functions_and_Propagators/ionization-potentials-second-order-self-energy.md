@@ -1,77 +1,78 @@
 ---
 id: ionization-potentials-second-order-self-energy
 title: Ionization potentials from the second-order self-energy - orbital relaxation, pair relaxation and pair removal
-summary: The simplest Green's-function correction to Koopmans' theorem, ε_c + Σ(2)_cc(ε_c), equals the difference of second-order energies of the N- and (N−1)-electron systems computed with N-electron Hartree-Fock orbitals. It splits into orbital relaxation (ORX), pair relaxation (PRX) and pair removal (PRM). Recomputed Szabo Tables 7.2-7.6 (H2, the ten-electron series, N2), the correct N2 ordering of 3σg and 1πu, and a cc-pVTZ comparison with the Dyson solution and EOM-IP-CCSD.
+summary: The simplest Green's-function correction to Koopmans' theorem, ε_k + Σ(2)_kk(ε_k), equals the difference of second-order energies of the N- and (N−1)-electron systems computed with N-electron Hartree-Fock orbitals. It splits into orbital relaxation (ORX), pair relaxation (PRX) and pair removal (PRM). Recomputed Szabo Tables 7.2-7.6 (H2, the ten-electron series, N2), the correct N2 ordering of 3σg and 1πu, and a cc-pVTZ comparison with the Dyson solution and EOM-IP-CCSD.
 status: in-progress
 kind: derivation
 level: advanced
 tags: [ionization-potential, self-energy, orbital-relaxation, pair-relaxation, pair-removal, koopmans, green-function, n2]
 prerequisites: [one-particle-greens-function, mp2, koopmans-theorem]
 related: [hf-closed-shell-basis-set-trends, propagators-and-superoperators, linked-cluster-theorem]
+conventions: [ia-letters, antisymmetrized-integrals]
 order: 30
 date: 2026-11-03
 ---
 
 ## The result
 
-Write the simplest Green's-function estimate ([[one-particle-greens-function]]) for removing an electron from spin orbital $\chi_c$:
+Write the simplest Green's-function estimate ([[one-particle-greens-function]]) for removing an electron from spin orbital $\chi_k$:
 
 $$
--\text{IP}_c \approx \varepsilon_c + \Sigma_{cc}^{(2)}(\varepsilon_c)
-= \varepsilon_c + \frac12\sum_{a,rs}\frac{|\langle rs||ca\rangle|^2}{\varepsilon_c + \varepsilon_a - \varepsilon_r - \varepsilon_s} + \frac12\sum_{ab,r}\frac{|\langle ab||cr\rangle|^2}{\varepsilon_c + \varepsilon_r - \varepsilon_a - \varepsilon_b} .
+-\text{IP}_k \approx \varepsilon_k + \Sigma_{kk}^{(2)}(\varepsilon_k)
+= \varepsilon_k + \frac12\sum_{i,ab}\frac{|\langle ab||ki\rangle|^2}{\varepsilon_k + \varepsilon_i - \varepsilon_a - \varepsilon_b} + \frac12\sum_{ij,a}\frac{|\langle ij||ka\rangle|^2}{\varepsilon_k + \varepsilon_a - \varepsilon_i - \varepsilon_j} .
 $$
 
 **Theorem (Szabo Sec. 7.4, after Pickup and Goscinski).** This equals
 
 $$
-\varepsilon_c + \Sigma_{cc}^{(2)}(\varepsilon_c) = {}^NE^{(0+1+2)} - {}^{N-1}\tilde E^{(0+1+2)}(c),
+\varepsilon_k + \Sigma_{kk}^{(2)}(\varepsilon_k) = {}^NE^{(0+1+2)} - {}^{N-1}\tilde E^{(0+1+2)}(k),
 $$
 
-the difference of second-order energies. For $N$ electrons this is the ordinary MP partition ([[mp2]]). For $N-1$ electrons, $\mathscr H_0 = \sum_{i=1}^{N-1}\big(h(i) + v^{\text{HF},N}(i)\big)$ still contains the **$N$-electron** Hartree-Fock potential, so that $|{}^{N-1}\Psi_c\rangle = a_c|{}^N\Psi_0\rangle$ is its eigenfunction. Using the same orbitals for both systems lets common correlation terms cancel explicitly.
+the difference of second-order energies. For $N$ electrons this is the ordinary MP partition ([[mp2]]). For $N-1$ electrons, $\mathscr H_0 = \sum_{i=1}^{N-1}\big(h(i) + v^{\text{HF},N}(i)\big)$ still contains the **$N$-electron** Hartree-Fock potential, so that $|{}^{N-1}\Psi_k\rangle = a_k|{}^N\Psi_0\rangle$ is its eigenfunction. Using the same orbitals for both systems lets common correlation terms cancel explicitly.
 
 ## Derivation in three classes of excitations
 
-**Zeroth and first order.** ${}^NE^{(0)} - {}^{N-1}\tilde E^{(0)} = \varepsilon_c$ and the first-order energies are equal (Szabo Ex. 7.13), which is Koopmans' theorem. The correction is the difference of second-order energies.
+**Zeroth and first order.** ${}^NE^{(0)} - {}^{N-1}\tilde E^{(0)} = \varepsilon_k$ and the first-order energies are equal (Szabo Ex. 7.13), which is Koopmans' theorem. The correction is the difference of second-order energies.
 
 **Second order of the ion: three kinds of intermediate states.**
 
-1. **Singles $a\to r$** ($a\ne c$). Brillouin's theorem does not hold for the ion in $N$-electron orbitals, so singles contribute
+1. **Singles $i\to a$** ($i\ne k$). Brillouin's theorem does not hold for the ion in $N$-electron orbitals, so singles contribute
 $$
-{}^{N-1}\tilde E^{(2)}_{\text{ORX}} = \sum_{a\ne c,\,r}\frac{|\langle ac||cr\rangle|^2}{\varepsilon_a - \varepsilon_r} < 0 .
+{}^{N-1}\tilde E^{(2)}_{\text{ORX}} = \sum_{i\ne k,\,a}\frac{|\langle ik||ka\rangle|^2}{\varepsilon_i - \varepsilon_a} < 0 .
 $$
 They relax the orbitals toward the ion's own Hartree-Fock orbitals.
 
-2. **Doubles $ab\to rs$ with $a, b\ne c$.** They are common to both systems and cancel in the difference:
+2. **Doubles $ij\to ab$ with $i, j\ne k$.** They are common to both systems and cancel in the difference:
 $$
-{}^{N-1}\tilde E^{(2)}_{\text{doubles}} = {}^NE^{(2)} - \sum_{a,\,r<s}\frac{|\langle rs||ca\rangle|^2}{\varepsilon_c + \varepsilon_a - \varepsilon_r - \varepsilon_s} .
+{}^{N-1}\tilde E^{(2)}_{\text{doubles}} = {}^NE^{(2)} - \sum_{i,\,a<b}\frac{|\langle ab||ki\rangle|^2}{\varepsilon_k + \varepsilon_i - \varepsilon_a - \varepsilon_b} .
 $$
-The subtracted pairs involve $c$, which no longer exists in the ion.
+The subtracted pairs involve $k$, which no longer exists in the ion.
 
-3. **Doubles $ab\to cr$.** $\chi_c$ is empty in the ion, so it can serve as a virtual orbital:
+3. **Doubles $ij\to ka$.** $\chi_k$ is empty in the ion, so it can serve as a virtual orbital:
 $$
-{}^{N-1}\tilde E^{(2)}_{\text{PRX}} = \frac12\sum_{a,b\ne c,\,r}\frac{|\langle ab||cr\rangle|^2}{\varepsilon_a + \varepsilon_b - \varepsilon_c - \varepsilon_r} < 0 .
+{}^{N-1}\tilde E^{(2)}_{\text{PRX}} = \frac12\sum_{i,j\ne k,\,a}\frac{|\langle ij||ka\rangle|^2}{\varepsilon_i + \varepsilon_j - \varepsilon_k - \varepsilon_a} < 0 .
 $$
 
 **Correction to Koopmans' IP.** Combining these gives $\text{IP} = \text{IP}_{\text{Koopmans}} + \Delta\text{IP}$ with
 
 $$
-\Delta\text{IP} = \underbrace{\sum_{a\ne c,\,r}\frac{|\langle ac||cr\rangle|^2}{\varepsilon_a - \varepsilon_r}}_{\text{ORX}<0}
-+ \underbrace{\frac12\sum_{a,b\ne c,\,r}\frac{|\langle ab||cr\rangle|^2}{\varepsilon_a + \varepsilon_b - \varepsilon_c - \varepsilon_r}}_{\text{PRX}<0}
-- \underbrace{\frac12\sum_{a,rs}\frac{|\langle rs||ca\rangle|^2}{\varepsilon_c + \varepsilon_a - \varepsilon_r - \varepsilon_s}}_{\text{PRM}>0} .
+\Delta\text{IP} = \underbrace{\sum_{i\ne k,\,a}\frac{|\langle ik||ka\rangle|^2}{\varepsilon_i - \varepsilon_a}}_{\text{ORX}<0}
++ \underbrace{\frac12\sum_{i,j\ne k,\,a}\frac{|\langle ij||ka\rangle|^2}{\varepsilon_i + \varepsilon_j - \varepsilon_k - \varepsilon_a}}_{\text{PRX}<0}
+- \underbrace{\frac12\sum_{i,ab}\frac{|\langle ab||ki\rangle|^2}{\varepsilon_k + \varepsilon_i - \varepsilon_a - \varepsilon_b}}_{\text{PRM}>0} .
 $$
 
 | Excitation | In $N$ | In $N-1$ | Effect on Koopmans' IP | Name |
 |---|---|---|---|---|
-| $a\to r$ | no (Brillouin) | yes | lowers | orbital relaxation (ORX) |
-| $ab\to rs$, $a,b\ne c$ | yes | yes | none (cancels) | |
-| $ab\to cr$ | no ($c$ occupied) | yes | lowers | pair relaxation (PRX) |
-| $ca\to rs$ | yes | no ($c$ empty) | raises | pair removal (PRM) |
+| $i\to a$ | no (Brillouin) | yes | lowers | orbital relaxation (ORX) |
+| $ij\to ab$, $i,j\ne k$ | yes | yes | none (cancels) | |
+| $ij\to ka$ | no ($k$ occupied) | yes | lowers | pair relaxation (PRX) |
+| $ki\to ab$ | yes | no ($k$ empty) | raises | pair removal (PRM) |
 
 **Interpretation.**
 
 - **ORX.** The ion's orbitals contract around the hole.
-- **PRX.** Pairs in the ion gain correlation from the newly vacant orbital $c$.
-- **PRM.** The neutral has correlating pairs involving $c$ that the ion has lost.
+- **PRX.** Pairs in the ion gain correlation from the newly vacant orbital $k$.
+- **PRM.** The neutral has correlating pairs involving $k$ that the ion has lost.
 
 J-S give the same three-term reading of the diagonal second-order propagator (their Eq. 6.80). The first two stabilize the ion and lower the IP; the third stabilizes the neutral and raises it. Koopmans' theorem works when these cancel. For a two-electron system PRX = 0 and PRM $= -{}^NE^{(2)}$ (Szabo Ex. 7.16).
 

@@ -8,6 +8,7 @@ level: intermediate
 tags: [orbital-rotation, unitary-transformation, exponential-parametrization, second-quantization, redundancy, bch]
 prerequisites: [creation-and-annihilation-operators, second-quantized-operators, functions-of-matrices, change-of-basis]
 related: [unitary-matrices-exponential-logarithm, molecular-properties-and-response, scf-second-order-and-stability, mcscf-second-order-optimization, coupled-cluster-second-quantization, one-particle-hamiltonian-models, baker-campbell-hausdorff, heh-plus-minimal-basis-model]
+conventions: [ia-letters]
 order: 10
 date: 2026-11-03
 ---

@@ -8,6 +8,7 @@ level: advanced
 tags: [polarization-propagator, rpa, tdhf, excitation-energies, oscillator-strength, polarizability, stability, mctdhf, soppa]
 prerequisites: [propagators-and-superoperators, scf-second-order-and-stability, molecular-properties-and-response]
 related: [heh-plus-minimal-basis-model, mcscf-second-order-optimization, h2-dissociation-rhf-uhf, spin-tensor-operators]
+conventions: [ia-letters, antisymmetrized-integrals]
 order: 40
 date: 2026-11-03
 ---
@@ -34,7 +35,7 @@ the usual sum-over-states frequency-dependent polarizability (overall sign by co
 
 ## TDHF (RPA)
 
-**Choice.** HF reference and the particle-hole manifold $\{\mathbf Q^\dagger, \mathbf Q\} = \{a_m^\dagger a_\alpha, a_\alpha^\dagger a_m\}$ (virtual $m$, occupied $\alpha$). The superoperator matrices are
+**Choice.** HF reference and the particle-hole manifold $\{\mathbf Q^\dagger, \mathbf Q\} = \{a_a^\dagger a_i, a_i^\dagger a_a\}$ (virtual $a$, occupied $i$; J-S write $a_m^\dagger a_\alpha$). The superoperator matrices are
 
 $$
 \mathbf S = (\mathbf Q^\dagger|\mathbf Q^\dagger),\qquad \mathbf A = (\mathbf Q^\dagger|\hat H|\mathbf Q^\dagger),\qquad \mathbf B = (\mathbf Q^\dagger|\hat H|\mathbf Q),

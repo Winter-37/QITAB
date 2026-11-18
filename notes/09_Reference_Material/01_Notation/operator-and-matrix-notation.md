@@ -8,6 +8,7 @@ level: introductory
 tags: [notation, linear-algebra, operators, dirac-notation, tensors, einsum]
 prerequisites: []
 related: [dirac-notation, index-and-orbital-notation, second-quantization-and-density-matrix-notation, matrix-and-tensor-identities, commutator-and-anticommutator-identities]
+conventions: [chemists-integrals, physicists-integrals]
 order: 20
 date: 2026-11-17
 ---

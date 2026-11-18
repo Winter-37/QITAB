@@ -10,6 +10,7 @@ prerequisites: [ghf, uhf]
 related: [rhf-instabilities-and-multiple-solutions, scf-second-order-and-stability, h2-dissociation-rhf-uhf, exact-wave-function-properties-and-symmetry]
 order: 130
 date: 2026-11-07
+conventions: [ia-letters]
 ---
 
 ## The four symmetries

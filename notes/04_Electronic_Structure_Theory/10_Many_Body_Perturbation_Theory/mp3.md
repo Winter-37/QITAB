@@ -8,26 +8,27 @@ level: intermediate
 tags: [mp3, moller-plesset, mbpt, third-order, ladder-diagrams, ring-diagrams, convergence]
 prerequisites: [mp2, rayleigh-schrodinger-perturbation-theory]
 related: [linked-cluster-theorem, coupled-pair-approximations, coupled-cluster-second-quantization, ionization-potentials-second-order-self-energy]
+conventions: [ia-letters, antisymmetrized-integrals]
 order: 20
 date: 2026-11-03
 ---
 
 ## The formula
 
-**General RS third order** ([[rayleigh-schrodinger-perturbation-theory]]): $E^{(3)} = \sum_{nm}{}'V_{0n}V_{nm}V_{m0}/(\Delta_n\Delta_m) - V_{00}\sum_n{}'|V_{0n}|^2/\Delta_n^2$, with $\Delta_n = E_0^{(0)} - E_n^{(0)}$. With the Møller-Plesset partition ([[mp2]]) only doubles appear as intermediate states, and after a lengthy evaluation of $\langle\Psi_{ab}^{rs}|\mathscr V|\Psi_{cd}^{tu}\rangle$ the renormalization term cancels. Szabo's result (Eq. 6.75), in spin orbitals:
+**General RS third order** ([[rayleigh-schrodinger-perturbation-theory]]): $E^{(3)} = \sum_{nm}{}'V_{0n}V_{nm}V_{m0}/(\Delta_n\Delta_m) - V_{00}\sum_n{}'|V_{0n}|^2/\Delta_n^2$, with $\Delta_n = E_0^{(0)} - E_n^{(0)}$. With the Møller-Plesset partition ([[mp2]]) only doubles appear as intermediate states, and after a lengthy evaluation of $\langle\Psi_{ij}^{ab}|\mathscr V|\Psi_{kl}^{cd}\rangle$ the renormalization term cancels. Szabo's result (Eq. 6.75), in spin orbitals:
 
 $$
 \begin{aligned}
-E_0^{(3)} ={}& \frac18\sum_{abcdrs}\frac{\langle ab||rs\rangle\langle cd||ab\rangle\langle rs||cd\rangle}{(\varepsilon_a + \varepsilon_b - \varepsilon_r - \varepsilon_s)(\varepsilon_c + \varepsilon_d - \varepsilon_r - \varepsilon_s)}\\
-&+ \frac18\sum_{abrstu}\frac{\langle ab||rs\rangle\langle rs||tu\rangle\langle tu||ab\rangle}{(\varepsilon_a + \varepsilon_b - \varepsilon_r - \varepsilon_s)(\varepsilon_a + \varepsilon_b - \varepsilon_t - \varepsilon_u)}\\
-&+ \sum_{abcrst}\frac{\langle ab||rs\rangle\langle cs||tb\rangle\langle rt||ac\rangle}{(\varepsilon_a + \varepsilon_b - \varepsilon_r - \varepsilon_s)(\varepsilon_a + \varepsilon_c - \varepsilon_r - \varepsilon_t)} .
+E_0^{(3)} ={}& \frac18\sum_{ijklab}\frac{\langle ij||ab\rangle\langle kl||ij\rangle\langle ab||kl\rangle}{(\varepsilon_i + \varepsilon_j - \varepsilon_a - \varepsilon_b)(\varepsilon_k + \varepsilon_l - \varepsilon_a - \varepsilon_b)}\\
+&+ \frac18\sum_{ijabcd}\frac{\langle ij||ab\rangle\langle ab||cd\rangle\langle cd||ij\rangle}{(\varepsilon_i + \varepsilon_j - \varepsilon_a - \varepsilon_b)(\varepsilon_i + \varepsilon_j - \varepsilon_c - \varepsilon_d)}\\
+&+ \sum_{ijkabc}\frac{\langle ij||ab\rangle\langle kb||cj\rangle\langle ac||ik\rangle}{(\varepsilon_i + \varepsilon_j - \varepsilon_a - \varepsilon_b)(\varepsilon_i + \varepsilon_k - \varepsilon_a - \varepsilon_c)} .
 \end{aligned}
 $$
 
-**Reading the terms.** With $t_{ab}^{rs} = \langle rs||ab\rangle/(\varepsilon_a + \varepsilon_b - \varepsilon_r - \varepsilon_s)$, the first-order amplitudes,
+**Reading the terms.** With $t_{ij}^{ab} = \langle ab||ij\rangle/(\varepsilon_i + \varepsilon_j - \varepsilon_a - \varepsilon_b)$, the first-order amplitudes,
 
-- **hole-hole ladder:** $\tfrac18\sum t_{ab}^{rs}\langle cd||ab\rangle t_{cd}^{rs}$ (two holes scatter),
-- **particle-particle ladder:** $\tfrac18\sum t_{ab}^{rs}\langle rs||tu\rangle t_{ab}^{tu}$ (two particles scatter),
+- **hole-hole ladder:** $\tfrac18\sum t_{ij}^{ab}\langle kl||ij\rangle t_{kl}^{ab}$ (two holes scatter),
+- **particle-particle ladder:** $\tfrac18\sum t_{ij}^{ab}\langle ab||cd\rangle t_{ij}^{cd}$ (two particles scatter),
 - **ring:** the particle-hole term, with the sign fixed by the Goldstone rules ([[linked-cluster-theorem]]).
 
 $E^{(3)}$ needs only first-order amplitudes, as the $(2n+1)$ rule promises: $E^{(3)} = \langle\Psi^{(1)}|\mathscr V - E^{(1)}|\Psi^{(1)}\rangle$. Its cost is dominated by the particle-particle ladder, $o^2v^4$, one power more than MP2's $o^2v^3$ integral transformation.

@@ -8,6 +8,7 @@ level: advanced
 tags: [analytic-gradients, force-constants, hessian, hellmann-feynman, pulay-forces, integral-derivatives, nuclear-displacement]
 prerequisites: [molecular-properties-and-response, mcscf-second-order-optimization, gaussian-basis-functions]
 related: [geometry-optimization, born-oppenheimer-approximation, molecular-hamiltonian, scf-procedure, rhf-analytic-gradient, ci-analytic-gradient, rhf-analytic-hessian]
+conventions: [chemists-integrals]
 order: 20
 date: 2026-11-03
 ---

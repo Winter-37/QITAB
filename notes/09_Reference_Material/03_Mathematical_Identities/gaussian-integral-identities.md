@@ -8,6 +8,7 @@ level: intermediate
 tags: [gaussian-integrals, boys-function, gaussian-product-theorem, molecular-integrals, erf, identities]
 prerequisites: []
 related: [gaussian-basis-functions, gaussian-overlap-distributions-and-one-electron-integrals, electron-repulsion-integrals-md-os-rys, fourier-transforms-and-the-dirac-delta]
+conventions: [chemists-integrals]
 order: 40
 date: 2026-11-17
 ---

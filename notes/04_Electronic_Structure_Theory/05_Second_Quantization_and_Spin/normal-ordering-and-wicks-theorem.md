@@ -8,6 +8,7 @@ level: intermediate
 tags: [second-quantization, normal-ordering, wick-theorem, fermi-vacuum, contractions, coupled-cluster, many-body]
 prerequisites: [creation-and-annihilation-operators, second-quantized-operators]
 related: [coupled-cluster-second-quantization, ccsd-spin-orbital-equations, coupled-cluster-diagrams, linked-cluster-theorem, perturbation-theory-second-quantization, brillouin-theorem, fock-operator]
+conventions: [physicists-integrals, antisymmetrized-integrals]
 order: 70
 date: 2026-11-07
 ---

@@ -1,7 +1,7 @@
 ---
 id: rhf
 title: Restricted closed-shell Hartree-Fock and the Roothaan equations
-summary: Integrating out spin for a closed shell gives the spatial Fock operator f = h + Σ_a (2J_a − K_a). Expanding the orbitals in K basis functions turns it into the generalized matrix eigenvalue problem FC = SCε, with the density matrix P, the Fock matrix F(P), and the energy E0 = ½ Σ P(H + F). Worked STO-3G H2 values.
+summary: Integrating out spin for a closed shell gives the spatial Fock operator f = h + Σ_i (2J_i − K_i). Expanding the orbitals in K basis functions turns it into the generalized matrix eigenvalue problem FC = SCε, with the density matrix P, the Fock matrix F(P), and the energy E0 = ½ Σ P(H + F). Worked STO-3G H2 values.
 status: in-progress
 kind: derivation
 level: intermediate
@@ -10,6 +10,7 @@ prerequisites: [hartree-fock-equations, fock-operator, spin-orbital-to-spatial-o
 related: [scf-procedure, basis-orthogonalization, uhf, population-analysis, minimal-basis-h2-model, gaussian-basis-functions]
 order: 50
 date: 2026-11-03
+conventions: [ia-letters, chemists-integrals]
 ---
 
 ## Closed-shell spatial equations
@@ -17,36 +18,36 @@ date: 2026-11-03
 A closed-shell determinant has $N/2$ doubly occupied spatial orbitals,
 
 $$
-|\Psi_0\rangle = |\psi_1\bar\psi_1\cdots\psi_a\bar\psi_a\cdots\psi_{N/2}\bar\psi_{N/2}\rangle .
+|\Psi_0\rangle = |\psi_1\bar\psi_1\cdots\psi_i\bar\psi_i\cdots\psi_{N/2}\bar\psi_{N/2}\rangle .
 $$
 
 Insert $\chi = \psi\alpha$ into $f\chi = \varepsilon\chi$ ([[fock-operator]]), multiply by $\alpha^*$, and integrate over spin. The sum over occupied spin orbitals splits into $\alpha$ and $\beta$ halves:
 
-- **Coulomb.** Both halves contribute, giving $2J_a$.
-- **Exchange.** Only the same-spin half contributes, giving $K_a$.
+- **Coulomb.** Both halves contribute, giving $2J_i$.
+- **Exchange.** Only the same-spin half contributes, giving $K_i$.
 
 The **closed-shell Fock operator** is
 
 $$
-f(\mathbf r_1) = h(\mathbf r_1) + \sum_a^{N/2}\big[2J_a(\mathbf r_1) - K_a(\mathbf r_1)\big],
+f(\mathbf r_1) = h(\mathbf r_1) + \sum_i^{N/2}\big[2J_i(\mathbf r_1) - K_i(\mathbf r_1)\big],
 \qquad
-f\,\psi_j = \varepsilon_j\psi_j ,
+f\,\psi_q = \varepsilon_q\psi_q ,
 $$
 
 with spatial Coulomb and exchange operators
 
 $$
-J_a(1)\psi(1) = \Big[\int\mathrm d\mathbf r_2\,\psi_a^*(2)r_{12}^{-1}\psi_a(2)\Big]\psi(1),
+J_i(1)\psi(1) = \Big[\int\mathrm d\mathbf r_2\,\psi_i^*(2)r_{12}^{-1}\psi_i(2)\Big]\psi(1),
 \qquad
-K_a(1)\psi(1) = \Big[\int\mathrm d\mathbf r_2\,\psi_a^*(2)r_{12}^{-1}\psi(2)\Big]\psi_a(1).
+K_i(1)\psi(1) = \Big[\int\mathrm d\mathbf r_2\,\psi_i^*(2)r_{12}^{-1}\psi(2)\Big]\psi_i(1).
 $$
 
 **Orbital energies and total energy (Szabo Ex. 3.9).**
 
 $$
-\varepsilon_i = h_{ii} + \sum_a^{N/2}\big(2J_{ia} - K_{ia}\big),
+\varepsilon_p = h_{pp} + \sum_i^{N/2}\big(2J_{pi} - K_{pi}\big),
 \qquad
-E_0 = 2\sum_a h_{aa} + \sum_{ab}\big(2J_{ab} - K_{ab}\big) = \sum_a^{N/2}\big(h_{aa} + \varepsilon_a\big).
+E_0 = 2\sum_i h_{ii} + \sum_{ij}\big(2J_{ij} - K_{ij}\big) = \sum_i^{N/2}\big(h_{ii} + \varepsilon_i\big).
 $$
 
 ## Introducing a basis: the Roothaan equations
@@ -54,14 +55,14 @@ $$
 Expand each spatial MO in $K$ known basis functions $\{\phi_\mu\}$, which are generally not orthogonal:
 
 $$
-\psi_i(\mathbf r) = \sum_{\mu=1}^{K}C_{\mu i}\,\phi_\mu(\mathbf r),
-\qquad i = 1,\dots,K .
+\psi_p(\mathbf r) = \sum_{\mu=1}^{K}C_{\mu p}\,\phi_\mu(\mathbf r),
+\qquad p = 1,\dots,K .
 $$
 
-Substitute into $f\psi_i = \varepsilon_i\psi_i$, multiply by $\phi_\mu^*$ and integrate:
+Substitute into $f\psi_p = \varepsilon_p\psi_p$, multiply by $\phi_\mu^*$ and integrate:
 
 $$
-\sum_\nu F_{\mu\nu}C_{\nu i} = \varepsilon_i\sum_\nu S_{\mu\nu}C_{\nu i}
+\sum_\nu F_{\mu\nu}C_{\nu p} = \varepsilon_p\sum_\nu S_{\mu\nu}C_{\nu p}
 \qquad\Longleftrightarrow\qquad
 \mathbf F\mathbf C = \mathbf S\mathbf C\boldsymbol\varepsilon ,
 $$
@@ -87,9 +88,9 @@ $$
 The total closed-shell electron density is
 
 $$
-\rho(\mathbf r) = 2\sum_a^{N/2}|\psi_a(\mathbf r)|^2 = \sum_{\mu\nu}P_{\mu\nu}\,\phi_\mu(\mathbf r)\phi_\nu^*(\mathbf r),
+\rho(\mathbf r) = 2\sum_i^{N/2}|\psi_i(\mathbf r)|^2 = \sum_{\mu\nu}P_{\mu\nu}\,\phi_\mu(\mathbf r)\phi_\nu^*(\mathbf r),
 \qquad
-P_{\mu\nu} = 2\sum_a^{N/2}C_{\mu a}C_{\nu a}^* .
+P_{\mu\nu} = 2\sum_i^{N/2}C_{\mu i}C_{\nu i}^* .
 $$
 
 $\int\rho = N$ becomes
@@ -144,7 +145,7 @@ E_0 = \tfrac12\sum_{\mu\nu}P_{\nu\mu}\big(H_{\mu\nu}^{\text{core}} + F_{\mu\nu}\
 E_{\text{tot}} = E_0 + \sum_{A<B}\frac{Z_AZ_B}{R_{AB}} .
 $$
 
-This is the matrix form of $\sum_a(h_{aa} + \varepsilon_a)$.
+This is the matrix form of $\sum_i(h_{ii} + \varepsilon_i)$.
 
 !!! example "STO-3G H₂ at R = 1.4 bohr (Szabo Sec. 3.5.2, Ex. 3.22-3.27)"
     Basis: one STO-3G 1s on each H ($\zeta = 1.24$). AO integrals from PySCF (hartree):

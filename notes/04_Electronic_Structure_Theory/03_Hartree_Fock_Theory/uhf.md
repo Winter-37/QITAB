@@ -10,6 +10,7 @@ prerequisites: [rhf, spin-adapted-configurations]
 related: [h2-dissociation-rhf-uhf, scf-procedure, fock-operator]
 order: 100
 date: 2026-11-03
+conventions: [ia-letters, chemists-integrals]
 ---
 
 ## Unrestricted spin orbitals
@@ -17,29 +18,29 @@ date: 2026-11-03
 Open-shell systems ($N^\alpha > N^\beta$) or stretched bonds need extra freedom. Unrestricted Hartree-Fock (UHF) uses separate orthonormal spatial sets for each spin ([[spin-adapted-configurations]]):
 
 $$
-\chi_j(\mathbf x) = \psi_j^\alpha(\mathbf r)\,\alpha(\omega)\quad\text{or}\quad\psi_j^\beta(\mathbf r)\,\beta(\omega),
+\chi_q(\mathbf x) = \psi_q^\alpha(\mathbf r)\,\alpha(\omega)\quad\text{or}\quad\psi_q^\beta(\mathbf r)\,\beta(\omega),
 \qquad
 |\Psi_0^{\text{UHF}}\rangle = |\psi_1^\alpha\bar\psi_1^\beta\psi_2^\alpha\bar\psi_2^\beta\cdots\rangle .
 $$
 
-There are $N^\alpha$ occupied $\alpha$ and $N^\beta$ occupied $\beta$ spatial orbitals. Labels $a, b$ below refer to occupied orbitals of the indicated spin.
+There are $N^\alpha$ occupied $\alpha$ and $N^\beta$ occupied $\beta$ spatial orbitals. Labels $i, j$ below refer to occupied orbitals of the indicated spin.
 
 ## Spatial Fock operators
 
 Integrate the spin-orbital Fock operator ([[fock-operator]]) over spin, separately for $\alpha$ and $\beta$ (Szabo Ex. 3.33):
 
 $$
-f^\alpha(1) = h(1) + \sum_a^{N^\alpha}\big[J_a^\alpha(1) - K_a^\alpha(1)\big] + \sum_a^{N^\beta}J_a^\beta(1),
+f^\alpha(1) = h(1) + \sum_i^{N^\alpha}\big[J_i^\alpha(1) - K_i^\alpha(1)\big] + \sum_i^{N^\beta}J_i^\beta(1),
 $$
 
 $$
-f^\beta(1) = h(1) + \sum_a^{N^\beta}\big[J_a^\beta(1) - K_a^\beta(1)\big] + \sum_a^{N^\alpha}J_a^\alpha(1),
+f^\beta(1) = h(1) + \sum_i^{N^\beta}\big[J_i^\beta(1) - K_i^\beta(1)\big] + \sum_i^{N^\alpha}J_i^\alpha(1),
 $$
 
 $$
-f^\alpha\psi_j^\alpha = \varepsilon_j^\alpha\psi_j^\alpha,
+f^\alpha\psi_q^\alpha = \varepsilon_q^\alpha\psi_q^\alpha,
 \qquad
-f^\beta\psi_j^\beta = \varepsilon_j^\beta\psi_j^\beta .
+f^\beta\psi_q^\beta = \varepsilon_q^\beta\psi_q^\beta .
 $$
 
 **Coupling.**
@@ -51,7 +52,7 @@ $$
 **Orbital energies (Szabo Ex. 3.35).**
 
 $$
-\varepsilon_i^\alpha = h_{ii}^{\alpha\alpha} + \sum_a^{N^\alpha}\big(J_{ia}^{\alpha\alpha} - K_{ia}^{\alpha\alpha}\big) + \sum_a^{N^\beta}J_{ia}^{\alpha\beta},
+\varepsilon_p^\alpha = h_{pp}^{\alpha\alpha} + \sum_i^{N^\alpha}\big(J_{pi}^{\alpha\alpha} - K_{pi}^{\alpha\alpha}\big) + \sum_i^{N^\beta}J_{pi}^{\alpha\beta},
 $$
 
 and similarly for $\beta$. The superscripts say which spatial set each orbital index belongs to.
@@ -59,7 +60,7 @@ and similarly for $\beta$. The superscripts say which spatial set each orbital i
 **Energy.**
 
 $$
-E_0 = \tfrac12\Big[\sum_a^{N^\alpha}\big(h_{aa}^{\alpha} + \varepsilon_a^\alpha\big) + \sum_a^{N^\beta}\big(h_{aa}^{\beta} + \varepsilon_a^\beta\big)\Big].
+E_0 = \tfrac12\Big[\sum_i^{N^\alpha}\big(h_{ii}^{\alpha} + \varepsilon_i^\alpha\big) + \sum_i^{N^\beta}\big(h_{ii}^{\beta} + \varepsilon_i^\beta\big)\Big].
 $$
 
 **Example: Li (Szabo Ex. 3.34).** For $|\psi_1^\alpha\bar\psi_1^\beta\psi_2^\alpha\rangle$,
@@ -75,9 +76,9 @@ Here $J_{12}^{\beta\alpha}$ is the Coulomb integral between $\psi_1^\beta$ and $
 Expand both sets in one basis $\{\phi_\mu\}$:
 
 $$
-\psi_i^\alpha = \sum_\mu C_{\mu i}^\alpha\phi_\mu,
+\psi_p^\alpha = \sum_\mu C_{\mu p}^\alpha\phi_\mu,
 \qquad
-\psi_i^\beta = \sum_\mu C_{\mu i}^\beta\phi_\mu .
+\psi_p^\beta = \sum_\mu C_{\mu p}^\beta\phi_\mu .
 $$
 
 $$
@@ -89,9 +90,9 @@ $$
 **Density matrices.**
 
 $$
-P_{\mu\nu}^\alpha = \sum_a^{N^\alpha}C_{\mu a}^\alpha C_{\nu a}^{\alpha*},
+P_{\mu\nu}^\alpha = \sum_i^{N^\alpha}C_{\mu i}^\alpha C_{\nu i}^{\alpha*},
 \qquad
-P_{\mu\nu}^\beta = \sum_a^{N^\beta}C_{\mu a}^\beta C_{\nu a}^{\beta*},
+P_{\mu\nu}^\beta = \sum_i^{N^\beta}C_{\mu i}^\beta C_{\nu i}^{\beta*},
 \qquad
 \mathbf P^T = \mathbf P^\alpha + \mathbf P^\beta,
 \qquad
@@ -134,7 +135,7 @@ $$
 
 **Spin-dependent operators (Szabo Ex. 3.39).** These need $\mathbf P^S$. For the Fermi-contact-type operator $\sum_i\delta(\mathbf r_i - \mathbf R)\,s_z(i)$, the expectation value is $\tfrac12\rho^S(\mathbf R)$. Its value at a nucleus determines isotropic hyperfine coupling constants in ESR.
 
-**Spin contamination.** The UHF determinant is not an $\hat{\mathcal S}^2$ eigenfunction. Its $\langle\hat{\mathcal S}^2\rangle$ exceeds $S(S+1)$ by $N^\beta - \sum_{ij}|S_{ij}^{\alpha\beta}|^2$ ([[spin-adapted-configurations]]).
+**Spin contamination.** The UHF determinant is not an $\hat{\mathcal S}^2$ eigenfunction. Its $\langle\hat{\mathcal S}^2\rangle$ exceeds $S(S+1)$ by $N^\beta - \sum_{pq}|S_{pq}^{\alpha\beta}|^2$ ([[spin-adapted-configurations]]).
 
 !!! example "Planar CH₃ radical (compare Szabo Sec. 3.8.6)"
     Planar D$_{3h}$ geometry, C-H = 1.079 Å, $N^\alpha = 5$, $N^\beta = 4$. PySCF 2.14, Cartesian $d$:
