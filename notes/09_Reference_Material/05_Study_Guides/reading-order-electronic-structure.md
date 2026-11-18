@@ -7,7 +7,7 @@ kind: reference
 level: introductory
 tags: [reading-guide, study-plan, curriculum, electronic-structure, overview]
 prerequisites: []
-related: [matrix-eigenvalue-problem, variational-principle, rhf, electron-correlation, full-ci, mp2, coupled-cluster-second-quantization, mcscf-and-gvb, standard-models-h2-and-water]
+related: [reading-order-quantum-mechanics, reading-order-quantum-computing, index-and-orbital-notation, matrix-eigenvalue-problem, variational-principle, rhf, electron-correlation, full-ci, mp2, coupled-cluster-second-quantization, mcscf-and-gvb, standard-models-h2-and-water]
 order: 10
 date: 2026-11-04
 ---
@@ -22,6 +22,10 @@ date: 2026-11-04
 
 1. Read every core list from stage 1 to stage 9.
 2. Go back for the deep lists. Their stage 0 (second quantization) is a prerequisite for almost every deep note.
+
+**Conventions.** The chapters follow different books, so index letters and density-matrix normalizations change between them. Keep [[index-and-orbital-notation]] and [[density-matrix-conventions]] open while reading; units are in [[energy-and-unit-conversions]].
+
+**Before this guide.** Stage 2 assumes the quantum mechanics of Part 2. A reader who has not done it should follow the Part 2 list at the start of Stage 2, or the full [[reading-order-quantum-mechanics]].
 
 **Checkpoints.** Each stage ends with something to reproduce. Most of these worked numbers already sit inside the notes, so the checkpoint is to rederive or recompute them before looking.
 
@@ -45,6 +49,17 @@ date: 2026-11-04
 
 ## Stage 2 - Quantum-mechanical foundations
 
+**From Part 2 (if not already read).** The minimum of general quantum mechanics that the electronic-structure chapters lean on, in reading order:
+
+1. [[stationary-states]] and [[harmonic-oscillator-ladder-operators]] - separation of time, and the first operator-algebra solution of a spectrum.
+2. [[hilbert-space-and-hermitian-operators]], [[eigenfunctions-of-hermitian-operators]] and [[generalized-statistical-interpretation]] - the formalism every later note assumes.
+3. [[hydrogen-atom]], [[orbital-angular-momentum]], [[spin-one-half]] and [[addition-of-angular-momenta]] - atomic orbitals, spin, and the coupling rules behind spin-adapted configurations.
+4. [[exchange-symmetry-spin-and-symmetrization-principle]] and [[helium-atom-independent-particle-model]] - why the wave function is antisymmetric, and the first two-electron atom.
+5. [[hydrogen-molecule-ion-variational]] and [[hydrogen-molecule-heitler-london]] - the first molecules, as LCAO and valence-bond variational problems.
+6. [[degenerate-perturbation-theory]] - needed whenever a reference is degenerate.
+
+Optional from Part 2: [[helium-ground-state-variational]] (the classic variational benchmark), [[density-operators-and-mixed-states]] (before reduced density matrices), [[spherical-tensor-operators]] and [[rotational-selection-rules-and-wigner-eckart]] (before spin-tensor operators in stage 0), [[sudden-and-adiabatic-approximations]] and [[berry-phase]] (the adiabatic idea behind Born-Oppenheimer).
+
 **Core.**
 
 1. [[molecular-hamiltonian]] then [[born-oppenheimer-approximation]] - what we are solving.
@@ -60,7 +75,7 @@ date: 2026-11-04
 - [[exact-wave-function-properties-and-symmetry]] - what an approximate wave function should inherit from the exact one.
 - [[rayleigh-schrodinger-perturbation-theory]] and [[greens-functions-single-particle]] - general quantum-mechanics tools reused in stages 6 and 9.
 
-**Checkpoint.** Prove the variational bound by eigenfunction expansion. Show that a two-electron determinant changes sign under exchange.
+**Checkpoint.** Prove the variational bound by eigenfunction expansion. Show that a two-electron determinant changes sign under exchange. Couple two spin-$\tfrac12$ particles and check the singlet sign against [[angular-momentum-phase-conventions]].
 
 ## Stage 3 - Matrix elements and basis sets
 
@@ -106,6 +121,16 @@ date: 2026-11-04
 - [[rhf-instabilities-and-multiple-solutions]] - triplet and singlet instabilities and the allyl radical.
 
 **Checkpoint.** Run the HeH⁺ SCF by hand for two iterations. Then explain why RHF H₂ dissociates to the wrong limit.
+
+## Side track (after stage 4) - Density functional theory
+
+Optional on the way to correlation; nothing in stages 5-8 depends on it.
+
+1. [[kohn-sham-dft]] - Hohenberg–Kohn and the Kohn–Sham equations; the KS operator is the Fock operator of stage 4 with exchange replaced by $v_{xc}$.
+2. [[exchange-correlation-functionals]] - the functional ladder from LDA to double hybrids (the double hybrids need MP2 from stage 6).
+3. [[dft-versus-hartree-fock]] - what each mean-field method gets right and wrong.
+
+**Checkpoint.** Explain why a B3LYP energy can lie below the exact energy, and why PBE dissociates H₂⁺ to the wrong limit.
 
 ## Stage 0 (deep only) - Second quantization
 
@@ -193,7 +218,7 @@ Read this before any deep note.
 **Core.**
 
 1. [[standard-models-h2-and-water]] - every model above compared against FCI; read it as a review of stages 4-8.
-2. [[geometry-optimization]].
+2. [[geometry-optimization]], then [[harmonic-vibrational-analysis]] and [[zero-point-energy-and-thermochemistry]] - from a stationary point to frequencies, $D_0$ and thermochemistry.
 
 **Deep.**
 
@@ -205,4 +230,4 @@ Read this before any deep note.
 
 ## Source
 
-Organizes the notebook's own notes. They are built mainly on Szabo and Ostlund, *Modern Quantum Chemistry*; Jørgensen and Simons, *Second Quantization-Based Methods in Quantum Chemistry*; and Helgaker, Jørgensen and Olsen, *Molecular Electronic-Structure Theory* (Wiley, Chichester, 2000). Each note cites its exact sections.
+Organizes the notebook's own notes. The Part 2 entries of Stage 2 come from Griffiths and Schroeter, *Introduction to Quantum Mechanics* (3rd ed.), and Sakurai and Napolitano, *Modern Quantum Mechanics* (3rd ed.). The electronic-structure notes are built mainly on Szabo and Ostlund, *Modern Quantum Chemistry*; Jørgensen and Simons, *Second Quantization-Based Methods in Quantum Chemistry*; and Helgaker, Jørgensen and Olsen, *Molecular Electronic-Structure Theory* (Wiley, Chichester, 2000). Each note cites its exact sections.

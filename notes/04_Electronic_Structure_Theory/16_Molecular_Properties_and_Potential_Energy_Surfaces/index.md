@@ -1,4 +1,4 @@
-Using energy derivatives: geometry optimization, and how the error of an approximate surface turns into a geometry error. Vibrational analysis and other properties are planned.
+Using energy derivatives: geometry optimization, how the error of an approximate surface turns into a geometry error, harmonic vibrational analysis, and zero-point and thermal corrections. Other properties are planned.
 
 ## What this chapter is about
 
@@ -6,6 +6,8 @@ Chapter 15 showed how to compute gradients and Hessians. This chapter uses them 
 
 - **Finding stationary points.** Minima and transition states satisfy $\mathbf g(\mathbf R)=0$. Newton–Raphson steps, $\Delta\mathbf R=-\mathbf H^{-1}\mathbf g$, and their quasi-Newton and trust-region variants find these points efficiently.
 - **Predicting geometry errors.** An approximate method gives an approximate surface. The shift of its minimum from the reference minimum is set by the force the approximate method predicts at the reference geometry, not by the energy error itself.
+- **Vibrations.** The mass-weighted Hessian at a stationary point gives harmonic frequencies and normal modes, and decides whether the point is a minimum or a saddle.
+- **Thermochemistry.** Zero-point energy turns $D_e$ into $D_0$; rigid-rotor harmonic-oscillator partition functions give $H$, $S$ and $G$ at finite temperature.
 
 ## Why it matters
 
@@ -22,17 +24,19 @@ Chapter 15 showed how to compute gradients and Hessians. This chapter uses them 
 
 1. **Newton–Raphson optimization.** A second-order expansion of $E(\mathbf u)$, the Newton step, quasi-Newton Hessian updates, step control, and characterizing a stationary point by its Hessian eigenvalues.
 2. **Geometry error.** To first order the error is $\delta\mathbf R=-\mathbf H^{-1}\mathbf g$, where $\mathbf g$ is the approximate force at the reference minimum. The energy relaxation is second order in $\mathbf g$.
+3. **Harmonic analysis.** Diagonalize $H_{ij}/\sqrt{m_im_j}$ after projecting out translations and rotations; $\tilde\nu = 5140.487\sqrt\lambda$ cm$^{-1}$.
+4. **ZPE and thermochemistry.** $D_0 = D_e - \tfrac12\sum h\nu_k$; RRHO $U$, $H$, $S$, $G$.
 
 ## How to read it
 
-**Path.** [[geometry-optimization]], then [[geometry-error-of-an-approximate-surface]].
+**Path.** [[geometry-optimization]], [[geometry-error-of-an-approximate-surface]], [[harmonic-vibrational-analysis]], [[zero-point-energy-and-thermochemistry]].
 
 **Needs.** Chapter 15 (analytic gradients and Hessians) and Chapter 1 (the Born–Oppenheimer surface).
 
-**Leads to.** Embedding gradients (Chapter 19) and the planned excited-states chapter (Chapter 18).
+**Leads to.** Embedding gradients (Chapter 19), the planned excited-states chapter (Chapter 18), and Part 3, Chapters 6 and 9 (vibrational spectra and potential energy surfaces as chemical objects).
 
-**Core (first pass).** [[geometry-optimization]], [[geometry-error-of-an-approximate-surface]].
+**Core (first pass).** [[geometry-optimization]], [[harmonic-vibrational-analysis]], [[zero-point-energy-and-thermochemistry]]. **Deep.** [[geometry-error-of-an-approximate-surface]].
 
 **Checkpoint.** From a second-order expansion, show that the geometry error is $-\mathbf H^{-1}g$ with $g$ the force at the reference minimum, and that the relaxation energy is second order in $g$.
 
-**Planned sections:** Harmonic vibrational frequencies and normal modes; Zero-point energy; Dipole moments and polarizabilities; Excitation energies and transition properties; Potential energy surfaces.
+**Planned sections:** Dipole moments and polarizabilities; IR intensities; Excitation energies and transition properties.

@@ -4,11 +4,11 @@ The core of the notebook, arranged as a textbook: how to compute the electronic 
 
 Given the positions of the nuclei, find the energy and wave function of the electrons by solving the clamped-nucleus Schrödinger equation. It can be solved exactly only for the smallest systems, so this part is a sequence of approximations, each with its own logic:
 
-- **Chapters 1–7: the mean-field picture.** The Hamiltonian, determinants, Hartree–Fock, basis sets and integrals, second quantization, density matrices, and orbital optimization.
+- **Chapters 1–8: the mean-field picture.** The Hamiltonian, determinants, Hartree–Fock, basis sets and integrals, second quantization, density matrices, orbital optimization, and Kohn–Sham density functional theory.
 - **Chapters 9–14: electron correlation.** CI, perturbation theory, coupled cluster, methods beyond CCSD, multiconfigurational methods, and how they compare.
 - **Chapters 15–17: properties.** Analytic derivatives, geometries and potential energy surfaces, and propagators.
 - **Chapter 19: quantum embedding.** DMET, up to its analytic gradient.
-- **Planned:** DFT (Chapter 8), excited states (18), stochastic and tensor-network methods (20), software (21) and applications (22).
+- **Planned:** excited states (Chapter 18), stochastic and tensor-network methods (20), software (21) and applications (22).
 
 ## Why it is organized this way
 
