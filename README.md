@@ -164,6 +164,19 @@ sections, with the book sections each note uses, and every paper cited with a DO
 as `Authors, *Book Title* (edition, publisher, year), Sec. 3.4` and
 `Authors, "Title", *Journal* **vol**, page (year), doi:10....` for them to be picked up.
 
+## Searching, keyboard and copying equations
+
+- **Search** (box at the top, or press `/`): every word must appear somewhere in a section; the best
+  matches come first (title, then tags, summary and chapter, then the text). Accents and dashes are
+  ignored, so `schrodinger` and `hartree fock` work. Chapters whose names match are listed first, and
+  results show the matching passage with the words highlighted. `Enter` opens the first result.
+- **Jump** (`Ctrl K`, `⌘K` on a Mac, or the Jump button): type part of a title, a note id such as
+  `rhf`, a section number such as `4.3` or `4.3.5`, or an equation number; `↑` `↓` and `Enter` open it.
+  With nothing typed it offers the last section you read and the parts.
+- **`[` and `]`**: previous and next section in reading order (previous and next chapter on a chapter page).
+- **Copy LaTeX**: point at a display equation and press the small `TeX` button at its top left. The
+  copy has no `$$` and no closing punctuation; a numbered equation gets its `\label{...}` back.
+
 ## Topic map and graphs
 
 The site draws your links as graphs; there is nothing extra to write. `prerequisites`, `related` and

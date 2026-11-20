@@ -362,6 +362,40 @@ ul.papers .cit{margin:0;font-size:.95rem;line-height:1.5}
 ul.papers .m{margin:4px 0 0;font-family:var(--mono);font-size:.72rem;color:var(--muted)}
 ul.papers .m a{color:var(--accent-ink)}
 @media (max-width:520px){ul.locs li{grid-template-columns:minmax(0,1fr)}}
+
+/* search results: matched words and body snippet */
+mark{background:var(--accent-wash);color:inherit;padding:0 1px}
+.item .snip{display:block;max-width:62ch;margin-top:6px;font-size:.88rem;line-height:1.5;color:var(--muted)}
+.item .snip mark{color:var(--fg)}
+.qhint{margin:6px 0 0;font-family:var(--mono);font-size:.7rem;color:var(--muted)}
+kbd{font-family:var(--mono);font-size:.68rem;padding:1px 5px;border:1px solid var(--line);border-bottom-width:2px;background:var(--surface);color:var(--fg)}
+
+/* quick jump (Ctrl/Cmd K) */
+.jump{position:fixed;inset:0;z-index:60;display:flex;justify-content:center;align-items:flex-start;padding:12vh 12px 12px;background:var(--scrim)}
+.jump[hidden]{display:none}
+.jbox{width:min(640px,100%);max-height:76vh;display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);box-shadow:0 12px 40px rgba(0,0,0,.25)}
+.jbox .search{border:0;border-bottom:1px solid var(--line);font-size:1rem;padding:14px 16px}
+.jlist{list-style:none;margin:0;padding:4px 0;overflow-y:auto;min-height:0}
+.jo{display:grid;grid-template-columns:minmax(52px,max-content) minmax(0,1fr);gap:2px 12px;padding:8px 16px;cursor:pointer}
+.jo .no{font-family:var(--mono);font-size:.74rem;color:var(--muted);padding-top:3px;font-variant-numeric:tabular-nums}
+.jo .t{font-family:var(--display);font-weight:600;font-size:1rem;line-height:1.3;overflow-wrap:anywhere}
+.jo .m{grid-column:2;font-family:var(--mono);font-size:.68rem;color:var(--muted)}
+.jo[aria-selected="true"]{background:var(--accent-wash)}
+.jo[aria-selected="true"] .t{color:var(--accent-ink)}
+.jempty{padding:14px 16px;margin:0;color:var(--muted);font-size:.92rem}
+.jhelp{margin:0;padding:9px 16px;border-top:1px solid var(--line);font-family:var(--mono);font-size:.68rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:4px 14px}
+#jumpbtn kbd{margin-left:6px;font-size:.62rem;padding:0 4px;color:var(--muted)}
+@media (max-width:640px),(pointer:coarse){#jumpbtn{display:none}}
+
+/* copy the LaTeX of a display equation */
+.eqw{position:relative}
+.texbtn{position:absolute;top:0;left:0;z-index:2;font-family:var(--mono);font-size:.64rem;letter-spacing:.04em;line-height:1;padding:4px 6px;background:var(--surface);color:var(--muted);border:1px solid var(--line);cursor:pointer;opacity:0;transition:opacity .12s}
+.eqw:hover .texbtn,.texbtn:focus-visible,.texbtn.done{opacity:1}
+.texbtn:hover{color:var(--accent-ink);border-color:var(--accent)}
+.texbtn.done{color:var(--accent-ink);border-color:var(--accent)}
+@media (hover:none){.texbtn{opacity:.7}}
+@media (prefers-reduced-motion:reduce){.texbtn{transition:none}}
+@media print{.texbtn,.jump{display:none!important}}
 </style></head>
 <body>
 <div class="wrap">
@@ -369,6 +403,7 @@ ul.papers .m a{color:var(--accent-ink)}
     <p class="mark"><a href="#" id="home-link">Theory Notebook</a></p>
     <button class="btn" id="menu" type="button" aria-expanded="false" aria-controls="side">Contents</button>
     <a class="btn" id="mapbtn" href="#map">Map</a>
+    <button class="btn" id="jumpbtn" type="button" title="Jump to a section or chapter">Jump<kbd id="jumpkey">Ctrl K</kbd></button>
     <button class="btn" id="theme" type="button">Theme</button>
   </div>
 
@@ -379,13 +414,20 @@ ul.papers .m a{color:var(--accent-ink)}
     </nav>
     <main class="main">
       <div class="searchbar">
-        <input class="search" id="q" type="search" placeholder="Search sections and chapters" aria-label="Search sections and chapters" autocomplete="off">
+        <input class="search" id="q" type="search" placeholder="Search sections and chapters  ( / )" aria-label="Search sections and chapters" autocomplete="off">
       </div>
       <div id="view" aria-live="polite"></div>
     </main>
   </div>
 </div>
 <div class="scrim" id="scrim" hidden></div>
+<div class="jump" id="jump" hidden>
+  <div class="jbox" role="dialog" aria-modal="true" aria-label="Jump to a section">
+    <input class="search" id="jq" type="text" placeholder="Jump to a section, chapter or equation number" autocomplete="off" spellcheck="false" role="combobox" aria-expanded="true" aria-controls="jl" aria-autocomplete="list">
+    <ul class="jlist" id="jl" role="listbox" aria-label="Matches"></ul>
+    <p class="jhelp"><span><kbd>↑</kbd> <kbd>↓</kbd> choose</span><span><kbd>Enter</kbd> open</span><span><kbd>Esc</kbd> close</span><span><kbd>/</kbd> search</span><span><kbd>[</kbd> <kbd>]</kbd> previous / next</span></p>
+  </div>
+</div>
 
 <script type="application/json" id="site-data">__SITE_DATA__</script>
 <script>
@@ -891,6 +933,46 @@ window.MathJax={
     }
     return p;
   }
+
+  /* ---------- copy the LaTeX of a display equation ----------
+     The source is read from the equation's text before MathJax replaces it. The display delimiters
+     and the closing punctuation of the sentence are dropped; an equation number (\tag) becomes the
+     note's \label again, so the copy pastes into a paper as it was written in the note. */
+  function eqSource(d){
+    var t=d.textContent.trim();
+    t=t.replace(/^\$\$([\s\S]*)\$\$$/,'$1').replace(/^\\\[([\s\S]*)\\\]$/,'$1').trim();
+    t=t.replace(/\\tag\*?\{[^{}]*\}/g,'').trim();
+    t=t.replace(/\s*(\\[,;!:]|\\quad|\\qquad|~)*\s*[.,;]$/,'').trim();
+    if(d.id&&d.id.indexOf('eq-')===0)t+=' \\label{'+d.id.slice(3)+'}';
+    return t;
+  }
+  function copyPlain(text,done,fail){
+    function legacy(){
+      var ta=document.createElement('textarea');ta.value=text;ta.setAttribute('readonly','');
+      ta.style.position='fixed';ta.style.top='-1000px';ta.style.opacity='0';document.body.appendChild(ta);ta.select();
+      var ok=false;try{ok=document.execCommand('copy')}catch(e){}
+      document.body.removeChild(ta);(ok?done:fail)();
+    }
+    try{
+      if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(text).then(done,legacy);
+      else legacy();
+    }catch(e){legacy()}
+  }
+  function addTexButtons(body){
+    body.querySelectorAll('.eq').forEach(function(d){
+      var src=eqSource(d);if(!src)return;
+      var w=el('div','eqw');d.parentNode.insertBefore(w,d);w.appendChild(d);
+      var b=el('button','texbtn','TeX');b.type='button';
+      b.title='Copy the LaTeX of this equation';b.setAttribute('aria-label','Copy the LaTeX of this equation');
+      var t=null;
+      b.addEventListener('click',function(e){
+        e.preventDefault();e.stopPropagation();clearTimeout(t);
+        copyPlain(src,function(){b.textContent='Copied';b.classList.add('done')},function(){b.textContent='Copy failed';b.classList.add('done')});
+        t=setTimeout(function(){b.textContent='TeX';b.classList.remove('done')},1600);
+      });
+      w.insertBefore(b,d);
+    });
+  }
   function drawNote(n,v){
     var node=n.node;
     v.appendChild(crumbs(node));
@@ -922,6 +1004,7 @@ window.MathJax={
     if(gp)art.appendChild(gp);
 
     var body=el('div','post-body');body.innerHTML=fillEq(n.html,n);
+    addTexButtons(body);
     art.appendChild(body);
 
     var toc=el('ul');
@@ -1610,31 +1693,149 @@ window.MathJax={
     v.appendChild(head);
     v.appendChild(group('Notes',byKind[k].slice().sort(byOrder).map(function(n){return noteItem(n,null,true)})));
   }
+  /* ---------- search: normalised matching, ranking, snippets ----------
+     Text is compared lower-case with accents dropped and dashes read as spaces, so
+     "schrodinger", "Hartree-Fock" and "hartree fock" all match. Every word must occur somewhere;
+     the score then prefers the title, then tags, summary and chapter, then the body. */
+  function normChar(c){
+    var d=c.normalize?c.normalize('NFD').replace(/[̀-ͯ]/g,''):c;
+    d=d.toLowerCase();
+    return /[‐-―_\-−]/.test(d)?' ':d;
+  }
+  function norm(s){var o='';s=String(s||'');for(var i=0;i<s.length;i++)o+=normChar(s.charAt(i));return o.replace(/\s+/g,' ')}
+  /* normalised text with a map back to positions in the original string (for highlighting) */
+  function normMap(s){
+    var o='',map=[],prevSp=false;
+    for(var i=0;i<s.length;i++){
+      var d=normChar(s.charAt(i));
+      for(var k=0;k<d.length;k++){
+        var ch=d.charAt(k),sp=/\s/.test(ch);
+        if(sp&&prevSp)continue;
+        o+=sp?' ':ch;map.push(i);prevSp=sp;
+      }
+    }
+    return {s:o,map:map};
+  }
+  function qwords(q){return norm(q).split(' ').filter(Boolean)}
+  function reEsc(w){return w.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')}
+  function atStart(h,w){return new RegExp('(^|[^a-z0-9])'+reEsc(w)).test(h)}
+  function wholeWord(h,w){return new RegExp('(^|[^a-z0-9])'+reEsc(w)+'($|[^a-z0-9])').test(h)}
+  function count(h,w,cap){var c=0,i=h.indexOf(w);while(i>=0&&c<cap){c++;i=h.indexOf(w,i+w.length)}return c}
+  var MATH_RE=/\$\$[\s\S]*?\$\$|\$[^$]*\$/g;
+  var fields={};
+  function fieldsOf(n){
+    var f=fields[n.id];
+    if(!f){
+      var prose=textOf(n).replace(MATH_RE,' ').replace(/\s+/g,' ');
+      f=fields[n.id]={t:norm(n.title),id:norm(n.id),g:norm(n.tags.join(' · ')),s:norm(n.summary),
+        k:norm((n.kind||'')+' '+kindName(n.kind||'')+' '+pathLabel(n.node)+' '+(n.sec||'')),x:norm(textOf(n)),prose:prose};
+    }
+    return f;
+  }
+  function scoreNote(n,words,phrase){
+    var f=fieldsOf(n),sc=0;
+    for(var i=0;i<words.length;i++){
+      var w=words[i],inI=wholeWord(f.id,w),inT=f.t.indexOf(w)>=0,inG=f.g.indexOf(w)>=0,inS=f.s.indexOf(w)>=0,inK=f.k.indexOf(w)>=0,inX=f.x.indexOf(w)>=0;
+      if(!(inT||inI||inG||inS||inK||inX))return -1;
+      if(inT)sc+=wholeWord(f.t,w)?14:(atStart(f.t,w)?10:4);else if(inI)sc+=8;
+      if(inG)sc+=wholeWord(f.g,w)?7:3;
+      if(inS)sc+=atStart(f.s,w)?4:2;
+      if(inK)sc+=2;
+      if(inX)sc+=1+0.5*count(f.x,w,6);
+    }
+    if(words.length>1){if(f.t.indexOf(phrase)>=0)sc+=12;else if(f.s.indexOf(phrase)>=0)sc+=5;else if(f.x.indexOf(phrase)>=0)sc+=3}
+    if(f.t===phrase||f.id===phrase)sc+=30;
+    /* a short title that is mostly the query beats a long one that merely contains it */
+    if(words.every(function(w){return f.t.indexOf(w)>=0}))sc+=16*Math.min(1,words.length/f.t.split(' ').length);
+    return sc;
+  }
+  function scoreFolder(c,words,phrase){
+    var t=norm(c.label),p=norm(c.full+' '+pathLabel(c)),sc=0;
+    for(var i=0;i<words.length;i++){
+      var w=words[i];
+      if(p.indexOf(w)<0)return -1;
+      sc+=t.indexOf(w)>=0?(wholeWord(t,w)?14:8):2;
+    }
+    if(t===phrase)sc+=30;else if(t.indexOf(phrase)>=0)sc+=8;
+    return sc;
+  }
+  /* character ranges in s that match any word, merged */
+  function ranges(s,words){
+    var nm=normMap(s),r=[];
+    words.forEach(function(w){var i=nm.s.indexOf(w);while(i>=0){r.push([nm.map[i],nm.map[i+w.length-1]+1]);i=nm.s.indexOf(w,i+w.length)}});
+    r.sort(function(a,b){return a[0]-b[0]});
+    var out=[];r.forEach(function(x){var l=out[out.length-1];if(l&&x[0]<=l[1])l[1]=Math.max(l[1],x[1]);else out.push(x.slice())});
+    return out;
+  }
+  function markText(node,s,words){
+    node.textContent='';var at=0;
+    ranges(s,words).forEach(function(x){
+      if(x[0]>at)node.appendChild(document.createTextNode(s.slice(at,x[0])));
+      node.appendChild(el('mark',null,s.slice(x[0],x[1])));at=x[1];
+    });
+    if(at<s.length)node.appendChild(document.createTextNode(s.slice(at)));
+  }
+  /* a sentence-sized window of the body around the first match that is not already in the title or summary */
+  function snippet(n,words){
+    var f=fieldsOf(n),need=words.filter(function(w){return f.t.indexOf(w)<0&&f.s.indexOf(w)<0});
+    if(!need.length)return null;
+    var p=f.prose,nm=normMap(p),best=-1;
+    need.forEach(function(w){var i=nm.s.indexOf(w);if(i>=0&&(best<0||i<best))best=i});
+    if(best<0)return null;
+    var at=nm.map[best],from=Math.max(0,at-70),to=Math.min(p.length,at+150);
+    if(from>0){var sp=p.indexOf(' ',from);if(sp>0&&sp<at)from=sp+1}
+    if(to<p.length){var sp2=p.lastIndexOf(' ',to);if(sp2>at)to=sp2}
+    return (from>0?'… ':'')+p.slice(from,to).trim()+(to<p.length?' …':'');
+  }
+  function searchNotes(q){
+    var words=qwords(q),phrase=words.join(' ');
+    if(!words.length)return [];
+    return notes.map(function(n){return {n:n,s:scoreNote(n,words,phrase)}})
+      .filter(function(x){return x.s>=0})
+      .sort(function(a,b){return b.s-a.s||a.n.seq-b.n.seq});
+  }
+  function resultItem(n,words){
+    var a=noteItem(n,null,true);
+    var t=a.querySelector('.t');if(t)markText(t,n.title,words);
+    var s=a.querySelector('.s');if(s)markText(s,n.summary,words);
+    var sn=snippet(n,words);
+    if(sn){var sp=el('span','snip');markText(sp,sn,words);var m=a.querySelector('.m');m.parentNode.insertBefore(sp,m)}
+    return a;
+  }
+  var SHOW=60;
   function drawResults(q,v){
-    var words=q.toLowerCase().split(/\s+/);
-    var fold=allNodes.filter(function(c){
-      var hay=(c.full+' '+pathLabel(c)).toLowerCase();
-      return words.every(function(w){return hay.indexOf(w)>=0});
-    });
-    var hits=notes.filter(function(n){
-      var hay=(n.title+' '+n.summary+' '+n.tags.join(' ')+' '+(n.kind||'')+' '+textOf(n)).toLowerCase();
-      return words.every(function(w){return hay.indexOf(w)>=0});
-    });
+    var words=qwords(q),phrase=words.join(' ');
+    var fold=allNodes.map(function(c){return {c:c,s:scoreFolder(c,words,phrase)}})
+      .filter(function(x){return x.s>=0}).sort(function(a,b){return b.s-a.s}).map(function(x){return x.c});
+    var hits=searchNotes(q).map(function(x){return x.n});
+    var lead=fold.filter(function(c){var t=norm(c.label);return words.every(function(w){return t.indexOf(w)>=0})}).slice(0,4);
+    fold=fold.filter(function(c){return lead.indexOf(c)<0});
     var head=el('header','head');head.style.marginTop='24px';
     head.appendChild(el('h1',null,'Search'));
-    head.appendChild(el('p','sub',plural(fold.length,'folder')+' · '+plural(hits.length,'note')+' for “'+q+'”'));
+    head.appendChild(el('p','sub',plural(fold.length+lead.length,'folder')+' · '+plural(hits.length,'note')+' for “'+q+'”'+(hits.length?' · best matches first':'')));
+    if(hits.length){var h=el('p','qhint');h.appendChild(el('kbd',null,'Enter'));h.appendChild(document.createTextNode(' opens the first note'));head.appendChild(h)}
     v.appendChild(head);
+    if(lead.length)v.appendChild(group(lead.length===1?'Chapter':'Chapters',lead.map(function(c){var a=folderItem(c),t=a.querySelector('.t');if(t)markText(t,c.label,words);return a})));
+    if(hits.length){
+      var shown=hits.slice(0,SHOW),g=group('Notes',shown.map(function(n){return resultItem(n,words)}));
+      if(hits.length>SHOW){
+        var more=el('button','btn','Show all '+hits.length);more.type='button';more.style.marginTop='14px';
+        more.addEventListener('click',function(){var ul=g.querySelector('.items');hits.slice(SHOW).forEach(function(n){ul.appendChild(li(resultItem(n,words)))});more.remove()});
+        g.appendChild(more);
+      }
+      v.appendChild(g);
+    }
     if(fold.length){
-      v.appendChild(group('Folders',fold.slice(0,30).map(function(c){
+      v.appendChild(group('Other folders',fold.slice(0,30).map(function(c){
         var a=folderItem(c);
         var m=a.querySelector('.m');
         if(!m){m=el('span','m');a.lastChild.appendChild(m)}
         var up=c.parent&&c.parent.key?pathLabel(c.parent):'';
         m.textContent=[up,m.textContent].filter(Boolean).join(' · ');
+        var t=a.querySelector('.t');if(t)markText(t,c.label,words);
         return a;
       })));
     }
-    if(hits.length)v.appendChild(group('Notes',hits.map(function(n){return noteItem(n,null,true)})));
     if(!fold.length&&!hits.length)v.appendChild(el('p','none-found','Nothing matches that search. Try a shorter word.'));
   }
 
@@ -1649,8 +1850,18 @@ window.MathJax={
     else if(r.kind==='sources')drawSources(v);
     else drawFolder(r.node,v);
   }
-  $('q').addEventListener('input',function(e){state.q=e.target.value.trim();draw()});
-  $('q').addEventListener('keydown',function(e){if(e.key==='Escape'&&$('q').value){$('q').value='';state.q='';draw()}});
+  var qTimer=null;
+  $('q').addEventListener('input',function(e){
+    clearTimeout(qTimer);
+    qTimer=setTimeout(function(){state.q=e.target.value.trim();draw()},90);
+  });
+  $('q').addEventListener('keydown',function(e){
+    if(e.key==='Escape'&&$('q').value){clearTimeout(qTimer);$('q').value='';state.q='';draw();return}
+    if(e.key==='Enter'){
+      clearTimeout(qTimer);var q=$('q').value.trim();if(!q)return;
+      var top=searchNotes(q)[0];if(top){e.preventDefault();$('q').blur();go('n.'+top.n.id)}
+    }
+  });
   /* links written inside notes, like [[other note]] */
   $('view').addEventListener('click',function(e){
     if(e.defaultPrevented||!plain(e))return;
@@ -1663,6 +1874,122 @@ window.MathJax={
       hidePop();jumpTo(r.anchor);return;
     }
     go(h);
+  });
+
+  /* ---------- keyboard: quick jump (Ctrl/Cmd K), / search, [ ] previous / next ----------
+     Single-key shortcuts are ignored while typing in a field. */
+  var isMac=/Mac|iPhone|iPad/.test(navigator.platform||'');
+  $('jumpkey').textContent=isMac?'⌘K':'Ctrl K';
+  $('jumpbtn').title='Jump to a section or chapter ('+(isMac?'⌘K':'Ctrl+K')+')';
+  var jumpItems=null,jumpSel=0,jumpShown=[],jumpBack=null;
+  function jumpIndex(){
+    if(jumpItems)return jumpItems;
+    jumpItems=[];
+    reading.forEach(function(n){
+      jumpItems.push({h:'n.'+n.id,id:norm(n.id),num:n.sec||'',t:n.title,m:(n.node.full?n.node.full+' ':'')+n.node.label+(n.kind?' · '+kindName(n.kind):''),seq:n.seq,type:0});
+      (n.eqs||[]).forEach(function(e){
+        var no=eqNum(n,e[0]);
+        jumpItems.push({h:'n.'+n.id+'~eq-'+e[0],num:'Eq. '+no,t:'Eq. ('+no+') · '+shortTitle(n),m:'\\label{'+e[0]+'}',seq:n.seq+.5,type:2,extra:no+' '+e[0]});
+      });
+    });
+    allNodes.forEach(function(c,i){
+      if(!c.key)return;
+      jumpItems.push({h:hashFor(c.key),num:c.full||'',t:c.label,m:levelName(c)+(c.parent&&c.parent.key?' in '+pathLabel(c.parent):'')+' · '+plural(c.count,'section'),seq:-1000+i,type:1});
+    });
+    [['','Home','Start page'],['map','Map','Topic graph of the whole notebook'],['sources','Sources','Books and papers cited in the notes']].forEach(function(p,i){
+      jumpItems.push({h:p[0],num:'',t:p[1],m:p[2],seq:-2000+i,type:3});
+    });
+    jumpItems.forEach(function(e){e.tn=norm(e.t);e.hay=norm(e.num+' '+e.t+' '+e.m+' '+(e.extra||'')+' '+(e.id||''));e.nn=e.num.toLowerCase().replace(/^eq\. /,'')});
+    return jumpItems;
+  }
+  function jumpScore(e,words,phrase,raw){
+    /* a section number such as 4.3 or 4.3.5: that entry, then everything inside it, in reading order */
+    if(/^[0-9]+(\.[0-9]+)*\.?$/.test(raw)){raw=raw.replace(/\.$/,'');return !e.nn?-1:(e.nn===raw?1000:(e.nn.indexOf(raw+'.')===0?500:-1))}
+    var sc=0;
+    for(var i=0;i<words.length;i++){
+      var w=words[i];
+      if(e.hay.indexOf(w)<0)return -1;
+      if(e.id&&wholeWord(e.id,w))sc+=14;else if(e.tn.indexOf(w)>=0)sc+=wholeWord(e.tn,w)?14:(atStart(e.tn,w)?10:4);else sc+=1;
+    }
+    if(e.tn===phrase||e.id===phrase)sc+=40;else if(e.tn.indexOf(phrase)===0)sc+=25;
+    if(e.type!==2)sc+=12*Math.min(1,words.length/e.tn.split(' ').length);
+    if(e.type===1)sc+=3;if(e.type===3)sc+=2;if(e.type===2)sc-=2;
+    return sc;
+  }
+  function jumpFind(q){
+    var all=jumpIndex(),words=qwords(q),phrase=words.join(' '),raw=q.trim().toLowerCase().replace(/^(eq\.?|section|§)\s*/,'');
+    if(!words.length){
+      var out=all.filter(function(e){return e.type===3});
+      var last=lastRead();
+      if(last)out.unshift({h:'n.'+last.id,num:last.sec||'',t:last.title,m:'Continue reading',seq:0,type:0});
+      return out.concat(all.filter(function(e){return e.type===1&&e.h.indexOf('~')<0}));
+    }
+    return all.map(function(e){return {e:e,s:jumpScore(e,words,phrase,raw)}}).filter(function(x){return x.s>=0})
+      .sort(function(a,b){return b.s-a.s||a.e.seq-b.e.seq}).slice(0,40).map(function(x){return x.e});
+  }
+  function jumpRender(){
+    var q=$('jq').value,ul=$('jl');ul.innerHTML='';
+    jumpShown=jumpFind(q);
+    if(jumpSel>=jumpShown.length)jumpSel=jumpShown.length-1;if(jumpSel<0)jumpSel=0;
+    var words=qwords(q);
+    jumpShown.forEach(function(e,i){
+      var o=el('li','jo');o.id='jo-'+i;o.setAttribute('role','option');o.setAttribute('aria-selected',i===jumpSel?'true':'false');
+      o.appendChild(el('span','no',e.num));
+      var t=el('span','t');if(words.length)markText(t,e.t,words);else t.textContent=e.t;o.appendChild(t);
+      o.appendChild(el('span','m',e.m));
+      o.addEventListener('mousemove',function(){if(jumpSel!==i){jumpSel=i;jumpMark()}});
+      o.addEventListener('click',function(){jumpOpen(i)});
+      ul.appendChild(o);
+    });
+    if(!jumpShown.length)ul.appendChild(el('li','jempty','No section, chapter or equation matches. Press Enter to search the full text.'));
+    jumpMark();
+  }
+  function jumpMark(){
+    var os=$('jl').querySelectorAll('.jo');
+    os.forEach(function(o,i){o.setAttribute('aria-selected',i===jumpSel?'true':'false')});
+    if(os[jumpSel]){$('jq').setAttribute('aria-activedescendant','jo-'+jumpSel);try{os[jumpSel].scrollIntoView({block:'nearest'})}catch(e){}}
+    else $('jq').removeAttribute('aria-activedescendant');
+  }
+  function openJump(){
+    if(!$('jump').hidden)return;
+    jumpBack=document.activeElement;closeDrawer();hidePop();
+    $('jump').hidden=false;$('jq').value='';jumpSel=0;jumpRender();$('jq').focus();
+  }
+  function closeJump(restore){
+    if($('jump').hidden)return;
+    $('jump').hidden=true;
+    if(restore!==false&&jumpBack&&jumpBack.focus)try{jumpBack.focus()}catch(e){}
+    jumpBack=null;
+  }
+  function jumpOpen(i){
+    var e=jumpShown[i];
+    if(!e){var q=$('jq').value.trim();closeJump(false);if(q){$('q').value=q;state.q=q;draw();$('q').focus()}return}
+    closeJump(false);
+    var r=resolve(e.h),cur=resolve(state.h);
+    if(r.kind==='note'&&r.anchor&&cur.kind==='note'&&cur.note===r.note&&!state.q){state.h=e.h;try{location.hash=e.h}catch(x){}jumpTo(r.anchor);return}
+    go(e.h);
+  }
+  $('jq').addEventListener('input',function(){jumpSel=0;jumpRender()});
+  $('jq').addEventListener('keydown',function(e){
+    if(e.key==='ArrowDown'){e.preventDefault();if(jumpShown.length){jumpSel=(jumpSel+1)%jumpShown.length;jumpMark()}}
+    else if(e.key==='ArrowUp'){e.preventDefault();if(jumpShown.length){jumpSel=(jumpSel-1+jumpShown.length)%jumpShown.length;jumpMark()}}
+    else if(e.key==='Enter'){e.preventDefault();jumpOpen(jumpSel)}
+    else if(e.key==='Escape'){e.preventDefault();e.stopPropagation();closeJump()}
+    else if(e.key==='Tab'){e.preventDefault()}
+  });
+  $('jump').addEventListener('mousedown',function(e){if(e.target===$('jump'))closeJump()});
+  $('jumpbtn').addEventListener('click',openJump);
+  function typing(e){var t=e.target;return !!(t&&(t.isContentEditable||/^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName)))}
+  document.addEventListener('keydown',function(e){
+    if((e.ctrlKey||e.metaKey)&&!e.altKey&&!e.shiftKey&&(e.key==='k'||e.key==='K')){
+      e.preventDefault();if($('jump').hidden)openJump();else closeJump();return;
+    }
+    if(!$('jump').hidden||e.defaultPrevented||e.ctrlKey||e.metaKey||e.altKey||typing(e))return;
+    if(e.key==='/'){e.preventDefault();window.scrollTo(0,0);$('q').focus();$('q').select();return}
+    if(e.key===']'||e.key==='['){
+      var b=document.querySelector('#view .pager '+(e.key===']'?'.next':'.prev'));
+      if(b){e.preventDefault();b.click()}
+    }
   });
 
   /* ---------- theme ---------- */
