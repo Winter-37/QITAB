@@ -172,3 +172,5 @@ Griffiths and Schroeter, *Introduction to Quantum Mechanics* (3rd ed., Cambridge
 Sakurai and Napolitano, *Modern Quantum Mechanics* (3rd ed., Cambridge University Press, 2021), Sec. 5.3, Eqs. (5.95)-(5.125), pp. 305-311, including the remark on the Darwin term.
 
 The Darwin term and the Dirac energy formula are standard results quoted from memory, not from either book; both were checked numerically against the fine-structure formula. Expectation values (SymPy, $n\le3$), the table and the splitting are computed in `griffiths/ch07_perturbation.py` (section B) with SciPy CODATA constants.
+
+Companion reading in Levine, *Quantum Chemistry* (7th ed., Pearson, 2014): Sec. 10.2, p. 268 (spin and the hydrogen atom), and Sec. 11.6, pp. 316-318 (spin–orbit interaction).

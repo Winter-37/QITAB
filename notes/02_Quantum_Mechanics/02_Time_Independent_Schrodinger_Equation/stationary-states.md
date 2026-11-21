@@ -134,3 +134,5 @@ These hold for normalizable solutions of the TISE with real $V$.
 ## Source
 
 Griffiths and Schroeter, *Introduction to Quantum Mechanics* (3rd ed., Cambridge University Press, 2018), Sec. 2.1, Eqs. (2.1)-(2.21), Example 2.1, Problems 2.1, 2.2, 2.5. Page numbers are not given because the PDF used is an e-book rendering without print pagination. Equations were read from the page images. Numbers recomputed with `griffiths/ch02_tise.py` (section A).
+
+Companion reading in Levine, *Quantum Chemistry* (7th ed., Pearson, 2014): Sec. 1.5, pp. 11-14 (the time-independent Schrödinger equation, stationary states).

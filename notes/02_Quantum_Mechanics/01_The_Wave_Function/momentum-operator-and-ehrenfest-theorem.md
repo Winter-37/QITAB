@@ -134,3 +134,5 @@ solves the shifted one: the time derivative of the phase supplies exactly the ex
 ## Source
 
 Griffiths and Schroeter, *Introduction to Quantum Mechanics* (3rd ed., Cambridge University Press, 2018), Sec. 1.5, Eqs. (1.28)-(1.38), footnotes 16-19; Problems 1.6, 1.7, 1.8. Page numbers are not given because the PDF used is an e-book rendering without print pagination. The remarks on operator ordering and on the expansion of $\langle F\rangle$ are mine, not Griffiths's. Numerical example recomputed with `griffiths/ch01_wave_function.py` (section F).
+
+Companion reading in Levine, *Quantum Chemistry* (7th ed., Pearson, 2014): Sec. 3.3, pp. 39-44 (operators and quantum mechanics), and Sec. 3.7, pp. 51-54 (average values).

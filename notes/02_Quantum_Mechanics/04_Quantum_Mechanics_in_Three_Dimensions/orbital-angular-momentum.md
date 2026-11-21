@@ -141,3 +141,5 @@ $$
 ## Source
 
 Griffiths and Schroeter, *Introduction to Quantum Mechanics* (3rd ed., Cambridge University Press, 2018), Sec. 4.3, Eqs. (4.95)-(4.133), Figs. 4.11-4.13 (described); Problems 4.21-4.27. Page numbers are not given because the PDF used is an e-book rendering without print pagination. The CO numbers use the atomic masses above and the experimental $r_e$ (standard value, not from Griffiths). All checks are in `griffiths/ch04_3d.py` (section D).
+
+Companion reading in Levine, *Quantum Chemistry* (7th ed., Pearson, 2014): Secs. 5.3-5.4, pp. 99-117 (angular momentum of a one-particle system; the ladder-operator method).

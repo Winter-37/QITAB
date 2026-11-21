@@ -7,7 +7,7 @@ kind: derivation
 level: intermediate
 tags: [hydrogen-atom, coulomb-potential, bohr-formula, bohr-radius, laguerre-polynomials, radial-wave-functions, degeneracy, rydberg, spectrum, hydrogenic-ions, griffiths]
 prerequisites: [central-potentials-and-spherical-harmonics, harmonic-oscillator-analytic-solution]
-related: [orbital-angular-momentum, atomic-units, radial-basis-functions-slater-and-gaussian, hellmann-feynman-and-virial-theorems, coulomb-cusp-and-helium-expansions]
+related: [orbital-angular-momentum, atomic-units, radial-basis-functions-slater-and-gaussian, hellmann-feynman-and-virial-theorems, coulomb-cusp-and-helium-expansions, real-hydrogenlike-orbitals]
 order: 30
 date: 2026-11-04
 ---
@@ -203,3 +203,5 @@ Fine structure (relativity and spin–orbit coupling), the Lamb shift and hyperf
 ## Source
 
 Griffiths and Schroeter, *Introduction to Quantum Mechanics* (3rd ed., Cambridge University Press, 2018), Sec. 4.2, Eqs. (4.52)-(4.94), Tables 4.5-4.7, Figs. 4.6-4.10 (described); Problems 4.12-4.19, 4.54. Page numbers are not given because the PDF used is an e-book rendering without print pagination. The general moment formulas are standard results, here verified symbolically for $n\le4$, not quoted from Griffiths. Reduced-mass wavelengths, hydrogenic tables and finite-difference spectra are computed in `griffiths/ch04_3d.py` (section C) with SciPy CODATA constants.
+
+Companion reading in Levine, *Quantum Chemistry* (7th ed., Pearson, 2014): Secs. 6.5-6.6, pp. 128-143 (the hydrogen atom; the bound-state wave functions).

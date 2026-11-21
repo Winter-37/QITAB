@@ -7,7 +7,7 @@ kind: algorithm
 level: advanced
 tags: [scf, roothaan-hall, diis, direct-scf, newton-method, trust-region, convergence-rate, fixed-point-iteration, hartree-fock]
 prerequisites: [scf-procedure, hartree-fock-csf-parametrization-and-canonical-conditions, generalized-fock-matrix-and-orbital-hessian]
-related: [scf-second-order-and-stability, density-based-hartree-fock, heh-plus-minimal-basis-model, multipole-methods-and-integral-screening, rhf-instabilities-and-multiple-solutions]
+related: [scf-second-order-and-stability, diis-extrapolation, density-based-hartree-fock, heh-plus-minimal-basis-model, multipole-methods-and-integral-screening, rhf-instabilities-and-multiple-solutions]
 conventions: [ia-letters]
 order: 50
 date: 2026-11-04
@@ -47,6 +47,8 @@ $$
 
 - **Linearity assumption.** DIIS assumes that $\mathbf e$ depends linearly on $\mathbf f$, which holds only approximately.
 - **History length.** Only a few recent vectors are kept: old ones carry little information and can harm convergence.
+
+DIIS as a general accelerator (CC amplitudes, linear response, the role of the constraint and of the error-vector basis) is in [[diis-extrapolation]].
 
 ## Integral-direct SCF and the Coulomb/exchange split
 

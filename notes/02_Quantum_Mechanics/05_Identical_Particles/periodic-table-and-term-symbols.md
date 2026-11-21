@@ -90,3 +90,5 @@ These are empirical rules for the ground term, in this order (Problem 5.18):
 ## Source
 
 Griffiths and Schroeter, *Introduction to Quantum Mechanics* (3rd ed., Cambridge University Press, 2018), Sec. 5.2.2, Eqs. (5.44)-(5.45), Table 5.1; Problems 5.17-5.19. Page numbers are not given because the PDF used is an e-book rendering without print pagination. The microstate decompositions and the Hund's-rule check are computed in `griffiths/ch05_identical.py` (section E). The remark on the mechanism behind Hund's first rule is my addition; no specific reference is given here, and it should be checked before relying on it.
+
+Companion reading in Levine, *Quantum Chemistry* (7th ed., Pearson, 2014): Sec. 11.2, pp. 295-298 (orbitals and the periodic table), and Sec. 11.5, pp. 305-316 (angular momentum in many-electron atoms, term symbols, Hund's rules).

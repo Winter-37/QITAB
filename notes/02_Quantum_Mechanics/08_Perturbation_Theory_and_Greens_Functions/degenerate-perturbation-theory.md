@@ -7,7 +7,7 @@ kind: derivation
 level: intermediate
 tags: [perturbation-theory, degeneracy, secular-equation, good-states, symmetry, near-degeneracy, griffiths, sakurai]
 prerequisites: [rayleigh-schrodinger-perturbation-theory, matrix-eigenvalue-problem]
-related: [symmetry-conservation-and-degeneracy, stark-effect, hydrogen-fine-structure, zeeman-effect, linear-variation-method]
+related: [symmetry-conservation-and-degeneracy, stark-effect, hydrogen-fine-structure, zeeman-effect, linear-variation-method, helium-excited-states-perturbation]
 order: 12
 date: 2026-11-14
 ---
@@ -144,3 +144,5 @@ Griffiths and Schroeter, *Introduction to Quantum Mechanics* (3rd ed., Cambridge
 Sakurai and Napolitano, *Modern Quantum Mechanics* (3rd ed., Cambridge University Press, 2021), Sec. 5.2, pp. 300-305, for the projector formulation and the second-order statement.
 
 The second- and third-order coefficients of the oscillator example, the table and the cubical-well eigenvalues are computed in `griffiths/ch07_perturbation.py` (sections A and A2), not quoted from either book.
+
+Companion reading in Levine, *Quantum Chemistry* (7th ed., Pearson, 2014): Secs. 9.5-9.6, pp. 245-250 (perturbation theory for a degenerate level; simplification of the secular equation); worked case in [[helium-excited-states-perturbation]].

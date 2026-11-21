@@ -44,7 +44,7 @@ The chapter ends with Green's functions, the resolvent $(E-\hat H)^{-1}$. It sol
 
 ## How to read it
 
-**Path.** [[rayleigh-schrodinger-perturbation-theory]], then [[degenerate-perturbation-theory]] and its applications to hydrogen: [[stark-effect]], [[hydrogen-fine-structure]], [[zeeman-effect]], [[hyperfine-splitting-hydrogen]]. [[greens-functions-single-particle]] closes the chapter.
+**Path.** [[rayleigh-schrodinger-perturbation-theory]], then [[degenerate-perturbation-theory]], worked in full on [[helium-excited-states-perturbation|the 1s2s and 1s2p states of helium]], and its applications to hydrogen: [[stark-effect]], [[hydrogen-fine-structure]], [[zeeman-effect]], [[hyperfine-splitting-hydrogen]]. [[greens-functions-single-particle]] closes the chapter.
 
 **Needs.** Chapter 3 (formalism), Chapter 4 (hydrogen, spin, addition of angular momenta), and parity from Chapter 6.
 

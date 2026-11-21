@@ -17,4 +17,4 @@ Methods are only useful when one knows what question to ask of them and how to i
 
 ## How to read it
 
-Alongside Part 4, as context. Written so far, from Levine's *Quantum Chemistry*: Chapter 3 (chemical bonding), Chapter 4 (molecular-orbital theory), Chapter 6 (rotational and vibrational theory) and Chapter 9 (potential energy surfaces). The other chapters are planned. Chapters 3 and 4 can be read in either order; Chapter 4 supplies the canonical orbitals that Chapter 3 interprets.
+Alongside Part 4, as context. Written so far, from Levine's *Quantum Chemistry*: Chapter 1 (atomic structure: lithium), Chapter 2 (molecular symmetry and point groups), Chapter 3 (chemical bonding), Chapter 4 (molecular-orbital theory), Chapter 6 (rotational and vibrational theory) and Chapter 9 (potential energy surfaces). The other chapters are planned. Chapters 3 and 4 can be read in either order; Chapter 4 supplies the canonical orbitals that Chapter 3 interprets.

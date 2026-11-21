@@ -106,3 +106,5 @@ Completeness is trivial: $f(x) = \int f(y)\,\delta(x-y)\,dy$, so $c(y) = f(y)$.
 ## Source
 
 Griffiths and Schroeter, *Introduction to Quantum Mechanics* (3rd ed., Cambridge University Press, 2018), Sec. 3.3, Eqs. (3.30)-(3.42), Theorems 1-2, Examples 3.2-3.3; Problems 3.7-3.10, 3.34; footnotes 11-14. Page numbers are not given because the PDF used is an e-book rendering without print pagination. The table of most probable momenta and the extrapolated $\langle p^2\rangle$ are computed answers to Problem 3.34, not quoted. Numbers from `griffiths/ch03_formalism.py` (section B).
+
+Companion reading in Levine, *Quantum Chemistry* (7th ed., Pearson, 2014): Secs. 7.2-7.3, pp. 156-167 (Hermitian operators; expansion in eigenfunctions), and Sec. 7.7, pp. 177-180 (position eigenfunctions).

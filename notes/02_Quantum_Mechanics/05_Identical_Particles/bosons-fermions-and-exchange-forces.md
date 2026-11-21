@@ -100,3 +100,5 @@ Identical bosons sit *closer* together than distinguishable particles in the sam
 ## Source
 
 Griffiths and Schroeter, *Introduction to Quantum Mechanics* (3rd ed., Cambridge University Press, 2018), Secs. 5.1.1-5.1.2, Eqs. (5.16)-(5.26), Example 5.1; Problems 5.4-5.7; footnotes 3-5. Page numbers are not given because the PDF used is an e-book rendering without print pagination. The tables and the short-distance probabilities are computed answers in `griffiths/ch05_identical.py` (section B). The Fermi-hole and Hartree–Fock remarks are additions.
+
+Companion reading in Levine, *Quantum Chemistry* (7th ed., Pearson, 2014): Sec. 10.3, pp. 268-271 (the spin–statistics theorem), and Sec. 10.5, pp. 273-277 (the Pauli exclusion principle).

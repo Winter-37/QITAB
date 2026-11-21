@@ -116,3 +116,5 @@ Griffiths and Schroeter, *Introduction to Quantum Mechanics* (3rd ed., Cambridge
 Sakurai and Napolitano, *Modern Quantum Mechanics* (3rd ed., Cambridge University Press, 2021), Sec. 5.7.2, pp. 339-340 (amplitudes (5.276), probability (5.278)); Sec. 5.7.3, pp. 341-345 (constant perturbation, Eqs. (5.279)-(5.284), second order (5.295)); Sec. 5.7.4, pp. 345-346 (harmonic perturbation, Eqs. (5.298)-(5.306), detailed balancing).
 
 The Gaussian-pulse example and its numbers are my own (the exactness of the Poisson distribution is the content of Griffiths' Problem 11.36), computed in `griffiths/ch11_dynamics.py` (section B).
+
+Companion reading in Levine, *Quantum Chemistry* (7th ed., Pearson, 2014): Sec. 9.8, pp. 256-258 (time-dependent perturbation theory).

@@ -7,7 +7,7 @@ kind: theory
 level: introductory
 tags: [helium, two-electron-atom, independent-particle-model, electron-repulsion, parahelium, orthohelium, exchange-splitting, autoionization, lithium, griffiths]
 prerequisites: [hydrogen-atom, exchange-symmetry-spin-and-symmetrization-principle]
-related: [periodic-table-and-term-symbols, coulomb-cusp-and-helium-expansions, variational-principle, hartree-fock-equations, electron-correlation]
+related: [periodic-table-and-term-symbols, coulomb-cusp-and-helium-expansions, variational-principle, hartree-fock-equations, electron-correlation, helium-excited-states-perturbation, lithium-ground-state]
 order: 40
 date: 2026-11-05
 ---
@@ -97,3 +97,5 @@ $$
 ## Source
 
 Griffiths and Schroeter, *Introduction to Quantum Mechanics* (3rd ed., Cambridge University Press, 2018), Secs. 5.2-5.2.1, Eqs. (5.36)-(5.43), Fig. 5.1 (described); Problems 5.13-5.16. Page numbers are not given because the PDF used is an e-book rendering without print pagination. The experimental $-78.975$ eV is quoted from Griffiths and not independently checked. The first-order $J\pm K$ formula and the sign of $K$ are standard results added here, not taken from Griffiths Ch. 5. Numbers are recomputed in `griffiths/ch05_identical.py` (section D).
+
+Companion reading in Levine, *Quantum Chemistry* (7th ed., Pearson, 2014): Sec. 9.3, pp. 238-242 (perturbation treatment of the helium ground state), and Sec. 10.4, pp. 271-273 (spin functions of helium).

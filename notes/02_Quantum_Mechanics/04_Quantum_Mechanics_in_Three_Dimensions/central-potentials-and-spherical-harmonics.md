@@ -152,3 +152,5 @@ The second is the 3D oscillator ground state, $E = \tfrac32\hbar\omega$ with $\o
 ## Source
 
 Griffiths and Schroeter, *Introduction to Quantum Mechanics* (3rd ed., Cambridge University Press, 2018), Secs. 4.1.1-4.1.3, Eqs. (4.13)-(4.51), Tables 4.1-4.4, Example 4.1, Figs. 4.2-4.3 (described); Problems 4.3-4.11. Page numbers are not given because the PDF used is an e-book rendering without print pagination. The phase-convention comparison, the level table, the threshold numbers and the shell-model remark are additions computed in `griffiths/ch04_3d.py` (section B).
+
+Companion reading in Levine, *Quantum Chemistry* (7th ed., Pearson, 2014): Sec. 5.3, pp. 99-110 (angular momentum of a one-particle system, spherical harmonics), and Sec. 6.1, pp. 118-120 (the one-particle central-force problem).

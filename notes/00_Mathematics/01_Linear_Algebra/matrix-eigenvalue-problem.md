@@ -148,7 +148,7 @@ $$
 !!! warning "Which root is the lower one"
     With $\theta_0$ taken from the principal branch $|\theta_0|\le\pi/4$, $\omega_1$ is the eigenvalue "connected" to $O_{11}$: it is the **larger** root when $O_{11}>O_{22}$ and the smaller one when $O_{11}<O_{22}$. Label the roots by value afterwards, not by subscript. If $O_{11} = O_{22}$ use $\theta_0 = \pm\pi/4$ (sign of $O_{12}$).
 
-The **Jacobi method** for $N\times N$ matrices repeats such $2\times2$ rotations on the largest off-diagonal element until the matrix is diagonal to working precision.
+The **Jacobi method** for $N\times N$ matrices repeats such $2\times2$ rotations on the largest off-diagonal element until the matrix is diagonal to working precision (the classical variant; cyclic orders, convergence and cost are in [[jacobi-eigenvalue-method]]).
 
 !!! example "Two 2x2 matrices (Szabo Ex. 1.11)"
     **$\mathbf A = \begin{pmatrix}3&1\\1&3\end{pmatrix}$.** Equal diagonal, so $\omega = 3\mp1$:
@@ -167,7 +167,7 @@ The **Jacobi method** for $N\times N$ matrices repeats such $2\times2$ rotations
 
 ## Computational note
 
-Expanding the characteristic polynomial is numerically unstable and costs far more than needed. Library routines (LAPACK `dsyevd`/`zheevd`, called by `numpy.linalg.eigh` and `scipy.linalg.eigh`) reduce the matrix to tridiagonal form by orthogonal transformations and then diagonalize it, at $O(N^3)$ cost. For very large sparse matrices (CI), one uses iterative methods such as Davidson that only need matrix-vector products.
+Expanding the characteristic polynomial is numerically unstable and costs far more than needed. Library routines reduce the matrix to tridiagonal form by orthogonal transformations and then diagonalize it, at $O(N^3)$ cost ([[householder-tridiagonalization]]). `numpy.linalg.eigh` calls LAPACK `dsyevd`/`zheevd` (divide and conquer). `scipy.linalg.eigh` defaults to `dsyevr`/`zheevr` (driver `"evr"`); see [[choosing-a-symmetric-eigensolver]] for the full map. Accuracy limits are in [[floating-point-and-eigenvalue-perturbation]]. For very large sparse matrices (CI), one uses iterative methods such as Davidson that only need matrix-vector products.
 
 ```python
 import numpy as np

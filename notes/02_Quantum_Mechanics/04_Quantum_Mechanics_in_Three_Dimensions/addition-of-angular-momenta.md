@@ -153,3 +153,5 @@ checked as a matrix identity. Eigenstates of $S^2$ therefore cannot also be eige
 ## Source
 
 Griffiths and Schroeter, *Introduction to Quantum Mechanics* (3rd ed., Cambridge University Press, 2018), Sec. 4.4.3, Eqs. (4.171)-(4.185), Example 4.5, Table 4.8 (consulted; values recomputed rather than copied); Problems 4.37-4.41, 4.65. Page numbers are not given because the PDF used is an e-book rendering without print pagination. The links to CSFs and exchange symmetry are additions. Checks are in `griffiths/ch04_3d.py` (section F).
+
+Companion reading in Levine, *Quantum Chemistry* (7th ed., Pearson, 2014): Sec. 11.4, pp. 300-305 (addition of angular momenta).

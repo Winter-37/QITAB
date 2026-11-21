@@ -104,3 +104,5 @@ This is the configuration-interaction picture of correlation ([[electron-correla
 ## Source
 
 Griffiths and Schroeter, *Introduction to Quantum Mechanics* (3rd ed., Cambridge University Press, 2018), Secs. 5.1.3-5.1.4, Eqs. (5.27)-(5.35); Problems 5.8-5.12, 5.29; footnotes 6-13. Page numbers are not given because the PDF used is an e-book rendering without print pagination. The tables and antisymmetrizer ranks are computed in `griffiths/ch05_identical.py` (section C).
+
+Companion reading in Levine, *Quantum Chemistry* (7th ed., Pearson, 2014): Sec. 10.3, pp. 268-271 (the spin–statistics theorem).

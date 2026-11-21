@@ -124,3 +124,5 @@ Griffiths and Schroeter, *Introduction to Quantum Mechanics* (3rd ed., Cambridge
 Sakurai has no section on the hydrogen molecule, so the note rests on Griffiths.
 
 The split into $Q$ and $A$ follows the usual valence-bond convention instead of Griffiths' notation. The closed forms for $J$ and $K$ are standard results quoted from memory (original references to verify); their numerical check, the scaled-exponent results and all tables are computed in `griffiths/ch08_variational.py`.
+
+Companion reading in Levine, *Quantum Chemistry* (7th ed., Pearson, 2014): Sec. 13.10, pp. 382-384 (the valence-bond treatment of H₂); comparison with MO theory in [[mo-and-valence-bond-theories]].

@@ -109,3 +109,5 @@ The argument needs a ground state with a lowest energy $E_0$, which holds for th
 ## References
 
 1. Source: section 1.3, "The variation method", Modern Quantum Chemistry, Szabo and Ostlund
+
+Companion reading in Levine, *Quantum Chemistry* (7th ed., Pearson, 2014): Secs. 8.1-8.2, pp. 197-202 (the variation theorem and its extension).

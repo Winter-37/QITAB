@@ -125,3 +125,5 @@ Griffiths and Schroeter, *Introduction to Quantum Mechanics* (3rd ed., Cambridge
 Sakurai and Napolitano, *Modern Quantum Mechanics* (3rd ed., Cambridge University Press, 2021), Sec. 7.4, Eqs. (7.37)-(7.52), pp. 437-439, and Sec. 5.4, pp. 316-319, for the variational method in general.
 
 The potential $\Phi(r)$ route to $\langle V_{ee}\rangle$ is my own; the value $5Z/8$ is confirmed symbolically. The series table and the PySCF Hartree-Fock and full-CI energies are computed in `griffiths/ch08_variational.py`. The accurate nonrelativistic energies and the Hartree-Fock limit are standard literature values quoted from memory (to verify against a tabulation).
+
+Companion reading in Levine, *Quantum Chemistry* (7th ed., Pearson, 2014): Sec. 9.3, pp. 238-242 (perturbation treatment), and Sec. 9.4, pp. 242-245 (variation treatments of the helium ground state).

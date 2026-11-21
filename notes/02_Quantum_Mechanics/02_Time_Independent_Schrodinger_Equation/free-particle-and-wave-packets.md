@@ -139,3 +139,5 @@ For $\Psi_k$, $J = (\hbar k/m)|A|^2$, positive for $k>0$: probability flows in t
 ## Source
 
 Griffiths and Schroeter, *Introduction to Quantum Mechanics* (3rd ed., Cambridge University Press, 2018), Sec. 2.4, Eqs. (2.91)-(2.111), Example 2.6, Figs. 2.8-2.10 (described, not reproduced); Problems 2.17-2.21. Page numbers are not given because the PDF used is an e-book rendering without print pagination. The closed forms for $|\Psi|^2$, $\sigma_x$ and $\sigma_x\sigma_p$ are worked answers to Problem 2.21 (Griffiths gives $\gamma$ and the partial answer $\langle p^2\rangle = a\hbar^2$), verified numerically. Numbers recomputed with `griffiths/ch02_tise.py` (section E).
+
+Companion reading in Levine, *Quantum Chemistry* (7th ed., Pearson, 2014): Sec. 2.3, p. 28 (the free particle in one dimension).

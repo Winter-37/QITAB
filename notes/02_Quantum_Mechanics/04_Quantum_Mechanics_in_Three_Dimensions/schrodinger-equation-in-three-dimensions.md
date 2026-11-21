@@ -107,3 +107,5 @@ $$
 ## Source
 
 Griffiths and Schroeter, *Introduction to Quantum Mechanics* (3rd ed., Cambridge University Press, 2018), Sec. 4.1 (opening), Eqs. (4.1)-(4.12); Problems 4.1, 4.2, 4.46-4.49 (Eqs. 4.215-4.222). Page numbers are not given because the PDF used is an e-book rendering without print pagination. The degeneracy tables are enumerated in `griffiths/ch04_3d.py` (section A). The SU(3) remark and the basis-function link are additions.
+
+Companion reading in Levine, *Quantum Chemistry* (7th ed., Pearson, 2014): Secs. 3.4-3.6, pp. 44-51 (the three-dimensional, many-particle Schrödinger equation; particle in a three-dimensional box; degeneracy).

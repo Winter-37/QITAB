@@ -260,3 +260,5 @@ print(alpha)                                     # 2.9596
 ## Source
 
 Szabo and Ostlund, *Modern Quantum Chemistry*, Sec. 1.3.2 (The Linear Variational Problem, pp. 33-37, Eqs. 1.153-1.176) and Exercises 1.21-1.22 (pp. 36-38). Edition and year: add here.
+
+Companion reading in Levine, *Quantum Chemistry* (7th ed., Pearson, 2014): Secs. 8.3-8.6, pp. 202-231 (determinants, simultaneous linear equations, linear variation functions, matrices and eigenvalues).

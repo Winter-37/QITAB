@@ -160,3 +160,5 @@ A density may diverge at a point (see the falling rock below) as long as it stay
 ## Source
 
 Griffiths and Schroeter, *Introduction to Quantum Mechanics* (3rd ed., Cambridge University Press, 2018), Secs. 1.1-1.3, Eqs. (1.1)-(1.19), Example 1.1, Example 1.2, Problems 1.1-1.2, footnotes 3 and 8. Page numbers are not given because the PDF used is an e-book rendering without print pagination. Equations were read from the page images. All numbers recomputed for this note with `griffiths/ch01_wave_function.py` (sections A, B, H; SymPy and SciPy `constants`, CODATA 2018).
+
+Companion reading in Levine, *Quantum Chemistry* (7th ed., Pearson, 2014): Secs. 1.4-1.6, pp. 7-16 (time-dependent Schrödinger equation, Born interpretation, probability), and Sec. 3.8, pp. 54-55 (requirements for an acceptable wave function).

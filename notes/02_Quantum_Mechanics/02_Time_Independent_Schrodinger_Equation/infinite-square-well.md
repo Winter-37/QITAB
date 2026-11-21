@@ -149,3 +149,5 @@ The ground state comes closest to the bound $\hbar/2$.
 ## Source
 
 Griffiths and Schroeter, *Introduction to Quantum Mechanics* (3rd ed., Cambridge University Press, 2018), Sec. 2.2, Eqs. (2.22)-(2.41), Example 2.2; Problems 2.4, 2.7, 2.39, 2.45, 2.61 (Eqs. 2.195-2.201). Page numbers are not given because the PDF used is an e-book rendering without print pagination. The closed form for $E^{\rm FD}_n$ is a standard result for the tridiagonal Toeplitz matrix, stated here and confirmed numerically, not taken from Griffiths. Numbers recomputed with `griffiths/ch02_tise.py` (section B).
+
+Companion reading in Levine, *Quantum Chemistry* (7th ed., Pearson, 2014): Sec. 2.2, pp. 22-28 (particle in a one-dimensional box).

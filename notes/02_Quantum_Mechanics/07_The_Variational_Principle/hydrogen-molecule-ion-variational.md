@@ -7,7 +7,7 @@ kind: derivation
 level: intermediate
 tags: [hydrogen-molecule-ion, variational-principle, lcao, chemical-bond, overlap-integral, exchange-integral, bonding-antibonding, born-oppenheimer, scaling, griffiths]
 prerequisites: [variational-principle, linear-variation-method, hydrogen-atom]
-related: [born-oppenheimer-approximation, hydrogen-molecule-heitler-london, minimal-basis-h2-model, helium-ground-state-variational, hellmann-feynman-and-virial-theorems, parity-and-parity-selection-rules]
+related: [born-oppenheimer-approximation, hydrogen-molecule-heitler-london, minimal-basis-h2-model, helium-ground-state-variational, hellmann-feynman-and-virial-theorems, parity-and-parity-selection-rules, hydrogen-molecule-ion-exact]
 order: 60
 date: 2026-11-14
 ---
@@ -122,3 +122,5 @@ Griffiths and Schroeter, *Introduction to Quantum Mechanics* (3rd ed., Cambridge
 Sakurai has no section on H₂⁺, so the note rests on Griffiths.
 
 The scaled-exponent matrix elements, the tables, the virial check and the statement that $E_-$ exceeds $-\tfrac12$ on a grid of 400 separations between 0.3 and 20 $a_0$ are computed in `griffiths/ch08_variational.py`. The reference curve is a PySCF one-electron calculation in aug-cc-pV5Z.
+
+Companion reading in Levine, *Quantum Chemistry* (7th ed., Pearson, 2014): Sec. 13.5, pp. 357-365 (approximate treatments of the H₂⁺ ground electronic state); the exact solution is in [[hydrogen-molecule-ion-exact]].

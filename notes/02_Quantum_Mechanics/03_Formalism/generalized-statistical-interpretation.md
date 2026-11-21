@@ -153,3 +153,5 @@ In particular $\langle x\rangle = \int\Phi^*(i\hbar\,\partial_p)\Phi\,dp$ (Probl
 ## Source
 
 Griffiths and Schroeter, *Introduction to Quantum Mechanics* (3rd ed., Cambridge University Press, 2018), Sec. 3.4, Eqs. (3.43)-(3.58), Example 3.4; Problems 3.11-3.13, 3.33, 3.36; footnotes 15-18. Page numbers are not given because the PDF used is an e-book rendering without print pagination. Problem answers are worked here, not quoted; Example 3.4's 0.0908 is the book's and is reproduced exactly. Numbers from `griffiths/ch03_formalism.py` (section B).
+
+Companion reading in Levine, *Quantum Chemistry* (7th ed., Pearson, 2014): Sec. 7.6, pp. 172-177 (measurement and superposition), and Sec. 7.8, pp. 180-184 (the postulates of quantum mechanics).

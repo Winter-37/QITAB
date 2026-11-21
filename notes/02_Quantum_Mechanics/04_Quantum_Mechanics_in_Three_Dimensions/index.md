@@ -32,7 +32,7 @@ The same angular structure then appears without any reference to coordinates. An
 
 ## How to read it
 
-**Path.** [[schrodinger-equation-in-three-dimensions]], [[central-potentials-and-spherical-harmonics]], [[hydrogen-atom]], [[orbital-angular-momentum]], [[spin-one-half]], [[addition-of-angular-momenta]], [[minimal-coupling-and-aharonov-bohm]].
+**Path.** [[schrodinger-equation-in-three-dimensions]], [[central-potentials-and-spherical-harmonics]], [[hydrogen-atom]], [[real-hydrogenlike-orbitals]] (the real orbitals chemists use, radial distributions and orbital shapes), [[orbital-angular-momentum]], [[spin-one-half]], [[addition-of-angular-momenta]], [[minimal-coupling-and-aharonov-bohm]].
 
 **Needs.** Chapters 2 and 3. Legendre and Laguerre polynomials (Part 0, Chapter 3: [[classical-orthogonal-polynomials|orthogonal polynomials]]).
 

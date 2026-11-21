@@ -130,3 +130,5 @@ These are the infinite-well levels of width $2a$: the well becomes transparent w
 ## Source
 
 Griffiths and Schroeter, *Introduction to Quantum Mechanics* (3rd ed., Cambridge University Press, 2018), Sec. 2.6, Eqs. (2.148)-(2.174), Figs. 2.16-2.18 (described); Problems 2.29, 2.31, 2.32, 2.48. Page numbers are not given because the PDF used is an e-book rendering without print pagination. The bound-state count formula, the mention of the Ramsauer–Townsend effect and all numerical tables are additions or computed answers, not quotations. Recomputed with `griffiths/ch02_tise.py` (section G).
+
+Companion reading in Levine, *Quantum Chemistry* (7th ed., Pearson, 2014): Sec. 2.4, pp. 28-30 (particle in a rectangular well).

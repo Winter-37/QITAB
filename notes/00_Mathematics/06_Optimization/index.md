@@ -2,4 +2,6 @@ Planned chapter. Hartree–Fock, MCSCF, coupled-cluster amplitude equations, VQE
 
 **Needs.** Chapter 1 (eigenvalues of the Hessian) and multivariable calculus.
 
-**Planned sections:** Newton and quasi-Newton methods; Trust regions; Constrained optimization and Lagrange multipliers.
+The unconstrained toolkit is now written up in Part 7, Chapter 2 ([[optimality-conditions-and-convergence-rates]] onward): optimality conditions, Newton and quasi-Newton steps, line searches and trust regions. This chapter keeps the constrained part.
+
+**Planned sections:** Constrained optimization and Lagrange multipliers (first- and second-order optimality conditions); Lagrangians for non-variational energies.

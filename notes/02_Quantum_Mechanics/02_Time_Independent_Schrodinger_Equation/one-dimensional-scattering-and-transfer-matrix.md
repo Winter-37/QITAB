@@ -182,3 +182,5 @@ Smooth potentials are handled by fine slicing; the sech² check above used this.
 ## Source
 
 Griffiths and Schroeter, *Introduction to Quantum Mechanics* (3rd ed., Cambridge University Press, 2018), Further Problems on Ch. 2: Problems 2.33-2.35 (Eq. 2.175), 2.52, 2.53 (Eqs. 2.178-2.182), 2.54 (Eqs. 2.183-2.184), Figs. 2.19, 2.21, 2.22 (described). Page numbers are not given because the PDF used is an e-book rendering without print pagination. The $\mathsf M$–$\mathsf S$ relations, the $E\ge V_0$ barrier formulas, the delta $\mathsf M$-matrix and the algorithm section are worked solutions or standard methods written for this note, not quoted, and are all checked numerically. Recomputed with `griffiths/ch02_tise.py` (sections F and H).
+
+Companion reading in Levine, *Quantum Chemistry* (7th ed., Pearson, 2014): Sec. 2.5, pp. 30-31 (tunneling).

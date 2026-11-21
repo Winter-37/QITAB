@@ -145,3 +145,5 @@ There is therefore a whole family of inequivalent momentum operators on an inter
 ## Source
 
 Griffiths and Schroeter, *Introduction to Quantum Mechanics* (3rd ed., Cambridge University Press, 2018), Secs. 3.1-3.2, Eqs. (3.1)-(3.29), Example 3.1; Problems 3.1-3.6, 3.32, 3.48; footnotes 2-9, 45-48. Page numbers are not given because the PDF used is an e-book rendering without print pagination. Equations were read from the page images. Numerical checks in `griffiths/ch03_formalism.py` (section A).
+
+Companion reading in Levine, *Quantum Chemistry* (7th ed., Pearson, 2014): Secs. 3.1-3.2, pp. 34-39 (operators, eigenfunctions and eigenvalues), and Secs. 7.1-7.2, pp. 155-161 (notation; Hermitian operators).

@@ -113,3 +113,5 @@ Electric-dipole transitions connect states of opposite parity only. For an even 
 ## Source
 
 Griffiths and Schroeter, *Introduction to Quantum Mechanics* (3rd ed., Cambridge University Press, 2018), Sec. 6.4 (6.4.1–6.4.3), Eqs. (6.16)–(6.27), Example 6.2, Table 6.1 (classification table, reproduced in content), Fig. 6.7 (described); Problems 6.1, 6.8–6.13, 6.25. Page numbers are not given because the PDF used is an e-book rendering without print pagination. The $Y_\ell^m$ parity check and the hydrogen matrix elements are computed in `griffiths/ch06_symmetry.py` (section C). The Stark-effect remark is an addition.
+
+Companion reading in Levine, *Quantum Chemistry* (7th ed., Pearson, 2014): Sec. 7.5, pp. 170-172 (parity).

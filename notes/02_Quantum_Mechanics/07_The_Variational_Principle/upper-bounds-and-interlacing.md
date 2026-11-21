@@ -103,3 +103,5 @@ so $E_c\ge E_1$ always. It is an upper bound to $E_I$ only if $|c\rangle$ is ort
 ## Source
 
 Helgaker, Jørgensen and Olsen, *Molecular Electronic-Structure Theory* (Wiley, Chichester, 2000), Secs. 4.2.1-4.2.5, pp. 111-119, Eqs. (4.2.1)-(4.2.51), Fig. 4.1-4.2; Exercises 4.1-4.2. Equations (4.2.39)-(4.2.41) read from the page image. The BH 6-31G table was computed for this note with PySCF 2.14 (HJO's figure uses d-aug-cc-pVDZ). The He numbers are HJO's.
+
+Companion reading in Levine, *Quantum Chemistry* (7th ed., Pearson, 2014): Sec. 8.2, pp. 201-202 (extension of the variation method to excited states), and Sec. 8.5, pp. 209-215 (linear variation functions and upper bounds to excited states).

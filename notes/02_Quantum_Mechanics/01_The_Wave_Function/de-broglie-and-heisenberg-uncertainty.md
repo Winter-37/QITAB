@@ -156,3 +156,5 @@ The order of magnitude, not the prefactor, is the content of this criterion.
 ## Source
 
 Griffiths and Schroeter, *Introduction to Quantum Mechanics* (3rd ed., Cambridge University Press, 2018), Sec. 1.6, Eqs. (1.39)-(1.40), (1.45), footnote 21; Problems 1.5, 1.9, 1.16, 1.18. Page numbers are not given because the PDF used is an e-book rendering without print pagination. The problem answers are derived here, not quoted. The statement that only the Gaussian saturates the bound refers ahead to Sec. 3.5.2. All entries in the tables recomputed with `griffiths/ch01_wave_function.py` (sections C, D, E, H, I; SymPy, SciPy `constants`, CODATA 2018).
+
+Companion reading in Levine, *Quantum Chemistry* (7th ed., Pearson, 2014): Secs. 1.2-1.3, pp. 2-7 (historical background, de Broglie, the uncertainty principle).

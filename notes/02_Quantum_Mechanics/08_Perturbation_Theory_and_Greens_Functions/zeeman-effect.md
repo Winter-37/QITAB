@@ -134,3 +134,5 @@ Griffiths and Schroeter, *Introduction to Quantum Mechanics* (3rd ed., Cambridge
 Sakurai and Napolitano, *Modern Quantum Mechanics* (3rd ed., Cambridge University Press, 2021), Sec. 5.3.3, Eqs. (5.126)-(5.146), pp. 311-314, for the weak-field result in the form $1\pm1/(2l+1)$ and the strong-field limit.
 
 The numerical diagonalization, the comparison table and the field at which $\mu_BB$ equals the $n = 2$ splitting are computed in `griffiths/ch07_perturbation.py` (sections C and C2) with SciPy CODATA constants. The assignment of strong-field labels to $\epsilon_5$-$\epsilon_8$ follows from the limits worked out above.
+
+Companion reading in Levine, *Quantum Chemistry* (7th ed., Pearson, 2014): Sec. 6.8, pp. 147-149 (the Zeeman effect).

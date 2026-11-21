@@ -137,3 +137,5 @@ $e^{-\alpha x^2}$ times a polynomial is exactly the Cartesian Gaussian form used
 ## Source
 
 Griffiths and Schroeter, *Introduction to Quantum Mechanics* (3rd ed., Cambridge University Press, 2018), Sec. 2.3.2, Eqs. (2.71)-(2.90), Table 2.1, Figs. 2.6-2.7 (described, not reproduced); Problems 2.14-2.16, 2.55, 2.56; footnotes 32, 35, 36. Page numbers are not given because the PDF used is an e-book rendering without print pagination. The excited-state forbidden-region probabilities and the remark on Gaussian basis functions are additions. Numbers recomputed with `griffiths/ch02_tise.py` (section D).
+
+Companion reading in Levine, *Quantum Chemistry* (7th ed., Pearson, 2014): Secs. 4.1-4.2, pp. 60-71 (power-series solution; the one-dimensional harmonic oscillator).

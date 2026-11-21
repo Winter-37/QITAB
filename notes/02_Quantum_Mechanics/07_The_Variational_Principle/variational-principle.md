@@ -206,3 +206,5 @@ where $\varepsilon_{\min}$ is the lowest eigenvalue of $\mathbf O$. The proof is
 ## Source
 
 Szabo and Ostlund, *Modern Quantum Chemistry*, Sec. 1.3.1 (The Variation Principle, pp. 31-32, Eqs. 1.148-1.152) and Exercises 1.18-1.20 (pp. 32-33). Edition and year: 2nd Edition, 1996.
+
+Companion reading in Levine, *Quantum Chemistry* (7th ed., Pearson, 2014): Sec. 8.1, pp. 197-201 (the variation theorem).

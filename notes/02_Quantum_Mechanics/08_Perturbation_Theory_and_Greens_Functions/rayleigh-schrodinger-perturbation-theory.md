@@ -166,3 +166,5 @@ Run in the full determinant space of a molecule with $\mathscr H_0$ = sum of Foc
 ## Source
 
 Szabo and Ostlund, *Modern Quantum Chemistry* (Dover, 1996; reprint of the revised first edition, McGraw-Hill, 1989), Sec. 6.1, pp. 322-326, Eqs. (6.1)-(6.23); Sec. 6.2, pp. 327-338, Table 6.1 rules, Eqs. (6.25)-(6.29). The $(2n+1)$ remark is general knowledge. Numerical examples computed for this note.
+
+Companion reading in Levine, *Quantum Chemistry* (7th ed., Pearson, 2014): Secs. 9.1-9.2, pp. 232-238 (nondegenerate perturbation theory).

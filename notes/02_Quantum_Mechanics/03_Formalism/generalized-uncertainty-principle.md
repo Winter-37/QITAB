@@ -129,3 +129,5 @@ The bound is empty for stationary states, where $\langle p\rangle = 0$. For a di
 ## Source
 
 Griffiths and Schroeter, *Introduction to Quantum Mechanics* (3rd ed., Cambridge University Press, 2018), Secs. 3.5.1-3.5.2, Eqs. (3.59)-(3.70), (3.115); Problems 3.14-3.17, 3.29, 3.43; footnotes 19-22. Page numbers are not given because the PDF used is an e-book rendering without print pagination. The random-matrix and grid checks are computations for this note, in `griffiths/ch03_formalism.py` (sections C and E).
+
+Companion reading in Levine, *Quantum Chemistry* (7th ed., Pearson, 2014): Sec. 5.1, pp. 90-94 (simultaneous specification of several properties), and Sec. 7.4, pp. 167-170 (eigenfunctions of commuting operators).

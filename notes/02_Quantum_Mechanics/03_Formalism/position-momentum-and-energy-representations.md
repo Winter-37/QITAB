@@ -124,3 +124,5 @@ $$
 ## Source
 
 Griffiths and Schroeter, *Introduction to Quantum Mechanics* (3rd ed., Cambridge University Press, 2018), Sec. 3.6, Eqs. (3.77)-(3.110), Examples 3.8-3.10, Fig. 3.3 (described); Problems 3.23-3.28, 3.30; footnotes 27-38. Page numbers are not given because the PDF used is an e-book rendering without print pagination. The double-well remark and the $\sin(\hat D)x^5$ result are additions, the latter checked with SymPy from the power series. Numbers from `griffiths/ch03_formalism.py` (section E).
+
+Companion reading in Levine, *Quantum Chemistry* (7th ed., Pearson, 2014): Sec. 7.10, pp. 187-196 (matrices and matrix representations of operators).

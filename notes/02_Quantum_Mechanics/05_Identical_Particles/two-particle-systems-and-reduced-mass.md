@@ -92,3 +92,5 @@ This is the same reduction as in classical mechanics. For hydrogen, every result
 ## Source
 
 Griffiths and Schroeter, *Introduction to Quantum Mechanics* (3rd ed., Cambridge University Press, 2018), Sec. 5.1 (opening), Eqs. (5.1)-(5.15); Problems 5.1-5.3. Page numbers are not given because the PDF used is an e-book rendering without print pagination. Numbers recomputed with `griffiths/ch05_identical.py` (section A); the exact-mass HCl value and the deuterium/muonic remarks are additions.
+
+Companion reading in Levine, *Quantum Chemistry* (7th ed., Pearson, 2014): Secs. 6.2-6.3, pp. 120-124 (noninteracting particles and separation of variables; reduction of the two-particle problem).

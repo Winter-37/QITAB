@@ -161,3 +161,5 @@ Direct integration of the Schrödinger equation agrees to $10^{-8}$. A complete 
 ## Source
 
 Griffiths and Schroeter, *Introduction to Quantum Mechanics* (3rd ed., Cambridge University Press, 2018), Secs. 4.4.1-4.4.2, Eqs. (4.134)-(4.170), Examples 4.2-4.4, Figs. 4.14-4.15 (described); Problems 4.28-4.36, 4.62. Page numbers are not given because the PDF used is an e-book rendering without print pagination. Problem answers and the Bloch-sphere and qubit remark are worked or added here, and the numerical checks are in `griffiths/ch04_3d.py` (section E).
+
+Companion reading in Levine, *Quantum Chemistry* (7th ed., Pearson, 2014): Sec. 10.1, pp. 265-268 (electron spin), Sec. 10.9, pp. 280-283 (spin magnetic moment), and Sec. 10.10, pp. 283-288 (ladder operators for electron spin).

@@ -152,3 +152,5 @@ Griffiths and Schroeter, *Introduction to Quantum Mechanics* (3rd ed., Cambridge
 Sakurai and Napolitano, *Modern Quantum Mechanics* (3rd ed., Cambridge University Press, 2021), Sec. 5.8, pp. 347-355: absorption and stimulated emission from the $\mathbf A\cdot\mathbf p$ coupling, the electric dipole approximation, oscillator strength and the Thomas-Reiche-Kuhn sum rule (5.330)-(5.331), spontaneous emission (5.352). Sakurai starts from the vector-potential coupling of [[minimal-coupling-and-aharonov-bohm]], which reduces to $-q\mathbf E\cdot\mathbf r$ in the dipole approximation.
 
 The hydrogen rates and lifetimes were computed here from numerical radial integrals with CODATA constants, in `griffiths/ch11_dynamics.py` (section D). The $2s$ two-photon lifetime and the 21 cm lifetime are quoted from memory and are to be verified.
+
+Companion reading in Levine, *Quantum Chemistry* (7th ed., Pearson, 2014): Sec. 9.9, pp. 258-264 (interaction of radiation and matter).

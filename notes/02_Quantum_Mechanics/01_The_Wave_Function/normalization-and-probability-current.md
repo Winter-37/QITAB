@@ -181,3 +181,5 @@ The non-Hermitian $-i\Gamma$ acts as a sink, removing probability uniformly from
 ## Source
 
 Griffiths and Schroeter, *Introduction to Quantum Mechanics* (3rd ed., Cambridge University Press, 2018), Sec. 1.4, Eqs. (1.20)-(1.27), footnotes 14-15; Problems 1.5, 1.14, 1.15, 1.17. Page numbers are not given because the PDF used is an e-book rendering without print pagination. The current $J$, the overlap result and the decay law are the answers to those problems, derived here, not quoted. Numbers recomputed with `griffiths/ch01_wave_function.py` (sections C, F, G).
+
+Companion reading in Levine, *Quantum Chemistry* (7th ed., Pearson, 2014): Sec. 1.6, pp. 14-16 (probability and normalization).

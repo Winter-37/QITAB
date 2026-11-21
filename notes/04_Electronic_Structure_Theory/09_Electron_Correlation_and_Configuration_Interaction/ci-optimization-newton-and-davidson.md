@@ -7,7 +7,7 @@ kind: algorithm
 level: advanced
 tags: [configuration-interaction, davidson-method, inverse-iteration, rayleigh-quotient, newton-method, quasi-newton, cubic-convergence, eigenvalue-problem, cisd]
 prerequisites: [linear-variation-method, matrix-eigenvalue-problem, cisd]
-related: [ci-size-extensivity-and-excitation-levels, determinant-strings-and-direct-ci, ci-in-practice, scf-convergence-diis-and-newton, upper-bounds-and-interlacing]
+related: [davidson-and-jacobi-davidson-methods, ci-size-extensivity-and-excitation-levels, determinant-strings-and-direct-ci, ci-in-practice, scf-convergence-diis-and-newton, upper-bounds-and-interlacing]
 order: 100
 date: 2026-11-04
 ---
@@ -71,6 +71,8 @@ Each iteration needs only one product $\mathbf H\mathbf C^{(0)}$, and the step i
 - **Contrast.** The full quasi-Newton step tends to the cubically convergent Newton step instead.
 
 **Subspaces.** Rather than updating $\mathbf C^{(0)} + \mathbf c$, keep the last few eigenvector approximations together with the new correction vector. Diagonalize $\mathbf H$ in that subspace, collapsing to a fixed size to save storage.
+
+The same step for a general matrix, derived from the projected correction equation (Jacobi–Davidson), and a block solver tested on a full CI are in [[davidson-and-jacobi-davidson-methods]].
 
 !!! example "HJO Table 11.4 recomputed: quasi-Newton with diagonal $\mathbf H_0$, water CISD/cc-pVDZ from the HF determinant (energy error, $E_h$; computed for this note)"
     **Setup.** Spin-orbital determinant basis (32 016 parameters), HOH = 110.565°. "Subspace 1" adds $\mathbf c$ directly. Otherwise the new vector is the lowest eigenvector in the span of the last $k-1$ approximations and $\mathbf c$.
