@@ -23,6 +23,7 @@ Finite differences need many energy calculations and lose precision. Analytic de
 - [[geometry-optimization|Geometry optimization]] (Chapter 16).
 - [[dmet-analytic-nuclear-gradient|The DMET analytic gradient]] (Chapter 19) and the gradient analysis in [[li-2023-dmet-gradient|Li et al. 2023]] (Part 8).
 - Quantum-algorithm gradients (planned, Part 6, Chapter 9).
+- Time-dependent response theory (Chapter 17): [[quasienergy-and-time-dependent-variational-principle|the quasienergy]] carries the $2n+1$ rule and the Lagrangian over to oscillating fields.
 
 ## The main ideas, in order
 
@@ -31,6 +32,7 @@ Finite differences need many energy calculations and lose precision. Analytic de
 3. **Hartree–Fock.** The RHF gradient (energy-weighted density, no response), CPHF from differentiating the Brillouin condition, and the RHF Hessian by the $2n+1$ rule.
 4. **Correlated energies.** The CI gradient (CI coefficients drop out, orbital response does not), the Z-vector method, and the selected-CI gradient, where a truncated determinant list breaks orbital invariance.
 5. **The general Lagrangian.** Any non-variational energy made stationary with multipliers. CPCI and the CI Hessian.
+6. **Variational perturbation theory.** Response equations to any order with one Hessian, the $2n+1$ rule for parameters and the $2n+2$ rule for multipliers; the static hyperpolarizability from first-order responses only.
 
 ## How to read it
 
@@ -40,6 +42,7 @@ Finite differences need many energy calculations and lose precision. Analytic de
 2. **Bookkeeping.** Derivative integrals and the U matrices.
 3. **Hartree-Fock.** The RHF gradient (no response needed), CPHF, and the RHF Hessian.
 4. **Correlated, non-variational energies.** The CI gradient, the Z-vector method, the selected-CI gradient (where every orbital pair responds), the Lagrangian form, and CPCI with the CI Hessian.
+5. **The general rules.** [[variational-perturbation-theory-and-the-2n-plus-1-rule|Variational perturbation theory and the 2n + 1 rule]], which also prepares the time-dependent response theory of Chapter 17.
 
 **Needs.** Chapters 3, 7 and 9.
 
