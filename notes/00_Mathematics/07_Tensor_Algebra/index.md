@@ -1,4 +1,4 @@
-Composite systems: tensor products of spaces and operators, the partial trace, and the Schmidt decomposition of bipartite states.
+Composite systems (tensor products of spaces and operators, the partial trace, and the Schmidt decomposition of bipartite states) and Cartesian tensors under rotation (isotropic tensors and orientational averages).
 
 ## What this chapter is about
 
@@ -6,7 +6,8 @@ When two systems A and B are combined, the state space of the whole is the tenso
 
 - how to build that space, and the vectors and operators on it, including the Kronecker-product matrices used in calculations;
 - how to go back down to one part, using the partial trace;
-- what a general state of two parts looks like, using the Schmidt decomposition.
+- what a general state of two parts looks like, using the Schmidt decomposition;
+- how a Cartesian property tensor transforms under rotation, and what survives when it is averaged over all orientations.
 
 ## Why it matters
 
@@ -30,13 +31,14 @@ When two systems A and B are combined, the state space of the whole is the tenso
 3. **Schmidt decomposition.** $|\psi\rangle=\sum_i\lambda_i|i_A\rangle|i_B\rangle$, obtained from the SVD of the coefficient matrix.
 4. **Purification.** Every mixed state is the reduced state of some pure state on a larger space.
 5. **Limits.** For three or more parties no general Schmidt form exists; the W state is the counterexample.
+6. **Rotational averages.** A rank-$n$ Cartesian tensor transforms with $n$ direction-cosine matrices. Its orientational average is an isotropic tensor, built from $\delta$ and $\epsilon$; ranks 2–4 give the invariants of refraction, optical rotation, Raman and two-photon spectra.
 
 ## How to read it
 
-**Path.** [[tensor-products-and-partial-trace]], then [[schmidt-decomposition-and-purification]].
+**Path.** [[tensor-products-and-partial-trace]], then [[schmidt-decomposition-and-purification]]. [[rotational-averages-and-isotropic-tensors]] is independent of the first two and can be read on its own.
 
-**Needs.** Chapter 1 (Dirac notation, the spectral theorem, the singular value decomposition).
+**Needs.** Chapter 1 (Dirac notation, the spectral theorem, the singular value decomposition, change of basis).
 
-**Leads to.** Many-particle wave functions (Part 2, Chapter 5), reduced density matrices (Part 4, Chapter 6), and multi-qubit states (Part 5).
+**Leads to.** Many-particle wave functions (Part 2, Chapter 5), reduced density matrices (Part 4, Chapter 6), multi-qubit states (Part 5), and isotropic spectroscopic invariants (Part 4, Chapter 16).
 
 **Planned sections:** Index notation and contractions; Tensor decompositions.

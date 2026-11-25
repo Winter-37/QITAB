@@ -21,4 +21,4 @@ This part will state them in the form the later parts use.
 
 ## How to read it
 
-As background, when a later note points here. All chapters are planned.
+As background, when a later note points here. Chapter 2 (Electromagnetism) is written: fields, potentials, minimal coupling, multipoles and fields in matter, from Chapter 3 of Norman, Ruud and Saue. Start at [[maxwell-equations-and-helmholtz-decomposition]], or go straight to [[multipolar-gauge-and-the-electric-dipole-approximation]] for the origin of the dipole perturbation. The other chapters are planned.

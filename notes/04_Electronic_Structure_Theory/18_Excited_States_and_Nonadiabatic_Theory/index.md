@@ -26,13 +26,14 @@ This chapter collects them as excited-state methods: how each describes an excit
 ## The main ideas, in order
 
 1. **TDDFT linear response.** The Kohn–Sham quasienergy, the adiabatic approximation, the exchange-correlation kernel in the $\mathbf A$ and $\mathbf B$ matrices, and triplet stability.
-2. Planned: CIS and EOM-CC as excited-state methods; excited-state CI; conical intersections; nonadiabatic couplings; state tracking.
+2. **Vibronic band shapes.** Franck–Condon factors, Duschinsky rotation, the generating function, Huang–Rhys factors and the Poisson progression, the linear coupling (vertical gradient) model, Herzberg–Teller intensity borrowing.
+3. Planned: CIS and EOM-CC as excited-state methods; excited-state CI; conical intersections; nonadiabatic couplings; state tracking.
 
 ## How to read it
 
-**Path.** [[tddft-linear-response]], then the planned sections.
+**Path.** [[tddft-linear-response]], [[vibronic-band-shapes-franck-condon-and-herzberg-teller]], then the planned sections.
 
-**Needs.** Chapters 8 (Kohn-Sham DFT), 9, 12, 13 and 17 (linear response for variational wave functions); time-dependent theory and the Berry phase (Part 2, Chapter 11).
+**Needs.** Chapters 8 (Kohn-Sham DFT), 9, 12, 13 and 17 (linear response for variational wave functions); time-dependent theory and the Berry phase (Part 2, Chapter 11). The vibronic section also needs harmonic analysis and electronic absorption from Chapter 16.
 
 **Checkpoint.** From the closed-shell $\mathbf A$ and $\mathbf B$ matrices, show that $\mathbf A-\mathbf B$ is the same for singlets and triplets, and explain why a large Coulomb coupling in the triplet $\mathbf A$ makes Hartree–Fock but not B3LYP unstable for beryllium.
 
