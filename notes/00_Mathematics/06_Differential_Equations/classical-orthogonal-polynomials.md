@@ -6,9 +6,9 @@ status: in-progress
 kind: reference
 level: intermediate
 tags: [special-functions, orthogonal-polynomials, hermite-polynomials, legendre-polynomials, associated-legendre-functions, laguerre-polynomials, rodrigues-formula, generating-function, recursion-relation, griffiths, sakurai]
-prerequisites: [orthonormal-functions-and-operators]
+prerequisites: [sturm-liouville-theory, orthonormal-functions-and-operators]
 related: [spherical-bessel-functions, harmonic-oscillator-analytic-solution, central-potentials-and-spherical-harmonics, hydrogen-atom, fourier-transforms-and-the-dirac-delta]
-order: 10
+order: 60
 date: 2026-11-17
 ---
 

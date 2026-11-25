@@ -1,39 +1,41 @@
-Calculus beyond the first course: the integral transform and the generalized function that quantum mechanics uses everywhere.
+Calculus of one and several variables: functions, limits and continuity, derivatives, and integrals. These are the tools every later chapter uses without comment.
 
 ## What this chapter is about
 
-The Fourier transform writes a function as a superposition of plane waves $e^{ikx}$. The Dirac delta $\delta(x)$ is the idealized spike that picks out a single point under an integral. Neither is optional in quantum mechanics:
+The chapter builds the calculus that the rest of the notebook takes for granted:
 
-- plane waves are the momentum eigenstates, so the momentum-space wave function is the Fourier transform of the position-space one;
-- the delta function is how completeness and continuum normalization are written.
+- the vocabulary of functions (domain, inverse, parity, the elementary functions);
+- the limit, which defines continuity, the derivative, the integral and the sum of a series;
+- differentiation, including partial derivatives, Jacobians, stationary points and Lagrange multipliers;
+- integration, including the Gamma function, differentiation under the integral sign and multiple integrals with a change of variables.
+
+Fourier transforms, which used to sit in this chapter, are now in Chapter 4 next to Fourier series.
 
 ## Why it matters
 
-- **Position and momentum are Fourier partners.** With $p=\hbar k$, going from $\Psi(x)$ to $\Phi(p)$ is a Fourier transform. The norm is preserved (Plancherel's theorem), so it is a unitary change of representation.
-- **The uncertainty principle starts here.** Any function and its transform satisfy $\sigma_x\sigma_k\ge\tfrac12$, with equality for Gaussians. This holds before any physics is added.
-- **Continuum states need the delta function.** Plane waves cannot be normalized to one. They are normalized as $\langle k|k'\rangle=\delta(k-k')$, and completeness reads $\int |k\rangle\langle k|\,dk = 1$.
-- **Convolution becomes multiplication.** Integrals of the form $\int f(x-y)g(y)\,dy$ become products of transforms. This is how Coulomb and Green's-function integrals are simplified.
-
-## Where it is used later
-
-- [[free-particle-and-wave-packets|Wave packets]], the [[delta-function-potential|delta-function potential]] and the [[position-momentum-and-energy-representations|momentum representation]] in Part 2.
-- [[born-approximation-and-lippmann-schwinger|The Born approximation]]: the scattering amplitude is the Fourier transform of the potential.
-- The discrete Fourier transform, the classical counterpart of the quantum Fourier transform in Part 5.
+- **Derivatives are physics.** Forces are gradients of energies, response properties are derivatives with respect to fields, and the Hessian classifies minima and transition states.
+- **Lagrange multipliers turn constraints into equations.** Orthonormality constraints in Hartree–Fock produce the orbital energies as multipliers.
+- **Gaussian and Slater integrals are Gamma functions.** Every radial integral in a basis-set code reduces to $\Gamma(z)$, and every Gaussian moment follows from one integral by differentiating under the integral sign.
+- **Changes of variables carry Jacobians.** The $r^2\sin\theta$ of spherical coordinates is the reason radial probability densities have an $r^2$.
 
 ## The main ideas, in order
 
-1. **The transform pair** in Griffiths' symmetric convention, $F(k)=(2\pi)^{-1/2}\int f(x)e^{-ikx}\,dx$, and Plancherel's theorem.
-2. **Worked transforms.** A Gaussian transforms into a Gaussian and a box into a sinc. In both, a narrow function has a broad transform.
-3. **The delta function** as the limit of nascent functions, with the rules for $\delta(cx)$ and $\delta(g(x))$ and its role in completeness.
-4. **The convolution theorem.**
-5. **The discrete Fourier transform** and its sign conventions. Nielsen–Chuang and NumPy use opposite signs.
+1. **Functions.** Domain and range, injectivity and inverses, principal branches, even and odd parts, and the elementary functions.
+2. **Limits and continuity.** The ε–δ definition, standard limits, continuity theorems, and $O$ and $o$ notation.
+3. **Differential calculus.** Differentiation rules, the mean value theorem, L'Hôpital's rule, partial derivatives, total differentials, the cyclic relation, Jacobians, Hessians, Lagrange multipliers.
+4. **Integral calculus.** Riemann sums, the fundamental theorem, substitution, parts, partial fractions, improper integrals, the Gamma and Beta functions, the Leibniz rule, multiple integrals.
 
 ## How to read it
 
-**Path.** [[fourier-transforms-and-the-dirac-delta]].
+**Path.**
 
-**Needs.** Chapter 1 (Dirac notation, orthonormal functions).
+1. [[functions]]
+2. [[limits-and-continuity]]
+3. [[differential-calculus]]
+4. [[integral-calculus]]
 
-**Leads to.** Free particles and wave packets, momentum space and the delta-function potential (Part 2, Chapters 2 and 3); the quantum Fourier transform (Part 5).
+**Needs.** School algebra and trigonometry.
 
-**Planned sections:** Multivariable calculus; Vector calculus.
+**Leads to.** Vector calculus (Chapter 3), series and expansions (Chapter 4), differential equations (Chapter 6), and every physics part.
+
+**Planned sections:** Calculus of variations and the Euler–Lagrange equation.

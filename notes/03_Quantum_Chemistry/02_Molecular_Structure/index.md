@@ -19,7 +19,7 @@ The symmetry of the nuclear framework tells you, before any calculation, which o
 
 **Path.** [[molecular-symmetry-and-point-groups]].
 
-**Needs.** Part 0, Chapter 8 (groups); parity (Part 2, Chapter 6).
+**Needs.** Part 0, Chapter 11 (groups); parity (Part 2, Chapter 6).
 
 **Leads to.** Chapter 4 (MO theory) and the use of symmetry throughout Part 4.
 

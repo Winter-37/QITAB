@@ -6,9 +6,9 @@ status: in-progress
 kind: theory
 level: introductory
 tags: [fourier-transform, plancherel-theorem, dirac-delta, nascent-delta, convolution, gaussian-integral, discrete-fourier-transform, momentum-space, griffiths, sakurai, nielsen-chuang]
-prerequisites: [orthonormal-functions-and-operators, dirac-notation]
+prerequisites: [fourier-series, orthonormal-functions-and-operators, dirac-notation]
 related: [free-particle-and-wave-packets, delta-function-potential, position-momentum-and-energy-representations, generalized-uncertainty-principle, groups-representations-and-characters, probability-and-random-variables]
-order: 10
+order: 60
 date: 2026-11-17
 ---
 

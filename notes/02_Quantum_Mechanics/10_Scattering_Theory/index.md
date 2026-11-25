@@ -35,7 +35,7 @@ The chapter is about computing $f$ from $V$. There are two routes: an exact one 
 
 **Path.** [[scattering-cross-sections-and-amplitude]] sets up cross sections and the scattering amplitude. [[partial-wave-analysis-and-phase-shifts]] gives the exact solution for central potentials in terms of phase shifts, with unitarity and the optical theorem. [[born-approximation-and-lippmann-schwinger]] gives the integral equation, the Born approximation and its range of validity. [[low-energy-scattering-and-resonances]] treats the scattering length, the link to bound states, and resonances.
 
-**Needs.** Chapter 4 (central potentials, spherical harmonics, angular momentum). One-dimensional scattering and the finite well from Chapter 2. The single-particle Green's function from Chapter 8. Spherical Bessel functions (Part 0, Chapter 3: [[spherical-bessel-functions|spherical Bessel functions]]). Chapter 9 (WKB) supplies the tunnelling picture of resonance widths.
+**Needs.** Chapter 4 (central potentials, spherical harmonics, angular momentum). One-dimensional scattering and the finite well from Chapter 2. The single-particle Green's function from Chapter 8. Spherical Bessel functions (Part 0, Chapter 6: [[spherical-bessel-functions|spherical Bessel functions]]). Chapter 9 (WKB) supplies the tunnelling picture of resonance widths.
 
 **Leads to.** The golden rule of Chapter 11 ([[fermi-golden-rule-and-decay-width|golden rule]]) gives the Born cross section by another route. Green's functions and propagators return in Part 4, Chapter 17.
 

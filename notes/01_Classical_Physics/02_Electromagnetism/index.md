@@ -47,13 +47,13 @@ A molecular property is the response of a molecule to an electric or magnetic fi
 10. [[kramers-kronig-debye-and-lorentz-models]]
 11. [[electromagnetic-units-and-magnitudes]]
 
-**Needs.** Vector calculus (Part 0, Chapter 2), Fourier transforms, and some special relativity for the covariant form.
+**Needs.** Vector calculus (Part 0, Chapter 3), Fourier transforms, and some special relativity for the covariant form.
 
 **Leads to.**
 
 - Minimal coupling in quantum mechanics (Part 2).
 - Molecular properties and response theory (Part 4, Chapters 15–17).
 - Spectroscopies in Part 4, Chapter 16.
-- Rotational averaging of property tensors: [[rotational-averages-and-isotropic-tensors]] (Part 0, Chapter 7).
+- Rotational averaging of property tensors: [[rotational-averages-and-isotropic-tensors]] (Part 0, Chapter 10).
 
 **Planned sections:** Radiation from accelerated charges in detail; Special relativity and the Lorentz group.

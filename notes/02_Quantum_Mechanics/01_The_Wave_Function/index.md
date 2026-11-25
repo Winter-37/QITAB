@@ -43,7 +43,7 @@ Everything later is built on these rules. Several of them are used constantly wi
 
 **Path.** [[wave-function-and-statistical-interpretation]], [[normalization-and-probability-current]], [[momentum-operator-and-ehrenfest-theorem]], [[de-broglie-and-heisenberg-uncertainty]].
 
-**Needs.** Probability (Part 0, Chapter 5: [[probability-and-random-variables|random variables and expectation values]]) and the Fourier transform (Part 0, Chapter 2).
+**Needs.** Probability (Part 0, Chapter 8: [[probability-and-random-variables|random variables and expectation values]]) and the Fourier transform (Part 0, Chapter 4).
 
 **Leads to.** Chapter 2 (solving the time-independent equation) and Chapter 3 (the general formalism).
 

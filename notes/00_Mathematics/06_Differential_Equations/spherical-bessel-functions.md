@@ -8,7 +8,7 @@ level: intermediate
 tags: [special-functions, spherical-bessel-functions, spherical-neumann-functions, spherical-hankel-functions, rayleigh-formula, plane-wave-expansion, bessel-zeros, griffiths, sakurai]
 prerequisites: [classical-orthogonal-polynomials, fourier-transforms-and-the-dirac-delta]
 related: [central-potentials-and-spherical-harmonics, partial-wave-analysis-and-phase-shifts, low-energy-scattering-and-resonances, schrodinger-equation-in-three-dimensions]
-order: 20
+order: 70
 date: 2026-11-17
 ---
 

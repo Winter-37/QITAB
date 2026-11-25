@@ -44,7 +44,7 @@ Particles that take the $+$ sign are bosons (integer spin), and those that take 
 
 **Path.** [[two-particle-systems-and-reduced-mass]], [[bosons-fermions-and-exchange-forces]], [[exchange-symmetry-spin-and-symmetrization-principle]], [[helium-atom-independent-particle-model]], [[periodic-table-and-term-symbols]], [[free-electron-gas]], [[band-structure-and-the-dirac-comb]].
 
-**Needs.** Chapter 4 (hydrogen, spin, addition of angular momenta). Tensor products (Part 0, Chapter 7: [[tensor-products-and-partial-trace|tensor products]]).
+**Needs.** Chapter 4 (hydrogen, spin, addition of angular momenta). Tensor products (Part 0, Chapter 10: [[tensor-products-and-partial-trace|tensor products]]).
 
 **Leads to.** Chapter 7 (variational treatment of helium and H₂) and Part 4, Chapter 2 (many-electron wave functions).
 

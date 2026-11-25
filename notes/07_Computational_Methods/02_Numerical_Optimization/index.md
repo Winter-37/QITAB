@@ -57,6 +57,6 @@ The cost of an optimization is the number of energy and gradient evaluations, an
 
 **Checkpoint.** Show that a Wolfe step guarantees $\mathbf y^{\mathsf T}\mathbf s>0$, and that the BFGS update then stays positive definite. Then explain why a transition-state search cannot use BFGS as it stands.
 
-**Source.** Nocedal and Wright, *Numerical Optimization* (first edition, 1999), Chapters 2-9, with Levine Sec. 15.10 for the molecular context. Every number is checked by `Claude outputs/part7_ch2_numerical_optimization.py`. Constrained optimization and Lagrange multipliers (N&W Chs. 12-18) belong to Part 0, Chapter 6. Finite-difference and automatic differentiation (N&W Ch. 7) belong to Chapter 6 of this part.
+**Source.** Nocedal and Wright, *Numerical Optimization* (first edition, 1999), Chapters 2-9, with Levine Sec. 15.10 for the molecular context. Every number is checked by `Claude outputs/part7_ch2_numerical_optimization.py`. Constrained optimization and Lagrange multipliers (N&W Chs. 12-18) belong to Part 0, Chapter 9. Finite-difference and automatic differentiation (N&W Ch. 7) belong to Chapter 6 of this part.
 
 **Planned sections:** Rational-function (RFO, P-RFO) and eigenvector-following steps; Saddle-point searches and Bofill-type updates; Internal coordinates for molecules (Wilson B matrix, redundant and translation–rotation internals); Derivative-free and noise-tolerant optimizers; Nonlinear least squares (Gauss–Newton, Levenberg–Marquardt).

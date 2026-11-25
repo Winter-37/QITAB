@@ -21,7 +21,7 @@ This chapter states the four postulates in that form and draws out the measureme
 
 - [[qubits-and-the-bloch-sphere|Qubits]] and [[multi-qubit-states-and-bell-states|Bell states]] (Chapter 2), and [[single-qubit-gates-and-rotations|gates]] (Chapter 3).
 - [[variational-quantum-eigensolver|VQE]] and [[sample-based-quantum-diagonalization|SQD]] (Part 6), where measurement statistics set the cost.
-- [[concentration-inequalities-and-sampling|Shot-count estimates]] (Part 0, Chapter 5).
+- [[concentration-inequalities-and-sampling|Shot-count estimates]] (Part 0, Chapter 8).
 
 ## The main ideas, in order
 
@@ -33,7 +33,7 @@ This chapter states the four postulates in that form and draws out the measureme
 
 **Path.** [[quantum-postulates-for-information]], [[projective-and-povm-measurements]], then [[epr-and-bell-inequalities]] (which uses Bell states from Chapter 2; read [[multi-qubit-states-and-bell-states]] first if they are unfamiliar).
 
-**Needs.** Part 2, Chapter 3 (Hilbert space, the statistical interpretation, density operators). Part 0, Chapter 7 (tensor products).
+**Needs.** Part 2, Chapter 3 (Hilbert space, the statistical interpretation, density operators). Part 0, Chapter 10 (tensor products).
 
 **Leads to.** Chapters 2 and 3; noise and error correction (Chapter 6).
 

@@ -144,7 +144,7 @@ $$
 
 Link to it from any note with `[[rhf#roothaan]]` ("Eq. (4.3.5.2)", which jumps to the equation), from
 the same note with `[[#roothaan]]`, or with your own words: `[[rhf#roothaan|the Roothaan equations]]`.
-Numbers follow the notes when they move. `key: roothaan` in a note's metadata picks the equation its
+After "Eq." or "Eqs." the link shows only the number, so `Eq. [[rhf#roothaan]]` and `Eqs. [[#a]] and [[#b]]` read naturally. Numbers follow the notes when they move. `key: roothaan` in a note's metadata picks the equation its
 hover preview shows. `build.py` lists any link to a label that does not exist.
 
 ## Conventions

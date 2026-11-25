@@ -38,7 +38,7 @@ This chapter defines them in coordinate space and in second quantization, and li
 
 **Path.** [[one-particle-rdm]], then [[density-matrices-second-quantization]].
 
-**Needs.** Chapter 2 (determinants), and Chapter 5 for the second note. Reduced density matrices are partial traces: Part 0, Chapter 7 ([[tensor-products-and-partial-trace|tensor products and partial trace]]) and the density operators of Part 2, Chapter 3.
+**Needs.** Chapter 2 (determinants), and Chapter 5 for the second note. Reduced density matrices are partial traces: Part 0, Chapter 10 ([[tensor-products-and-partial-trace|tensor products and partial trace]]) and the density operators of Part 2, Chapter 3.
 
 **Leads to.** The generalized Fock matrix (Chapter 7), natural orbitals (Chapter 9), relaxed densities (Chapter 15) and DMET (Chapter 19).
 

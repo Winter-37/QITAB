@@ -35,7 +35,7 @@ The chapter develops this from the simplest case (Deutsch–Jozsa) to the genera
 
 **Path.** [[deutsch-jozsa-and-quantum-parallelism]], [[quantum-fourier-transform]], [[quantum-phase-estimation]], [[simulation-of-quantum-systems]].
 
-**Needs.** Chapters 3 and 4 ([[controlled-operations]], [[measurement-in-quantum-circuits]]). Fourier transforms (Part 0, Chapter 2). The Baker–Campbell–Hausdorff expansion (Part 0, Chapter 1).
+**Needs.** Chapters 3 and 4 ([[controlled-operations]], [[measurement-in-quantum-circuits]]). Fourier transforms (Part 0, Chapter 4). The Baker–Campbell–Hausdorff expansion (Part 0, Chapter 1).
 
 **Leads to.** Part 6, Chapter 4 (phase estimation for chemistry) and the variational algorithms of Chapter 9.
 

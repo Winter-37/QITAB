@@ -48,7 +48,7 @@ The oscillator in particular is everywhere. It describes molecular vibrations, n
 
 **Path.** [[stationary-states]], [[infinite-square-well]], [[harmonic-oscillator-ladder-operators]], [[harmonic-oscillator-analytic-solution]], [[free-particle-and-wave-packets]], [[delta-function-potential]], [[finite-square-well]], [[one-dimensional-scattering-and-transfer-matrix]].
 
-**Needs.** Chapter 1. Fourier transforms (Part 0, Chapter 2) and Hermite polynomials (Part 0, Chapter 3: [[classical-orthogonal-polynomials|orthogonal polynomials]]).
+**Needs.** Chapter 1. Fourier transforms (Part 0, Chapter 4) and Hermite polynomials (Part 0, Chapter 6: [[classical-orthogonal-polynomials|orthogonal polynomials]]).
 
 **Leads to.** Chapter 3 (the formalism that generalizes these examples), Chapter 4 (three dimensions), and the scattering and tunnelling chapters (9 and 10).
 

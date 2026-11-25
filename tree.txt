@@ -6,12 +6,15 @@
 00_Mathematics
   01_Linear_Algebra
   02_Calculus
-  03_Differential_Equations
-  04_Numerical_Methods
-  05_Probability_and_Statistics
-  06_Optimization
-  07_Tensor_Algebra
-  08_Group_Theory
+  03_Vector_Calculus
+  04_Series_and_Expansions
+  05_Complex_Analysis
+  06_Differential_Equations
+  07_Numerical_Methods
+  08_Probability_and_Statistics
+  09_Optimization
+  10_Tensor_Algebra
+  11_Group_Theory
 01_Classical_Physics
   01_Classical_Mechanics
   02_Electromagnetism

@@ -142,6 +142,9 @@ DISPLAY_LOOSE = re.compile(r"(?s)\$\$(.+?)\$\$")
 INLINE_PAREN = re.compile(r"(?s)(?<!\\)\\\((.+?)\\\)")
 INLINE_DOLLAR = re.compile(r"(?<![\\$])\$(?=[^\s$])((?:\\.|[^$\\\n])+?)(?<=[^\s\\])\$(?![\d$])")
 WIKILINK = re.compile(r"\[\[([^\[\]|]+)(?:\|([^\[\]]+))?\]\]")
+# Text just before an equation link that already says "Eq." / "Eqs." (also inside a list such as
+# "Eqs. [[#a]], [[#b]] and [[#c]]"): the link then shows only "(4.3.5.2)", so the word is not doubled.
+EQ_WORD_BEFORE = re.compile(r"\bEqs?\.(?:\s|&nbsp;)*(?:\[\[[^\[\]|]*#[^\[\]]*\]\]\s*(?:,|and|or|to|\u2013|\u2014|-)\s*)*$")
 LABEL = re.compile(r"\\label\{([^{}]+)\}")
 DISPLAY_ANY = re.compile(r"(?s)(?<!\\)\$\$(.+?)\$\$|\\\[(.+?)\\\]")
 
@@ -247,7 +250,12 @@ class Renderer:
                     return f'<span class="planned" title="No equation with this label">{html.escape(label or "Eq. (?)")}</span>'
                 if nid != self_id:
                     links.add(nid)
-                text = html.escape(label) if label else f"Eq.&nbsp;(@@EQREF:{nid}~{lab}@@)"
+                if label:
+                    text = html.escape(label)
+                elif EQ_WORD_BEFORE.search(m.string, max(0, m.start() - 400), m.start()):
+                    text = f"(@@EQREF:{nid}~{lab}@@)"
+                else:
+                    text = f"Eq.&nbsp;(@@EQREF:{nid}~{lab}@@)"
                 return (f'<a class="xref eqref" href="#n.{nid}~eq-{lab}" data-n="{nid}" data-eq="{lab}">{text}</a>')
             note = self.resolver(ref)
             if note is not None:

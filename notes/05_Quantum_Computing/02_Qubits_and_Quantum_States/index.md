@@ -32,7 +32,7 @@ A qubit is a unit vector $\alpha|0\rangle+\beta|1\rangle$ in $\mathbb C^2$. Up t
 
 **Path.** [[qubits-and-the-bloch-sphere]], [[multi-qubit-states-and-bell-states]], [[ensembles-and-unitary-freedom]].
 
-**Needs.** Chapter 1 ([[quantum-postulates-for-information]]). Spin ½ (Part 2, Chapter 4). Tensor products and the Schmidt decomposition (Part 0, Chapter 7). Density operators (Part 2, Chapter 3).
+**Needs.** Chapter 1 ([[quantum-postulates-for-information]]). Spin ½ (Part 2, Chapter 4). Tensor products and the Schmidt decomposition (Part 0, Chapter 10). Density operators (Part 2, Chapter 3).
 
 **Leads to.** Chapter 3 (gates), and teleportation in Chapter 4.
 
