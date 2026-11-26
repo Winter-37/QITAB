@@ -7,10 +7,12 @@ kind: reference
 level: intermediate
 tags: [matrix-calculus, derivatives, eigenvalues, perturbation, lowdin, matrix-exponential, gradients]
 prerequisites: [matrix-and-tensor-identities]
-related: [functions-of-matrices, unitary-matrices-exponential-logarithm, hellmann-feynman-and-virial-theorems, derivative-integrals-and-u-matrices, basis-orthogonalization, rayleigh-schrodinger-perturbation-theory]
+related: [functions-of-matrices, unitary-matrices-exponential-logarithm, hellmann-feynman-and-virial-theorems, derivative-integrals-and-u-matrices, basis-orthogonalization, rayleigh-schrodinger-perturbation-theory, matrix-calculus, eigenvalue-and-eigenvector-derivatives]
 order: 30
 date: 2026-11-17
 ---
+
+This is the lookup table. The derivations, with worked examples, are in [[matrix-calculus]] and [[eigenvalue-and-eigenvector-derivatives]] (Part 0, Chapter 2).
 
 $\mathbf A(x)$ depends smoothly on a real parameter $x$ (a nuclear coordinate, a field strength), and $\mathbf A' = \mathrm d\mathbf A/\mathrm dx$. Analytic-gradient theory is built from these rules.
 

@@ -13,6 +13,7 @@ They behave in opposite ways as a step size shrinks, so there is a best step. On
 
 - **Energy differences cancel.** Reaction, binding and excitation energies are small differences of large totals, so absolute errors in the totals matter.
 - **Finite differences have a floor.** Numerical gradients and Hessians, used to check analytic derivatives, cannot be more accurate than about $10^{-11}$ (central) or $10^{-8}$ (forward) in relative terms, and need tightly converged energies.
+- **Integrals and trajectories are numerical.** DFT energies are sums over grid points, Coulomb integrals over Gaussians are Gaussian quadratures, and molecular dynamics is a long chain of integrator steps whose errors must stay bounded.
 - **Near-linear dependence costs digits.** An ill-conditioned overlap matrix loses $\log_{10}\kappa$ digits, which is why basis sets are pruned by canonical orthogonalization.
 
 ## The main ideas, in order
@@ -21,13 +22,21 @@ They behave in opposite ways as a step size shrinks, so there is a best step. On
 2. **Cancellation** and how to rewrite formulas to avoid it; compensated summation.
 3. **Truncation error** of finite differences, the optimal step, Richardson extrapolation.
 4. **Conditioning and stability:** condition numbers and backward-stable algorithms.
+5. **Quadrature:** Newton–Cotes rules, Gaussian quadrature from orthogonal polynomials, Golub–Welsch, Lebedev grids, product grids around atoms, Rys quadrature for Coulomb integrals.
+6. **ODE integrators:** Euler and Runge–Kutta, order and adaptive steps, stability regions, stiffness and implicit methods.
+7. **Symplectic integration:** velocity Verlet, time reversibility, the shadow Hamiltonian, time-step limits, and energy drift in ab initio MD.
 
 ## How to read it
 
-**Path.** [[floating-point-and-numerical-error]].
+**Path.**
 
-**Needs.** Chapter 1 (matrices) and Chapter 4 (Taylor series, for truncation errors).
+1. [[floating-point-and-numerical-error]]
+2. [[gaussian-quadrature]]
+3. [[numerical-integration-of-odes]]
+4. [[velocity-verlet-and-symplectic-integration]]
 
-**Leads to.** Eigenvalue accuracy and backward stability in Part 7 ([[floating-point-and-eigenvalue-perturbation]]), and the error estimates of every worked example.
+**Needs.** Chapter 1 (matrices), Chapter 4 (Taylor series, for truncation errors) and Chapter 6 (orthogonal polynomials, first-order ODEs).
 
-**Planned sections:** Numerical integration and quadrature; Root finding; Interpolation.
+**Leads to.** Eigenvalue accuracy and backward stability in Part 7 ([[floating-point-and-eigenvalue-perturbation]]), molecular integrals and DFT grids (Part 4, Chapters 4 and 8), molecular dynamics on potential energy surfaces (Part 4, Chapter 16), and the error estimates of every worked example.
+
+**Planned sections:** Root finding; Interpolation; Molecular integration grids (radial grids and atomic partitioning).

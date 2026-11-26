@@ -20,6 +20,7 @@ Quantum mechanics is written in complex numbers, and many real problems are easi
 1. **Complex numbers.** Algebra, modulus and argument, Euler's formula, de Moivre's theorem, roots, the multivalued logarithm and principal branches.
 2. **Analytic functions.** Cauchy–Riemann equations, harmonic functions, contour integrals, Cauchy's integral theorem and formula, Liouville's theorem, analytic continuation.
 3. **Laurent series and residues.** The classification of singularities, the residue theorem, real integrals, Jordan's lemma, principal values, Sokhotski–Plemelj.
+4. **The Laplace transform.** Transforms of derivatives and shifts, linear ODEs and rate equations, convolution, inversion by the Bromwich integral and residues, exponential sums for $1/x$ (Laplace-transformed MP2).
 
 ## How to read it
 
@@ -28,6 +29,7 @@ Quantum mechanics is written in complex numbers, and many real problems are easi
 1. [[complex-numbers]]
 2. [[analytic-functions-and-cauchy-theorem]]
 3. [[laurent-series-singularities-and-residues]]
+4. [[laplace-transform]]
 
 **Needs.** Chapter 2 (calculus), Chapter 3 (Stokes's theorem in the plane, for the proof of Cauchy's theorem), Chapter 4 (power and Taylor series).
 
@@ -37,5 +39,6 @@ Quantum mechanics is written in complex numbers, and many real problems are easi
 - Kramers–Kronig relations and dispersion (Part 1, Chapter 2).
 - Response functions and Green's functions (Part 4, Chapter 17).
 - Scattering theory (Part 2, Chapter 10).
+- Rate equations and their solution (Part 3); reduced-scaling MP2 (Part 4, Chapter 10).
 
 **Planned sections:** Conformal mapping; The method of steepest descents; Analytic continuation and the Gamma function in the complex plane.

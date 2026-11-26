@@ -61,6 +61,9 @@ What is expanded, in what, and where it is explained. "Mathematics" entries are 
 | multivariable Taylor | $f(\mathbf x + \mathbf a)$ | gradient, Hessian, … | [[multivariable-taylor-expansion]] |
 | Fourier series | a periodic function | $e^{inx}$ (or $\cos$, $\sin$) | [[fourier-series]] |
 | Fourier transform | a function on the line | plane waves $e^{ikx}$ | [[fourier-transforms-and-the-dirac-delta]] |
+| Laplace transform | a function on $[0,\infty)$ | decaying exponentials $e^{-st}$ | [[laplace-transform]] |
+| exponential sum | $1/x$ (energy denominators) | $\sum_kw_ke^{-\alpha_kx}$ | [[laplace-transform]] |
+| Gaussian quadrature | an integral | values at the zeros of orthogonal polynomials | [[gaussian-quadrature]] |
 | Laurent series | a function around a singularity | positive and negative powers | [[laurent-series-singularities-and-residues]] |
 | asymptotic series | $n!$, $\mathrm{erfc}\,x$, Laplace integrals | inverse powers | [[asymptotic-expansions]] |
 | Euler–Maclaurin | a sum | integral plus Bernoulli corrections | [[asymptotic-expansions]] |

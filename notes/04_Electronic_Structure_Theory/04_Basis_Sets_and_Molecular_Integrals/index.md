@@ -13,7 +13,7 @@ The Hartree–Fock equations become matrix equations only after the orbitals are
 
 - **The basis is part of the method.** Every result is "method/basis". A large method in a small basis can be worse than a modest method in a good one. Correlation energies in particular converge slowly, because Gaussians cannot reproduce the electron–electron cusp.
 - **Gaussians are a compromise for integrals.** Slater functions have the right cusp at the nucleus and the right exponential tail. Gaussians have neither, but the product of two Gaussians on different centres is a single Gaussian on a third centre. That one property makes multicentre integrals fast enough for practical use.
-- **Integral evaluation dominates the cost.** There are formally $O(K^4)$ two-electron integrals. McMurchie–Davidson, Obara–Saika and Rys quadrature evaluate them efficiently, and Schwarz screening and multipole methods show that only $O(K^2)$ are significant in large systems.
+- **Integral evaluation dominates the cost.** There are formally $O(K^4)$ two-electron integrals. McMurchie–Davidson, Obara–Saika and Rys quadrature evaluate them efficiently, and Schwarz screening and multipole methods show that only $O(K^2)$ are significant in large systems. Density fitting and Cholesky decomposition replace the four-index tensor by a three-index one of size about $5K^3/2$.
 - **Basis sets have known pathologies.** Superposition error in weakly bound complexes, near-linear dependence in diffuse sets, and the difference between Cartesian and spherical $d$ functions all affect results in ways that should be recognized.
 
 ## Where it is used later
@@ -30,6 +30,7 @@ The Hartree–Fock equations become matrix equations only after the orbitals are
 3. **Convergence.** Even-tempered and correlation-consistent ideas, and Hartree–Fock trends across bases for small molecules.
 4. **Integrals.** Gaussian overlap distributions and the product rule; the Boys function; the McMurchie–Davidson, Obara–Saika and Rys schemes.
 5. **Large systems.** Screening and multipole methods.
+6. **Integral factorization.** The ERI matrix is positive semidefinite and nearly singular. Pivoted Cholesky decomposition bounds every integral error by its threshold; Coulomb-metric density fitting has a second-order error and underestimates Coulomb and exchange energies. In the MO basis the same factors give single- and double-factorized Hamiltonians.
 
 ## How to read it
 
@@ -39,11 +40,12 @@ The Hartree–Fock equations become matrix equations only after the orbitals are
 2. Angular (solid-harmonic) and radial parts.
 3. Convergence of the energy with basis size, and HF trends across bases.
 4. Integral evaluation: overlap distributions, the McMurchie-Davidson, Obara-Saika and Rys schemes for electron repulsion, and screening with multipoles.
+5. Factorizing the integrals: Cholesky decomposition and density fitting.
 
 **Needs.** Chapter 3. Basis-set convergence of correlation energies is taken up again in Chapter 9 (the cusp).
 
 **Core (first pass).** [[gaussian-basis-functions]], [[pople-basis-sets]], [[hf-closed-shell-basis-set-trends]].
 
-**Deep (second pass).** [[solid-harmonics-angular-basis]], [[radial-basis-functions-slater-and-gaussian]], [[gaussian-basis-sets-and-convergence]], [[gaussian-overlap-distributions-and-one-electron-integrals]], [[electron-repulsion-integrals-md-os-rys]], [[multipole-methods-and-integral-screening]].
+**Deep (second pass).** [[solid-harmonics-angular-basis]], [[radial-basis-functions-slater-and-gaussian]], [[gaussian-basis-sets-and-convergence]], [[gaussian-overlap-distributions-and-one-electron-integrals]], [[electron-repulsion-integrals-md-os-rys]], [[multipole-methods-and-integral-screening]], [[density-fitting-and-cholesky-decomposition]].
 
-**Planned sections:** Density fitting (RI) and Cholesky decomposition; Effective core potentials; Integral symmetries.
+**Planned sections:** Effective core potentials; Integral symmetries.

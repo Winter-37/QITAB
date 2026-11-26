@@ -23,4 +23,4 @@ The symmetry of the nuclear framework tells you, before any calculation, which o
 
 **Leads to.** Chapter 4 (MO theory) and the use of symmetry throughout Part 4.
 
-**Planned sections:** Character tables and symmetry-adapted linear combinations; Equilibrium structures: r_e, r_0 and r_s geometries.
+**Planned sections:** Character tables of the common point groups (the projection-operator construction of symmetry-adapted combinations is in Part 0, Chapter 11); Equilibrium structures: r_e, r_0 and r_s geometries.
